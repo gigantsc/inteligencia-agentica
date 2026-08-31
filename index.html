@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inteligência Agêntica — O Ecossistema Hermes OS | A Netflix dos Funcionários Digitais</title>
+  <meta name="description" content="Assine por R$ 57/mês e destrave treinamentos práticos para instalar, hospedar e liderar robôs autônomos que trabalham para você 24h por dia.">
+
+  <!-- Preconnect + Font (CLS-safe: sync load, swap display) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* Size-adjusted fallback to minimize CLS while Inter loads */
+    @font-face {
+      font-family: 'Inter Fallback';
+      src: local('Arial');
+      size-adjust: 107%;
+      ascent-override: 90%;
+      descent-override: 22%;
+      line-gap-override: 0%;
+    }
+  </style>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Inter Fallback', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Lucide Icons (deferred) -->
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- Hotmart Checkout Widget -->
+  <script type="text/javascript">
+    function importHotmart(){ 
+      var imported = document.createElement('script'); 
+      imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
+      document.head.appendChild(imported); 
+      var link = document.createElement('link'); 
+      link.rel = 'stylesheet'; 
+      link.type = 'text/css'; 
+      link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
+      document.head.appendChild(link);
+    } 
+    importHotmart(); 
+  </script>
+
+  <style>
+    /* ===== MOTION TOKENS (transitions-dev) ===== */
+    :root {
+      --stagger-dur: 600ms;
+      --stagger-distance: 18px;
+      --stagger-stagger: 60ms;
+      --stagger-blur: 4px;
+      --stagger-ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --learn-shift: 3px;
+      --learn-spread: 10deg;
+      --learn-in: 350ms;
+      --learn-out: 350ms;
+      --learn-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ===== BASE ===== */
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: #07070A;
+      color: #E0E0E6;
+      font-family: 'Inter', 'Inter Fallback', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(192, 0, 255, 0.35);
+      color: #fff;
+    }
+
+    /* ===== GLASSMORPHISM ===== */
+    .glass {
+      background: rgba(17, 17, 24, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .glass-hover {
+      transition: border-color 380ms ease, box-shadow 380ms ease, transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .glass-hover:hover {
+      border-color: rgba(192, 0, 255, 0.30);
+      box-shadow:
+        0 0 20px rgba(192, 0, 255, 0.10),
+        0 0 60px rgba(0, 229, 255, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      transform: translateY(-2px) scale(1.015);
+    }
+
+    /* ===== GRADIENT TEXTS ===== */
+    .gradient-text {
+      background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text-gold {
+      background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ===== CTA SHINE SWEEP ===== */
+    .btn-gold {
+      background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%);
+      color: #07070A;
+      font-weight: 700;
+      position: relative;
+      overflow: hidden;
+      transition: transform 300ms ease, box-shadow 300ms ease;
+    }
+
+    .btn-gold::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -75%;
+      width: 50%;
+      height: 200%;
+      background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.45) 45%,
+        rgba(255, 255, 255, 0.55) 50%,
+        rgba(255, 255, 255, 0.45) 55%,
+        transparent 70%
+      );
+      transform: skewX(-20deg);
+      animation: shineSweep 3.2s ease-in-out infinite;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow:
+        0 4px 24px rgba(223, 186, 107, 0.35),
+        0 0 60px rgba(223, 186, 107, 0.15);
+    }
+
+    @keyframes shineSweep {
+      0%   { left: -75%; }
+      35%  { left: 125%; }
+      100% { left: 125%; }
+    }
+
+    /* ===== CTA PULSE ===== */
+    .cta-pulse {
+      animation: ctaPulseGlow 2.8s ease-in-out infinite;
+    }
+
+    @keyframes ctaPulseGlow {
+      0%, 100% { box-shadow: 0 0 16px rgba(223, 186, 107, 0.20); }
+      50%      { box-shadow: 0 0 32px rgba(223, 186, 107, 0.45), 0 0 64px rgba(223, 186, 107, 0.12); }
+    }
+
+    /* ===== TEXTS REVEAL (transitions-dev #18) ===== */
+    .t-stagger-line {
+      display: block;
+      opacity: 0;
+      transform: translateY(var(--stagger-distance));
+      filter: blur(var(--stagger-blur));
+      transition:
+        opacity   var(--stagger-dur) var(--stagger-ease),
+        transform var(--stagger-dur) var(--stagger-ease),
+        filter    var(--stagger-dur) var(--stagger-ease);
+      will-change: transform, opacity, filter;
+    }
+    .t-stagger-line--2 { transition-delay: var(--stagger-stagger); }
+    .t-stagger-line--3 { transition-delay: calc(var(--stagger-stagger) * 2); }
+    .t-stagger-line--4 { transition-delay: calc(var(--stagger-stagger) * 3); }
+    .t-stagger-line--5 { transition-delay: calc(var(--stagger-stagger) * 4); }
+
+    .t-stagger.is-shown .t-stagger-line {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== LEARN MORE HOVER (transitions-dev #24) ===== */
+    .t-learn-chevron {
+      display: inline-flex;
+      transform: translateX(0);
+      transition: transform var(--learn-out) var(--learn-ease);
+    }
+    .t-learn-arm {
+      transform-box: view-box;
+      transform-origin: 10px 8px;
+      vector-effect: non-scaling-stroke;
+      transition: transform var(--learn-out) var(--learn-ease);
+    }
+    .t-learn:hover .t-learn-chevron { transform: translateX(var(--learn-shift)); transition-duration: var(--learn-in); }
+    .t-learn:hover .t-learn-arm { transition-duration: var(--learn-in); }
+    .t-learn:hover .t-learn-arm-top { transform: rotate(var(--learn-spread)); }
+    .t-learn:hover .t-learn-arm-bot { transform: rotate(calc(var(--learn-spread) * -1)); }
+
+    /* ===== HERO RADIAL GLOW ===== */
+    .hero-glow {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    /* ===== GRID GLOW LINE ===== */
+    .glow-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #C000FF 30%, #00E5FF 70%, transparent 100%);
+      opacity: 0.25;
+    }
+
+    /* ===== COURSE CARD ICON GLOW ===== */
+    .course-icon-wrap {
+      transition: box-shadow 380ms ease;
+    }
+    .glass-hover:hover .course-icon-wrap {
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+    }
+
+    /* ===== PRICING CARD ===== */
+    .pricing-border {
+      background: linear-gradient(135deg, #C000FF, #00E5FF, #DFBA6B);
+      padding: 1px;
+      border-radius: 1.25rem;
+    }
+
+    .pricing-inner {
+      background: #0E0E14;
+      border-radius: calc(1.25rem - 1px);
+    }
+
+    /* ===== CHECK ICON ===== */
+    .check-icon {
+      color: #00E5FF;
+      flex-shrink: 0;
+    }
+
+    /* ===== COMPARISON TABLE ===== */
+    .comparison-bad {
+      color: #FF4D6A;
+    }
+    .comparison-good {
+      color: #00E5FF;
+    }
+
+    /* ===== FLOATING PARTICLES ===== */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: floatParticle linear infinite;
+    }
+    @keyframes floatParticle {
+      0%   { transform: translateY(0) scale(1); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(-100vh) scale(0.3); opacity: 0; }
+    }
+
+    /* ===== COURSE STATUS BADGES ===== */
+    .badge-available {
+      background: rgba(0, 229, 255, 0.10);
+      color: #00E5FF;
+      border: 1px solid rgba(0, 229, 255, 0.20);
+    }
+    .badge-coming {
+      background: rgba(223, 186, 107, 0.10);
+      color: #DFBA6B;
+      border: 1px solid rgba(223, 186, 107, 0.20);
+    }
+
+    /* ===== COMING SOON CARD OVERLAY ===== */
+    .card-coming {
+      position: relative;
+    }
+    .card-coming::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: rgba(7, 7, 10, 0.25);
+      pointer-events: none;
+    }
+
+    /* ===== REDUCED MOTION ===== */
+    @media (prefers-reduced-motion: reduce) {
+      .t-stagger-line,
+      .t-learn-chevron,
+      .t-learn-arm,
+      .reveal-up,
+      .glass-hover,
+      .btn-gold,
+      .btn-gold::after,
+      .cta-pulse,
+      .course-icon-wrap,
+      .particle {
+        transition: none !important;
+        animation: none !important;
+      }
+      .reveal-up {
+        opacity: 1;
+        transform: none;
+      }
+      .t-stagger-line {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+    }
+
+    /* ===== TOP NAV BLUR ===== */
+    .top-bar {
+      background: rgba(7, 7, 10, 0.70);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+  <!-- ============================================================
+       FLOATING PARTICLES (ambient)
+       ============================================================ -->
+  <div id="particles" class="fixed inset-0 pointer-events-none z-0" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       TOP BAR
+       ============================================================ -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-magenta to-ciano flex items-center justify-center">
+          <i data-lucide="brain" class="w-4 h-4 text-white"></i>
+        </div>
+        <span class="text-sm font-bold tracking-tight text-white">Inteligência Agêntica</span>
+      </div>
+      <a href="#oferta"
+         class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-ouro hover:text-ouro-light transition-colors duration-200">
+        Assinar agora
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ============================================================
+         DOBRA 1 — HERO SECTION
+         ============================================================ -->
+    <section id="hero" class="relative min-h-screen flex items-center pt-14 overflow-hidden">
+      <!-- Radial glows -->
+      <div class="hero-glow bg-magenta -top-40 -left-40 absolute" aria-hidden="true"></div>
+      <div class="hero-glow bg-ciano -bottom-60 -right-40 absolute" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32 text-center">
+        <!-- Stagger reveal -->
+        <div class="t-stagger" id="heroStagger">
+          <!-- Tag -->
+          <span class="t-stagger-line t-stagger-line--1 inline-block mb-5 sm:mb-6 px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-ciano border border-ciano/20 bg-ciano/5">
+            A assinatura definitiva de IA para empresas
+          </span>
+
+          <!-- Headline -->
+          <strong class="t-stagger-line t-stagger-line--2 text-[2rem] leading-[1.1] sm:text-5xl lg:text-6xl font-extrabold text-white max-w-4xl mx-auto">
+            Sua força de trabalho digital por menos de
+            <span class="gradient-text-gold">R$&nbsp;1,90 por dia.</span>
+          </strong>
+
+          <!-- Sub-headline -->
+          <span class="t-stagger-line t-stagger-line--3 mt-5 sm:mt-7 text-base sm:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Assine a comunidade <strong class="text-white font-semibold">Inteligência Agêntica</strong> e entre no ecossistema onde empresários aprendem a instalar, hospedar e liderar robôs autônomos de verdade. Treinamentos semanais, <strong class="text-ciano font-semibold">4 encontros ao vivo por mês</strong>, suporte e networking inclusos.
+          </span>
+
+          <!-- CTA -->
+          <span class="t-stagger-line t-stagger-line--4 mt-9 sm:mt-10">
+            <a href="#oferta"
+               class="btn-gold cta-pulse inline-flex items-center gap-2 px-7 sm:px-9 py-4 rounded-xl text-sm sm:text-base font-bold tracking-wide">
+              QUERO ENTRAR NA COMUNIDADE POR R$&nbsp;57/MÊS
+            </a>
+            <span class="block mt-3 text-xs text-gray-400 font-medium">🔥 Preço de lançamento de <span class="line-through text-red-400/80">R$&nbsp;97</span> por <strong class="text-ouro font-semibold">R$&nbsp;57/mês</strong> • Cancele quando quiser</span>
+          </span>
+        </div>
+
+        <!-- Hero visual element -->
+        <div class="t-stagger-line t-stagger-line--5 mt-14 sm:mt-16 max-w-2xl mx-auto reveal-up" id="heroVisual">
+          <div class="glass rounded-2xl p-6 sm:p-8 relative">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
+              <span class="ml-2 text-[11px] text-gray-400 font-mono">hermes-ecosystem.app</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+              <div class="sm:col-span-5 bg-gradient-to-r from-magenta/15 to-ciano/15 rounded-xl p-4 border border-white/5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-magenta to-ciano flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="play" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <div class="text-left">
+                    <p class="text-xs text-gray-400">Ecossistema em expansão</p>
+                    <p class="text-sm font-bold text-white">Novos cursos liberados toda semana</p>
+                  </div>
+                  <div class="ml-auto hidden sm:flex items-center gap-1 text-ouro text-xs font-semibold">
+                    <i data-lucide="crown" class="w-4 h-4"></i>
+                    Membro
+                  </div>
+                </div>
+              </div>
+              <div class="col-span-1 bg-white/[0.03] rounded-lg p-3 border border-white/5 text-center">
+                <i data-lucide="monitor" class="w-5 h-5 text-ciano mx-auto mb-1"></i>
+                <p class="text-[10px] text-gray-400">Desktop</p>
+              </div>
+              <div class="col-span-1 bg-white/[0.03] rounded-lg p-3 border border-white/5 text-center">
+                <i data-lucide="cloud" class="w-5 h-5 text-magenta mx-auto mb-1"></i>
+                <p class="text-[10px] text-gray-400">VPS</p>
+              </div>
+              <div class="col-span-1 bg-white/[0.03] rounded-lg p-3 border border-white/5 text-center">
+                <i data-lucide="layout" class="w-5 h-5 text-ciano mx-auto mb-1"></i>
+                <p class="text-[10px] text-gray-400">Front-end</p>
+              </div>
+              <div class="col-span-1 bg-white/[0.03] rounded-lg p-3 border border-white/5 text-center">
+                <i data-lucide="video" class="w-5 h-5 text-magenta mx-auto mb-1"></i>
+                <p class="text-[10px] text-gray-400">Vídeos</p>
+              </div>
+              <div class="col-span-2 sm:col-span-1 bg-white/[0.03] rounded-lg p-3 border border-white/5 text-center">
+                <i data-lucide="plus" class="w-5 h-5 text-ouro mx-auto mb-1"></i>
+                <p class="text-[10px] text-gray-400">E mais</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         DOBRA 2 — CATÁLOGO DE TREINAMENTOS
+         ============================================================ -->
+    <section id="cursos" class="relative py-20 sm:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section header -->
+        <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16 reveal-up">
+          <span class="inline-block mb-4 px-3.5 py-1 rounded-full text-[11px] font-semibold tracking-[0.15em] uppercase text-[#D966FF] border border-magenta/20 bg-magenta/5">
+            Conteúdo atualizado semanalmente
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+            Uma biblioteca viva de<br class="sm:hidden">
+            <span class="gradient-text">automações para sua empresa.</span>
+          </h2>
+          <p class="mt-4 text-gray-400 text-base sm:text-lg leading-relaxed">
+            Esqueça cursos que ficam obsoletos em 30 dias. Na comunidade, você aprende a construir e liderar agentes com treinamentos práticos, códigos prontos e novas automações adicionadas toda semana.
+          </p>
+        </div>
+
+        <!-- Course Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+
+          <!-- Card 1 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="0">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-ciano/20 to-ciano/5 flex items-center justify-center flex-shrink-0 border border-ciano/10">
+                <i data-lucide="monitor" class="w-5 h-5 text-ciano"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-ciano/80 block mb-0.5">Setup Inicial</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">Hermes Desktop</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">Como instalar e rodar seu primeiro robô no computador pessoal em 15 minutos de forma 100% visual.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="60">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-magenta/20 to-magenta/5 flex items-center justify-center flex-shrink-0 border border-magenta/10">
+                <i data-lucide="cloud" class="w-5 h-5 text-magenta"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-[#D966FF] block mb-0.5">Nuvem 24/7</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">Hermes VPS</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">Hospede seu agente na nuvem para trabalhar sozinho enquanto você dorme, sem precisar digitar códigos.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="120">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-ciano/20 to-ciano/5 flex items-center justify-center flex-shrink-0 border border-ciano/10">
+                <i data-lucide="shield-check" class="w-5 h-5 text-ciano"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-ciano/80 block mb-0.5">Segurança & Bunker</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">Hermes DevOps</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">Docker, Portainer e Firewalls para proteger os dados confidenciais do seu negócio com setup assistido.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="0">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-magenta/20 to-magenta/5 flex items-center justify-center flex-shrink-0 border border-magenta/10">
+                <i data-lucide="megaphone" class="w-5 h-5 text-magenta"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-[#D966FF] block mb-0.5">Redes Sociais</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">Hermes CMO Autônomo</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">O agente que varre pautas do seu mercado, escreve roteiros e programa posts nas redes sociais sozinho.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="60">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-ciano/20 to-ciano/5 flex items-center justify-center flex-shrink-0 border border-ciano/10">
+                <i data-lucide="search" class="w-5 h-5 text-ciano"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-ciano/80 block mb-0.5">Tráfego Orgânico</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">Hermes SEO</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">Um agente especialista em ranqueamento no Google que pesquisa palavras-chave e escreve artigos estruturados.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="120">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-magenta/20 to-magenta/5 flex items-center justify-center flex-shrink-0 border border-magenta/10">
+                <i data-lucide="bar-chart-3" class="w-5 h-5 text-magenta"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-[#D966FF] block mb-0.5">Finanças & Métricas</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">BI Conversacional</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">Seu analista financeiro particular. Conecte dados de tráfego, anúncios e pixel para gerar relatórios de lucro no chat.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 7 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="0">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-ciano/20 to-ciano/5 flex items-center justify-center flex-shrink-0 border border-ciano/10">
+                <i data-lucide="mic" class="w-5 h-5 text-ciano"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-ciano/80 block mb-0.5">Comando Mobile</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">O Efeito Jarvis</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">Integre seus agentes ao Telegram para comandar sua operação inteira através de mensagens de voz no celular.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 8 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="60">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-magenta/20 to-magenta/5 flex items-center justify-center flex-shrink-0 border border-magenta/10">
+                <i data-lucide="layout" class="w-5 h-5 text-magenta"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-[#D966FF] block mb-0.5">Front-end & CRO</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">Landing Pages de Alta Conversão</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">Como instruir o agente a criar páginas de vendas do zero com copy persuasivo, design moderno e código pronto.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 9 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="120">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-ciano/20 to-ciano/5 flex items-center justify-center flex-shrink-0 border border-ciano/10">
+                <i data-lucide="video" class="w-5 h-5 text-ciano"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-ciano/80 block mb-0.5">Audiovisual com IA</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">Criação de Vídeos com Agentes</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">Roteiro, narração, edição e publicação: o agente produz vídeos de conteúdo profissional para seus canais.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 10 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="0">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-magenta/20 to-magenta/5 flex items-center justify-center flex-shrink-0 border border-magenta/10">
+                <i data-lucide="puzzle" class="w-5 h-5 text-magenta"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-[#D966FF] block mb-0.5">Templates Prontos</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">Biblioteca de Skills</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">Copie e instale habilidades pré-configuradas diretamente no seu robô para automatizar tarefas em segundos.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 11 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="60">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-ciano/20 to-ciano/5 flex items-center justify-center flex-shrink-0 border border-ciano/10">
+                <i data-lucide="rocket" class="w-5 h-5 text-ciano"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-ciano/80 block mb-0.5">Radar Tech</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">Upgrades Semanais</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">Acompanhe as atualizações da Nous Research e as novidades mais quentes do ecossistema de agentes.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 12 -->
+          <article class="glass glass-hover rounded-2xl p-5 sm:p-6 reveal-up group" data-delay="120">
+            <div class="flex items-start gap-4">
+              <div class="course-icon-wrap w-11 h-11 rounded-xl bg-gradient-to-br from-ouro/25 to-ouro/5 flex items-center justify-center flex-shrink-0 border border-ouro/15">
+                <i data-lucide="users" class="w-5 h-5 text-ouro"></i>
+              </div>
+              <div class="min-w-0">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-ouro/80 block mb-0.5">Networking</span>
+                <h3 class="text-sm sm:text-base font-bold text-white leading-snug">Comunidade de Membros</h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">Fórum exclusivo para trocar prompts testados, tirar dúvidas técnicas e fechar parcerias de negócios.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- "E muito mais" callout -->
+        <div class="mt-8 sm:mt-10 text-center reveal-up">
+          <div class="glass inline-flex items-center gap-3 px-5 py-3 rounded-xl">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-magenta/20 to-ciano/20 flex items-center justify-center border border-white/5">
+              <i data-lucide="sparkles" class="w-4 h-4 text-ouro"></i>
+            </div>
+            <p class="text-sm text-gray-300 text-left">
+              <strong class="text-white">Treinamentos atualizados toda semana.</strong><br class="sm:hidden">
+              <span class="text-gray-400">Automações financeiras, landing pages, criação de vídeos, atendimento inteligente e muito mais.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Mini-CTA abaixo do grid -->
+        <div class="mt-8 sm:mt-10 text-center reveal-up">
+          <a href="#oferta" class="t-learn inline-flex items-center gap-2 text-sm font-semibold text-ouro hover:text-ouro-light transition-colors duration-200">
+            Acessar a comunidade por R$&nbsp;57/mês
+            <span class="t-learn-chevron">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path class="t-learn-arm t-learn-arm-top" d="M6 4L10 8"/>
+                <path class="t-learn-arm t-learn-arm-bot" d="M10 8L6 12"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         NOVA DOBRA — 4 ENCONTROS AO VIVO POR MÊS
+         ============================================================ -->
+    <section id="ao-vivo" class="relative py-20 sm:py-28 overflow-hidden">
+      <!-- Glow ambience -->
+      <div class="hero-glow bg-ciano/30 -top-20 right-1/4 absolute" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16 reveal-up">
+          <!-- Pulsing Live Badge -->
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider text-red-400 border border-red-500/30 bg-red-500/10 mb-4">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+            </span>
+            4 Encontros ao Vivo por Mês
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+            Você nunca mais vai travar sozinho.<br class="sm:hidden">
+            <span class="gradient-text">1 mentoria prática por semana.</span>
+          </h2>
+          <p class="mt-4 text-gray-400 text-base sm:text-lg leading-relaxed">
+            Além de todos os treinamentos gravados, você tem acesso direto a <strong class="text-white">4 encontros ao vivo todo mês</strong> para tirar dúvidas na prática, debugar seus agentes, acompanhar novidades e fazer networking de alto nível.
+          </p>
+        </div>
+
+        <!-- 3 Live Pillars Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+          <!-- Pillar 1 -->
+          <div class="glass glass-hover rounded-2xl p-6 sm:p-8 reveal-up" data-delay="0">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-ciano/20 to-ciano/5 border border-ciano/20 flex items-center justify-center mb-5">
+              <i data-lucide="help-circle" class="w-6 h-6 text-ciano"></i>
+            </div>
+            <span class="text-[10px] font-bold tracking-wider uppercase text-ciano/80 block mb-1">Ao Vivo na Prática</span>
+            <h3 class="text-lg font-bold text-white mb-2.5">Plantão Tira-Dúvidas</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Traga seus prompts, fluxos e servidores travados. Analisamos seu caso e destravamos sua operação em tempo real com você.
+            </p>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="glass glass-hover rounded-2xl p-6 sm:p-8 reveal-up" data-delay="60">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-magenta/20 to-magenta/5 border border-magenta/20 flex items-center justify-center mb-5">
+              <i data-lucide="zap" class="w-6 h-6 text-magenta"></i>
+            </div>
+            <span class="text-[10px] font-bold tracking-wider uppercase text-[#D966FF] block mb-1">Radar & Estratégia</span>
+            <h3 class="text-lg font-bold text-white mb-2.5">Novidades & Atualizações</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Apresentação em primeira mão dos novos lançamentos de IA, modelos e integrações testadas para você aplicar antes do mercado.
+            </p>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="glass glass-hover rounded-2xl p-6 sm:p-8 reveal-up" data-delay="120">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-ouro/20 to-ouro/5 border border-ouro/20 flex items-center justify-center mb-5">
+              <i data-lucide="network" class="w-6 h-6 text-ouro"></i>
+            </div>
+            <span class="text-[10px] font-bold tracking-wider uppercase text-ouro/80 block mb-1">Ecossistema VIP</span>
+            <h3 class="text-lg font-bold text-white mb-2.5">Networking entre Empresários</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Conecte-se com outros fundadores e gestores que estão liderando agentes no dia a dia. Troque aprendizados e feche parcerias.
+            </p>
+          </div>
+        </div>
+
+        <!-- Recording guarantee callout -->
+        <div class="mt-8 sm:mt-10 max-w-2xl mx-auto glass rounded-xl p-4 sm:p-5 flex items-center gap-3.5 reveal-up">
+          <div class="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center flex-shrink-0">
+            <i data-lucide="video" class="w-5 h-5 text-ciano"></i>
+          </div>
+          <p class="text-xs sm:text-sm text-gray-300">
+            <strong class="text-white">Não pode participar ao vivo?</strong> Todas as sessões são gravadas na íntegra e ficam disponíveis na área de membros para você consultar quando quiser.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         DOBRA 3 — POR QUE O MODELO DE ASSINATURA
+         ============================================================ -->
+    <section id="porque" class="relative py-20 sm:py-28 overflow-hidden">
+      <!-- Subtle glow -->
+      <div class="hero-glow bg-magenta/50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-14 reveal-up">
+          <span class="inline-block mb-4 px-3 py-1 rounded-full text-[11px] font-semibold tracking-[0.15em] uppercase text-ouro border border-ouro/20 bg-ouro/5">
+            O modelo inteligente
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+            Por que este modelo é o
+            <span class="gradient-text-gold">único que faz sentido?</span>
+          </h2>
+        </div>
+
+        <!-- Comparison Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 max-w-4xl mx-auto">
+          <!-- OLD WAY -->
+          <div class="glass rounded-2xl p-6 sm:p-8 reveal-up border border-red-500/10">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center">
+                <i data-lucide="x" class="w-5 h-5 text-red-400"></i>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-white">Curso único e estático</h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2.5 text-sm text-gray-400 leading-relaxed">
+                <i data-lucide="x-circle" class="w-4 h-4 text-red-400/70 flex-shrink-0 mt-0.5"></i>
+                Paga R$&nbsp;497 ou mais por um curso que desatualiza em 30 dias
+              </li>
+              <li class="flex items-start gap-2.5 text-sm text-gray-400 leading-relaxed">
+                <i data-lucide="x-circle" class="w-4 h-4 text-red-400/70 flex-shrink-0 mt-0.5"></i>
+                Nenhuma atualização quando a ferramenta muda (e ela muda toda semana)
+              </li>
+              <li class="flex items-start gap-2.5 text-sm text-gray-400 leading-relaxed">
+                <i data-lucide="x-circle" class="w-4 h-4 text-red-400/70 flex-shrink-0 mt-0.5"></i>
+                Sem comunidade para tirar dúvidas ou trocar configurações
+              </li>
+              <li class="flex items-start gap-2.5 text-sm text-gray-400 leading-relaxed">
+                <i data-lucide="x-circle" class="w-4 h-4 text-red-400/70 flex-shrink-0 mt-0.5"></i>
+                Sem suporte quando o seu robô trava às 3h da manhã
+              </li>
+            </ul>
+          </div>
+
+          <!-- NEW WAY -->
+          <div class="glass rounded-2xl p-6 sm:p-8 reveal-up border border-ciano/10">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-ciano/10 flex items-center justify-center">
+                <i data-lucide="check" class="w-5 h-5 text-ciano"></i>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-white">Assinatura Inteligência Agêntica</h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2.5 text-sm text-gray-300 leading-relaxed">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-ciano flex-shrink-0 mt-0.5"></i>
+                R$&nbsp;57/mês (menos do que um almoço executivo) e cancela quando quiser
+              </li>
+              <li class="flex items-start gap-2.5 text-sm text-gray-300 leading-relaxed">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-ciano flex-shrink-0 mt-0.5"></i>
+                4 encontros ao vivo por mês (1 por semana) para tirar dúvidas e debugar na prática
+              </li>
+              <li class="flex items-start gap-2.5 text-sm text-gray-300 leading-relaxed">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-ciano flex-shrink-0 mt-0.5"></i>
+                Treinamentos práticos e automações atualizados toda semana
+              </li>
+              <li class="flex items-start gap-2.5 text-sm text-gray-300 leading-relaxed">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-ciano flex-shrink-0 mt-0.5"></i>
+                Comunidade ativa de empresários trocando prompts, skills e fechando negócios
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom proof line -->
+        <div class="mt-10 text-center reveal-up">
+          <p class="text-gray-400 text-sm max-w-2xl mx-auto leading-relaxed">
+            A tecnologia de agentes muda toda semana. Comprar um curso estático de IA é como comprar um mapa de papel para um GPS que recalcula a rota a cada 5 minutos. O modelo de assinatura garante que você esteja sempre na versão mais recente.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         DOBRA 4 — OFERTA E FECHAMENTO
+         ============================================================ -->
+    <section id="oferta" class="relative py-20 sm:py-28 overflow-hidden">
+      <!-- Glow ambience -->
+      <div class="hero-glow bg-ouro/30 top-1/3 left-1/2 -translate-x-1/2 absolute" style="width:800px;height:800px" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 sm:mb-12 reveal-up">
+          <span class="inline-block mb-4 px-3 py-1 rounded-full text-[11px] font-semibold tracking-[0.15em] uppercase text-ouro border border-ouro/20 bg-ouro/5">
+            Oferta de acesso
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+            Sua central de treinamento.<br>
+            <span class="gradient-text-gold">Um único investimento mensal.</span>
+          </h2>
+        </div>
+
+        <!-- Pricing Card -->
+        <div class="reveal-up">
+          <div class="pricing-border">
+            <div class="pricing-inner p-6 sm:p-10">
+              <!-- Badge -->
+              <div class="text-center mb-6">
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-obsidian bg-gradient-to-r from-ouro to-ouro-light shadow-lg shadow-ouro/20">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                  Preço de Lançamento
+                </span>
+              </div>
+
+              <!-- Price -->
+              <div class="text-center mb-8">
+                <p class="text-sm font-medium text-gray-400 mb-1.5">
+                  De <span class="line-through text-red-400 font-semibold">R$&nbsp;97,00/mês</span> por apenas:
+                </p>
+                <div class="flex items-baseline justify-center gap-1">
+                  <span class="text-sm text-gray-400 font-medium self-start mt-3">R$</span>
+                  <span class="text-6xl sm:text-7xl font-black gradient-text-gold">57</span>
+                  <span class="text-lg text-gray-400 font-medium">/mês</span>
+                </div>
+                <div class="mt-2.5 flex items-center justify-center gap-2">
+                  <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold text-ciano bg-ciano/10 border border-ciano/20">
+                    41% OFF no lançamento
+                  </span>
+                  <span class="text-xs text-gray-400 font-medium">Menos de R$&nbsp;1,90/dia</span>
+                </div>
+                <p class="text-xs text-gray-400 mt-2">Valor promocional travado para sempre enquanto mantiver sua assinatura.</p>
+              </div>
+
+              <!-- Benefits list -->
+              <ul class="space-y-3.5 mb-8 max-w-sm mx-auto">
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                  <i data-lucide="check" class="w-4.5 h-4.5 text-ciano flex-shrink-0 check-icon"></i>
+                  <strong class="text-white font-semibold">4 encontros ao vivo por mês</strong> (tira-dúvidas & novidades)
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                  <i data-lucide="check" class="w-4.5 h-4.5 text-ciano flex-shrink-0 check-icon"></i>
+                  Treinamentos práticos atualizados toda semana
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                  <i data-lucide="check" class="w-4.5 h-4.5 text-ciano flex-shrink-0 check-icon"></i>
+                  Biblioteca de automações, scripts e templates pronta
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                  <i data-lucide="check" class="w-4.5 h-4.5 text-ciano flex-shrink-0 check-icon"></i>
+                  Comunidade exclusiva de networking entre empresários
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                  <i data-lucide="check" class="w-4.5 h-4.5 text-ciano flex-shrink-0 check-icon"></i>
+                  Gravações de todas as mentorias na área de membros
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                  <i data-lucide="check" class="w-4.5 h-4.5 text-ciano flex-shrink-0 check-icon"></i>
+                  Cancele em 1 clique • Valor promocional travado
+                </li>
+              </ul>
+
+              <!-- CTA -->
+              <div class="text-center">
+                <a onclick="return false;"
+                   href="https://pay.hotmart.com/N107341808K?checkoutMode=2&off=3g3mcojy"
+                   class="hotmart-fb btn-gold cta-pulse block w-full sm:w-auto sm:inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold tracking-wide cursor-pointer"
+                   data-event="cta_pricing_click">
+                  QUERO ENTRAR NA COMUNIDADE POR R$&nbsp;57/MÊS
+                </a>
+                <p class="mt-4 text-xs text-gray-400 flex items-center justify-center gap-1.5">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-green-500/70"></i>
+                  Pagamento seguro. Cancele quando quiser.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust signals -->
+        <div class="mt-10 grid grid-cols-3 gap-4 max-w-md mx-auto reveal-up">
+          <div class="text-center">
+            <div class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="lock" class="w-4 h-4 text-ciano/70"></i>
+            </div>
+            <p class="text-[10px] text-gray-400 font-medium">Checkout<br>Seguro</p>
+          </div>
+          <div class="text-center">
+            <div class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="refresh-cw" class="w-4 h-4 text-ciano/70"></i>
+            </div>
+            <p class="text-[10px] text-gray-400 font-medium">Sem<br>Fidelidade</p>
+          </div>
+          <div class="text-center">
+            <div class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="headphones" class="w-4 h-4 text-ciano/70"></i>
+            </div>
+            <p class="text-[10px] text-gray-400 font-medium">Suporte<br>Dedicado</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="border-t border-white/5 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-md bg-gradient-to-br from-magenta to-ciano flex items-center justify-center">
+          <i data-lucide="brain" class="w-3.5 h-3.5 text-white"></i>
+        </div>
+        <span class="text-xs text-gray-400 font-medium">Inteligência Agêntica &copy; 2025. Todos os direitos reservados.</span>
+      </div>
+      <p class="text-[10px] text-gray-400">Ecossistema Hermes OS — Powered by Nous Research</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script>
+    // ---- Initialize Lucide Icons (works with defer) ----
+    function initPage() {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+      const heroStagger = document.getElementById('heroStagger');
+      if (heroStagger) {
+        requestAnimationFrame(() => {
+          heroStagger.classList.add('is-shown');
+        });
+      }
+    }
+    // Lucide is defer'd — if it loaded already, run now; otherwise wait for load
+    if (typeof lucide !== 'undefined') {
+      initPage();
+    } else {
+      window.addEventListener('load', initPage);
+    }
+
+    // ---- Intersection Observer: scroll reveals ----
+    (() => {
+      const revealElements = document.querySelectorAll('.reveal-up');
+      if (!revealElements.length) return;
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        revealElements.forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const delay = parseInt(entry.target.dataset.delay || '0', 10);
+              setTimeout(() => {
+                entry.target.classList.add('is-visible');
+              }, delay);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      revealElements.forEach(el => observer.observe(el));
+    })();
+
+    // ---- Floating particles ----
+    (() => {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      const container = document.getElementById('particles');
+      if (!container) return;
+
+      const colors = ['#C000FF', '#00E5FF', '#DFBA6B'];
+      const NUM = 18;
+
+      for (let i = 0; i < NUM; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        const size = Math.random() * 3 + 1.5;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const left = Math.random() * 100;
+        const duration = Math.random() * 18 + 14;
+        const delay = Math.random() * 20;
+
+        p.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          background: ${color};
+          left: ${left}%;
+          bottom: -10px;
+          animation-duration: ${duration}s;
+          animation-delay: ${delay}s;
+          box-shadow: 0 0 ${size * 3}px ${color}40;
+          opacity: 0;
+        `;
+        container.appendChild(p);
+      }
+    })();
+
+    // ---- DataLayer stubs (GTM ready) ----
+    window.dataLayer = window.dataLayer || [];
+    document.querySelectorAll('[data-event]').forEach(el => {
+      el.addEventListener('click', () => {
+        window.dataLayer.push({
+          event: el.dataset.event,
+          timestamp: new Date().toISOString(),
+        });
+      });
+    });
+  </script>
+</body>
+</html>
