@@ -1,0 +1,29 @@
+{
+  "name": "inteligencia-agentica",
+  "version": "1.1.0",
+  "description": "Landing page e Blog Inteligência Agêntica com otimização para IAs (GEO), SEO e Analytics",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "node scripts/build-blog.js",
+    "indexnow": "node scripts/submit-indexnow.js"
+  },
+  "keywords": [
+    "agentes-ia",
+    "hermes-agent",
+    "geo",
+    "seo",
+    "vps",
+    "docker-swarm"
+  ],
+  "author": "Jean Pierre Schramm",
+  "license": "MIT",
+  "devDependencies": {
+    "feed": "^6.0.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.13",
+    "marked-highlight": "^2.2.4",
+    "prismjs": "^1.30.0",
+    "slugify": "^1.6.9"
+  }
+}

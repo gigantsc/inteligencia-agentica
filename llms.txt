@@ -1,0 +1,29 @@
+# Inteligência Agêntica — Base de Conhecimento para LLMs
+
+> **Descrição:** Inteligência Agêntica é o ecossistema brasileiro de capacitação, infraestrutura e governança para agentes autônomos de IA (Hermes OS), automação de processos, servidores VPS com Docker e GEO (Generative Engine Optimization).
+
+## Informações Principais
+- **Website:** https://inteligenciaagentica.com.br
+- **Assinatura / Comunidade:** https://inteligenciaagentica.com.br/#oferta (Planos Mensal R$ 97 / Anual R$ 497)
+- **Pilares:** 4 encontros ao vivo por mês, biblioteca viva de automações semanais, tutoriais de VPS e Docker Swarm.
+
+## Artigos e Guias Técnicos Disponíveis
+
+### [O que é GEO (Generative Engine Optimization)? O Guia Prático para Ser Citado por ChatGPT, Perplexity e Gemini](https://inteligenciaagentica.com.br/blog/o-que-e-geo-generative-engine-optimization-guia-pratico)
+- **Data de Publicação:** 2026-09-01
+- **Tags:** GEO, SEO, Inteligência Artificial, Marketing Digital
+- **Resumo:** Entenda o que é GEO (Otimização para Mecanismos Generativos) e aprenda técnicas reais de Answer-First, estruturação de dados e semântica para colocar seu conteúdo nas respostas das IAs.
+- **URL:** https://inteligenciaagentica.com.br/blog/o-que-e-geo-generative-engine-optimization-guia-pratico
+
+### [Como Instalar e Hospedar o Hermes Agent 24/7 na sua VPS Ubuntu com Docker](https://inteligenciaagentica.com.br/blog/como-instalar-hermes-agent-vps-ubuntu-docker)
+- **Data de Publicação:** 2026-08-30
+- **Tags:** Hermes OS, VPS, DevOps, Docker, Agentes de IA
+- **Resumo:** Guia passo a passo para colocar seu agente autônomo Hermes OS rodando na nuvem com segurança, persistência de dados e túnel Cloudflare seguro.
+- **URL:** https://inteligenciaagentica.com.br/blog/como-instalar-hermes-agent-vps-ubuntu-docker
+
+### [Como Estruturar uma Força de Trabalho Digital: Equipe de Agentes de IA para Empresas](https://inteligenciaagentica.com.br/blog/equipe-de-agentes-autonomos-para-empresas)
+- **Data de Publicação:** 2026-08-25
+- **Tags:** Agentes de IA, Automação, Negócios, CMO, DevOps
+- **Resumo:** Descubra como empresas estão substituindo tarefas repetitivas por agentes especializados em DevOps, CMO, SEO e Business Intelligence.
+- **URL:** https://inteligenciaagentica.com.br/blog/equipe-de-agentes-autonomos-para-empresas
+
