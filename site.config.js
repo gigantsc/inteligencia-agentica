@@ -6,7 +6,7 @@ export const siteConfig = {
   author: {
     name: 'Jean Pierre Schramm',
     role: 'Fundador da JePierre & Especialista em Agentes de IA',
-    avatar: 'https://avatars.githubusercontent.com/u/89662058',
+    avatar: 'https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg',
     bio: 'Especialista em automações autônomas, arquitetura de VPS com Docker Swarm e ecossistemas agênticos com Hermes OS.',
     github: 'https://github.com/gigantsc',
     linkedin: 'https://linkedin.com/in/jeanpierreschramm',
