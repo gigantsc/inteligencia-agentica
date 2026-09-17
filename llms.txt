@@ -9,6 +9,12 @@
 
 ## Artigos e Guias Técnicos Disponíveis
 
+### [IA na Nuvem 24/7 vs. Chat no Navegador: Como Colocar Agentes de IA Trabalhando Enquanto Você Dorme](https://inteligenciaagentica.com.br/blog/ia-na-nuvem-vps-vs-chatbot-navegador)
+- **Data de Publicação:** 2026-09-17
+- **Tags:** Agentes de IA, VPS, Automação, Hermes OS, Negócios, DevOps
+- **Resumo:** Descubra a diferença prática entre abrir abas no navegador e hospedar agentes autônomos de IA em VPS Linux 24/7. Reduza custos operacionais e automatize rotinas do seu negócio sem depender do computador ligado.
+- **URL:** https://inteligenciaagentica.com.br/blog/ia-na-nuvem-vps-vs-chatbot-navegador
+
 ### [O que é GEO (Generative Engine Optimization)? O Guia Prático para Ser Citado por ChatGPT, Perplexity e Gemini](https://inteligenciaagentica.com.br/blog/o-que-e-geo-generative-engine-optimization-guia-pratico)
 - **Data de Publicação:** 2026-09-01
 - **Tags:** GEO, SEO, Inteligência Artificial, Marketing Digital
