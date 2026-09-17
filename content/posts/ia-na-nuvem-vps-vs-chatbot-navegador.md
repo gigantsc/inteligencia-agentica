@@ -6,7 +6,7 @@ summary: "Descubra a diferença prática entre abrir abas no navegador e hospeda
 tags: ["Agentes de IA", "VPS", "Automação", "Hermes OS", "Negócios", "DevOps"]
 keywords: ["IA na Nuvem", "Agente de IA em VPS", "Hermes Agent 24/7", "Automação para empresas", "Cron jobs inteligentes", "DeepSeek OpenRouter VPS", "Substituir tarefas operacionais por IA"]
 author: "Jean Pierre Schramm"
-image: "https://inteligenciaagentica.com.br/static/images/ia-na-nuvem-vps-vs-chatbot-hermes.jpg"
+image: "https://inteligenciaagentica.com.br/static/images/ia-na-nuvem-vps-vs-chatbot-cover.jpg"
 draft: false
 ---
 

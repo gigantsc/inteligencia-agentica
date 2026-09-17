@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Thu, 17 Sep 2026 17:51:44 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 17 Sep 2026 17:52:48 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -115,7 +115,7 @@
 <p>Se você deseja aprender a estruturar, instalar em VPS e comandar agentes autônomos de IA na prática — com acompanhamento semanal ao vivo e templates prontos para o seu negócio — conheça a comunidade <strong><a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a></strong>.</p>
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
-            <enclosure url="https://inteligenciaagentica.com.br/static/images/ia-na-nuvem-vps-vs-chatbot-hermes.jpg" length="0" type="image/jpg"/>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/ia-na-nuvem-vps-vs-chatbot-cover.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[O que é GEO (Generative Engine Optimization)? O Guia Prático para Ser Citado por ChatGPT, Perplexity e Gemini]]></title>
