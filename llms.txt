@@ -9,6 +9,12 @@
 
 ## Artigos e Guias Técnicos Disponíveis
 
+### [Model Context Protocol (MCP): Conectando Agentes de IA a Bancos de Dados e ERPs sem Alucinação](https://inteligenciaagentica.com.br/blog/mcp-model-context-protocol-agentes-banco-de-dados)
+- **Data de Publicação:** 2026-09-18
+- **Tags:** Agentes de IA, MCP, Bancos de Dados, Automação, Hermes OS, Negócios, BI Conversacional
+- **Resumo:** Entenda o que é o Model Context Protocol (MCP) e como conectar agentes autônomos de IA aos bancos de dados, ERPs e planilhas da sua empresa. Transforme consultas de estoque e relatórios financeiros em conversas diretas no Telegram com 100% de precisão factual.
+- **URL:** https://inteligenciaagentica.com.br/blog/mcp-model-context-protocol-agentes-banco-de-dados
+
 ### [IA na Nuvem 24/7 vs. Chat no Navegador: Como Colocar Agentes de IA Trabalhando Enquanto Você Dorme](https://inteligenciaagentica.com.br/blog/ia-na-nuvem-vps-vs-chatbot-navegador)
 - **Data de Publicação:** 2026-09-17
 - **Tags:** Agentes de IA, VPS, Automação, Hermes OS, Negócios, DevOps

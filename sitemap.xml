@@ -2,15 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://inteligenciaagentica.com.br/</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/blog</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://inteligenciaagentica.com.br/blog/mcp-model-context-protocol-agentes-banco-de-dados</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/blog/ia-na-nuvem-vps-vs-chatbot-navegador</loc>
@@ -38,73 +44,91 @@
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/tags/agentes-de-ia</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://inteligenciaagentica.com.br/tags/vps</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <loc>https://inteligenciaagentica.com.br/tags/mcp</loc>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://inteligenciaagentica.com.br/tags/bancos-de-dados</loc>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/tags/automacao</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/tags/hermes-os</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/tags/negocios</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://inteligenciaagentica.com.br/tags/bi-conversacional</loc>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://inteligenciaagentica.com.br/tags/vps</loc>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/tags/devops</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/tags/geo</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/tags/seo</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/tags/inteligencia-artificial</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/tags/marketing-digital</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/tags/docker</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://inteligenciaagentica.com.br/tags/cmo</loc>
-    <lastmod>2026-09-17T18:04:05.573Z</lastmod>
+    <lastmod>2026-09-18T11:04:51.348Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
