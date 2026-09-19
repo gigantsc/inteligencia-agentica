@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Fri, 18 Sep 2026 11:04:51 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 19 Sep 2026 11:16:15 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -14,6 +14,349 @@
             <link>https://inteligenciaagentica.com.br/</link>
         </image>
         <copyright>All rights reserved 2026, Inteligência Agêntica</copyright>
+        <item>
+            <title><![CDATA[Cron Jobs Inteligentes: Como Criar Automações com Memória que Aprendem e Operam 24/7 no Hermes Agent]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/cron-jobs-inteligentes-automacao-com-memoria-hermes-agent</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/cron-jobs-inteligentes-automacao-com-memoria-hermes-agent</guid>
+            <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Cron Jobs no Hermes Agent vão muito além do agendamento clássico: são rotinas autônomas que carregam skills, preservam memória persistente entre execuções, entregam relatórios no Telegram e se auto-aperfeiçoam a cada ciclo — tudo sem supervisão humana.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br><strong>Cron Jobs Inteligentes</strong> no Hermes Agent são rotinas automatizadas que vão além do cron tradicional do Linux: elas carregam skills (pacotes de conhecimento especializado), mantêm memória persistente entre execuções, validam sua própria configuração antes de rodar, registram histórico completo de cada execução e entregam resultados diretamente no Telegram, Discord, WhatsApp ou qualquer uma das 21+ plataformas suportadas — tudo operando 24/7 sem supervisão humana, com custo controlado e recuperação automática de falhas.</p>
+</blockquote>
+<hr>
+<h2 id="o-problema-automacao-burra-vs-automacao-inteligente" class="scroll-mt-24 group flex items-center justify-between">O Problema: Automação Burra vs. Automação Inteligente <a href="#o-problema-automacao-burra-vs-automacao-inteligente" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Todo empresário que já tentou automatizar processos operacionais conhece a frustração: scripts rígidos que quebram silenciosamente, alertas que nunca chegam, tarefas que precisam de contexto mas rodam cegas — e no final, alguém da equipe tem que verificar manualmente se o robô fez o serviço.</p>
+<p>O cron clássico do Linux (e do Windows com Task Scheduler) foi criado para executar comandos predeterminados em horários fixos. Ele não entende contexto, não aprende com erros passados e não sabe entregar um relatório formatado no seu celular.</p>
+<p>O Hermes Agent resolve isso com <strong>Cron Jobs Inteligentes</strong> — rotinas que combinam a pontualidade do agendamento com a inteligência de um agente autônomo completo, incluindo acesso a ferramentas, memória persistente e entrega multiplataforma.</p>
+<hr>
+<h2 id="o-que-sao-cron-jobs-inteligentes-no-hermes-agent" class="scroll-mt-24 group flex items-center justify-between">O que São Cron Jobs Inteligentes no Hermes Agent <a href="#o-que-sao-cron-jobs-inteligentes-no-hermes-agent" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>No Hermes, um cron job não é apenas um &quot;timer que roda um script&quot;. Cada execução agendada inicia uma <strong>sessão completa de agente</strong> com acesso total a ferramentas: navegação web, leitura/escrita de arquivos, terminal, busca, geração de imagem e dezenas de outros recursos.</p>
+<h3 id="capacidades-nativas" class="scroll-mt-24 group flex items-center justify-between">Capacidades Nativas <a href="#capacidades-nativas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Capacidade</th>
+<th align="center">Cron Tradicional</th>
+<th align="center">Cron Hermes Agent</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agendamento por expressão cron</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Linguagem natural no agendamento</td>
+<td align="center">❌</td>
+<td align="center">✅ (&quot;every 2h&quot;, &quot;daily at 9am&quot;)</td>
+</tr>
+<tr>
+<td>Acesso a ferramentas (web, terminal, arquivos)</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Carregamento de Skills especializadas</td>
+<td align="center">❌</td>
+<td align="center">✅ (uma ou múltiplas)</td>
+</tr>
+<tr>
+<td>Memória persistente entre sessões</td>
+<td align="center">❌</td>
+<td align="center">✅ (MEMORY.md + providers)</td>
+</tr>
+<tr>
+<td>Entrega em 21+ plataformas (Telegram, Discord, WhatsApp...)</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Validação automática pré-execução</td>
+<td align="center">❌</td>
+<td align="center">✅ (API key, skills, delivery)</td>
+</tr>
+<tr>
+<td>Histórico de execuções com auditoria</td>
+<td align="center">❌</td>
+<td align="center">✅ (executions.db)</td>
+</tr>
+<tr>
+<td>Supressão silenciosa quando nada muda</td>
+<td align="center">❌</td>
+<td align="center">✅ (token <code>[SILENT]</code>)</td>
+</tr>
+<tr>
+<td>Recuperação automática de falhas</td>
+<td align="center">❌</td>
+<td align="center">✅ (failure streak + nudge)</td>
+</tr>
+<tr>
+<td>Encadeamento de jobs (context_from)</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Modo sem agente (zero tokens LLM)</td>
+<td align="center">❌</td>
+<td align="center">✅ (no_agent mode)</td>
+</tr>
+<tr>
+<td>Controle de modelo/provider por job</td>
+<td align="center">❌</td>
+<td align="center">✅ (pin por job ou fleet)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="como-criar-um-cron-job-inteligente-na-pratica" class="scroll-mt-24 group flex items-center justify-between">Como Criar um Cron Job Inteligente — Na Prática <a href="#como-criar-um-cron-job-inteligente-na-pratica" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Existem três formas de criar cron jobs no Hermes:</p>
+<h3 id="1-por-conversa-natural" class="scroll-mt-24 group flex items-center justify-between">1. Por Conversa Natural <a href="#1-por-conversa-natural" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Você simplesmente pede ao agente:</p>
+<pre><code>Toda manhã às 9h, pesquise as <span class="token number">5</span> principais notícias de IA
+no Hacker News e me envie um resumo no Telegram.
+</code></pre><p>O Hermes entende a intenção, cria o job com <code>schedule: &quot;0 9 * * *&quot;</code> e configura a entrega automaticamente.</p>
+<h3 id="2-por-comando-slash-no-chat" class="scroll-mt-24 group flex items-center justify-between">2. Por Comando Slash no Chat <a href="#2-por-comando-slash-no-chat" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code>/cron <span class="token function">add</span> <span class="token string">"0 9 * * *"</span> <span class="token string">"Pesquise novidades de IA e envie resumo"</span> <span class="token parameter variable">--deliver</span> telegram
+</code></pre><h3 id="3-pela-cli-standalone" class="scroll-mt-24 group flex items-center justify-between">3. Pela CLI Standalone <a href="#3-pela-cli-standalone" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code class="language-bash">hermes <span class="token function">cron</span> create <span class="token string">"every 2h"</span> <span class="token punctuation">\</span>
+  <span class="token string">"Verifique o status do servidor e alerte se houver problemas"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--name</span> <span class="token string">"Monitor servidor"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--deliver</span> telegram
+</code></pre><hr>
+<h2 id="skills-cron-o-poder-do-conhecimento-especializado-agendado" class="scroll-mt-24 group flex items-center justify-between">Skills + Cron: O Poder do Conhecimento Especializado Agendado <a href="#skills-cron-o-poder-do-conhecimento-especializado-agendado" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A grande virada dos cron jobs do Hermes é a possibilidade de <strong>anexar skills</strong> — pacotes de conhecimento especializado que ensinam ao agente como executar workflows específicos.</p>
+<pre><code>/cron <span class="token function">add</span> <span class="token string">"0 8 * * *"</span> <span class="token string">"Pesquise papers sobre raciocínio com LLMs e salve como notas"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--skill</span> arxiv <span class="token punctuation">\</span>
+  <span class="token parameter variable">--skill</span> obsidian <span class="token punctuation">\</span>
+  <span class="token parameter variable">--name</span> <span class="token string">"Radar de Papers"</span>
+</code></pre><p>Neste exemplo, o agente acorda às 8h, carrega a skill <code>arxiv</code> (que ensina como buscar papers acadêmicos), a skill <code>obsidian</code> (que ensina como salvar notas estruturadas) e executa o prompt combinando ambas. O resultado: <strong>papers do dia automaticamente organizados no seu Obsidian</strong>, sem você abrir o navegador.</p>
+<h3 id="multi-skill-combinando-capacidades" class="scroll-mt-24 group flex items-center justify-between">Multi-Skill: Combinando Capacidades <a href="#multi-skill-combinando-capacidades" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Skills são carregadas em ordem e se complementam. Exemplos reais de combinações:</p>
+<table>
+<thead>
+<tr>
+<th>Skills Combinadas</th>
+<th>Caso de Uso</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>arxiv</code> + <code>obsidian</code></td>
+<td>Radar acadêmico com notas automáticas</td>
+</tr>
+<tr>
+<td><code>blogwatcher</code> + <code>maps</code></td>
+<td>Briefing local com eventos e notícias</td>
+</tr>
+<tr>
+<td><code>github</code> + <code>xlsx</code></td>
+<td>Relatório semanal de PRs em planilha</td>
+</tr>
+<tr>
+<td><code>competitor-news-monitor</code> + <code>email-inbox-triage</code></td>
+<td>Monitoramento competitivo + triagem de emails</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="memoria-persistente-o-job-que-lembra-do-que-fez-antes" class="scroll-mt-24 group flex items-center justify-between">Memória Persistente: O Job que Lembra do Que Fez Antes <a href="#memoria-persistente-o-job-que-lembra-do-que-fez-antes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Cada execução de cron job carrega automaticamente a <strong>memória persistente</strong> do perfil (MEMORY.md e USER.md), que é injetada no prompt do sistema. Isso significa que o agente sabe:</p>
+<ul>
+<li>Quem você é e suas preferências</li>
+<li>Fatos sobre o ambiente técnico</li>
+<li>Convenções e padrões do seu negócio</li>
+<li>Lições aprendidas em sessões anteriores</li>
+</ul>
+<h3 id="memoria-expandida-com-providers-externos" class="scroll-mt-24 group flex items-center justify-between">Memória Expandida com Providers Externos <a href="#memoria-expandida-com-providers-externos" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para ir além dos ~800 tokens da memória nativa, o Hermes oferece 9 providers de memória externa que operam em paralelo:</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Diferencial</th>
+<th>Custo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Honcho</strong></td>
+<td>Modelagem dialética de usuário + contexto por sessão</td>
+<td>Cloud (pago)</td>
+</tr>
+<tr>
+<td><strong>OpenViking</strong></td>
+<td>Hierarquia de arquivos + carregamento em camadas</td>
+<td>Self-hosted (free)</td>
+</tr>
+<tr>
+<td><strong>Mem0</strong></td>
+<td>Extração automática por LLM + modo self-hosted</td>
+<td>Free/Pago</td>
+</tr>
+<tr>
+<td><strong>Hindsight</strong></td>
+<td>Grafo de conhecimento + síntese reflexiva</td>
+<td>Free/Pago</td>
+</tr>
+<tr>
+<td><strong>Holographic</strong></td>
+<td>Álgebra HRR + scoring de confiança</td>
+<td>Local (free)</td>
+</tr>
+<tr>
+<td><strong>RetainDB</strong></td>
+<td>Compressão delta</td>
+<td>$20/mês</td>
+</tr>
+<tr>
+<td><strong>ByteRover</strong></td>
+<td>Extração pré-compressão</td>
+<td>Free/Pago</td>
+</tr>
+<tr>
+<td><strong>Supermemory</strong></td>
+<td>Context fencing + grafo de sessões</td>
+<td>Free/Pago</td>
+</tr>
+<tr>
+<td><strong>Memori</strong></td>
+<td>Memória ciente de ferramentas + recall estruturado</td>
+<td>Free/Pago</td>
+</tr>
+</tbody></table>
+<p>Com o Hindsight, por exemplo, um job de monitoramento de preços pode construir um <strong>grafo de conhecimento</strong> que evolui a cada execução — identificando tendências que uma análise de sessão única jamais capturaria.</p>
+<hr>
+<h2 id="validacao-automatica-pre-execucao" class="scroll-mt-24 group flex items-center justify-between">Validação Automática Pré-Execução <a href="#validacao-automatica-pre-execucao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Antes de gastar um único token de LLM, o scheduler do Hermes <strong>valida a configuração</strong> de cada job:</p>
+<ol>
+<li><strong>API key do provider</strong> — verifica se a chave resolve (pula se houver fallback_providers configurado)</li>
+<li><strong>Skills anexadas</strong> — confirma variáveis de ambiente, comandos e credenciais necessárias</li>
+<li><strong>Delivery targets</strong> — verifica se o gateway tem credenciais para a plataforma de entrega</li>
+</ol>
+<p>Se qualquer validação falhar, o job recebe status <code>blocked_config</code>, você recebe <strong>um único alerta</strong> (sem spam), e <strong>nenhuma chamada LLM é feita</strong> — economia direta de tokens.</p>
+<pre><code class="language-yaml"><span class="token comment"># Desativar validação pré-execução (não recomendado):</span>
+<span class="token key atrule">cron</span><span class="token punctuation">:</span>
+  <span class="token key atrule">preflight</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+</code></pre><hr>
+<h2 id="controle-granular-de-custos-por-job" class="scroll-mt-24 group flex items-center justify-between">Controle Granular de Custos por Job <a href="#controle-granular-de-custos-por-job" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Cada job pode ter seu <strong>próprio modelo e provider</strong>, independente do que você usa no chat interativo:</p>
+<pre><code>┌─────────────────────────────────────────────────┐
+│           Resolução de Modelo <span class="token punctuation">(</span>Cron<span class="token punctuation">)</span>            │
+│                                                 │
+│  <span class="token number">1</span>º  Pin por job  <span class="token punctuation">(</span>--model / --provider<span class="token punctuation">)</span>        │
+│  <span class="token number">2</span>º  cron.model  <span class="token punctuation">(</span>fleet default<span class="token punctuation">)</span>                │
+│  <span class="token number">3</span>º  hermes model <span class="token punctuation">(</span>global default<span class="token punctuation">)</span>              │
+│                                                 │
+│  Guard de Drift: se o global mudar e o job      │
+│  não tiver pin, ele PARA e alerta uma vez.      │
+└─────────────────────────────────────────────────┘
+</code></pre><p><strong>Exemplo prático:</strong> seu job de monitoramento simples roda no DeepSeek (barato, $0.27/M tokens), enquanto seu relatório semanal executivo roda no Claude Sonnet (mais caro, mais preciso). Cada um com seu pin, cada um com seu custo controlado.</p>
+<p>Além disso, cada job pode definir <strong>reasoning effort</strong> independente:</p>
+<pre><code class="language-bash">hermes <span class="token function">cron</span> create <span class="token string">"0 9 * * 1"</span> <span class="token string">"Análise semanal profunda"</span> <span class="token punctuation">\</span>
+  --reasoning-effort high <span class="token punctuation">\</span>
+  <span class="token parameter variable">--name</span> <span class="token string">"Relatório semanal"</span>
+
+hermes <span class="token function">cron</span> create <span class="token string">"every 1h"</span> <span class="token string">"Checar status"</span> <span class="token punctuation">\</span>
+  --reasoning-effort minimal <span class="token punctuation">\</span>
+  <span class="token parameter variable">--name</span> <span class="token string">"Health check"</span>
+</code></pre><hr>
+<h2 id="supressao-inteligente-com-silent" class="scroll-mt-24 group flex items-center justify-between">Supressão Inteligente com [SILENT] <a href="#supressao-inteligente-com-silent" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para jobs de monitoramento, o token <code>[SILENT]</code> é fundamental: instrua o agente a responder apenas com <code>[SILENT]</code> quando nada mudou, e o Hermes <strong>suprime a entrega</strong> — zero notificação, zero spam.</p>
+<pre><code>/cron <span class="token function">add</span> <span class="token string">"every 1h"</span> <span class="token string">"Verifique se o site https://exemplo.com mudou.
+Se nada mudou, responda APENAS com [SILENT].
+Se mudou, explique o que aconteceu."</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--name</span> <span class="token string">"Monitor site"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--deliver</span> telegram
+</code></pre><p>Resultado: você só recebe mensagem <strong>quando algo de fato acontece</strong>. Nas horas silenciosas, sua caixa de entrada fica limpa.</p>
+<hr>
+<h2 id="historico-auditoria-e-resiliencia" class="scroll-mt-24 group flex items-center justify-between">Histórico, Auditoria e Resiliência <a href="#historico-auditoria-e-resiliencia" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<h3 id="executions-database" class="scroll-mt-24 group flex items-center justify-between">Executions Database <a href="#executions-database" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Cada tentativa de execução é registrada no <code>executions.db</code> com estados rastreáveis:</p>
+<pre><code>claimed → running → completed <span class="token operator">|</span> failed <span class="token operator">|</span> unknown
+</code></pre><p>Inspecione com:</p>
+<pre><code class="language-bash">hermes <span class="token function">cron</span> runs <span class="token punctuation">[</span>job-id<span class="token punctuation">]</span> <span class="token parameter variable">--limit</span> <span class="token number">20</span>
+</code></pre><h3 id="failure-streak-e-nudge-automatico" class="scroll-mt-24 group flex items-center justify-between">Failure Streak e Nudge Automático <a href="#failure-streak-e-nudge-automatico" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O Hermes rastreia falhas consecutivas. Quando o threshold é atingido (padrão: 3), a mensagem de falha ganha um <strong>nudge de revisão</strong> sugerindo que você corrija, pause ou remova o job.</p>
+<pre><code class="language-yaml"><span class="token key atrule">cron</span><span class="token punctuation">:</span>
+  <span class="token key atrule">failure_nudge_threshold</span><span class="token punctuation">:</span> <span class="token number">3</span>  <span class="token comment"># 0 desabilita</span>
+</code></pre><h3 id="incidentes-persistentes" class="scroll-mt-24 group flex items-center justify-between">Incidentes Persistentes <a href="#incidentes-persistentes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Falhas recorrentes com o <strong>mesmo erro</strong> são agrupadas em incidentes duráveis:</p>
+<pre><code class="language-bash">hermes <span class="token function">cron</span> incidents               <span class="token comment"># listar incidentes</span>
+hermes <span class="token function">cron</span> incidents ack <span class="token operator">&lt;</span>id<span class="token operator">></span>      <span class="token comment"># reconhecer (para de alertar)</span>
+</code></pre><h3 id="fleet-health-check" class="scroll-mt-24 group flex items-center justify-between">Fleet Health Check <a href="#fleet-health-check" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code class="language-bash">hermes <span class="token function">cron</span> doctor   <span class="token comment"># verifica todos os jobs ativos de uma vez</span>
+</code></pre><p>Checa: última execução falhou? Entrega falhou? Próxima execução no passado? Script ausente? Workdir inexistente?</p>
+<hr>
+<h2 id="encadeamento-de-jobs-com-contextfrom" class="scroll-mt-24 group flex items-center justify-between">Encadeamento de Jobs com context_from <a href="#encadeamento-de-jobs-com-contextfrom" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Jobs podem ser encadeados: a saída de um job alimenta o contexto do próximo via <code>context_from</code>. Isso permite pipelines multi-fase:</p>
+<pre><code>┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│  Job <span class="token number">1</span>:      │     │  Job <span class="token number">2</span>:      │     │  Job <span class="token number">3</span>:      │
+│  Coleta de   │────▶│  Análise e   │────▶│  Relatório   │
+│  Dados       │     │  Cruzamento  │     │  Executivo   │
+└──────────────┘     └──────────────┘     └──────────────┘
+</code></pre><hr>
+<h2 id="modo-no-agent-zero-tokens-llm" class="scroll-mt-24 group flex items-center justify-between">Modo No-Agent: Zero Tokens LLM <a href="#modo-no-agent-zero-tokens-llm" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para tarefas puramente mecânicas (alertas de disco, heartbeats, monitoramento de CPU), o Hermes oferece o modo <code>no_agent</code>: o script roda no schedule, seu stdout é entregue verbatim, e <strong>nenhuma chamada LLM é feita</strong> — custo zero de tokens.</p>
+<pre><code class="language-bash"><span class="token comment"># O agente cria isso para você quando faz sentido:</span>
+hermes <span class="token function">cron</span> create <span class="token string">"every 5m"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--script</span> ~/.hermes/scripts/disk-alert.py <span class="token punctuation">\</span>
+  --no-agent <span class="token punctuation">\</span>
+  <span class="token parameter variable">--deliver</span> telegram <span class="token punctuation">\</span>
+  <span class="token parameter variable">--name</span> <span class="token string">"Alerta de disco"</span>
+</code></pre><hr>
+<h2 id="5-padroes-de-automacao-que-todo-empresario-deveria-implementar" class="scroll-mt-24 group flex items-center justify-between">5 Padrões de Automação Que Todo Empresário Deveria Implementar <a href="#5-padroes-de-automacao-que-todo-empresario-deveria-implementar" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<h3 id="1-radar-de-mercado-diario" class="scroll-mt-24 group flex items-center justify-between">1. Radar de Mercado Diário <a href="#1-radar-de-mercado-diario" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Monitor de concorrentes e notícias do setor com entrega matinal no Telegram.</p>
+<h3 id="2-watchdog-de-infraestrutura" class="scroll-mt-24 group flex items-center justify-between">2. Watchdog de Infraestrutura <a href="#2-watchdog-de-infraestrutura" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Health check de servidores a cada hora com supressão <code>[SILENT]</code> — você só sabe quando algo quebra.</p>
+<h3 id="3-pipeline-de-conteudo" class="scroll-mt-24 group flex items-center justify-between">3. Pipeline de Conteúdo <a href="#3-pipeline-de-conteudo" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Coleta de dados → análise de tendências → geração de briefing → publicação em blog — tudo encadeado com <code>context_from</code>.</p>
+<h3 id="4-relatorio-semanal-executivo" class="scroll-mt-24 group flex items-center justify-between">4. Relatório Semanal Executivo <a href="#4-relatorio-semanal-executivo" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Compilação de KPIs de múltiplas fontes com multi-skill (github + xlsx + email) entregue toda segunda às 9h.</p>
+<h3 id="5-monitoramento-de-precosestoque" class="scroll-mt-24 group flex items-center justify-between">5. Monitoramento de Preços/Estoque <a href="#5-monitoramento-de-precosestoque" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Script de coleta (no_agent, custo zero) alimentando análise semanal com o agente (custo controlado) para detectar tendências.</p>
+<hr>
+<h2 id="comparativo-final-por-que-cron-jobs-inteligentes-mudam-o-jogo" class="scroll-mt-24 group flex items-center justify-between">Comparativo Final: Por Que Cron Jobs Inteligentes Mudam o Jogo <a href="#comparativo-final-por-que-cron-jobs-inteligentes-mudam-o-jogo" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Cenário</th>
+<th>Abordagem Tradicional</th>
+<th>Hermes Cron Jobs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Monitorar site de concorrente</td>
+<td>Script bash + email manual</td>
+<td>Job com <code>[SILENT]</code> + Telegram</td>
+</tr>
+<tr>
+<td>Relatório semanal de KPIs</td>
+<td>Alguém abre planilha toda segunda</td>
+<td>Multi-skill automático + entrega</td>
+</tr>
+<tr>
+<td>Alertas de servidor</td>
+<td>Nagios/Zabbix (setup complexo)</td>
+<td><code>no_agent</code> script + entrega direta</td>
+</tr>
+<tr>
+<td>Pesquisa de mercado diária</td>
+<td>Funcionário dedicado (~R$ 3.000/mês)</td>
+<td>Job com skill <code>arxiv</code> (~R$ 5/mês em tokens)</td>
+</tr>
+<tr>
+<td>Pipeline de conteúdo</td>
+<td>Equipe de 3 pessoas</td>
+<td>Jobs encadeados com <code>context_from</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="conclusao-automacao-que-evolui-com-o-seu-negocio" class="scroll-mt-24 group flex items-center justify-between">Conclusão: Automação que Evolui com o Seu Negócio <a href="#conclusao-automacao-que-evolui-com-o-seu-negocio" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Cron Jobs Inteligentes no Hermes Agent não são apenas &quot;tarefas agendadas&quot; — são <strong>funcionários digitais especializados</strong> que operam 24/7, aprendem com memória persistente, validam sua própria configuração antes de gastar um centavo em tokens e entregam resultados diretamente no seu celular.</p>
+<p>A diferença entre automatizar processos com scripts rígidos e automatizar com agentes inteligentes é a mesma diferença entre ter um estagiário que segue instruções literais e ter um profissional sênior que entende o contexto, adapta sua abordagem e avisa quando algo não está certo.</p>
+<hr>
+<p><em>Quer ver na prática como configurar cron jobs inteligentes para o seu negócio? Conheça a comunidade <a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a> — onde empresários e gestores aprendem a construir sua própria equipe de agentes autônomos.</em></p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/cron-jobs-inteligentes-hermes-agent.jpg" length="0" type="image/jpg"/>
+        </item>
         <item>
             <title><![CDATA[Model Context Protocol (MCP): Conectando Agentes de IA a Bancos de Dados e ERPs sem Alucinação]]></title>
             <link>https://inteligenciaagentica.com.br/blog/mcp-model-context-protocol-agentes-banco-de-dados</link>
