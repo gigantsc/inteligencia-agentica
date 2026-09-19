@@ -15,6 +15,12 @@
 - **Resumo:** Cron Jobs no Hermes Agent vão muito além do agendamento clássico: são rotinas autônomas que carregam skills, preservam memória persistente entre execuções, entregam relatórios no Telegram e se auto-aperfeiçoam a cada ciclo — tudo sem supervisão humana.
 - **URL:** https://inteligenciaagentica.com.br/blog/cron-jobs-inteligentes-automacao-com-memoria-hermes-agent
 
+### [O que é Jev (TypeSafe)? A IA de Decisão Rápida que Economiza até 90% dos Custos Operacionais sem Gerar Texto](https://inteligenciaagentica.com.br/blog/jev-typesafe-ia-de-decisao-rapida-para-empresas)
+- **Data de Publicação:** 2026-09-19
+- **Tags:** Agentes de IA, Jev, TypeSafe, Automação, Hermes OS, Negócios, Produtividade
+- **Resumo:** Conheça o Jev da TypeSafe AI: o modelo pioneiro do tipo 'Sistema 1' (Reflexo Rápido) que não conversa nem gera textos longos, mas toma decisões estruturadas em milissegundos com custo até 400x menor e zero risco de alucinação para empresas.
+- **URL:** https://inteligenciaagentica.com.br/blog/jev-typesafe-ia-de-decisao-rapida-para-empresas
+
 ### [Model Context Protocol (MCP): Conectando Agentes de IA a Bancos de Dados e ERPs sem Alucinação](https://inteligenciaagentica.com.br/blog/mcp-model-context-protocol-agentes-banco-de-dados)
 - **Data de Publicação:** 2026-09-18
 - **Tags:** Agentes de IA, MCP, Bancos de Dados, Automação, Hermes OS, Negócios, BI Conversacional
