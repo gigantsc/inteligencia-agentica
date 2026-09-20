@@ -15,6 +15,12 @@
 - **Resumo:** Aprenda como transformar o Telegram no centro de comando por voz da sua empresa com agentes de IA 24/7. Envie áudios rápidos da rua ou do carro e receba relatórios financeiros, status de infraestrutura e execução de tarefas operacionais em segundos.
 - **URL:** https://inteligenciaagentica.com.br/blog/jarvis-corporativo-telegram-agentes-ia-voz
 
+### [Como o Hermes Agent Lembra de Tudo: O Guia Definitivo dos 9 Tipos de Memória para Agentes de IA](https://inteligenciaagentica.com.br/blog/como-o-hermes-agent-lembra-de-tudo-os-9-tipos-de-memoria-ia)
+- **Data de Publicação:** 2026-09-19
+- **Tags:** Agentes de IA, Memória Persistente, Hermes OS, Automação, Negócios, Produtividade
+- **Resumo:** Descubra como os agentes de IA realmente gravam informações, aprendem com o tempo e nunca esquecem as regras da sua empresa. Um guia completo e descomplicado sobre os 9 provedores de memória do Hermes Agent e a diferença crucial entre memória, contexto e compressão.
+- **URL:** https://inteligenciaagentica.com.br/blog/como-o-hermes-agent-lembra-de-tudo-os-9-tipos-de-memoria-ia
+
 ### [Cron Jobs Inteligentes: Como Criar Automações com Memória que Aprendem e Operam 24/7 no Hermes Agent](https://inteligenciaagentica.com.br/blog/cron-jobs-inteligentes-automacao-com-memoria-hermes-agent)
 - **Data de Publicação:** 2026-09-19
 - **Tags:** Agentes de IA, Cron Jobs, Automação, Hermes OS, Negócios, Memória Persistente
