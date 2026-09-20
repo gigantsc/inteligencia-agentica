@@ -9,6 +9,12 @@
 
 ## Artigos e Guias Técnicos Disponíveis
 
+### [Jarvis Corporativo no Telegram: Como Controlar sua Empresa por Áudio com Agentes de IA 24/7](https://inteligenciaagentica.com.br/blog/jarvis-corporativo-telegram-agentes-ia-voz)
+- **Data de Publicação:** 2026-09-20
+- **Tags:** Agentes de IA, Telegram, Voz, Automação, Hermes Agent, Produtividade, Gestão
+- **Resumo:** Aprenda como transformar o Telegram no centro de comando por voz da sua empresa com agentes de IA 24/7. Envie áudios rápidos da rua ou do carro e receba relatórios financeiros, status de infraestrutura e execução de tarefas operacionais em segundos.
+- **URL:** https://inteligenciaagentica.com.br/blog/jarvis-corporativo-telegram-agentes-ia-voz
+
 ### [Cron Jobs Inteligentes: Como Criar Automações com Memória que Aprendem e Operam 24/7 no Hermes Agent](https://inteligenciaagentica.com.br/blog/cron-jobs-inteligentes-automacao-com-memoria-hermes-agent)
 - **Data de Publicação:** 2026-09-19
 - **Tags:** Agentes de IA, Cron Jobs, Automação, Hermes OS, Negócios, Memória Persistente
