@@ -9,6 +9,12 @@
 
 ## Artigos e Guias Técnicos Disponíveis
 
+### [Guia Definitivo do Hermes Agent: As 30 Respostas Essenciais para Dominar seus Funcionários Digitais](https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais)
+- **Data de Publicação:** 2026-09-19
+- **Tags:** Hermes Agent, Agentes de IA, Guia Definitivo, Hermes OS, Automação, Negócios, Produtividade
+- **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
+- **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
+
 ### [Jarvis Corporativo no Telegram: Como Controlar sua Empresa por Áudio com Agentes de IA 24/7](https://inteligenciaagentica.com.br/blog/jarvis-corporativo-telegram-agentes-ia-voz)
 - **Data de Publicação:** 2026-09-20
 - **Tags:** Agentes de IA, Telegram, Voz, Automação, Hermes Agent, Produtividade, Gestão

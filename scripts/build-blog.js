@@ -89,12 +89,17 @@ function getAllPosts() {
       tags: data.tags || [],
       keywords: data.keywords || [],
       draft: Boolean(data.draft),
-    };
-  });
+      featured: Boolean(data.featured),
+      };
+      });
 
-  return posts
-    .filter((p) => !p.draft)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      return posts
+      .filter((p) => !p.draft)
+      .sort((a, b) => {
+      if (b.featured && !a.featured) return 1;
+      if (a.featured && !b.featured) return -1;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
 }
 
 // Global Layout Shell
