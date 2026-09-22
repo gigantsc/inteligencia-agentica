@@ -15,6 +15,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Fábrica de Swarms: Como Orquestrar Múltiplos Agentes Especializados em Empresas](https://inteligenciaagentica.com.br/blog/fabrica-de-swarms-orquestracao-multi-agentes-empresas)
+- **Data de Publicação:** 2026-09-22
+- **Tags:** Swarms, Multi-Agente, Hermes Agent, Automação, Gestão, Orquestração
+- **Resumo:** Entenda como a arquitetura de Swarms (enxames de agentes de IA) supera as limitações de agentes generalistas solitários, dividindo demandas complexas em especialistas paralelos coordenados com hierarquia, memória limpa e validação contínua.
+- **URL:** https://inteligenciaagentica.com.br/blog/fabrica-de-swarms-orquestracao-multi-agentes-empresas
+
 ### [Bunker de Segurança para Agentes de IA: Mascaramento de PII, Redação de Segredos e Controle de Execução](https://inteligenciaagentica.com.br/blog/bunker-de-seguranca-governanca-agentes-ia-empresas)
 - **Data de Publicação:** 2026-09-21
 - **Tags:** Segurança, Agentes de IA, Governança, Hermes Agent, LGPD, Negócios
