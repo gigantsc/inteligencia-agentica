@@ -45,6 +45,12 @@
 - **Resumo:** Cron Jobs no Hermes Agent vão muito além do agendamento clássico: são rotinas autônomas que carregam skills, preservam memória persistente entre execuções, entregam relatórios no Telegram e se auto-aperfeiçoam a cada ciclo — tudo sem supervisão humana.
 - **URL:** https://inteligenciaagentica.com.br/blog/cron-jobs-inteligentes-automacao-com-memoria-hermes-agent
 
+### [Hermes Vision Watchdog: Como Transformar Câmeras Comuns em Sentinelas Inteligentes com IA Sem Gastar Fortunas em Nuvem](https://inteligenciaagentica.com.br/blog/hermes-vision-watchdog-cameras-seguranca-ia)
+- **Data de Publicação:** 2026-09-19
+- **Tags:** Hermes Agent, Visão Computacional, Segurança, Automação, Negócios, Inteligência Artificial, YOLO
+- **Resumo:** Descubra como integrar o Hermes Agent com câmeras de segurança e webcams para criar um sistema de vigilância autônomo. Uma arquitetura híbrida inteligente que processa vídeo localmente e aciona a visão de IA do robô apenas quando há um evento real — eliminando falsos alarmes e reduzindo custos a quase zero.
+- **URL:** https://inteligenciaagentica.com.br/blog/hermes-vision-watchdog-cameras-seguranca-ia
+
 ### [O que é Jev (TypeSafe)? A IA de Decisão Rápida que Economiza até 90% dos Custos Operacionais sem Gerar Texto](https://inteligenciaagentica.com.br/blog/jev-typesafe-ia-de-decisao-rapida-para-empresas)
 - **Data de Publicação:** 2026-09-19
 - **Tags:** Agentes de IA, Jev, TypeSafe, Automação, Hermes OS, Negócios, Produtividade
