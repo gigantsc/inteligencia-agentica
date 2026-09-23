@@ -15,6 +15,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Skills: Como Agentes de IA Aprendem Sozinhos e Se Tornam Melhores a Cada Tarefa (O Sistema de Auto-Aperfeiçoamento do Hermes Agent)](https://inteligenciaagentica.com.br/blog/skills-sistema-auto-aperfeicoamento-agentes-ia)
+- **Data de Publicação:** 2026-09-23
+- **Tags:** Agentes de IA, Skills, Auto-Aperfeiçoamento, Hermes Agent, Automação, Negócios, Inteligência Agêntica
+- **Resumo:** Descubra como o sistema de Skills do Hermes Agent transforma agentes de IA em colaboradores que evoluem com o trabalho — criando, reutilizando e mantendo automaticamente uma biblioteca de procedimentos especializados que eliminam retrabalho e acumulam inteligência operacional para a sua empresa.
+- **URL:** https://inteligenciaagentica.com.br/blog/skills-sistema-auto-aperfeicoamento-agentes-ia
+
 ### [Fábrica de Swarms: Como Orquestrar Múltiplos Agentes Especializados em Empresas](https://inteligenciaagentica.com.br/blog/fabrica-de-swarms-orquestracao-multi-agentes-empresas)
 - **Data de Publicação:** 2026-09-22
 - **Tags:** Swarms, Multi-Agente, Hermes Agent, Automação, Gestão, Orquestração
