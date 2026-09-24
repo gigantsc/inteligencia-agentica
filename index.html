@@ -466,18 +466,46 @@
                   class="w-full h-full object-cover rounded-xl" 
                   autoplay
                   muted
-                  loop
                   playsinline
                   preload="metadata"
                 >
                   <source src="video-inicial.mp4" type="video/mp4">
+                  <track kind="captions" src="legendas.vtt" srclang="pt-BR" label="Português" default>
                   Seu navegador não suporta a tag de vídeo HTML5.
                 </video>
+
+                <!-- Dynamic Custom Captions Container -->
+                <div id="captionsBox" class="absolute bottom-12 sm:bottom-14 left-4 right-4 flex justify-center pointer-events-none z-20 transition-opacity duration-200">
+                  <p id="captionText" class="max-w-[90%] bg-black/85 backdrop-blur border border-white/15 text-white font-medium text-xs sm:text-sm md:text-base px-4 py-2 rounded-xl text-center shadow-xl leading-snug transition-all duration-150 opacity-0"></p>
+                </div>
+
                 <!-- Unmute overlay button -->
-                <button id="unmuteOverlay" class="absolute bottom-4 right-4 bg-obsidian/85 hover:bg-black border border-white/20 text-white text-xs font-semibold px-3.5 py-2 rounded-xl backdrop-blur flex items-center gap-2 transition-all duration-200 z-20 shadow-lg">
+                <button id="unmuteOverlay" class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-obsidian/90 hover:bg-black border border-white/20 text-white text-xs sm:text-sm font-semibold px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl backdrop-blur flex items-center gap-2 transition-all duration-200 z-30 shadow-lg cursor-pointer">
                   <i data-lucide="volume-x" class="w-4 h-4 text-ouro" id="soundIcon"></i>
                   <span id="soundText">Clique para ativar o som</span>
                 </button>
+
+                <!-- Replay Overlay (aparece quando o vídeo termina) -->
+                <div id="replayOverlay" class="absolute inset-0 bg-obsidian/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-40 transition-all duration-300 opacity-0 pointer-events-none">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+                    Apresentação Concluída
+                  </span>
+                  <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Pronto para criar sua equipe de agentes?</h3>
+                  <p class="text-xs sm:text-sm text-gray-300 max-w-md mb-6 leading-relaxed">
+                    Comece hoje mesmo com modelos prontos, aulas práticas e encontros semanais ao vivo.
+                  </p>
+                  <div class="flex flex-col sm:flex-row items-center gap-3">
+                    <button id="replayBtn" class="btn-gold text-black text-sm font-bold px-6 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-ouro/20 hover:scale-105 transition-transform duration-200 cursor-pointer">
+                      <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                      Assistir Novamente
+                    </button>
+                    <a href="#oferta" class="px-5 py-3 rounded-xl text-sm font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/15 transition-all duration-200 flex items-center gap-2">
+                      Ver Planos & Vagas
+                      <i data-lucide="arrow-right" class="w-4 h-4 text-ciano"></i>
+                    </a>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -1207,28 +1235,93 @@
       }
     })();
 
-    // ---- Hero Video Unmute / Autoplay Control ----
+    // ---- Hero Video Control, Replay & Dynamic Captions ----
     (() => {
       const video = document.getElementById('heroVideo');
-      const btn = document.getElementById('unmuteOverlay');
+      const unmuteBtn = document.getElementById('unmuteOverlay');
+      const replayOverlay = document.getElementById('replayOverlay');
+      const replayBtn = document.getElementById('replayBtn');
+      const captionText = document.getElementById('captionText');
+      const captionsBox = document.getElementById('captionsBox');
       const wrapper = document.getElementById('videoWrapper');
-      if (!video || !btn) return;
+      if (!video) return;
 
+      // Legendas com timestamps exatos sincronizados
+      const subtitles = [
+        { start: 0.5, end: 4.2, text: "Seja muito bem-vinda, seja muito bem-vindo à Inteligência Agêntica!" },
+        { start: 4.3, end: 9.5, text: "Esse é o lugar onde você finalmente vai parar de perder tempo..." },
+        { start: 9.6, end: 14.5, text: "...copiando e colando prompts em caixinhas de chat da internet." },
+        { start: 14.8, end: 18.2, text: "Chega de ser o digitador da sua inteligência artificial!" },
+        { start: 18.4, end: 23.0, text: "Aqui, você vai aprender a colocar assistentes virtuais inteligentes..." },
+        { start: 23.1, end: 27.5, text: "...trabalhando pra você no piloto automático: 24 horas por dia, direto na nuvem..." },
+        { start: 27.6, end: 32.8, text: "...com você no comando pelo celular e sem precisar escrever nenhuma linha de código." },
+        { start: 33.2, end: 37.0, text: "Você vai ter acesso a aulas práticas e direto ao ponto..." },
+        { start: 37.1, end: 41.5, text: "...modelos 100% prontos de agentes pra você simplesmente copiar e ativar..." },
+        { start: 41.6, end: 45.8, text: "...nossa comunidade exclusiva de alunos e encontros semanais ao vivo comigo..." },
+        { start: 45.9, end: 50.0, text: "...pra gente construir e destravar soluções juntos." },
+        { start: 50.4, end: 55.2, text: "Se você quer parar de perder horas com trabalho manual..." },
+        { start: 55.3, end: 59.8, text: "...e ter a sua própria equipe de robôs trabalhando por você todos os dias..." },
+        { start: 60.0, end: 62.8, text: "...o seu próximo passo tá logo aqui." },
+        { start: 63.0, end: 66.0, text: "Clique no botão abaixo, garanta a sua vaga e venha fazer parte!" },
+        { start: 66.1, end: 67.5, text: "Te vejo lá dentro!" }
+      ];
+
+      // Sincronização de Legendas
+      video.addEventListener('timeupdate', () => {
+        if (!captionText) return;
+        const ct = video.currentTime;
+        const currentSub = subtitles.find(s => ct >= s.start && ct <= s.end);
+        if (currentSub) {
+          if (captionText.textContent !== currentSub.text) {
+            captionText.textContent = currentSub.text;
+          }
+          captionText.style.opacity = '1';
+        } else {
+          captionText.style.opacity = '0';
+        }
+      });
+
+      // Ativar Áudio
       const toggleSound = (e) => {
         if (e) e.stopPropagation();
         if (video.muted) {
           video.muted = false;
           video.play().catch(() => {});
-          btn.style.opacity = '0';
-          btn.style.pointerEvents = 'none';
-          setTimeout(() => btn.remove(), 300);
+          if (unmuteBtn) {
+            unmuteBtn.style.opacity = '0';
+            unmuteBtn.style.pointerEvents = 'none';
+          }
         }
       };
 
-      btn.addEventListener('click', toggleSound);
-      if (wrapper) {
-        wrapper.addEventListener('click', () => {
-          if (video.muted) toggleSound();
+      if (unmuteBtn) {
+        unmuteBtn.addEventListener('click', toggleSound);
+      }
+
+      // Quando o vídeo termina (Toca 1 única vez)
+      video.addEventListener('ended', () => {
+        if (captionText) captionText.style.opacity = '0';
+        if (replayOverlay) {
+          replayOverlay.style.pointerEvents = 'auto';
+          replayOverlay.style.opacity = '1';
+        }
+      });
+
+      // Botão de Assistir Novamente (Replay)
+      if (replayBtn) {
+        replayBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (replayOverlay) {
+            replayOverlay.style.opacity = '0';
+            replayOverlay.style.pointerEvents = 'none';
+          }
+          video.currentTime = 0;
+          video.muted = false;
+          video.play().catch(() => {});
+          if (unmuteBtn) {
+            unmuteBtn.style.opacity = '0';
+            unmuteBtn.style.pointerEvents = 'none';
+          }
         });
       }
     })();
