@@ -486,28 +486,20 @@
                 </button>
               </div>
             </div>
-
-            <!-- Botão de Ação / Replay em baixo do vídeo -->
-            <div id="replayBar" class="mt-4 flex flex-wrap items-center justify-center gap-3 transition-all duration-300">
-              <button id="replayBtn" class="btn-gold text-black text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl inline-flex items-center gap-2 shadow-lg shadow-ouro/20 hover:scale-105 transition-transform duration-200 cursor-pointer">
-                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-                <span id="replayBtnText">Assistir Novamente</span>
-              </button>
-            </div>
           </div>
 
-          <!-- Sub-headline -->
-          <span class="t-stagger-line t-stagger-line--4 text-base sm:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed block">
-            Esqueça os prompts manuais e conversas que esquecem tudo na próxima aba. Na comunidade <strong class="text-white font-semibold">Inteligência Agêntica</strong>, você aprende a instalar, hospedar na nuvem e comandar funcionários digitais que executam processos reais no piloto automático.
-          </span>
-
-          <!-- CTA -->
-          <span class="t-stagger-line t-stagger-line--5 mt-8 sm:mt-9 block">
+          <!-- CTA (Logo abaixo do vídeo) -->
+          <div class="t-stagger-line t-stagger-line--4 my-8 sm:my-9 block">
             <a href="#oferta"
                class="btn-gold cta-pulse inline-flex items-center gap-2 px-7 sm:px-9 py-4 rounded-xl text-sm sm:text-base font-bold tracking-wide">
               ENTRAR PARA A COMUNIDADE INTELIGÊNCIA AGÊNTICA
             </a>
             <span class="block mt-3 text-xs text-gray-400 font-medium">🔥 Encontros ao vivo • Novas aulas toda semana • Cancele quando quiser</span>
+          </div>
+
+          <!-- Sub-headline (Abaixo do botão) -->
+          <span class="t-stagger-line t-stagger-line--5 text-base sm:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed block">
+            Esqueça os prompts manuais e conversas que esquecem tudo na próxima aba. Na comunidade <strong class="text-white font-semibold">Inteligência Agêntica</strong>, você aprende a instalar, hospedar na nuvem e comandar funcionários digitais que executam processos reais no piloto automático.
           </span>
         </div>
       </div>
@@ -1221,14 +1213,11 @@
       }
     })();
 
-    // ---- Hero Video Control, Replay & Dynamic Captions ----
+    // ---- Hero Video Control & Dynamic Captions ----
     (() => {
       const video = document.getElementById('heroVideo');
       const unmuteBtn = document.getElementById('unmuteOverlay');
-      const replayOverlay = document.getElementById('replayOverlay');
-      const replayBtn = document.getElementById('replayBtn');
       const captionText = document.getElementById('captionText');
-      const captionsBox = document.getElementById('captionsBox');
       const wrapper = document.getElementById('videoWrapper');
       if (!video) return;
 
@@ -1284,28 +1273,25 @@
         unmuteBtn.addEventListener('click', toggleSound);
       }
 
-      // Quando o vídeo termina (Toca 1 única vez)
-      video.addEventListener('ended', () => {
-        if (captionText) captionText.style.opacity = '0';
-        if (replayBtn) {
-          replayBtn.classList.add('cta-pulse');
-        }
-      });
-
-      // Botão de Assistir Novamente (Replay) em baixo do vídeo
-      if (replayBtn) {
-        replayBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          replayBtn.classList.remove('cta-pulse');
-          video.currentTime = 0;
-          video.muted = false;
-          video.play().catch(() => {});
-          if (unmuteBtn) {
-            unmuteBtn.style.opacity = '0';
-            unmuteBtn.style.pointerEvents = 'none';
+      if (wrapper) {
+        wrapper.addEventListener('click', () => {
+          if (video.muted) {
+            toggleSound();
+          } else if (video.ended) {
+            video.currentTime = 0;
+            video.play().catch(() => {});
+          } else if (video.paused) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
           }
         });
       }
+
+      // Quando o vídeo termina
+      video.addEventListener('ended', () => {
+        if (captionText) captionText.style.opacity = '0';
+      });
     })();
 
     // ---- 30-Minute Urgency Countdown (Annual Plan) ----
