@@ -15,6 +15,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Webhooks e IA Agêntica: Como Criar Agentes Proativos Orientados a Eventos em Tempo Real](https://inteligenciaagentica.com.br/blog/webhooks-agentes-ia-arquitetura-orientada-a-eventos)
+- **Data de Publicação:** 2026-09-24
+- **Tags:** Webhooks, Agentes de IA, Automação, Hermes OS, Arquitetura Orientada a Eventos, Gestão de TI
+- **Resumo:** Descubra como a arquitetura orientada a eventos (Webhooks) transforma agentes de IA de simples chatbots reativos em guardiões autônomos que agem no milissegundo em que compras, alertas ou leads entram na sua empresa.
+- **URL:** https://inteligenciaagentica.com.br/blog/webhooks-agentes-ia-arquitetura-orientada-a-eventos
+
 ### [Skills: Como Agentes de IA Aprendem Sozinhos e Se Tornam Melhores a Cada Tarefa (O Sistema de Auto-Aperfeiçoamento do Hermes Agent)](https://inteligenciaagentica.com.br/blog/skills-sistema-auto-aperfeicoamento-agentes-ia)
 - **Data de Publicação:** 2026-09-23
 - **Tags:** Agentes de IA, Skills, Auto-Aperfeiçoamento, Hermes Agent, Automação, Negócios, Inteligência Agêntica
