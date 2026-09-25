@@ -15,6 +15,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [BI Conversacional e Finanças com Agentes de IA: Do Dashboard Estático às Decisões em Tempo Real](https://inteligenciaagentica.com.br/blog/bi-conversacional-analise-financeira-agentes-ia)
+- **Data de Publicação:** 2026-09-25
+- **Tags:** BI Conversacional, Finanças, Agentes de IA, Hermes Agent, Gestão Empresarial, Automação
+- **Resumo:** Descubra como o BI Conversacional com agentes de IA substitui dashboards lentos por consultas financeiras instantâneas em linguagem natural, integrando bancos de dados, ERPs e detecção proativa de anomalias operacionais.
+- **URL:** https://inteligenciaagentica.com.br/blog/bi-conversacional-analise-financeira-agentes-ia
+
 ### [Webhooks e IA Agêntica: Como Criar Agentes Proativos Orientados a Eventos em Tempo Real](https://inteligenciaagentica.com.br/blog/webhooks-agentes-ia-arquitetura-orientada-a-eventos)
 - **Data de Publicação:** 2026-09-24
 - **Tags:** Webhooks, Agentes de IA, Automação, Hermes OS, Arquitetura Orientada a Eventos, Gestão de TI
