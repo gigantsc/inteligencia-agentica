@@ -226,6 +226,7 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
         <a href="/#cursos" class="text-xs font-semibold text-gray-300 hover:text-white transition-colors">Treinamentos</a>
         <a href="/#ao-vivo" class="text-xs font-semibold text-gray-300 hover:text-white transition-colors">Ao Vivo</a>
         <a href="/#oferta" class="text-xs font-semibold text-gray-300 hover:text-white transition-colors">Planos</a>
+        <a href="/cases" class="text-xs font-semibold text-gray-300 hover:text-white transition-colors">Cases</a>
         <a href="/blog" class="text-xs font-bold ${activeNav === 'blog' ? 'text-ciano border-b-2 border-ciano pb-0.5' : 'text-gray-300 hover:text-white'} transition-colors">Blog</a>
       </div>
 
