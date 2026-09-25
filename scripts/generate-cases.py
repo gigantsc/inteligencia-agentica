@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Script de processamento, traducao e geracao da pagina /cases da Inteligencia Agentica.
-Converte todos os 326 cases de uso reais em uma pagina rica, filtrável e com identidade visual do projeto.
+Script de processamento e geracao da pagina /cases da Inteligencia Agentica.
+Utiliza os 326 cases traduzidos para pt-BR com identidade visual oficial do projeto.
 """
 
 import json
@@ -9,16 +9,15 @@ import os
 import re
 from datetime import datetime
 
-INPUT_FILE = "D:/DevCod/inteligencia-agentica/use_cases_raw.json"
+INPUT_FILE = "D:/DevCod/inteligencia-agentica/use_cases_translated.json"
 OUTPUT_DIR = "D:/DevCod/inteligencia-agentica/cases"
 OUTPUT_HTML = os.path.join(OUTPUT_DIR, "index.html")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 with open(INPUT_FILE, "r", encoding="utf-8") as f:
-    raw_cases = json.load(f)
+    translated_cases = json.load(f)
 
-# Dicionario para mapeamento e traducao
 def clean_text(text):
     if not text:
         return ""
@@ -32,19 +31,19 @@ def map_sector_and_tags(c):
     tags = [t.lower() for t in c.get("tags", [])]
     combined = f"{title} {summary} {detail} {' '.join(tags)}"
 
-    if any(k in combined for k in ["docker", "vps", "server", "infra", "deploy", "nginx", "self-host", "linux", "cloud", "homelab", "proxmox", "traefik", "portainer", "swarm"]):
+    if any(k in combined for k in ["docker", "vps", "server", "servidor", "infra", "deploy", "nginx", "self-host", "linux", "cloud", "homelab", "proxmox", "traefik", "portainer", "swarm"]):
         sector = "DevOps & Infraestrutura"
         tag_pt = "DevOps"
-    elif any(k in combined for k in ["marketing", "youtube", "video", "copy", "content", "social media", "blog", "seo", "thumbnail", "podcast", "audio", "writer"]):
+    elif any(k in combined for k in ["marketing", "youtube", "video", "vídeo", "copy", "conteúdo", "content", "social media", "blog", "seo", "thumbnail", "podcast", "áudio", "redator"]):
         sector = "Marketing & Conteúdo"
         tag_pt = "Marketing"
-    elif any(k in combined for k in ["business", "sales", "crm", "enterprise", "agency", "client", "contract", "legal", "lead", "revenue", "invoice", "finance", "billing"]):
+    elif any(k in combined for k in ["empresa", "cliente", "clientes", "business", "vendas", "sales", "crm", "enterprise", "agência", "contrato", "legal", "lead", "faturamento", "receita", "finance"]):
         sector = "Gestão & Operações"
         tag_pt = "Negócios"
-    elif any(k in combined for k in ["research", "trading", "market", "stock", "crypto", "paper", "data analysis", "scrape", "scraping", "rag", "eval", "benchmark"]):
+    elif any(k in combined for k in ["pesquisa", "trading", "mercado", "ações", "crypto", "paper", "análise de dados", "scrape", "scraping", "rag", "benchmark", "dados"]):
         sector = "Pesquisa & Inteligência"
         tag_pt = "Pesquisa & Dados"
-    elif any(k in combined for k in ["telegram", "whatsapp", "assistant", "voice", "calendar", "email", "todo", "obsidian", "notion", "routine", "personal", "life"]):
+    elif any(k in combined for k in ["telegram", "whatsapp", "assistente", "voz", "calendário", "email", "tarefas", "obsidian", "notion", "rotina", "pessoal", "dia a dia"]):
         sector = "Assistentes & Rotinas"
         tag_pt = "Assistentes"
     else:
@@ -55,10 +54,10 @@ def map_sector_and_tags(c):
     if "telegram" in combined: extra_tags.append("Telegram")
     if "whatsapp" in combined: extra_tags.append("WhatsApp")
     if "github" in combined: extra_tags.append("GitHub")
-    if "memory" in combined or "hindsight" in combined: extra_tags.append("Memória Persistente")
-    if "cron" in combined: extra_tags.append("Rotinas 24/7")
-    if "vps" in combined or "server" in combined: extra_tags.append("VPS Nuvem")
-    if "solo" in combined or "indie" in combined: extra_tags.append("Solo / Indie")
+    if "memória" in combined or "memory" in combined or "hindsight" in combined: extra_tags.append("Memória Persistente")
+    if "cron" in combined or "rotina" in combined or "24h" in combined: extra_tags.append("Rotinas 24/7")
+    if "vps" in combined or "servidor" in combined or "nuvem" in combined: extra_tags.append("VPS Nuvem")
+    if "solo" in combined or "indie" in combined or "sozinho" in combined: extra_tags.append("Solo / Indie")
 
     if not extra_tags:
         extra_tags.append(tag_pt)
@@ -66,7 +65,7 @@ def map_sector_and_tags(c):
     return sector, [tag_pt] + [t for t in extra_tags if t != tag_pt]
 
 processed_cases = []
-for idx, c in enumerate(raw_cases):
+for idx, c in enumerate(translated_cases):
     sector, tags_pt = map_sector_and_tags(c)
     source_raw = c.get("source", "Comunidade")
     source_map = {
@@ -107,14 +106,18 @@ for idx, c in enumerate(raw_cases):
 
 cases_json_str = json.dumps(processed_cases, ensure_ascii=False)
 
+# Salvar json de dados na pasta cases
+with open("D:/DevCod/inteligencia-agentica/cases/cases-data.json", "w", encoding="utf-8") as f:
+    json.dump(processed_cases, f, ensure_ascii=False, indent=2)
+
 # Template HTML completo
 html_content = f"""<!DOCTYPE html>
 <html lang="pt-BR" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cases Reais de Agentes de IA em Produção — Inteligência Agêntica</title>
-  <meta name="description" content="Explore 326 casos reais de agentes autônomos de IA em produção: DevOps, desenvolvimento, automação, atendimento e gestão de negócios.">
+  <title>326 Cases Reais de Agentes de IA em Produção — Inteligência Agêntica</title>
+  <meta name="description" content="Explore 326 casos reais de agentes autônomos de IA em produção: DevOps, desenvolvimento, automação, atendimento e gestão de negócios traduzidos para português.">
   <link rel="canonical" href="https://inteligenciaagentica.com.br/cases">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 
@@ -244,20 +247,20 @@ html_content = f"""<!DOCTYPE html>
     <div class="text-center max-w-3xl mx-auto mb-12">
       <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-ciano bg-ciano/10 border border-ciano/20 mb-4">
         <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-        Acervo Prático de Casos de Uso
+        Acervo Prático de Casos de Uso Traduzidos
       </span>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
         Casos Reais de Agentes Autônomos <span class="gradient-text-ciano">em Produção</span>
       </h1>
       <p class="text-sm sm:text-base text-gray-400 mt-4 leading-relaxed">
-        Explore <strong>326 experiências e fluxos de trabalho</strong> implementados por desenvolvedores, empresários e equipes que colocaram a inteligência artificial para rodar 24h na prática.
+        Explore <strong>326 experiências e fluxos de trabalho práticos</strong> de quem já colocou assistentes virtuais e equipes digitais trabalhando 24h na nuvem pelo celular.
       </p>
 
       <!-- NOTA DE TRANSPARÊNCIA & TRADUÇÃO -->
       <div class="mt-6 p-4 rounded-xl bg-obsidian-light border border-white/10 text-xs text-gray-400 max-w-2xl mx-auto text-left flex items-start gap-3">
         <i data-lucide="globe" class="w-4 h-4 text-ciano flex-shrink-0 mt-0.5"></i>
         <div class="leading-relaxed">
-          <strong class="text-gray-200">Nota de Curadoria:</strong> Estes relatos foram originalmente compartilhados pela comunidade internacional de IA em inglês e traduzidos/organizados em português pela equipe da <strong>Inteligência Agêntica</strong> para servir como referência prática e inspiração de implementação.
+          <strong class="text-gray-200">Nota de Curadoria & Tradução:</strong> Estes relatos foram originalmente compartilhados pela comunidade internacional de IA em inglês e traduzidos/organizados em português brasileiro pela equipe da <strong>Inteligência Agêntica</strong> para servir como inspiração prática e cases reais de aplicação.
         </div>
       </div>
     </div>
@@ -270,7 +273,7 @@ html_content = f"""<!DOCTYPE html>
         <input 
           type="text" 
           id="searchInput" 
-          placeholder="Buscar por palavras-chave (ex: Telegram, Docker, Rotina 24/7, Vendas, PostgreSQL)..." 
+          placeholder="Buscar por palavras-chave (ex: Telegram, Docker, Rotina 24/7, Vendas, PostgreSQL, Deploy)..." 
           class="w-full pl-12 pr-4 py-3 rounded-xl bg-obsidian-light border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-ciano transition-colors"
         >
       </div>
@@ -345,7 +348,7 @@ html_content = f"""<!DOCTYPE html>
   <footer class="border-t border-white/5 bg-obsidian py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-500 space-y-2">
       <p>© 2026 Inteligência Agêntica — Todos os direitos reservados.</p>
-      <p class="text-gray-600">Curadoria e tradução independente de experiências práticas com sistemas de inteligência agêntica.</p>
+      <p class="text-gray-600">Curadoria e tradução de experiências práticas com sistemas de inteligência agêntica.</p>
     </div>
   </footer>
 
