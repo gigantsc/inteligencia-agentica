@@ -470,10 +470,9 @@
                 <video 
                   id="heroVideo"
                   class="w-full h-full object-cover rounded-xl" 
-                  autoplay
-                  muted
                   playsinline
-                  preload="metadata"
+                  preload="auto"
+                  poster="poster.jpg"
                 >
                   <source src="video-inicial.mp4" type="video/mp4">
                   Seu navegador não suporta a tag de vídeo HTML5.
@@ -484,11 +483,32 @@
                   <p id="captionText" class="max-w-[90%] bg-black/85 backdrop-blur border border-white/15 text-white font-medium text-xs sm:text-sm md:text-base px-4 py-2 rounded-xl text-center shadow-xl leading-snug transition-all duration-150 opacity-0"></p>
                 </div>
 
-                <!-- Unmute overlay button -->
-                <button id="unmuteOverlay" class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-obsidian/90 hover:bg-black border border-white/20 text-white text-xs sm:text-sm font-semibold px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl backdrop-blur flex items-center gap-2 transition-all duration-200 z-30 shadow-lg cursor-pointer">
+                <!-- Unmute overlay button (aparece apenas se áudio falhar ou for mutado) -->
+                <button id="unmuteOverlay" class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-obsidian/90 hover:bg-black border border-white/20 text-white text-xs sm:text-sm font-semibold px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl backdrop-blur flex items-center gap-2 transition-all duration-200 z-30 shadow-lg cursor-pointer opacity-0 pointer-events-none">
                   <i data-lucide="volume-x" class="w-4 h-4 text-ouro" id="soundIcon"></i>
                   <span id="soundText">Clique para ativar o som</span>
                 </button>
+
+                <!-- Play & Alert Callout Overlay (Inicial - Vídeo pausado) -->
+                <div id="playOverlay" class="absolute inset-0 bg-black/50 backdrop-blur-[2px] flex flex-col items-center justify-center p-4 sm:p-6 text-center z-[35] transition-all duration-300">
+                  <!-- Chamada de Alerta -->
+                  <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold text-amber-300 bg-amber-500/20 border border-amber-400/40 mb-3 sm:mb-4 shadow-lg shadow-amber-500/10 backdrop-blur-md animate-pulse">
+                    <i data-lucide="alert-triangle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0"></i>
+                    <span>⚠️ ATENÇÃO: Assista com o som ligado</span>
+                  </div>
+
+                  <!-- Botão de Iniciar Vídeo -->
+                  <button id="startVideoBtn" type="button" class="btn-gold text-black font-extrabold text-xs sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl flex items-center gap-3 shadow-2xl shadow-ouro/40 hover:scale-105 active:scale-95 transition-all duration-200 cta-pulse cursor-pointer group">
+                    <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/20 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                      <i data-lucide="play" class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-black text-black ml-0.5"></i>
+                    </span>
+                    <span class="tracking-wide">CLIQUE PARA INICIAR O VÍDEO</span>
+                  </button>
+
+                  <p class="mt-2.5 sm:mt-3 text-[11px] sm:text-xs text-gray-300 font-medium drop-shadow">
+                    Apresentação rápida • 1 minuto 🔊
+                  </p>
+                </div>
 
                 <!-- Replay & CTA Overlay (surge quando o vídeo termina) -->
                 <div id="replayOverlay" class="absolute inset-0 bg-obsidian/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-40 transition-all duration-300 opacity-0 pointer-events-none">
@@ -1247,7 +1267,11 @@
       const replayBtn = document.getElementById('replayBtn');
       const captionText = document.getElementById('captionText');
       const wrapper = document.getElementById('videoWrapper');
+      const playOverlay = document.getElementById('playOverlay');
+      const startVideoBtn = document.getElementById('startVideoBtn');
       if (!video) return;
+
+      let hasStarted = false;
 
       // Legendas com timestamps exatos sincronizados
       const subtitles = [
@@ -1284,7 +1308,37 @@
         }
       });
 
-      // Ativar Áudio
+      // Iniciar reprodução com som pelo botão de alerta / play
+      const startVideo = (e) => {
+        if (e) e.stopPropagation();
+        hasStarted = true;
+        if (playOverlay) {
+          playOverlay.style.opacity = '0';
+          playOverlay.style.pointerEvents = 'none';
+        }
+        video.muted = false;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Se o navegador bloquear reprodução com som direto, ativa som mudo e exibe botão de un-mute
+            video.muted = true;
+            video.play().catch(() => {});
+            if (unmuteBtn) {
+              unmuteBtn.style.opacity = '1';
+              unmuteBtn.style.pointerEvents = 'auto';
+            }
+          });
+        }
+      };
+
+      if (startVideoBtn) {
+        startVideoBtn.addEventListener('click', startVideo);
+      }
+      if (playOverlay) {
+        playOverlay.addEventListener('click', startVideo);
+      }
+
+      // Ativar Áudio (Fallback)
       const toggleSound = (e) => {
         if (e) e.stopPropagation();
         if (video.muted) {
@@ -1301,12 +1355,15 @@
         unmuteBtn.addEventListener('click', toggleSound);
       }
 
+      // Interação no container de vídeo (pausar / despausar após iniciado)
       if (wrapper) {
-        wrapper.addEventListener('click', () => {
-          if (video.muted) {
-            toggleSound();
-          } else if (video.ended) {
-            // Se terminou e clicar no wrapper
+        wrapper.addEventListener('click', (e) => {
+          if (e.target.closest('#replayOverlay button') || e.target.closest('#replayOverlay a')) return;
+          if (!hasStarted) {
+            startVideo(e);
+            return;
+          }
+          if (video.ended) {
             if (replayBtn) replayBtn.click();
           } else if (video.paused) {
             video.play().catch(() => {});
