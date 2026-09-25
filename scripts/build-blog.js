@@ -266,6 +266,7 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
             <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
             <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
             <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
             <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
           </ul>
         </div>
@@ -811,6 +812,12 @@ function generateSitemapXml(posts) {
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>${siteConfig.url}/cases</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>${siteConfig.url}/blog</loc>
     <lastmod>${now}</lastmod>
     <changefreq>daily</changefreq>
@@ -850,6 +857,7 @@ function generateLlmsTxt(posts) {
 
 ## Informações Principais
 - **Website:** ${siteConfig.url}
+- **Casos Reais de Agentes de IA:** ${siteConfig.url}/cases (326 casos práticos divididos por setores empresariais)
 - **Assinatura / Comunidade:** ${siteConfig.url}/#oferta (Planos Mensal R$ 97 / Anual R$ 497)
 - **Pilares:** 4 encontros ao vivo por mês, biblioteca viva de automações semanais, tutoriais de VPS e Docker Swarm.
 
