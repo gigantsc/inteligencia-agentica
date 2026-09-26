@@ -191,6 +191,50 @@ html_content = f"""<!DOCTYPE html>
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }}
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }}
+    .on-air-badge:hover {{
+      transform: scale(1.05);
+    }}
+    .on-air-dot {{
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }}
+    @keyframes onAirPulse {{
+      0%, 100% {{
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }}
+      50% {{
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }}
+    }}
+    @keyframes onAirDot {{
+      0%, 100% {{ opacity: 0.45; transform: scale(0.9); }}
+      50% {{ opacity: 1; transform: scale(1.15); }}
+    }}
     .gradient-text-gold {{
       background: linear-gradient(135deg, #F59E0B 0%, #FCD34D 50%, #F59E0B 100%);
       -webkit-background-clip: text;
@@ -224,9 +268,13 @@ html_content = f"""<!DOCTYPE html>
         </div>
         <span class="text-sm font-bold tracking-tight text-white group-hover:text-ciano transition-colors">Inteligência Agêntica</span>
       </a>
-      <div class="flex items-center gap-5">
+      <div class="flex items-center gap-4 sm:gap-5">
         <a href="/" class="text-xs font-semibold text-gray-300 hover:text-ciano transition-colors">
           Início
+        </a>
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
         </a>
         <a href="/cases" class="text-xs font-bold text-ciano transition-colors border-b-2 border-ciano pb-0.5">
           Cases
@@ -386,6 +434,7 @@ html_content = f"""<!DOCTYPE html>
           <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
           <ul class="space-y-2 text-xs text-gray-400">
             <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
             <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
             <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
             <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>

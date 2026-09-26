@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encontros ao Vivo — Inteligência Agêntica com Jean Pierre Schramm</title>
+  <meta name="description" content="Toda quinta às 19:30h tire suas dúvidas ao vivo e de graça com Jean Pierre Schramm sobre como colocar robôs e agentes de IA para trabalhar no seu negócio.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/ao-vivo">
+
+  <!-- Open Graph / Social Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/ao-vivo">
+  <meta property="og:title" content="Encontros ao Vivo sobre Inteligência Agêntica — Toda Quinta às 19:30h">
+  <meta property="og:description" content="Tire suas dúvidas ao vivo, de graça e sem enrolação técnica. Aprenda a começar com agentes autônomos de IA no seu negócio.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Preconnect + Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      background-color: #07070A;
+      color: #E0E0E6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    ::selection {
+      background: rgba(223, 186, 107, 0.35);
+      color: #fff;
+    }
+    .glass {
+      background: rgba(17, 17, 24, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .glass-card {
+      background: rgba(17, 17, 24, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #F0D48A 0%, #DFBA6B 50%, #B8952E 100%);
+      color: #07070A;
+      box-shadow: 0 4px 20px rgba(223, 186, 107, 0.25);
+      transition: all 0.25s ease;
+    }
+    .btn-gold:hover {
+      box-shadow: 0 6px 28px rgba(223, 186, 107, 0.45);
+      transform: translateY(-2px);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #FFFFFF 0%, #E0E0E6 40%, #00E5FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 550px;
+      height: 550px;
+      border-radius: 50%;
+      filter: blur(140px);
+      pointer-events: none;
+      opacity: 0.18;
+    }
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    .top-bar {
+      background: rgba(7, 7, 10, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- TOP BAR -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
+      <a href="/" class="flex items-center gap-2 group cursor-pointer" title="Voltar para a Página Inicial">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-magenta to-ciano flex items-center justify-center shadow-lg shadow-ciano/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="brain" class="w-4 h-4 text-white"></i>
+        </div>
+        <span class="text-sm font-bold tracking-tight text-white group-hover:text-ciano transition-colors">Inteligência Agêntica</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="flex items-center gap-4 sm:gap-6">
+        <a href="/" class="text-xs font-semibold text-gray-300 hover:text-ciano transition-colors">
+          Início
+        </a>
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-xs font-semibold text-gray-300 hover:text-ciano transition-colors">
+          Cases
+        </a>
+        <a href="/blog" class="text-xs font-semibold text-gray-300 hover:text-ciano transition-colors">
+          Blog
+        </a>
+        <a href="/#oferta"
+           class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-ouro hover:text-ouro-light transition-colors duration-200">
+          Assinar agora
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow pt-20 sm:pt-24 pb-20 relative overflow-hidden">
+    <!-- Glow ambience -->
+    <div class="hero-glow bg-red-600/25 -top-20 left-1/4" aria-hidden="true"></div>
+    <div class="hero-glow bg-ciano/25 top-1/3 right-10" aria-hidden="true"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- HERO HEADER -->
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+        <!-- Live ON AIR Pill -->
+        <div class="inline-flex items-center gap-2 mb-5">
+          <div class="on-air-badge text-xs px-3 py-1">
+            <span class="on-air-dot"></span>
+            AO VIVO NO AR &bull; TODA QUINTA ÀS 19:30H
+          </div>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
+          Quer usar IA no seu negócio mas <span class="gradient-text">não sabe por onde começar?</span>
+        </h1>
+        
+        <p class="text-lg sm:text-xl text-gray-300 leading-relaxed font-medium">
+          Toda quinta às 19:30h eu tiro suas dúvidas ao vivo. <strong class="text-white">De graça.</strong>
+        </p>
+
+        <p class="mt-4 text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          Participe dos <strong>Encontros ao Vivo sobre Inteligência Agêntica</strong>. Eu abro um espaço direto para você tirar todas as suas dúvidas sobre como usar robôs de IA no seu negócio. Sem roteiro, sem enrolação. Você pergunta, eu respondo. Simples assim.
+        </p>
+      </div>
+
+      <!-- GRID PRINCIPAL: CONTEÚDO + FORMULÁRIO DE CAPTURA -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- COLUNA ESQUERDA: BENEFÍCIOS, FORMATO E BIO (7 colunas) -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <!-- CARD: PRA QUEM É -->
+          <div class="glass rounded-2xl p-6 sm:p-7 border border-white/10">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-9 h-9 rounded-xl bg-ciano/10 border border-ciano/25 flex items-center justify-center text-ciano">
+                <i data-lucide="target" class="w-5 h-5"></i>
+              </div>
+              <h2 class="text-lg font-bold text-white">Esse encontro é pra você que:</h2>
+            </div>
+            
+            <ul class="space-y-3.5 text-sm text-gray-300">
+              <li class="flex items-start gap-3">
+                <span class="text-lg leading-none mt-0.5">🤔</span>
+                <span><strong>Sabe que precisa usar IA</strong> no negócio mas não sabe por onde começar nem o que priorizar.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-lg leading-none mt-0.5">😰</span>
+                <span><strong>Tem medo de investir tempo</strong> em algo que não vai funcionar na prática ou ficar obsoleto.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-lg leading-none mt-0.5">🔍</span>
+                <span><strong>Quer entender o que o Hermes Agent faz de verdade</strong> — sem termos técnicos, sem papo furado de programador.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-lg leading-none mt-0.5">💬</span>
+                <span><strong>Precisa de alguém que já faz isso todo dia</strong> pra te orientar e destravar o seu caso específico.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- CARD: COMO FUNCIONA -->
+          <div class="glass rounded-2xl p-6 sm:p-7 border border-white/10">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-9 h-9 rounded-xl bg-ouro/10 border border-ouro/25 flex items-center justify-center text-ouro">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+              </div>
+              <h2 class="text-lg font-bold text-white">Como funciona na prática:</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-300 mb-4">
+              <div class="bg-white/[0.03] p-3.5 rounded-xl border border-white/5">
+                <div class="text-white font-bold mb-1 flex items-center gap-2">
+                  <i data-lucide="clock" class="w-4 h-4 text-ouro"></i>
+                  Quintas às 19:30h
+                </div>
+                <p class="text-xs text-gray-400">Horário de Brasília. Duração focada em resolver problemas reais.</p>
+              </div>
+              <div class="bg-white/[0.03] p-3.5 rounded-xl border border-white/5">
+                <div class="text-white font-bold mb-1 flex items-center gap-2">
+                  <i data-lucide="badge-check" class="w-4 h-4 text-emerald-400"></i>
+                  100% Gratuito
+                </div>
+                <p class="text-xs text-gray-400">Acesso livre e sem pegadinhas para quem se inscrever.</p>
+              </div>
+            </div>
+
+            <div class="space-y-2 text-xs sm:text-sm text-gray-300">
+              <p class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-ciano flex-shrink-0"></i>
+                <span><strong>Você traz suas dúvidas:</strong> sobre seu negócio, sua operação ou suas dificuldades.</span>
+              </p>
+              <p class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-ciano flex-shrink-0"></i>
+                <span><strong>Eu te ajudo a entender o caminho:</strong> para colocar robôs de IA na sua realidade.</span>
+              </p>
+              <p class="flex items-center gap-2 text-gray-400">
+                <i data-lucide="slash" class="w-4 h-4 text-magenta flex-shrink-0"></i>
+                <span>Sem slides monótonos. Sem apresentação ensaiada. Conversa aberta, direta e cirúrgica.</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD: QUEM ESTÁ DO OUTRO LADO (AUTORIDADE) -->
+          <div class="glass rounded-2xl p-6 sm:p-7 border border-white/10 flex flex-col sm:flex-row items-center sm:items-start gap-5">
+            <img src="/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-20 h-20 rounded-2xl object-cover border-2 border-ouro/40 shadow-lg shadow-ouro/10 flex-shrink-0">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-ouro block mb-1">Quem tá do outro lado</span>
+              <h3 class="text-base font-bold text-white mb-2">Jean Pierre Schramm</h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                Empresário e especialista em Inteligência Agêntica. No meu dia a dia, minha própria equipe de robôs de IA já gerencia redes sociais, monitora servidores e executa dezenas de tarefas operacionais de forma autônoma. Nos encontros, compartilho essa experiência real para te ajudar a dar o primeiro passo.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- COLUNA DIREITA: FORMULÁRIO DE INSCRIÇÃO (5 colunas) -->
+        <div class="lg:col-span-5 sticky top-20">
+          <div class="glass-card rounded-2xl p-6 sm:p-8 border-2 border-ouro/30 shadow-2xl shadow-ouro/10 relative">
+            
+            <!-- Placa ON AIR no topo do Card -->
+            <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-white/10">
+              <div class="on-air-badge">
+                <span class="on-air-dot"></span>
+                PRÓXIMO ENCONTRO
+              </div>
+              <span class="text-xs font-semibold text-gray-400">Quinta &bull; 19:30h</span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white leading-tight mb-2">
+              Garanta sua vaga gratuita
+            </h3>
+            <p class="text-xs text-gray-300 mb-6 leading-relaxed">
+              👇 Se inscreva e receba o link de acesso da próxima quinta direto no seu WhatsApp e email:
+            </p>
+
+            <!-- FORMULÁRIO -->
+            <form id="leadForm" class="space-y-4">
+              <div>
+                <label for="nome" class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-1.5">Nome *</label>
+                <input type="text" id="nome" name="nome" required placeholder="Seu primeiro nome"
+                       class="w-full px-4 py-3 rounded-xl bg-obsidian border border-white/15 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-ciano focus:ring-1 focus:ring-ciano transition-colors">
+              </div>
+
+              <div>
+                <label for="sobrenome" class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-1.5">Sobrenome</label>
+                <input type="text" id="sobrenome" name="sobrenome" placeholder="Seu sobrenome"
+                       class="w-full px-4 py-3 rounded-xl bg-obsidian border border-white/15 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-ciano focus:ring-1 focus:ring-ciano transition-colors">
+              </div>
+
+              <div>
+                <label for="whatsapp" class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-1.5">WhatsApp com DDD *</label>
+                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(11) 99999-9999"
+                       class="w-full px-4 py-3 rounded-xl bg-obsidian border border-white/15 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-ciano focus:ring-1 focus:ring-ciano transition-colors">
+              </div>
+
+              <div>
+                <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-1.5">Seu Melhor E-mail *</label>
+                <input type="email" id="email" name="email" required placeholder="seu@email.com"
+                       class="w-full px-4 py-3 rounded-xl bg-obsidian border border-white/15 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-ciano focus:ring-1 focus:ring-ciano transition-colors">
+              </div>
+
+              <button type="submit" id="submitBtn"
+                      class="w-full btn-gold py-4 px-6 rounded-xl font-extrabold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2 cursor-pointer mt-2">
+                <span>👉 QUERO PARTICIPAR — É GRÁTIS</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+
+              <div class="pt-2 text-center">
+                <p class="text-[11px] text-gray-400 flex items-center justify-center gap-1.5">
+                  <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i>
+                  <span>Seus dados estão seguros. Sem spam.</span>
+                </p>
+                <p class="text-[10px] text-gray-500 mt-1">
+                  Você receberá apenas informações sobre os encontros ao vivo via WhatsApp e email.
+                </p>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- CTA COMUNIDADE -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 w-full">
+    <div class="glass rounded-2xl p-6 sm:p-10 border border-ouro/20 bg-gradient-to-br from-ouro/5 via-transparent to-ciano/5 text-center">
+      <span class="text-[11px] font-bold uppercase tracking-wider text-ouro block mb-2">Comunidade Completa</span>
+      <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3">Quer instalar e liderar agentes na sua empresa?</h3>
+      <p class="text-sm text-gray-300 max-w-2xl mx-auto mb-6 leading-relaxed">
+        Assine a comunidade Inteligência Agêntica com 4 encontros ao vivo por mês, biblioteca completa de automações e suporte técnico dedicado.
+      </p>
+      <a href="/#oferta" class="btn-gold inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm tracking-wide">
+        <span>Ver Planos & Assinar Agora</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center gap-2 mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <div class="w-6 h-6 rounded-md bg-gradient-to-br from-magenta to-ciano flex items-center justify-center group-hover:scale-105 transition-transform">
+              <i data-lucide="brain" class="w-3.5 h-3.5 text-white"></i>
+            </div>
+            <span class="text-sm font-bold text-white group-hover:text-ciano transition-colors">Inteligência Agêntica</span>
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <p class="text-[10px] text-gray-500">Ecossistema Hermes OS &bull; Powered by Nous Research</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT FORM + REDIRECT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      // Máscara simples de WhatsApp
+      const whatsappInput = document.getElementById('whatsapp');
+      if (whatsappInput) {
+        whatsappInput.addEventListener('input', (e) => {
+          let val = e.target.value.replace(/\D/g, '');
+          if (val.length > 11) val = val.slice(0, 11);
+          if (val.length > 6) {
+            val = `(${val.slice(0, 2)}) ${val.slice(2, 7)}-${val.slice(7)}`;
+          } else if (val.length > 2) {
+            val = `(${val.slice(0, 2)}) ${val.slice(2)}`;
+          } else if (val.length > 0) {
+            val = `(${val}`;
+          }
+          e.target.value = val;
+        });
+      }
+
+      // Submissão do formulário
+      const form = document.getElementById('leadForm');
+      const submitBtn = document.getElementById('submitBtn');
+
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const nome = document.getElementById('nome').value.trim();
+          const sobrenome = document.getElementById('sobrenome').value.trim();
+          const whatsapp = document.getElementById('whatsapp').value.trim();
+          const email = document.getElementById('email').value.trim();
+
+          if (!nome || !whatsapp || !email) {
+            alert('Por favor, preencha todos os campos obrigatórios (*).');
+            return;
+          }
+
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = `
+            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+            </svg>
+            <span>Garantindo sua vaga...</span>
+          `;
+
+          // Salvar localmente os dados para personalização na página de obrigado
+          try {
+            const leadData = { nome, sobrenome, whatsapp, email, data: new Date().toISOString() };
+            localStorage.setItem('ia_last_lead', JSON.stringify(leadData));
+          } catch (err) {}
+
+          // Redireciona para a página de obrigado
+          setTimeout(() => {
+            window.location.href = '/ao-vivo/obrigado';
+          }, 600);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
