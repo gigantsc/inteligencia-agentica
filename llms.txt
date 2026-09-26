@@ -16,6 +16,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Bot Mode no Hermes Agent: Como Montar uma Equipe de Agentes de IA Nomeados que Conversam, Delegam e Decidem Juntos](https://inteligenciaagentica.com.br/blog/bot-mode-equipe-agentes-nomeados-hermes-agent)
+- **Data de Publicação:** 2026-09-26
+- **Tags:** Agentes de IA, Bot Mode, Multi-Agente, Hermes Agent, Automação, Negócios, Equipe Digital
+- **Resumo:** Bot Mode transforma perfis isolados do Hermes Agent em uma equipe de agentes nomeados com avatares, chats em grupo e DMs entre bots — montada em segundos, sem código e sem infraestrutura de nuvem. Descubra como criar especialistas digitais que colaboram entre si e reportam direto no seu celular.
+- **URL:** https://inteligenciaagentica.com.br/blog/bot-mode-equipe-agentes-nomeados-hermes-agent
+
 ### [BI Conversacional e Finanças com Agentes de IA: Do Dashboard Estático às Decisões em Tempo Real](https://inteligenciaagentica.com.br/blog/bi-conversacional-analise-financeira-agentes-ia)
 - **Data de Publicação:** 2026-09-25
 - **Tags:** BI Conversacional, Finanças, Agentes de IA, Hermes Agent, Gestão Empresarial, Automação
