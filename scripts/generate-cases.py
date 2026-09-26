@@ -262,11 +262,8 @@ html_content = f"""<!DOCTYPE html>
   <!-- TOP BAR -->
   <nav class="top-bar fixed top-0 inset-x-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
-      <a href="/" class="flex items-center gap-2 group cursor-pointer" title="Voltar para a Página Inicial">
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-magenta to-ciano flex items-center justify-center shadow-lg shadow-ciano/20 group-hover:scale-105 transition-transform">
-          <i data-lucide="brain" class="w-4 h-4 text-white"></i>
-        </div>
-        <span class="text-sm font-bold tracking-tight text-white group-hover:text-ciano transition-colors">Inteligência Agêntica</span>
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-9 w-auto object-contain group-hover:scale-105 transition-transform">
       </a>
       <div class="flex items-center gap-4 sm:gap-5">
         <a href="/" class="text-xs font-semibold text-gray-300 hover:text-ciano transition-colors">
@@ -419,12 +416,9 @@ html_content = f"""<!DOCTYPE html>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
         <div class="md:col-span-2">
-          <div class="flex items-center gap-2 mb-3">
-            <div class="w-6 h-6 rounded-md bg-gradient-to-br from-magenta to-ciano flex items-center justify-center">
-              <i data-lucide="brain" class="w-3.5 h-3.5 text-white"></i>
-            </div>
-            <span class="text-sm font-bold text-white">Inteligência Agêntica</span>
-          </div>
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-10 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
           <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
             O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
           </p>
