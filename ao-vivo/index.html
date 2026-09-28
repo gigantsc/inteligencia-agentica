@@ -385,7 +385,7 @@
               Garanta sua vaga gratuita
             </h3>
             <p class="text-xs text-gray-300 mb-6 leading-relaxed">
-              👇 Se inscreva e receba o link de acesso da próxima quinta direto no seu WhatsApp e email:
+              👇 Se inscreva e receba o link de acesso da próxima quinta direto no seu e-mail:
             </p>
 
             <!-- FORMULÁRIO -->
@@ -403,8 +403,8 @@
               </div>
 
               <div>
-                <label for="whatsapp" class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-1.5">WhatsApp com DDD *</label>
-                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(11) 99999-9999"
+                <label for="whatsapp" class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-1.5">WhatsApp com DDD <span class="text-gray-500 font-normal lowercase">(opcional)</span></label>
+                <input type="tel" id="whatsapp" name="whatsapp" placeholder="(11) 99999-9999"
                        class="w-full px-4 py-3 rounded-xl bg-obsidian border border-white/15 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-ciano focus:ring-1 focus:ring-ciano transition-colors">
               </div>
 
@@ -426,7 +426,7 @@
                   <span>Seus dados estão seguros. Sem spam.</span>
                 </p>
                 <p class="text-[10px] text-gray-500 mt-1">
-                  Você receberá apenas informações sobre os encontros ao vivo via WhatsApp e email.
+                  Você receberá as informações e links dos encontros ao vivo diretamente no seu e-mail.
                 </p>
               </div>
             </form>
@@ -572,38 +572,64 @@
       const submitBtn = document.getElementById('submitBtn');
 
       if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
           e.preventDefault();
 
           const nome = document.getElementById('nome').value.trim();
           const sobrenome = document.getElementById('sobrenome').value.trim();
-          const whatsapp = document.getElementById('whatsapp').value.trim();
+          const whatsapp = document.getElementById('whatsapp') ? document.getElementById('whatsapp').value.trim() : '';
           const email = document.getElementById('email').value.trim();
 
-          if (!nome || !whatsapp || !email) {
+          if (!nome || !email) {
             alert('Por favor, preencha todos os campos obrigatórios (*).');
             return;
           }
 
           submitBtn.disabled = true;
+          const originalBtnHtml = submitBtn.innerHTML;
           submitBtn.innerHTML = `
-            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-black inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
             </svg>
             <span>Garantindo sua vaga...</span>
           `;
 
-          // Salvar localmente os dados para personalização na página de obrigado
-          try {
-            const leadData = { nome, sobrenome, whatsapp, email, data: new Date().toISOString() };
-            localStorage.setItem('ia_last_lead', JSON.stringify(leadData));
-          } catch (err) {}
+          const fullName = sobrenome ? `${nome} ${sobrenome}` : nome;
 
-          // Redireciona para a página de obrigado
-          setTimeout(() => {
+          try {
+            // Envia para o Listmonk via proxy reverso local
+            const response = await fetch('/api/subscription', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                email: email,
+                name: fullName,
+                list_uuids: ['7b9cdf5f-ee62-45cf-98ce-4b1753c8554c']
+              })
+            });
+
+            if (!response.ok) {
+              const errData = await response.json().catch(() => ({}));
+              throw new Error(errData.message || 'Erro ao processar inscrição');
+            }
+
+            // Salvar localmente os dados para personalização na página de obrigado
+            try {
+              const leadData = { nome, sobrenome, whatsapp, email, data: new Date().toISOString() };
+              localStorage.setItem('ia_last_lead', JSON.stringify(leadData));
+            } catch (err) {}
+
+            // Redireciona para a página de obrigado
             window.location.href = '/ao-vivo/obrigado';
-          }, 600);
+          } catch (error) {
+            console.error('Erro na submissão:', error);
+            alert('Ocorreu um erro ao garantir sua vaga. Por favor, tente novamente.');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+          }
         });
       }
     });
