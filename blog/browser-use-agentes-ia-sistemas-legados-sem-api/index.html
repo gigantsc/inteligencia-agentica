@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browser-Use Corporativo: Como Agentes de IA Navegam, Extraem Dados e Operam Sistemas Legados Sem API | Inteligência Agêntica</title>
+  <meta name="description" content="Descubra como o Browser-Use permite que agentes autônomos de IA naveguem na web como humanos, façam login, preencham formulários e extraiam dados de ERPs legados, portais fiscais e plataformas de fornecedores sem necessidade de APIs ou RPA frágil.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/blog/browser-use-agentes-ia-sistemas-legados-sem-api">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/blog/browser-use-agentes-ia-sistemas-legados-sem-api">
+  <meta property="og:title" content="Browser-Use Corporativo: Como Agentes de IA Navegam, Extraem Dados e Operam Sistemas Legados Sem API">
+  <meta property="og:description" content="Descubra como o Browser-Use permite que agentes autônomos de IA naveguem na web como humanos, façam login, preencham formulários e extraiam dados de ERPs legados, portais fiscais e plataformas de fornecedores sem necessidade de APIs ou RPA frágil.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/browser-use-agentes-ia-sistemas-legados-sem-api.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://inteligenciaagentica.com.br/blog/browser-use-agentes-ia-sistemas-legados-sem-api">
+  <meta name="twitter:title" content="Browser-Use Corporativo: Como Agentes de IA Navegam, Extraem Dados e Operam Sistemas Legados Sem API">
+  <meta name="twitter:description" content="Descubra como o Browser-Use permite que agentes autônomos de IA naveguem na web como humanos, façam login, preencham formulários e extraiam dados de ERPs legados, portais fiscais e plataformas de fornecedores sem necessidade de APIs ou RPA frágil.">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/browser-use-agentes-ia-sistemas-legados-sem-api.jpg">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <!-- Prism Syntax Theme -->
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #07070A; color: #E0E0E6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    ::selection { background: rgba(192, 0, 255, 0.35); color: #fff; }
+    .glass { background: rgba(17, 17, 24, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); }
+    .glass-card { background: rgba(14, 14, 20, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+    .glass-card:hover { border-color: rgba(0, 229, 255, 0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); }
+    .gradient-text { background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text-gold { background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gold { background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%); color: #07070A; font-weight: 700; transition: all 0.2s ease; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(223, 186, 107, 0.35); }
+    .hero-glow { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.16; pointer-events: none; }
+    .top-bar { background: rgba(7, 7, 10, 0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .on-air-badge:hover {
+      transform: scale(1.05);
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    
+    /* Article typography styling */
+    .prose-custom { font-size: 1.05rem; line-height: 1.8; color: #D1D5DB; }
+    .prose-custom p { margin-bottom: 1.5rem; }
+    .prose-custom h1 { font-size: 2.25rem; font-weight: 900; color: #fff; margin-top: 2.5rem; margin-bottom: 1.25rem; line-height: 1.2; }
+    .prose-custom h2 { font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; }
+    .prose-custom h3 { font-size: 1.25rem; font-weight: 700; color: #00E5FF; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose-custom ul, .prose-custom ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    .prose-custom ul { list-style-type: disc; }
+    .prose-custom ol { list-style-type: decimal; }
+    .prose-custom li { margin-bottom: 0.5rem; }
+    .prose-custom strong { color: #fff; font-weight: 700; }
+    .prose-custom a { color: #00E5FF; text-decoration: underline; text-underline-offset: 3px; }
+    .prose-custom a:hover { color: #F0D48A; }
+    .prose-custom blockquote { border-left: 4px solid #00E5FF; background: rgba(0, 229, 255, 0.05); padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 0.75rem 0.75rem 0; color: #E5E7EB; }
+    .prose-custom blockquote p { margin-bottom: 0; }
+    .prose-custom code:not(pre code) { background: rgba(255, 255, 255, 0.08); color: #00E5FF; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+    .prose-custom pre { background: #0A0A0F !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.25rem; margin: 1.75rem 0; overflow-x: auto; }
+    .prose-custom pre code { color: #E0E0E6; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; }
+    .prose-custom table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+    .prose-custom th { background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .prose-custom td { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .prose-custom tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    .prose-custom hr { border-color: rgba(255, 255, 255, 0.08); margin: 2.5rem 0; }
+  </style>
+
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Browser-Use Corporativo: Como Agentes de IA Navegam, Extraem Dados e Operam Sistemas Legados Sem API","description":"Descubra como o Browser-Use permite que agentes autônomos de IA naveguem na web como humanos, façam login, preencham formulários e extraiam dados de ERPs legados, portais fiscais e plataformas de fornecedores sem necessidade de APIs ou RPA frágil.","image":"https://inteligenciaagentica.com.br/static/images/browser-use-agentes-ia-sistemas-legados-sem-api.jpg","datePublished":"2026-09-28","dateModified":"2026-09-28","author":{"@type":"Person","name":"Jean Pierre Schramm","url":"https://linkedin.com/in/jeanpierreschramm"},"publisher":{"@type":"Organization","name":"Inteligência Agêntica","url":"https://inteligenciaagentica.com.br","logo":{"@type":"ImageObject","url":"https://inteligenciaagentica.com.br/static/logos.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://inteligenciaagentica.com.br/blog/browser-use-agentes-ia-sistemas-legados-sem-api"},"keywords":"Browser-Use agentes de IA, IA para sistemas legados, Automação web com agentes autônomos, Hermes Agent browser navigation, Substituir RPA por IA, Extração de dados sem API, Automação de portais governamentais com IA"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://inteligenciaagentica.com.br"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://inteligenciaagentica.com.br/blog"},{"@type":"ListItem","position":3,"name":"Browser-Use Corporativo: Como Agentes de IA Navegam, Extraem Dados e Operam Sistemas Legados Sem API","item":"https://inteligenciaagentica.com.br/blog/browser-use-agentes-ia-sistemas-legados-sem-api"}]}]</script>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+  
+  <!-- TOP NAVBAR -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-11 sm:h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="/" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Início</a>
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Cases</a>
+        <a href="/blog" class="text-sm font-bold text-ciano border-b-2 border-ciano pb-0.5 transition-colors">Blog</a>
+        <a href="/#oferta" class="btn-gold px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide">
+          Acessar Comunidade
+        </a>
+      </div>
+
+      <!-- Mobile Actions (visible on mobile, hidden on md+) -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="/ao-vivo" class="on-air-badge text-[10px] py-1 px-2.5" title="Encontros ao Vivo">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <button id="mobileMenuBtn" type="button" class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl focus:outline-none transition-colors border border-white/10" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-6 h-6 block menu-open-icon"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden menu-close-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-obsidian-card/95 backdrop-blur-2xl px-5 py-6 space-y-4 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-2">
+        <a href="/" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="home" class="w-4 h-4 text-gray-400"></i>
+            <span>Início</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/ao-vivo" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-red-400 hover:text-red-300 bg-red-950/30 border border-red-800/40 hover:bg-red-950/50 transition-colors">
+          <span class="flex items-center gap-3">
+            <span class="on-air-dot"></span>
+            <span>Encontros ao Vivo</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded">Toda Quinta</span>
+        </a>
+
+        <a href="/cases" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+            <span>Cases de Uso</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/blog" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-ciano bg-white/5 border border-ciano/20 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="newspaper" class="w-4 h-4 text-ciano"></i>
+            <span>Blog & Artigos</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-ciano"></i>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <a href="/#oferta" class="mobile-nav-link w-full btn-gold py-3.5 px-5 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-ouro/20">
+          <span>Acessar Comunidade</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN BODY -->
+  <main class="pt-20 flex-grow">
+    
+  <div class="relative py-10 overflow-hidden">
+    <div class="hero-glow bg-magenta/40 -top-40 right-0 w-[500px] h-[500px] absolute"></div>
+    <div class="hero-glow bg-ciano/30 top-1/2 -left-40 w-[500px] h-[500px] absolute"></div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Início</a>
+        <span>&rsaquo;</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span>&rsaquo;</span>
+        <span class="text-ciano truncate max-w-[200px] sm:max-w-none">Browser-Use Corporativo: Como Agentes de IA Navegam, Extraem Dados e Operam Sistemas Legados Sem API</span>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="mb-10 text-center sm:text-left">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <a href="/tags/agentes-de-ia" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Agentes de IA</a><a href="/tags/browser-use" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Browser-Use</a><a href="/tags/sistemas-legados" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Sistemas Legados</a><a href="/tags/automacao" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Automação</a><a href="/tags/hermes-os" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Hermes OS</a><a href="/tags/negocios" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Negócios</a><a href="/tags/produtividade" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Produtividade</a>
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+          Browser-Use Corporativo: Como Agentes de IA Navegam, Extraem Dados e Operam Sistemas Legados Sem API
+        </h1>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/10 text-xs text-gray-400">
+          <div class="flex items-center gap-3">
+            <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-10 h-10 rounded-full border border-white/10">
+            <div>
+              <p class="font-bold text-white text-sm">Jean Pierre Schramm</p>
+              <p class="text-[11px] text-gray-400">Fundador da JePierre & Especialista em Agentes de IA</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-09-28</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 7 min de leitura</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      
+      <div class="mb-12 rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
+        <img src="https://inteligenciaagentica.com.br/static/images/browser-use-agentes-ia-sistemas-legados-sem-api.jpg" alt="Browser-Use Corporativo: Como Agentes de IA Navegam, Extraem Dados e Operam Sistemas Legados Sem API" class="w-full h-auto max-h-[460px] object-cover">
+      </div>
+      
+
+      <!-- Table of Contents (if > 1 heading) -->
+      
+      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
+          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
+        </h3>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-grande-dilema-corporativo-nem-todo-sistema-possui-api" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Grande Dilema Corporativo: Nem Todo Sistema Possui API
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-que-e-browser-use-e-por-que-ele-supera-o-rpa-tradicional" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Que É Browser-Use e Por Que Ele Supera o RPA Tradicional
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#comparativo-direto-rpa-vs-integracao-por-api-vs-browser-use-agentico" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Comparativo Direto: RPA vs. Integração por API vs. Browser-Use Agêntico
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#4-casos-de-uso-praticos-de-browser-use-no-mundo-dos-negocios" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 4 Casos de Uso Práticos de Browser-Use no Mundo dos Negócios
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#1-emissao-e-conferencia-fiscal-em-portais-de-prefeituras" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 1. Emissão e Conferência Fiscal em Portais de Prefeituras
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#2-extracao-diaria-de-relatorios-em-plataformas-de-fornecedores" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 2. Extração Diária de Relatórios em Plataformas de Fornecedores
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#3-preenchimento-de-cadastros-em-erps-legados-web" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 3. Preenchimento de Cadastros em ERPs Legados Web
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#4-monitoramento-de-concorrentes-com-paginas-autenticadas" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 4. Monitoramento de Concorrentes com Páginas Autenticadas
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#seguranca-e-gestao-de-credenciais-o-cofre-do-agente-vault" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Segurança e Gestão de Credenciais: O Cofre do Agente (*Vault*)
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-futuro-da-operacao-corporativa-o-fim-do-trabalho-bracal-digital" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Futuro da Operação Corporativa: O Fim do Trabalho Braçal Digital
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Main Article Content -->
+      <div class="prose-custom">
+        <blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Browser-Use Corporativo</strong> é a capacidade que agentes autônomos de IA possuem de controlar navegadores web reais (headless ou visuais), interpretando o código da página (árvore de acessibilidade e DOM) e elementos visuais para clicar, rolar, preencher cadastros e baixar relatórios exatamente como um funcionário humano faria. Diferente do RPA tradicional (que quebrava quando um botão mudava 2 pixels de posição) ou de integrações por API (que não existem na maioria dos ERPs antigos e portais de prefeituras), o Browser-Use com agentes de IA compreende o contexto semântico da tela, adaptando-se dinamicamente a mudanças de layout e operando sistemas legados fechados com total resiliência.</p>
+</blockquote>
+<hr>
+<h2 id="o-grande-dilema-corporativo-nem-todo-sistema-possui-api" class="scroll-mt-24 group flex items-center justify-between">O Grande Dilema Corporativo: Nem Todo Sistema Possui API <a href="#o-grande-dilema-corporativo-nem-todo-sistema-possui-api" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Toda empresa em crescimento acumula uma coleção inevitável de ferramentas operacionais: um ERP antigo instalado há dez anos, portais governamentais de emissão fiscal (prefeituras e SEFAZ), extratos bancários, painéis de fornecedores e plataformas de logística.</p>
+<p>O problema central desses sistemas é que <strong>a grande maioria deles não possui APIs modernas</strong>, não oferece Webhooks e não permite conexões diretas de banco de dados por questões de segurança ou defasagem tecnológica.</p>
+<p>Até hoje, a liderança das empresas tinha apenas duas saídas para lidar com essa barreira:</p>
+<ol>
+<li><strong>A Folha de Pagamento Onerosa:</strong> Alocar assistentes e analistas juniores para passar horas diárias fazendo trabalho braçal e repetitivo: logar no portal, preencher dezenas de campos, baixar planilhas e copiar dados manualmente para o sistema central.</li>
+<li><strong>O RPA Tradicional (Robotic Process Automation):</strong> Contratar ferramentas pesadas de automação baseadas em coordenadas de tela e seletores rígidos de HTML. O resultado? Na primeira atualização visual ou banner que surgisse na tela, o robô travava e a operação parava.</li>
+</ol>
+<p>Com a evolução dos <strong>Agentes de IA com Browser-Use</strong>, essa limitação foi superada.</p>
+<hr>
+<h2 id="o-que-e-browser-use-e-por-que-ele-supera-o-rpa-tradicional" class="scroll-mt-24 group flex items-center justify-between">O Que É Browser-Use e Por Que Ele Supera o RPA Tradicional <a href="#o-que-e-browser-use-e-por-que-ele-supera-o-rpa-tradicional" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>No ecossistema de agentes modernos — como o <strong>Hermes Agent</strong> —, o agente não enxerga a web apenas como uma imagem estática ou um bloco cego de texto. Ele utiliza uma combinação inteligente de <strong>árvore de acessibilidade</strong>, <strong>inspeção semântica do DOM</strong> e <strong>visão computacional</strong>.</p>
+<p>Em vez de procurar um botão na coordenada <code>X: 450, Y: 320</code>, o agente entende a intenção da interface:</p>
+<ul>
+<li><em>&quot;Existe um campo de entrada de texto com o rótulo &#39;CNPJ do Tomador&#39; (referência <code>@e12</code>); digite o CNPJ da empresa nele.&quot;</em></li>
+<li><em>&quot;O botão &#39;Emitir Nota&#39; mudou de cor ou foi para o rodapé? Eu consigo identificá-lo pelo significado semântico e clicar na referência correta.&quot;</em></li>
+</ul>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────┐
+│                           FLUXO DE BROWSER-USE                          │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │
+┌────────────────────────────────────▼────────────────────────────────────┐
+│                    <span class="token number">1</span>. INICIALIZAÇÃO DO NAVEGADOR                        │
+│          O Agente abre uma sessão de browser isolada e segura           │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │
+┌────────────────────────────────────▼────────────────────────────────────┐
+│                    <span class="token number">2</span>. CAPTURA DO ESTADO DA PÁGINA                       │
+│    Gera o snapshot semântico da árvore de acessibilidade + referências  │
+│    <span class="token punctuation">(</span>ex: <span class="token punctuation">[</span>@e1<span class="token punctuation">]</span> Botão Login <span class="token operator">|</span> <span class="token punctuation">[</span>@e2<span class="token punctuation">]</span> Input Usuário <span class="token operator">|</span> <span class="token punctuation">[</span>@e3<span class="token punctuation">]</span> Input Senha<span class="token punctuation">)</span>    │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │
+┌────────────────────────────────────▼────────────────────────────────────┐
+│                    <span class="token number">3</span>. TOMADA DE DECISÃO SEMÂNTICA                       │
+│      O cérebro da IA analisa o objetivo e escolhe a próxima ação        │
+│          <span class="token punctuation">(</span>digitar credenciais seguras <span class="token keyword">do</span> Vault, clicar, rolar<span class="token punctuation">)</span>          │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │
+┌────────────────────────────────────▼────────────────────────────────────┐
+│                    <span class="token number">4</span>. VERIFICAÇÃO VISUAL E EXTRAÇÃO                     │
+│    Valida se a página carregou com sucesso e baixa o relatório em PDF   │
+└─────────────────────────────────────────────────────────────────────────┘
+</code></pre><p>Se um pop-up de cookies aparecer na frente, o agente percebe o bloqueio, fecha o modal e continua o processo sem intervenção humana.</p>
+<hr>
+<h2 id="comparativo-direto-rpa-vs-integracao-por-api-vs-browser-use-agentico" class="scroll-mt-24 group flex items-center justify-between">Comparativo Direto: RPA vs. Integração por API vs. Browser-Use Agêntico <a href="#comparativo-direto-rpa-vs-integracao-por-api-vs-browser-use-agentico" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para gestores que precisam decidir onde investir tempo e recursos na automação de processos, este comparativo deixa claro quando cada abordagem faz sentido:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Critério de Avaliação</th>
+<th align="left">RPA Tradicional (UiPath, BluePrism)</th>
+<th align="left">Integração Nativa por API</th>
+<th align="left">Browser-Use com Agentes de IA</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Dependência de API</strong></td>
+<td align="left">Não exige API</td>
+<td align="left">Exige API REST/GraphQL aberta</td>
+<td align="left"><strong>Não exige API</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Resiliência a Mudanças de Layout</strong></td>
+<td align="left">Baixa (quebra se mudar 1px ou seletor CSS)</td>
+<td align="left">Alta (independe de layout)</td>
+<td align="left"><strong>Altíssima (compreensão semântica da página)</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Capacidade de Decisão Dinâmica</strong></td>
+<td align="left">Zero (segue scripts rígidos passo a passo)</td>
+<td align="left">Nula (apenas transporte de dados)</td>
+<td align="left"><strong>Total (resolve capotas leves, modais e alertas)</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Custo de Implementação</strong></td>
+<td align="left">Alto (licenças corporativas caras e devs caros)</td>
+<td align="left">Médio a Alto (horas de desenvolvimento)</td>
+<td align="left"><strong>Baixo (rodando em VPS própria 24/7)</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Tratamento de Exceções</strong></td>
+<td align="left">Trava e exige suporte técnico</td>
+<td align="left">Erro de endpoint / timeout</td>
+<td align="left"><strong>Raciocina sobre o erro e tenta rotas alternativas</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="4-casos-de-uso-praticos-de-browser-use-no-mundo-dos-negocios" class="scroll-mt-24 group flex items-center justify-between">4 Casos de Uso Práticos de Browser-Use no Mundo dos Negócios <a href="#4-casos-de-uso-praticos-de-browser-use-no-mundo-dos-negocios" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<h3 id="1-emissao-e-conferencia-fiscal-em-portais-de-prefeituras" class="scroll-mt-24 group flex items-center justify-between">1. Emissão e Conferência Fiscal em Portais de Prefeituras <a href="#1-emissao-e-conferencia-fiscal-em-portais-de-prefeituras" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>A maioria das pequenas e médias prefeituras no Brasil ainda possui sistemas próprios sem API de integração. O agente acessa o portal municipal, faz login seguro com certificado ou credenciais armazenadas no cofre criptografado (<em>Vault</em>), preenche os serviços prestados, gera a NFS-e e faz o download do PDF diretamente para a pasta contábil do mês.</p>
+<h3 id="2-extracao-diaria-de-relatorios-em-plataformas-de-fornecedores" class="scroll-mt-24 group flex items-center justify-between">2. Extração Diária de Relatórios em Plataformas de Fornecedores <a href="#2-extracao-diaria-de-relatorios-em-plataformas-de-fornecedores" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Distribuidores e e-commerces que dependem de dezenas de fornecedores precisam checar diariamente disponibilidade de estoque e tabelas de preço. O agente navega por cada portal às 06:00 da manhã, faz o download dos arquivos mais recentes e consolida tudo em um único painel antes do início do expediente comercial.</p>
+<h3 id="3-preenchimento-de-cadastros-em-erps-legados-web" class="scroll-mt-24 group flex items-center justify-between">3. Preenchimento de Cadastros em ERPs Legados Web <a href="#3-preenchimento-de-cadastros-em-erps-legados-web" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Ao fechar uma nova venda no CRM moderno ou no WhatsApp, o agente assume o controle do navegador, acessa o ERP legado web interno da empresa e preenche a ficha cadastral completa do cliente sem que nenhum atendente precise redigitar dados.</p>
+<h3 id="4-monitoramento-de-concorrentes-com-paginas-autenticadas" class="scroll-mt-24 group flex items-center justify-between">4. Monitoramento de Concorrentes com Páginas Autenticadas <a href="#4-monitoramento-de-concorrentes-com-paginas-autenticadas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Muitas pesquisas de mercado exigem login em plataformas especializadas ou navegação por múltiplos níveis de filtros. O agente executa buscas automatizadas, tira capturas visuais da tela (<em>DOM snapshots</em> e imagens) e envia um resumo executivo com os preços e mudanças para o gestor via Telegram.</p>
+<hr>
+<h2 id="seguranca-e-gestao-de-credenciais-o-cofre-do-agente-vault" class="scroll-mt-24 group flex items-center justify-between">Segurança e Gestão de Credenciais: O Cofre do Agente (<em>Vault</em>) <a href="#seguranca-e-gestao-de-credenciais-o-cofre-do-agente-vault" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Uma das principais dúvidas dos empresários ao ouvir falar de navegação autônoma é: <strong>&quot;O agente vai saber minhas senhas?&quot;</strong></p>
+<p>Em arquiteturas sérias de agentes de IA corporativos, o sistema utiliza o conceito de <strong>Vault Criptografado</strong>:</p>
+<ul>
+<li><strong>Nenhuma senha entra no prompt do LLM:</strong> O modelo de linguagem nunca recebe as senhas em texto puro no prompt.</li>
+<li><strong>Preenchimento atômico e seguro:</strong> O agente identifica o campo de login e solicita ao componente local do sistema a injeção da credencial vinculada exclusivamente àquele domínio (<code>origin</code>), com autenticação validada no nível do sistema operacional.</li>
+<li><strong>Múltiplos Fatores (2FA/OTP):</strong> Quando o site exige código de verificação enviado por SMS, e-mail ou autenticador, o agente pode integrar a leitura desse token com o celular do gestor ou processar a chave TOTP localmente.</li>
+</ul>
+<hr>
+<h2 id="o-futuro-da-operacao-corporativa-o-fim-do-trabalho-bracal-digital" class="scroll-mt-24 group flex items-center justify-between">O Futuro da Operação Corporativa: O Fim do Trabalho Braçal Digital <a href="#o-futuro-da-operacao-corporativa-o-fim-do-trabalho-bracal-digital" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A promessa da transformação digital sempre foi liberar o ser humano de tarefas repetitivas para que ele pudesse focar em estratégia, negociação e atendimento de excelência. No entanto, o que se viu nos últimos 15 anos foi a proliferação de softwares isolados que transformaram colaboradores em &quot;pontes humanas&quot; de copiar e colar.</p>
+<p>O <strong>Browser-Use com Agentes de IA</strong> fecha esse abismo. Ele permite que qualquer empresa — mesmo aquela que depende de sistemas de 20 anos atrás — opere com a velocidade, a precisão e a eficiência de uma multinacional de tecnologia.</p>
+<p>Se você quer ver como estruturar agentes com capacidade de navegação web, memória persistente e controle total via Telegram na prática, conheça a formação completa da <strong><a href="https://inteligenciaagentica.com.br">Comunidade Inteligência Agêntica</a></strong>.</p>
+
+      </div>
+
+      <!-- Social Share -->
+      <div class="mt-12 py-6 border-y border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Compartilhar este artigo:</span>
+        <div class="flex items-center gap-2">
+          <a href="https://api.whatsapp.com/send?text=Browser-Use%20Corporativo%3A%20Como%20Agentes%20de%20IA%20Navegam%2C%20Extraem%20Dados%20e%20Operam%20Sistemas%20Legados%20Sem%20API%20-%20https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fbrowser-use-agentes-ia-sistemas-legados-sem-api" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fbrowser-use-agentes-ia-sistemas-legados-sem-api" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Browser-Use%20Corporativo%3A%20Como%20Agentes%20de%20IA%20Navegam%2C%20Extraem%20Dados%20e%20Operam%20Sistemas%20Legados%20Sem%20API&url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fbrowser-use-agentes-ia-sistemas-legados-sem-api" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-white/5 text-gray-200 hover:bg-white/10 border border-white/10 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="twitter" class="w-4 h-4"></i> X / Twitter
+          </a>
+        </div>
+      </div>
+
+      <!-- Author Bio Box -->
+      <div class="mt-10 glass rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 border border-white/10">
+        <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-16 h-16 rounded-full border-2 border-ouro">
+        <div class="text-center sm:text-left">
+          <h4 class="text-base font-bold text-white mb-1">Escrito por Jean Pierre Schramm</h4>
+          <p class="text-xs text-gray-400 leading-relaxed mb-3">
+            Especialista em automações autônomas, arquitetura de VPS com Docker Swarm e ecossistemas agênticos com Hermes OS.
+          </p>
+          <div class="flex items-center justify-center sm:justify-start gap-3 text-xs text-ciano">
+            <a href="https://github.com/gigantsc" target="_blank" class="hover:underline">GitHub</a> &bull;
+            <a href="https://linkedin.com/in/jeanpierreschramm" target="_blank" class="hover:underline">LinkedIn</a> &bull;
+            <a href="https://x.com/jepierresolucoes" target="_blank" class="hover:underline">X</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Article Community Banner -->
+      <div class="mt-12 p-8 rounded-2xl glass border border-ouro/30 bg-gradient-to-r from-magenta/10 via-ciano/5 to-ouro/10 text-center">
+        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+          Comunidade Inteligência Agêntica
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Aprenda a aplicar tudo isso na prática</h3>
+        <p class="text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6">
+          Tenha acesso a 4 mentorias ao vivo por mês, biblioteca completa de skills e templates prontos para rodar no seu servidor.
+        </p>
+        <a href="/#oferta" class="btn-gold px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
+          Garantir Vaga na Comunidade <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Related Posts -->
+      
+      <div class="mt-16">
+        <h3 class="text-lg font-bold text-white mb-6">Artigos Relacionados</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+            <a href="/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Hermes Agent</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Guia Definitivo do Hermes Agent: As 30 Respostas Essenciais para Dominar seus Funcionários Digitais</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.</p>
+            </a>
+          
+            <a href="/blog/bot-mode-equipe-agentes-nomeados-hermes-agent" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Agentes de IA</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Bot Mode no Hermes Agent: Como Montar uma Equipe de Agentes de IA Nomeados que Conversam, Delegam e Decidem Juntos</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">Bot Mode transforma perfis isolados do Hermes Agent em uma equipe de agentes nomeados com avatares, chats em grupo e DMs entre bots — montada em segundos, sem código e sem infraestrutura de nuvem. Descubra como criar especialistas digitais que colaboram entre si e reportam direto no seu celular.</p>
+            </a>
+          
+        </div>
+      </div>
+      
+
+    </article>
+  </div>
+  
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <p class="text-[10px] text-gray-500">Ecossistema Hermes OS &bull; Powered by Nous Research</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Mobile Menu Controller
+    (() => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!mobileBtn || !mobileMenu) return;
+
+      const openIcon = mobileBtn.querySelector('.menu-open-icon');
+      const closeIcon = mobileBtn.querySelector('.menu-close-icon');
+
+      function toggleMenu(forceOpen) {
+        const isCurrentlyOpen = !mobileMenu.classList.contains('hidden');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isCurrentlyOpen;
+
+        if (shouldOpen) {
+          mobileMenu.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+          if (openIcon) openIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
