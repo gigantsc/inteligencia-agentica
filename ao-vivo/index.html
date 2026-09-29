@@ -616,6 +616,18 @@
               throw new Error(errData.message || 'Erro ao processar inscrição');
             }
 
+            // Dispara automaticamente o e-mail de boas-vindas com confirmação de vaga e regras das lives
+            fetch('/api/welcome-mail', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                subscriber_email: email,
+                template_id: 5
+              })
+            }).catch(err => console.warn('Aviso no envio de boas-vindas:', err));
+
             // Salvar localmente os dados para personalização na página de obrigado
             try {
               const leadData = { nome, sobrenome, whatsapp, email, data: new Date().toISOString() };
