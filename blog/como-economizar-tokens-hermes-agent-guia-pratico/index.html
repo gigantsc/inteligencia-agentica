@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onde Seus Tokens Estão Indo de Verdade: Como Encontrar o Desperdício no Hermes Agent e Economizar até 90% | Inteligência Agêntica</title>
+  <meta name="description" content="Um guia prático para empresários e operadores de IA descobrirem o que está enchendo o contexto do Hermes Agent, eliminarem o peso morto em ferramentas e instruções desnecessárias e gastarem o orçamento de modelos de forma inteligente.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/blog/como-economizar-tokens-hermes-agent-guia-pratico">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/blog/como-economizar-tokens-hermes-agent-guia-pratico">
+  <meta property="og:title" content="Onde Seus Tokens Estão Indo de Verdade: Como Encontrar o Desperdício no Hermes Agent e Economizar até 90%">
+  <meta property="og:description" content="Um guia prático para empresários e operadores de IA descobrirem o que está enchendo o contexto do Hermes Agent, eliminarem o peso morto em ferramentas e instruções desnecessárias e gastarem o orçamento de modelos de forma inteligente.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/como-economizar-tokens-hermes-agent-guia-pratico.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://inteligenciaagentica.com.br/blog/como-economizar-tokens-hermes-agent-guia-pratico">
+  <meta name="twitter:title" content="Onde Seus Tokens Estão Indo de Verdade: Como Encontrar o Desperdício no Hermes Agent e Economizar até 90%">
+  <meta name="twitter:description" content="Um guia prático para empresários e operadores de IA descobrirem o que está enchendo o contexto do Hermes Agent, eliminarem o peso morto em ferramentas e instruções desnecessárias e gastarem o orçamento de modelos de forma inteligente.">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/como-economizar-tokens-hermes-agent-guia-pratico.jpg">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <!-- Prism Syntax Theme -->
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #07070A; color: #E0E0E6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    ::selection { background: rgba(192, 0, 255, 0.35); color: #fff; }
+    .glass { background: rgba(17, 17, 24, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); }
+    .glass-card { background: rgba(14, 14, 20, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+    .glass-card:hover { border-color: rgba(0, 229, 255, 0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); }
+    .gradient-text { background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text-gold { background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gold { background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%); color: #07070A; font-weight: 700; transition: all 0.2s ease; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(223, 186, 107, 0.35); }
+    .hero-glow { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.16; pointer-events: none; }
+    .top-bar { background: rgba(7, 7, 10, 0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .on-air-badge:hover {
+      transform: scale(1.05);
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    
+    /* Article typography styling */
+    .prose-custom { font-size: 1.05rem; line-height: 1.8; color: #D1D5DB; }
+    .prose-custom p { margin-bottom: 1.5rem; }
+    .prose-custom h1 { font-size: 2.25rem; font-weight: 900; color: #fff; margin-top: 2.5rem; margin-bottom: 1.25rem; line-height: 1.2; }
+    .prose-custom h2 { font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; }
+    .prose-custom h3 { font-size: 1.25rem; font-weight: 700; color: #00E5FF; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose-custom ul, .prose-custom ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    .prose-custom ul { list-style-type: disc; }
+    .prose-custom ol { list-style-type: decimal; }
+    .prose-custom li { margin-bottom: 0.5rem; }
+    .prose-custom strong { color: #fff; font-weight: 700; }
+    .prose-custom a { color: #00E5FF; text-decoration: underline; text-underline-offset: 3px; }
+    .prose-custom a:hover { color: #F0D48A; }
+    .prose-custom blockquote { border-left: 4px solid #00E5FF; background: rgba(0, 229, 255, 0.05); padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 0.75rem 0.75rem 0; color: #E5E7EB; }
+    .prose-custom blockquote p { margin-bottom: 0; }
+    .prose-custom code:not(pre code) { background: rgba(255, 255, 255, 0.08); color: #00E5FF; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+    .prose-custom pre { background: #0A0A0F !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.25rem; margin: 1.75rem 0; overflow-x: auto; }
+    .prose-custom pre code { color: #E0E0E6; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; }
+    .prose-custom table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+    .prose-custom th { background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .prose-custom td { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .prose-custom tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    .prose-custom hr { border-color: rgba(255, 255, 255, 0.08); margin: 2.5rem 0; }
+  </style>
+
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Onde Seus Tokens Estão Indo de Verdade: Como Encontrar o Desperdício no Hermes Agent e Economizar até 90%","description":"Um guia prático para empresários e operadores de IA descobrirem o que está enchendo o contexto do Hermes Agent, eliminarem o peso morto em ferramentas e instruções desnecessárias e gastarem o orçamento de modelos de forma inteligente.","image":"https://inteligenciaagentica.com.br/static/images/como-economizar-tokens-hermes-agent-guia-pratico.jpg","datePublished":"2026-09-19","dateModified":"2026-09-19","author":{"@type":"Person","name":"Jean Pierre Schramm","url":"https://linkedin.com/in/jeanpierreschramm"},"publisher":{"@type":"Organization","name":"Inteligência Agêntica","url":"https://inteligenciaagentica.com.br","logo":{"@type":"ImageObject","url":"https://inteligenciaagentica.com.br/static/logos.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://inteligenciaagentica.com.br/blog/como-economizar-tokens-hermes-agent-guia-pratico"},"keywords":"Como economizar tokens Hermes Agent, Custo Hermes Agent, Contexto IA Hermes, Prompt Caching Nous Research, Reduzir fatura IA, Hermes usage context prompt-size"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://inteligenciaagentica.com.br"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://inteligenciaagentica.com.br/blog"},{"@type":"ListItem","position":3,"name":"Onde Seus Tokens Estão Indo de Verdade: Como Encontrar o Desperdício no Hermes Agent e Economizar até 90%","item":"https://inteligenciaagentica.com.br/blog/como-economizar-tokens-hermes-agent-guia-pratico"}]}]</script>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+  
+  <!-- TOP NAVBAR -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-11 sm:h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="/" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Início</a>
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Cases</a>
+        <a href="/blog" class="text-sm font-bold text-ciano border-b-2 border-ciano pb-0.5 transition-colors">Blog</a>
+        <a href="/#oferta" class="btn-gold px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide">
+          Acessar Comunidade
+        </a>
+      </div>
+
+      <!-- Mobile Actions (visible on mobile, hidden on md+) -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="/ao-vivo" class="on-air-badge text-[10px] py-1 px-2.5" title="Encontros ao Vivo">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <button id="mobileMenuBtn" type="button" class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl focus:outline-none transition-colors border border-white/10" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-6 h-6 block menu-open-icon"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden menu-close-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-obsidian-card/95 backdrop-blur-2xl px-5 py-6 space-y-4 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-2">
+        <a href="/" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="home" class="w-4 h-4 text-gray-400"></i>
+            <span>Início</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/ao-vivo" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-red-400 hover:text-red-300 bg-red-950/30 border border-red-800/40 hover:bg-red-950/50 transition-colors">
+          <span class="flex items-center gap-3">
+            <span class="on-air-dot"></span>
+            <span>Encontros ao Vivo</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded">Toda Quinta</span>
+        </a>
+
+        <a href="/cases" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+            <span>Cases de Uso</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/blog" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-ciano bg-white/5 border border-ciano/20 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="newspaper" class="w-4 h-4 text-ciano"></i>
+            <span>Blog & Artigos</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-ciano"></i>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <a href="/#oferta" class="mobile-nav-link w-full btn-gold py-3.5 px-5 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-ouro/20">
+          <span>Acessar Comunidade</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN BODY -->
+  <main class="pt-20 flex-grow">
+    
+  <div class="relative py-10 overflow-hidden">
+    <div class="hero-glow bg-magenta/40 -top-40 right-0 w-[500px] h-[500px] absolute"></div>
+    <div class="hero-glow bg-ciano/30 top-1/2 -left-40 w-[500px] h-[500px] absolute"></div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Início</a>
+        <span>&rsaquo;</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span>&rsaquo;</span>
+        <span class="text-ciano truncate max-w-[200px] sm:max-w-none">Onde Seus Tokens Estão Indo de Verdade: Como Encontrar o Desperdício no Hermes Agent e Economizar até 90%</span>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="mb-10 text-center sm:text-left">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <a href="/tags/hermes-agent" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Hermes Agent</a><a href="/tags/economia-de-tokens" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Economia de Tokens</a><a href="/tags/custos-de-ia" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Custos de IA</a><a href="/tags/otimizacao" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Otimização</a><a href="/tags/produtividade" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Produtividade</a><a href="/tags/negocios" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Negócios</a><a href="/tags/prompt-caching" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Prompt Caching</a>
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+          Onde Seus Tokens Estão Indo de Verdade: Como Encontrar o Desperdício no Hermes Agent e Economizar até 90%
+        </h1>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/10 text-xs text-gray-400">
+          <div class="flex items-center gap-3">
+            <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-10 h-10 rounded-full border border-white/10">
+            <div>
+              <p class="font-bold text-white text-sm">Jean Pierre Schramm</p>
+              <p class="text-[11px] text-gray-400">Fundador da JePierre & Especialista em Agentes de IA</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-09-19</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 7 min de leitura</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      
+      <div class="mb-12 rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
+        <img src="https://inteligenciaagentica.com.br/static/images/como-economizar-tokens-hermes-agent-guia-pratico.jpg" alt="Onde Seus Tokens Estão Indo de Verdade: Como Encontrar o Desperdício no Hermes Agent e Economizar até 90%" class="w-full h-auto max-h-[460px] object-cover">
+      </div>
+      
+
+      <!-- Table of Contents (if > 1 heading) -->
+      
+      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
+          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
+        </h3>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-mito-do-consumo-desconhecido-de-tokens" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Mito do Consumo Desconhecido de Tokens
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#passo-1-nao-adivinhe-separe-os-4-conceitos-fundamentais" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 🔍 Passo 1: Não Adivinhe — Separe os 4 Conceitos Fundamentais
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#passo-2-o-diagnostico-rapido-da-sua-operacao" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 🛠️ Passo 2: O Diagnóstico Rápido da sua Operação
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#passo-3-otimizando-a-mochila-inicial-sessoes-novas" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 🎒 Passo 3: Otimizando a "Mochila Inicial" (Sessões Novas)
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#1-ferramentas-tools" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 1. Ferramentas (Tools):
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#2-memoria-permanente-memorymd-e-usermd" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 2. Memória Permanente (MEMORY.md e USER.md):
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#3-identidade-e-regras-soulmd-e-agentsmd" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 3. Identidade e Regras (SOUL.md e AGENTS.md):
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#passo-4-como-controlar-conversas-que-crescem-demais" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> ⚡ Passo 4: Como Controlar Conversas que Crescem Demais
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#passo-5-estrategia-de-custos-o-modelo-certo-para-a-funcao-certa" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 💰 Passo 5: Estratégia de Custos — O Modelo Certo para a Função Certa
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#dicas-praticas-de-economia-de-fatura" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Dicas Práticas de Economia de Fatura:
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#as-falsas-otimizacoes-o-que-nao-economiza-tokens" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> ❌ As "Falsas Otimizações" (O que NÃO economiza tokens)
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-check-up-definitivo-de-eficiencia-do-seu-hermes" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 📋 O Check-up Definitivo de Eficiência do seu Hermes
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#conclusao-gaste-tokens-no-trabalho-nao-na-bagagem" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 🎓 Conclusão: Gaste Tokens no Trabalho, Não na Bagagem
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Main Article Content -->
+      <div class="prose-custom">
+        <blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O consumo excessivo de tokens no <strong>Hermes Agent</strong> raramente é causado pela conversa em si, mas sim pela &quot;mochila&quot; de ferramentas, regras e memórias que o robô carrega a cada turno. Para economizar até 90% da sua fatura sem perder qualidade, siga a regra de ouro da engenharia agêntica: <strong>Medir ➔ Localizar a camada pesada ➔ Ajustar a camada ➔ Medir novamente</strong>. Utilize ferramentas nativas de diagnóstico como <code>hermes prompt-size</code> (para inspecionar a mochila inicial), <code>/context all</code> (para ver o peso de cada ferramenta e skill) e <code>/usage</code> (para auditar os custos reais em dólares). Isole tarefas paralelas com <code>/btw</code> ou subagentes e reserve modelos de alto raciocínio apenas para tarefas complexas.</p>
+</blockquote>
+<hr>
+<h2 id="o-mito-do-consumo-desconhecido-de-tokens" class="scroll-mt-24 group flex items-center justify-between">O Mito do Consumo Desconhecido de Tokens <a href="#o-mito-do-consumo-desconhecido-de-tokens" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A maioria dos usuários só percebe o desperdício de tokens quando a barra de contexto começa a encher ou quando a fatura do provedor chega no fim do mês.</p>
+<p>O grande problema é que esses sintomas não revelam a verdadeira causa:</p>
+<ul>
+<li>Um prompt de sistema com ferramentas demais;</li>
+<li>Uma conversa que acumulou horas de tentativas antigas;</li>
+<li>Raciocínio profundo ativado para tarefas mecânicas simples;</li>
+<li>Ou o uso de um modelo topo de linha para ler arquivos gigantescos.</li>
+</ul>
+<p>Tudo isso parece o mesmo problema por fora, <strong>mas tem causas e correções completamente diferentes</strong>.</p>
+<pre><code>A PIRÂMIDE DE PESO DO HERMES AGENT:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ <span class="token number">1</span>. CAMADA PERMANENTE <span class="token punctuation">(</span>Carregada em TODO turno<span class="token punctuation">)</span>:                             │
+│    • Identidade <span class="token punctuation">(</span>SOUL.md<span class="token punctuation">)</span> e Regras de Projeto <span class="token punctuation">(</span>AGENTS.md<span class="token punctuation">)</span>                   │
+│    • Catálogo de Ferramentas Ativas <span class="token punctuation">(</span>Schemas JSON<span class="token punctuation">)</span>                          │
+│    • Índice de Habilidades <span class="token punctuation">(</span>Skills<span class="token punctuation">)</span> e Memória <span class="token punctuation">(</span>MEMORY.md / <span class="token environment constant">USER</span>.md<span class="token punctuation">)</span>         │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ <span class="token number">2</span>. CAMADA DE CONVERSA <span class="token punctuation">(</span>Acumulada com o tempo<span class="token punctuation">)</span>:                              │
+│    • Mensagens <span class="token keyword">do</span> usuário, respostas <span class="token keyword">do</span> agente e retornos de ferramentas    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ <span class="token number">3</span>. CAMADA DE EXECUÇÃO <span class="token punctuation">(</span>O motor de IA<span class="token punctuation">)</span>:                                      │
+│    • Modelo escolhido <span class="token punctuation">(</span>Caros vs. Econômicos<span class="token punctuation">)</span> + Nível de Raciocínio          │
+└─────────────────────────────────────────────────────────────────────────────┘
+</code></pre><hr>
+<h2 id="passo-1-nao-adivinhe-separe-os-4-conceitos-fundamentais" class="scroll-mt-24 group flex items-center justify-between">🔍 Passo 1: Não Adivinhe — Separe os 4 Conceitos Fundamentais <a href="#passo-1-nao-adivinhe-separe-os-4-conceitos-fundamentais" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Antes de sair desligando ferramentas ou trocando de modelo, entenda a diferença entre estes quatro termos:</p>
+<ol>
+<li><strong>Contexto (Context):</strong> É o que o robô está segurando na memória de curto prazo nesta conversa agora. Menos contexto ativo = mais espaço antes da janela encher.</li>
+<li><strong>Uso de Tokens (Token Usage):</strong> É o volume total de palavras/símbolos processados em cada pergunta, resposta e raciocínio interno.</li>
+<li><strong>Custo Financeiro (Cost):</strong> É o valor em dólares pago ao provedor. Um modelo mais barato ou o uso de <em>Prompt Caching</em> pode derrubar seu custo sem diminuir o contexto.</li>
+<li><strong>Armazenamento em Disco (Storage):</strong> É o histórico de conversas gravado no seu computador. Ter 1.000 conversas antigas salvas não custa tokens no chat atual.</li>
+</ol>
+<hr>
+<h2 id="passo-2-o-diagnostico-rapido-da-sua-operacao" class="scroll-mt-24 group flex items-center justify-between">🛠️ Passo 2: O Diagnóstico Rápido da sua Operação <a href="#passo-2-o-diagnostico-rapido-da-sua-operacao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O Hermes Agent possui ferramentas integradas para você auditar exatamente para onde vai cada token:</p>
+<table>
+<thead>
+<tr>
+<th align="left">O que você quer saber?</th>
+<th align="left">Onde você está?</th>
+<th align="left">Comando / Ação</th>
+<th align="left">O que ele mostra?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>O que está pesando agora?</strong></td>
+<td align="left">No Chat (Desktop/CLI)</td>
+<td align="left"><code>/context</code> ou <code>/context all</code></td>
+<td align="left">Divisão exata: sistema, ferramentas, skills, memória e mensagens.</td>
+</tr>
+<tr>
+<td align="left"><strong>Quanto esta sessão já gastou?</strong></td>
+<td align="left">No Chat</td>
+<td align="left"><code>/usage</code></td>
+<td align="left">Total de tokens, custo em dólares e limites da sua conta.</td>
+</tr>
+<tr>
+<td align="left"><strong>A conversa nova já nasceu pesada?</strong></td>
+<td align="left">No Terminal</td>
+<td align="left"><code>hermes prompt-size</code></td>
+<td align="left">O peso da &quot;mochila&quot; fixa antes de você digitar qualquer palavra.</td>
+</tr>
+<tr>
+<td align="left"><strong>Qual é o meu padrão no mês?</strong></td>
+<td align="left">No Terminal</td>
+<td align="left"><code>hermes insights</code></td>
+<td align="left">Tendência de custos, modelos mais usados e ferramentas nos últimos 30 dias.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="passo-3-otimizando-a-andquotmochila-inicialandquot-sessoes-novas" class="scroll-mt-24 group flex items-center justify-between">🎒 Passo 3: Otimizando a &quot;Mochila Inicial&quot; (Sessões Novas) <a href="#passo-3-otimizando-a-andquotmochila-inicialandquot-sessoes-novas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Se você abre uma conversa em branco e ela já começa ocupando muito espaço, o culpado não é a conversa — é a sua configuração base.</p>
+<h3 id="1-ferramentas-tools" class="scroll-mt-24 group flex items-center justify-between">1. Ferramentas (Tools): <a href="#1-ferramentas-tools" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Cada ferramenta ativada no perfil do robô precisa de uma explicação técnica detalhada enviada ao modelo.  </p>
+<ul>
+<li><strong>Regra de Ouro:</strong> Não deixe ferramentas ativadas que o robô nunca usa. Use o comando <code>hermes tools</code> para manter apenas o essencial para cada perfil (ex: um redator não precisa de ferramentas de banco de dados).</li>
+</ul>
+<h3 id="2-memoria-permanente-memorymd-e-usermd" class="scroll-mt-24 group flex items-center justify-between">2. Memória Permanente (<code>MEMORY.md</code> e <code>USER.md</code>): <a href="#2-memoria-permanente-memorymd-e-usermd" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>A memória é para fatos duradouros da sua empresa (ex: <em>&quot;Jean prefere textos sem jargões&quot;</em> ou <em>&quot;Nosso link oficial é tal&quot;</em>).  </p>
+<ul>
+<li><strong>Evite:</strong> Colar relatórios gigantescos ou logs inteiros na memória permanente. Para pesquisas pontuais, deixe o robô buscar nos arquivos em disco sob demanda.</li>
+</ul>
+<h3 id="3-identidade-e-regras-soulmd-e-agentsmd" class="scroll-mt-24 group flex items-center justify-between">3. Identidade e Regras (<code>SOUL.md</code> e <code>AGENTS.md</code>): <a href="#3-identidade-e-regras-soulmd-e-agentsmd" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Pergunte-se sobre cada parágrafo: <em>&quot;O robô precisa ler essa regra em TODAS as mensagens que eu mandar, ou apenas quando for executar uma tarefa específica?&quot;</em> Se for apenas para tarefas específicas, transforme a instrução em uma <strong>Skill</strong> dedicada!</p>
+<hr>
+<h2 id="passo-4-como-controlar-conversas-que-crescem-demais" class="scroll-mt-24 group flex items-center justify-between">⚡ Passo 4: Como Controlar Conversas que Crescem Demais <a href="#passo-4-como-controlar-conversas-que-crescem-demais" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando uma conversa se estende por horas, o histórico antigo começa a pesar.</p>
+<pre><code>ESTRATÉGIAS DE GESTÃO DE CONVERSA:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ <span class="token number">1</span>. Perguntinha Rápida / Dúvida Lateral:                                     │
+│    Use: /btw qual era o nome daquele arquivo mesmo?                         │
+│    <span class="token punctuation">(</span>O robô responde sem poluir o histórico nem quebrar o cache de prompt<span class="token punctuation">)</span>  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ <span class="token number">2</span>. A tarefa mudou de foco:                                                  │
+│    Use: /new                                                                │
+│    <span class="token punctuation">(</span>Abre uma conversa zerada<span class="token punctuation">;</span> nada <span class="token keyword">do</span> passado é perdido no banco de dados<span class="token punctuation">)</span>  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ <span class="token number">3</span>. A conversa está longa mas o contexto recente importa:                    │
+│    Use: /compress here <span class="token number">4</span>                                                    │
+│    <span class="token punctuation">(</span>Resume o passado distante e mantém as últimas <span class="token number">4</span> mensagens intactas<span class="token punctuation">)</span>     │
+└─────────────────────────────────────────────────────────────────────────────┘
+</code></pre><hr>
+<h2 id="passo-5-estrategia-de-custos-o-modelo-certo-para-a-funcao-certa" class="scroll-mt-24 group flex items-center justify-between">💰 Passo 5: Estratégia de Custos — O Modelo Certo para a Função Certa <a href="#passo-5-estrategia-de-custos-o-modelo-certo-para-a-funcao-certa" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O maior desperdício de dinheiro não é a quantidade de tokens, mas usar uma inteligência caríssima para fazer trabalho repetitivo simples.</p>
+<pre><code>DIVISÃO ECONÔMICA DE MODELOS NO HERMES:
+<span class="token punctuation">[</span>Seu Chat Principal<span class="token punctuation">]</span> ➔ Modelo Forte / Raciocínio <span class="token punctuation">(</span>Claude <span class="token number">3.5</span> / GPT-4o<span class="token punctuation">)</span>
+       │
+       ├─► Tarefa Auxiliar de Resumo / Compressão ➔ Modelo Ultrabarato
+       ├─► Leitura e Extração de Links Web ➔ Modelo Rápido
+       └─► Rotinas Diárias Agendadas <span class="token punctuation">(</span>Cron Jobs<span class="token punctuation">)</span> ➔ Modelos Econômicos Fixos
+</code></pre><h3 id="dicas-praticas-de-economia-de-fatura" class="scroll-mt-24 group flex items-center justify-between">Dicas Práticas de Economia de Fatura: <a href="#dicas-praticas-de-economia-de-fatura" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ol>
+<li><strong>Roteamento de Funções Auxiliares:</strong> No aplicativo de Desktop (<em>Configurações ➔ Modelos</em>), atribua modelos econômicos para tarefas de fundo (visão, resumo de páginas web e compressão).</li>
+<li><strong>Ajuste o Nível de Raciocínio:</strong> Não deixe raciocínio alto ativado para tudo. Use <code>/reasoning low</code> para perguntas simples e <code>/reasoning high</code> apenas quando estiver projetando arquiteturas complexas.</li>
+<li><strong>Tarefas Recorrentes (Cron Jobs):</strong> Ao criar uma rotina diária no Hermes (<code>hermes cron create</code>), defina um modelo econômico específico (<code>--model</code>) para que ela não consuma sua cota do modelo principal.</li>
+<li><strong>Comandos de Terminal sem Modelo:</strong> Se você só quer rodar um comando rápido no terminal, inicie a linha com <code>!</code> (ex: <code>!git status</code>). O Hermes executa diretamente no sistema com <strong>zero consumo de tokens</strong>.</li>
+</ol>
+<hr>
+<h2 id="as-andquotfalsas-otimizacoesandquot-o-que-nao-economiza-tokens" class="scroll-mt-24 group flex items-center justify-between">❌ As &quot;Falsas Otimizações&quot; (O que NÃO economiza tokens) <a href="#as-andquotfalsas-otimizacoesandquot-o-que-nao-economiza-tokens" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<ul>
+<li>🚫 <strong>Apagar conversas antigas no disco:</strong> O banco de dados no computador não é enviado para o modelo no chat atual.</li>
+<li>🚫 <strong>Usar modo de foco (<code>/focus</code>):</strong> Ele apenas esconde painéis visuais na tela, mas não altera os dados enviados à IA.</li>
+<li>🚫 <strong>Criar múltiplos perfis idênticos:</strong> Se você clonar o perfil com as mesmas ferramentas e regras, o peso será exatamente o mesmo.</li>
+</ul>
+<hr>
+<h2 id="o-check-up-definitivo-de-eficiencia-do-seu-hermes" class="scroll-mt-24 group flex items-center justify-between">📋 O Check-up Definitivo de Eficiência do seu Hermes <a href="#o-check-up-definitivo-de-eficiencia-do-seu-hermes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Antes de encerrar o dia, aplique esta lista de verificação de 5 passos:</p>
+<ol>
+<li><strong>Clique no medidor de contexto</strong> (ou digite <code>/context</code>) e veja qual camada está maior.</li>
+<li><strong>Digite <code>/usage</code></strong> para conferir o custo real da sessão.</li>
+<li><strong>Se a sessão nova for pesada</strong>, rode <code>hermes prompt-size</code> no terminal e remova ferramentas ou regras desnecessárias.</li>
+<li><strong>Isole tarefas laterais</strong> com <code>/btw</code> ou inicie um novo chat com <code>/new</code> quando mudar de assunto.</li>
+<li><strong>Acompanhe a evolução</strong> a cada 7 dias digitando <code>hermes insights --days 7</code>.</li>
+</ol>
+<hr>
+<h2 id="conclusao-gaste-tokens-no-trabalho-nao-na-bagagem" class="scroll-mt-24 group flex items-center justify-between">🎓 Conclusão: Gaste Tokens no Trabalho, Não na Bagagem <a href="#conclusao-gaste-tokens-no-trabalho-nao-na-bagagem" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A meta de um ecossistema eficiente de inteligência artificial não é usar o menor número possível de tokens, mas garantir que <strong>cada centavo investido seja gasto na resolução do seu problema</strong>, e não em instruções esquecidas no fundo da mochila.</p>
+<p>No curso <strong>Inteligência Agêntica</strong>, nós estruturamos esteiras completas para que sua empresa tenha agentes ultra velozes, inteligentes e com faturas extremamente reduzidas.</p>
+
+      </div>
+
+      <!-- Social Share -->
+      <div class="mt-12 py-6 border-y border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Compartilhar este artigo:</span>
+        <div class="flex items-center gap-2">
+          <a href="https://api.whatsapp.com/send?text=Onde%20Seus%20Tokens%20Est%C3%A3o%20Indo%20de%20Verdade%3A%20Como%20Encontrar%20o%20Desperd%C3%ADcio%20no%20Hermes%20Agent%20e%20Economizar%20at%C3%A9%2090%25%20-%20https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fcomo-economizar-tokens-hermes-agent-guia-pratico" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fcomo-economizar-tokens-hermes-agent-guia-pratico" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Onde%20Seus%20Tokens%20Est%C3%A3o%20Indo%20de%20Verdade%3A%20Como%20Encontrar%20o%20Desperd%C3%ADcio%20no%20Hermes%20Agent%20e%20Economizar%20at%C3%A9%2090%25&url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fcomo-economizar-tokens-hermes-agent-guia-pratico" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-white/5 text-gray-200 hover:bg-white/10 border border-white/10 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="twitter" class="w-4 h-4"></i> X / Twitter
+          </a>
+        </div>
+      </div>
+
+      <!-- Author Bio Box -->
+      <div class="mt-10 glass rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 border border-white/10">
+        <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-16 h-16 rounded-full border-2 border-ouro">
+        <div class="text-center sm:text-left">
+          <h4 class="text-base font-bold text-white mb-1">Escrito por Jean Pierre Schramm</h4>
+          <p class="text-xs text-gray-400 leading-relaxed mb-3">
+            Especialista em automações autônomas, arquitetura de VPS com Docker Swarm e ecossistemas agênticos com Hermes OS.
+          </p>
+          <div class="flex items-center justify-center sm:justify-start gap-3 text-xs text-ciano">
+            <a href="https://github.com/gigantsc" target="_blank" class="hover:underline">GitHub</a> &bull;
+            <a href="https://linkedin.com/in/jeanpierreschramm" target="_blank" class="hover:underline">LinkedIn</a> &bull;
+            <a href="https://x.com/jepierresolucoes" target="_blank" class="hover:underline">X</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Article Community Banner -->
+      <div class="mt-12 p-8 rounded-2xl glass border border-ouro/30 bg-gradient-to-r from-magenta/10 via-ciano/5 to-ouro/10 text-center">
+        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+          Comunidade Inteligência Agêntica
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Aprenda a aplicar tudo isso na prática</h3>
+        <p class="text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6">
+          Tenha acesso a 4 mentorias ao vivo por mês, biblioteca completa de skills e templates prontos para rodar no seu servidor.
+        </p>
+        <a href="/#oferta" class="btn-gold px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
+          Garantir Vaga na Comunidade <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Related Posts -->
+      
+      <div class="mt-16">
+        <h3 class="text-lg font-bold text-white mb-6">Artigos Relacionados</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+            <a href="/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Hermes Agent</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Guia Definitivo do Hermes Agent: As 30 Respostas Essenciais para Dominar seus Funcionários Digitais</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.</p>
+            </a>
+          
+            <a href="/blog/browser-use-agentes-ia-sistemas-legados-sem-api" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Agentes de IA</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Browser-Use Corporativo: Como Agentes de IA Navegam, Extraem Dados e Operam Sistemas Legados Sem API</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">Descubra como o Browser-Use permite que agentes autônomos de IA naveguem na web como humanos, façam login, preencham formulários e extraiam dados de ERPs legados, portais fiscais e plataformas de fornecedores sem necessidade de APIs ou RPA frágil.</p>
+            </a>
+          
+        </div>
+      </div>
+      
+
+    </article>
+  </div>
+  
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <p class="text-[10px] text-gray-500">Ecossistema Hermes OS &bull; Powered by Nous Research</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Mobile Menu Controller
+    (() => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!mobileBtn || !mobileMenu) return;
+
+      const openIcon = mobileBtn.querySelector('.menu-open-icon');
+      const closeIcon = mobileBtn.querySelector('.menu-close-icon');
+
+      function toggleMenu(forceOpen) {
+        const isCurrentlyOpen = !mobileMenu.classList.contains('hidden');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isCurrentlyOpen;
+
+        if (shouldOpen) {
+          mobileMenu.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+          if (openIcon) openIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
