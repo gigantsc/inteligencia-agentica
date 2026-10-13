@@ -108,9 +108,21 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
   const canonicalUrl = url ? `${siteConfig.url}${url}` : siteConfig.url;
   const image = ogImage || `${siteConfig.url}/static/og-banner.png`;
 
+  const gaSnippet = siteConfig.analytics?.googleAnalyticsId ? `
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${siteConfig.analytics.googleAnalyticsId}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '${siteConfig.analytics.googleAnalyticsId}');
+  </script>
+` : '';
+
   return `<!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
-<head>
+<head>${gaSnippet}
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

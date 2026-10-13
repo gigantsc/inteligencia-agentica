@@ -23,7 +23,7 @@ export const siteConfig = {
     { title: 'Blog', href: '/blog' },
   ],
   analytics: {
-    googleAnalyticsId: '', // Ex: G-XXXXXXXXXX
+    googleAnalyticsId: 'G-18FQCREKV5',
     clarityId: '',         // Ex: xxxxxxxxxx
     googleTagManagerId: 'GTM-M5JDK6W4',
   },

@@ -114,6 +114,16 @@ with open("D:/DevCod/inteligencia-agentica/cases/cases-data.json", "w", encoding
 html_content = f"""<!DOCTYPE html>
 <html lang="pt-BR" class="dark scroll-smooth">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18FQCREKV5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+
+    gtag('config', 'G-18FQCREKV5');
+  </script>
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':
   new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],
