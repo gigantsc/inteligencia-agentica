@@ -10,7 +10,7 @@ def sync():
         print(f"⚠️ Destino {dst_base} não acessível no momento (rede/VPN offline ou caminho não montado). Continuando com indexnow e git.")
         return False
         
-    dirs_to_copy = ["static", "blog", "content", "tags", "cases", "ao-vivo", "obrigado"]
+    dirs_to_copy = ["static", "blog", "content", "tags", "cases", "ao-vivo", "obrigado", "gtm"]
     files_to_copy = ["index.html", "site.config.js", "sitemap.xml", "llms.txt", "llms-full.txt", "feed.xml", "robots.txt"]
     
     import subprocess

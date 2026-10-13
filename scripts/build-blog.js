@@ -112,24 +112,22 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=${siteConfig.analytics.googleAnalyticsId}"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', '${siteConfig.analytics.googleAnalyticsId}');
   </script>
 ` : '';
 
   return `<!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
-<head>${gaSnippet}
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','${siteConfig.analytics.googleTagManagerId || 'GTM-M5JDK6W4'}');</script>
-  <!-- End Google Tag Manager -->
+<head>
+  <!-- Cookie Consent Mode V2 & Google Tag Manager -->
+  <link rel="stylesheet" href="/static/cookieconsent.css">
+  <script>
+    window.cookieconsentConfig = {
+      gtmId: '${siteConfig.analytics?.googleTagManagerId || 'GTM-M5JDK6W4'}'
+    };
+  </script>
+  <script src="/static/cookieconsent.js"></script>${gaSnippet}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title ? `${title} | Inteligência Agêntica` : siteConfig.title}</title>
@@ -401,7 +399,11 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
 
       <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="text-[11px] text-gray-500">&copy; ${currentYear} Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
-        <p class="text-[10px] text-gray-500">Ecossistema Hermes OS &bull; Powered by Nous Research</p>
+        <div class="flex items-center gap-3 text-[11px] text-gray-500">
+          <button type="button" class="cookie-consent-banner-open hover:text-ciano transition-colors bg-transparent border-0 p-0 text-inherit cursor-pointer">Preferências de Cookies</button>
+          <span>&bull;</span>
+          <span class="text-[10px]">Ecossistema Hermes OS &bull; Powered by Nous Research</span>
+        </div>
       </div>
     </div>
   </footer>

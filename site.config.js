@@ -26,6 +26,7 @@ export const siteConfig = {
     googleAnalyticsId: 'G-18FQCREKV5',
     clarityId: '',         // Ex: xxxxxxxxxx
     googleTagManagerId: 'GTM-M5JDK6W4',
+    cookieConsent: true,
   },
   theme: {
     colors: {
