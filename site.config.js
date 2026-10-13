@@ -25,6 +25,7 @@ export const siteConfig = {
   analytics: {
     googleAnalyticsId: '', // Ex: G-XXXXXXXXXX
     clarityId: '',         // Ex: xxxxxxxxxx
+    googleTagManagerId: 'GTM-M5JDK6W4',
   },
   theme: {
     colors: {
