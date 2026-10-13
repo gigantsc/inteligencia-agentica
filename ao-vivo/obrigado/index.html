@@ -458,13 +458,41 @@
         });
       }
 
-      // Personalização com o nome do lead se houver no localStorage
+      // Personalização e disparo de dataLayer com dados do lead
       try {
         const lead = JSON.parse(localStorage.getItem('ia_last_lead'));
         if (lead && lead.nome) {
           const greetingEl = document.getElementById('leadGreeting');
           if (greetingEl) {
             greetingEl.textContent = `${lead.nome}, te vejo na próxima quinta às 19:30h!`;
+          }
+
+          // Disparar dataLayer da página de obrigado (uma única vez por sessão para evitar duplicações em F5)
+          if (!sessionStorage.getItem('ia_lead_conversion_tracked')) {
+            sessionStorage.setItem('ia_lead_conversion_tracked', 'true');
+            window.dataLayer = window.dataLayer || [];
+            const fullName = lead.sobrenome ? `${lead.nome} ${lead.sobrenome}` : lead.nome;
+            window.dataLayer.push({
+              event: 'lead_conversion',
+              form_id: 'leadForm',
+              form_name: 'Inscrição Encontros ao Vivo',
+              lead_name: fullName,
+              lead_first_name: lead.nome,
+              lead_last_name: lead.sobrenome || '',
+              lead_email: lead.email,
+              lead_phone: lead.whatsapp || '',
+              lead_whatsapp: lead.whatsapp || '',
+              page_path: window.location.pathname,
+              page_url: window.location.href,
+              user_data: {
+                email: lead.email,
+                phone_number: lead.whatsapp || '',
+                address: {
+                  first_name: lead.nome,
+                  last_name: lead.sobrenome || ''
+                }
+              }
+            });
           }
         }
       } catch (e) {}

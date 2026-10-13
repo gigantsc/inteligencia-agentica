@@ -657,8 +657,75 @@
               localStorage.setItem('ia_last_lead', JSON.stringify(leadData));
             } catch (err) {}
 
-            // Redireciona para a página de obrigado
-            window.location.href = '/ao-vivo/obrigado';
+            // Disparar dataLayer para GTM / GA4 / Meta Ads com os dados do lead
+            let redirected = false;
+            const redirectToThankYou = () => {
+              if (!redirected) {
+                redirected = true;
+                window.location.href = '/ao-vivo/obrigado';
+              }
+            };
+
+            try {
+              window.dataLayer = window.dataLayer || [];
+
+              // Evento recomendado GA4: generate_lead
+              window.dataLayer.push({
+                event: 'generate_lead',
+                form_id: 'leadForm',
+                form_name: 'Inscrição Encontros ao Vivo',
+                lead_name: fullName,
+                lead_first_name: nome,
+                lead_last_name: sobrenome,
+                lead_email: email,
+                lead_phone: whatsapp,
+                lead_whatsapp: whatsapp,
+                page_path: window.location.pathname,
+                page_url: window.location.href,
+                user_data: {
+                  email: email,
+                  phone_number: whatsapp,
+                  address: {
+                    first_name: nome,
+                    last_name: sobrenome
+                  }
+                }
+              });
+
+              // Evento personalizado padrão: lead_form_submitted (com eventCallback para garantir envio das tags)
+              window.dataLayer.push({
+                event: 'lead_form_submitted',
+                event_category: 'Lead',
+                event_action: 'Form Submission',
+                event_label: 'Encontros ao Vivo',
+                form_id: 'leadForm',
+                form_name: 'Inscrição Encontros ao Vivo',
+                lead_name: fullName,
+                lead_first_name: nome,
+                lead_last_name: sobrenome,
+                lead_email: email,
+                lead_phone: whatsapp,
+                lead_whatsapp: whatsapp,
+                page_path: window.location.pathname,
+                page_url: window.location.href,
+                user_data: {
+                  email: email,
+                  phone_number: whatsapp,
+                  address: {
+                    first_name: nome,
+                    last_name: sobrenome
+                  }
+                },
+                eventCallback: redirectToThankYou,
+                eventTimeout: 800
+              });
+
+              // Timeout de segurança caso nenhuma tag no GTM utilize eventCallback
+              setTimeout(redirectToThankYou, 800);
+            } catch (dlErr) {
+              console.warn('Aviso no envio ao dataLayer:', dlErr);
+              redirectToThankYou();
+            }
           } catch (error) {
             console.error('Erro na submissão:', error);
             alert('Ocorreu um erro ao garantir sua vaga. Por favor, tente novamente.');
