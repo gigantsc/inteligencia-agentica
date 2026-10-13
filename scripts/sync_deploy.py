@@ -10,16 +10,16 @@ def sync():
         print(f"⚠️ Destino {dst_base} não acessível no momento (rede/VPN offline ou caminho não montado). Continuando com indexnow e git.")
         return False
         
-    dirs_to_copy = ["static", "blog", "content", "tags"]
-    files_to_copy = ["sitemap.xml", "llms.txt", "llms-full.txt", "feed.xml", "robots.txt"]
+    dirs_to_copy = ["static", "blog", "content", "tags", "cases", "ao-vivo", "obrigado"]
+    files_to_copy = ["index.html", "site.config.js", "sitemap.xml", "llms.txt", "llms-full.txt", "feed.xml", "robots.txt"]
     
+    import subprocess
+
     for d in dirs_to_copy:
         src_dir = os.path.join(src_base, d)
         dst_dir = os.path.join(dst_base, d)
         if os.path.exists(src_dir):
-            if os.path.exists(dst_dir):
-                shutil.rmtree(dst_dir)
-            shutil.copytree(src_dir, dst_dir)
+            subprocess.run(["robocopy", src_dir, dst_dir, "/E"], shell=True)
             print(f"✅ Sincronizado diretório: {d}")
             
     for f in files_to_copy:
