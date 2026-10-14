@@ -114,15 +114,23 @@ with open("D:/DevCod/inteligencia-agentica/cases/cases-data.json", "w", encoding
 html_content = f"""<!DOCTYPE html>
 <html lang="pt-BR" class="dark scroll-smooth">
 <head>
-  <!-- Cookie Consent Mode V2 -->
-  <link rel="stylesheet" href="/static/cookieconsent.css">
+  <!-- Google Consent Mode V2 Default -->
   <script>
-    window.cookieconsentConfig = {{
-      gtmId: 'GTM-M5JDK6W4',
-      autoLoadGtm: false
-    }};
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{window.dataLayer.push(arguments);}}
+    gtag('consent', 'default', {{
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    }});
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
   </script>
-  <script src="/static/cookieconsent.js"></script>
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':
@@ -138,6 +146,16 @@ html_content = f"""<!DOCTYPE html>
     gtag('js', new Date());
     gtag('config', 'G-18FQCREKV5');
   </script>
+
+  <!-- Cookie Consent Banner & Mode V2 Controller -->
+  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <script>
+    window.cookieconsentConfig = {{
+      gtmId: 'GTM-M5JDK6W4',
+      autoLoadGtm: false
+    }};
+  </script>
+  <script defer src="/static/cookieconsent.js?v=20261014"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>326 Cases Reais de Agentes de IA em Produção — Inteligência Agêntica</title>

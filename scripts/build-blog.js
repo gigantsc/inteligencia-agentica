@@ -131,15 +131,33 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
   return `<!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
-  <!-- Cookie Consent Mode V2 -->
-  <link rel="stylesheet" href="/static/cookieconsent.css">
+  <!-- Google Consent Mode V2 Default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+  </script>${gtmSnippet}${gaSnippet}
+
+  <!-- Cookie Consent Banner & Mode V2 Controller -->
+  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
   <script>
     window.cookieconsentConfig = {
       gtmId: '${gtmId}',
       autoLoadGtm: false
     };
   </script>
-  <script src="/static/cookieconsent.js"></script>${gtmSnippet}${gaSnippet}
+  <script defer src="/static/cookieconsent.js?v=20261014"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title ? `${title} | Inteligência Agêntica` : siteConfig.title}</title>

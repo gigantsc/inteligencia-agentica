@@ -31,7 +31,10 @@
 
 // Required global queue for `gtag` calls.
 window.dataLayer = window.dataLayer || [];
-function gtag() { window.dataLayer.push(arguments); }
+if (typeof window.gtag !== 'function') {
+  window.gtag = function() { window.dataLayer.push(arguments); };
+}
+function gtag() { (window.gtag || function() { window.dataLayer.push(arguments); }).apply(null, arguments); }
 
 /* ---------------------------
  * Static Configuration
