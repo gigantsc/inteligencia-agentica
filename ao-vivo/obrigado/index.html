@@ -485,6 +485,22 @@
         });
       }
 
+      // Função para formatar o telefone no padrão exigido pela Meta
+      function formatPhoneNumber(val) {
+        var phoneNumber = typeof val === 'string' ? val : '';
+        if (!phoneNumber) return '';
+        phoneNumber = phoneNumber.replace(/\s/g, '').replace(/-/g, '').replace(/\(|\)/g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        if (phoneNumber.startsWith('0')) phoneNumber = phoneNumber.substring(1);
+        if (phoneNumber.startsWith('55') || phoneNumber.startsWith('+55')) {
+          phoneNumber = phoneNumber.replace(/^550(\d+)/, '55$1');
+          phoneNumber = phoneNumber.replace(/^\+/, '');
+        } else {
+          phoneNumber = '55' + phoneNumber;
+        }
+        return phoneNumber;
+      }
+      window.formatPhoneNumber = formatPhoneNumber;
+
       // Personalização e disparo de dataLayer com dados do lead
       try {
         const lead = JSON.parse(localStorage.getItem('ia_last_lead'));
@@ -499,6 +515,7 @@
             sessionStorage.setItem('ia_lead_conversion_tracked', 'true');
             window.dataLayer = window.dataLayer || [];
             const fullName = lead.sobrenome ? `${lead.nome} ${lead.sobrenome}` : lead.nome;
+            const formattedPhone = formatPhoneNumber(lead.whatsapp || '');
             window.dataLayer.push({
               event: 'lead_conversion',
               form_id: 'leadForm',
@@ -507,13 +524,13 @@
               lead_first_name: lead.nome,
               lead_last_name: lead.sobrenome || '',
               lead_email: lead.email,
-              lead_phone: lead.whatsapp || '',
-              lead_whatsapp: lead.whatsapp || '',
+              lead_phone: formattedPhone,
+              lead_whatsapp: formattedPhone,
               page_path: window.location.pathname,
               page_url: window.location.href,
               user_data: {
                 email: lead.email,
-                phone_number: lead.whatsapp || '',
+                phone_number: formattedPhone,
                 address: {
                   first_name: lead.nome,
                   last_name: lead.sobrenome || ''
