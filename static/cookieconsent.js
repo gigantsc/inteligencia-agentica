@@ -185,10 +185,13 @@ function gpc() {
 
 function loadGtmById(gtmId) {
   if (!gtmId) return Promise.resolve();
+  if (window.cookieconsentConfig && window.cookieconsentConfig.autoLoadGtm === false) {
+    return Promise.resolve();
+  }
   if (gtmLoaderPromise) return gtmLoaderPromise;
 
   gtmLoaderPromise = new Promise((resolve, reject) => {
-    if (document.querySelector('script[data-gtm-loader]')) {
+    if (document.querySelector('script[data-gtm-loader]') || document.querySelector('script[src*="googletagmanager.com/gtm.js"]') || (window.google_tag_manager && window.google_tag_manager[gtmId])) {
       resolve();
       return;
     }
@@ -392,8 +395,11 @@ if (consentModeForBootEvent) {
   }, 0);
 }
 
-// Loads GTM after consent default configuration
-loadGtmById(getConfiguredGtmId()).catch(() => {});
+// Adia loadGtmById para o proximo ciclo de eventos, garantindo que
+// qualquer snippet estatico oficial do GTM no <head> seja parseado e executado primeiro
+window.setTimeout(() => {
+  loadGtmById(getConfiguredGtmId()).catch(() => {});
+}, 0);
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initCookieConsentBanner, { once: true });
