@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <!-- Google Consent Mode V2 Default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M5JDK6W4');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18FQCREKV5"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-18FQCREKV5');
+  </script>
+
+
+  <!-- Cookie Consent Banner & Mode V2 Controller -->
+  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <script>
+    window.cookieconsentConfig = {
+      gtmId: 'GTM-M5JDK6W4',
+      autoLoadGtm: false
+    };
+  </script>
+  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fábrica de Software Agêntica: Como Criar Sistemas, Dashboards e Automações com Hermes Agent, Orca ADE e Kanban Nativo | Inteligência Agêntica</title>
+  <meta name="description" content="Descubra como empresários e gestores maduros constroem ferramentas internas, dashboards em Streamlit e automações reais atuando como Tech Leads, orquestrando o Hermes Agent e o Orca ADE com Kanban local e custo operacional zero.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/blog/fabrica-de-software-agentica-hermes-orca-kanban">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/blog/fabrica-de-software-agentica-hermes-orca-kanban">
+  <meta property="og:title" content="Fábrica de Software Agêntica: Como Criar Sistemas, Dashboards e Automações com Hermes Agent, Orca ADE e Kanban Nativo">
+  <meta property="og:description" content="Descubra como empresários e gestores maduros constroem ferramentas internas, dashboards em Streamlit e automações reais atuando como Tech Leads, orquestrando o Hermes Agent e o Orca ADE com Kanban local e custo operacional zero.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/fabrica-de-software-agentica-hermes-orca-kanban.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://inteligenciaagentica.com.br/blog/fabrica-de-software-agentica-hermes-orca-kanban">
+  <meta name="twitter:title" content="Fábrica de Software Agêntica: Como Criar Sistemas, Dashboards e Automações com Hermes Agent, Orca ADE e Kanban Nativo">
+  <meta name="twitter:description" content="Descubra como empresários e gestores maduros constroem ferramentas internas, dashboards em Streamlit e automações reais atuando como Tech Leads, orquestrando o Hermes Agent e o Orca ADE com Kanban local e custo operacional zero.">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/fabrica-de-software-agentica-hermes-orca-kanban.jpg">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <!-- Prism Syntax Theme -->
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #07070A; color: #E0E0E6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    ::selection { background: rgba(192, 0, 255, 0.35); color: #fff; }
+    .glass { background: rgba(17, 17, 24, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); }
+    .glass-card { background: rgba(14, 14, 20, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+    .glass-card:hover { border-color: rgba(0, 229, 255, 0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); }
+    .gradient-text { background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text-gold { background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gold { background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%); color: #07070A; font-weight: 700; transition: all 0.2s ease; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(223, 186, 107, 0.35); }
+    .hero-glow { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.16; pointer-events: none; }
+    .top-bar { background: rgba(7, 7, 10, 0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .on-air-badge:hover {
+      transform: scale(1.05);
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    
+    /* Article typography styling */
+    .prose-custom { font-size: 1.05rem; line-height: 1.8; color: #D1D5DB; }
+    .prose-custom p { margin-bottom: 1.5rem; }
+    .prose-custom h1 { font-size: 2.25rem; font-weight: 900; color: #fff; margin-top: 2.5rem; margin-bottom: 1.25rem; line-height: 1.2; }
+    .prose-custom h2 { font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; }
+    .prose-custom h3 { font-size: 1.25rem; font-weight: 700; color: #00E5FF; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose-custom ul, .prose-custom ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    .prose-custom ul { list-style-type: disc; }
+    .prose-custom ol { list-style-type: decimal; }
+    .prose-custom li { margin-bottom: 0.5rem; }
+    .prose-custom strong { color: #fff; font-weight: 700; }
+    .prose-custom a { color: #00E5FF; text-decoration: underline; text-underline-offset: 3px; }
+    .prose-custom a:hover { color: #F0D48A; }
+    .prose-custom blockquote { border-left: 4px solid #00E5FF; background: rgba(0, 229, 255, 0.05); padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 0.75rem 0.75rem 0; color: #E5E7EB; }
+    .prose-custom blockquote p { margin-bottom: 0; }
+    .prose-custom code:not(pre code) { background: rgba(255, 255, 255, 0.08); color: #00E5FF; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+    .prose-custom pre { background: #0A0A0F !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.25rem; margin: 1.75rem 0; overflow-x: auto; }
+    .prose-custom pre code { color: #E0E0E6; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; }
+    .prose-custom table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+    .prose-custom th { background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .prose-custom td { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .prose-custom tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    .prose-custom hr { border-color: rgba(255, 255, 255, 0.08); margin: 2.5rem 0; }
+  </style>
+
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Fábrica de Software Agêntica: Como Criar Sistemas, Dashboards e Automações com Hermes Agent, Orca ADE e Kanban Nativo","description":"Descubra como empresários e gestores maduros constroem ferramentas internas, dashboards em Streamlit e automações reais atuando como Tech Leads, orquestrando o Hermes Agent e o Orca ADE com Kanban local e custo operacional zero.","image":"https://inteligenciaagentica.com.br/static/images/fabrica-de-software-agentica-hermes-orca-kanban.jpg","datePublished":"2026-10-18","dateModified":"2026-10-18","author":{"@type":"Person","name":"Jean Pierre Schramm","url":"https://linkedin.com/in/jeanpierreschramm"},"publisher":{"@type":"Organization","name":"Inteligência Agêntica","url":"https://inteligenciaagentica.com.br","logo":{"@type":"ImageObject","url":"https://inteligenciaagentica.com.br/static/logos.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://inteligenciaagentica.com.br/blog/fabrica-de-software-agentica-hermes-orca-kanban"},"keywords":"Fábrica de software agêntica, Hermes Agent Orca ADE, Orquestração de agentes programadores, Kanban nativo para agentes de IA, Como não programador cria software com IA, Automação de desenvolvimento com IA, Streamlit dashboards com agentes autônomos"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://inteligenciaagentica.com.br"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://inteligenciaagentica.com.br/blog"},{"@type":"ListItem","position":3,"name":"Fábrica de Software Agêntica: Como Criar Sistemas, Dashboards e Automações com Hermes Agent, Orca ADE e Kanban Nativo","item":"https://inteligenciaagentica.com.br/blog/fabrica-de-software-agentica-hermes-orca-kanban"}]}]</script>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5JDK6W4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- TOP NAVBAR -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-11 sm:h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="/" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Início</a>
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Cases</a>
+        <a href="/blog" class="text-sm font-bold text-ciano border-b-2 border-ciano pb-0.5 transition-colors">Blog</a>
+        <a href="/#oferta" class="btn-gold px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide">
+          Acessar Comunidade
+        </a>
+      </div>
+
+      <!-- Mobile Actions (visible on mobile, hidden on md+) -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="/ao-vivo" class="on-air-badge text-[10px] py-1 px-2.5" title="Encontros ao Vivo">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <button id="mobileMenuBtn" type="button" class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl focus:outline-none transition-colors border border-white/10" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-6 h-6 block menu-open-icon"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden menu-close-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-obsidian-card/95 backdrop-blur-2xl px-5 py-6 space-y-4 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-2">
+        <a href="/" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="home" class="w-4 h-4 text-gray-400"></i>
+            <span>Início</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/ao-vivo" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-red-400 hover:text-red-300 bg-red-950/30 border border-red-800/40 hover:bg-red-950/50 transition-colors">
+          <span class="flex items-center gap-3">
+            <span class="on-air-dot"></span>
+            <span>Encontros ao Vivo</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded">Toda Quinta</span>
+        </a>
+
+        <a href="/cases" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+            <span>Cases de Uso</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/blog" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-ciano bg-white/5 border border-ciano/20 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="newspaper" class="w-4 h-4 text-ciano"></i>
+            <span>Blog & Artigos</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-ciano"></i>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <a href="/#oferta" class="mobile-nav-link w-full btn-gold py-3.5 px-5 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-ouro/20">
+          <span>Acessar Comunidade</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN BODY -->
+  <main class="pt-20 flex-grow">
+    
+  <div class="relative py-10 overflow-hidden">
+    <div class="hero-glow bg-magenta/40 -top-40 right-0 w-[500px] h-[500px] absolute"></div>
+    <div class="hero-glow bg-ciano/30 top-1/2 -left-40 w-[500px] h-[500px] absolute"></div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Início</a>
+        <span>&rsaquo;</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span>&rsaquo;</span>
+        <span class="text-ciano truncate max-w-[200px] sm:max-w-none">Fábrica de Software Agêntica: Como Criar Sistemas, Dashboards e Automações com Hermes Agent, Orca ADE e Kanban Nativo</span>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="mb-10 text-center sm:text-left">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <a href="/tags/fabrica-de-software" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Fábrica de Software</a><a href="/tags/orca-ade" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Orca ADE</a><a href="/tags/hermes-agent" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Hermes Agent</a><a href="/tags/kanban-nativo" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Kanban Nativo</a><a href="/tags/automacao" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Automação</a><a href="/tags/streamlit" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Streamlit</a><a href="/tags/engenharia-de-software-agentica" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Engenharia de Software Agêntica</a><a href="/tags/negocios" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Negócios</a>
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+          Fábrica de Software Agêntica: Como Criar Sistemas, Dashboards e Automações com Hermes Agent, Orca ADE e Kanban Nativo
+        </h1>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/10 text-xs text-gray-400">
+          <div class="flex items-center gap-3">
+            <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-10 h-10 rounded-full border border-white/10">
+            <div>
+              <p class="font-bold text-white text-sm">Jean Pierre Schramm</p>
+              <p class="text-[11px] text-gray-400">Fundador da JePierre & Especialista em Agentes de IA</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-10-18</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 11 min de leitura</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      
+      <div class="mb-12 rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
+        <img src="https://inteligenciaagentica.com.br/static/images/fabrica-de-software-agentica-hermes-orca-kanban.jpg" alt="Fábrica de Software Agêntica: Como Criar Sistemas, Dashboards e Automações com Hermes Agent, Orca ADE e Kanban Nativo" class="w-full h-auto max-h-[460px] object-cover">
+      </div>
+      
+
+      <!-- Table of Contents (if > 1 heading) -->
+      
+      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
+          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
+        </h3>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-abismo-entre-a-ideia-de-negocio-e-o-software-funcional" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Abismo entre a Ideia de Negócio e o Software Funcional
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#a-arquitetura-da-fabrica-o-hermes-arquiteto-e-o-orca-ade-executor" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> A Arquitetura da Fábrica: O Hermes Arquiteto e o Orca ADE Executor
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#o-papel-do-hermes-agent-o-arquiteto-chefe" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Papel do Hermes Agent (O Arquiteto Chefe)
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#o-papel-do-orca-ade-o-desenvolvedor-executor" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Papel do Orca ADE (O Desenvolvedor Executor)
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#gestao-agil-sem-saas-o-poder-do-kanban-nativo-kanbanmd" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Gestão Ágil sem SaaS: O Poder do Kanban Nativo (KANBAN.md)
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#como-funciona-o-kanban-nativo-em-markdown" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Como Funciona o Kanban Nativo em Markdown:
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#backlog" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> [Backlog]
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#to-do" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> [To Do]
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#doing" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> [Doing]
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#done" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> [Done]
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#por-que-esse-formato-e-imbativel-para-pmes" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Por que esse formato é imbatível para PMEs:
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#comparativo-metodos-tradicionais-vs-no-code-vs-fabrica-agentica" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Comparativo: Métodos Tradicionais vs. No-Code vs. Fábrica Agêntica
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#caso-real-criando-um-dashboard-executivo-de-leads-em-12-minutos" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Caso Real: Criando um Dashboard Executivo de Leads em 12 Minutos
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#o-que-acontece-nos-bastidores-em-12-minutos" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O que acontece nos bastidores em 12 minutos:
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#a-protecao-dos-git-worktrees-por-que-seu-codigo-nunca-quebra" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> A Proteção dos *Git Worktrees*: Por que Seu Código Nunca Quebra
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#como-implementar-a-fabrica-de-software-na-sua-empresa" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Como Implementar a Fábrica de Software na Sua Empresa
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#passo-1-instalacao-do-ecossistema" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Passo 1: Instalação do Ecossistema
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#passo-2-registro-da-skill-do-orca-ade" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Passo 2: Registro da Skill do Orca ADE
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#passo-3-definicao-da-sua-primeira-demanda" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Passo 3: Definição da Sua Primeira Demanda
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-proximo-nivel-tornando-se-um-tech-lead-agentico" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Próximo Nível: Tornando-se um Tech Lead Agêntico
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Main Article Content -->
+      <div class="prose-custom">
+        <blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>Uma <strong>Fábrica de Software Agêntica</strong> é uma esteira de engenharia autônoma onde o empresário ou gestor atua como <em>Product Owner</em> e <em>Tech Lead</em>, definindo necessidades de negócio em linguagem natural, enquanto agentes de IA especializados dividem as funções de arquitetura, desenvolvimento e validação. Utilizando a arquitetura mestre-executor com o <strong>Hermes Agent</strong> (como arquiteto orquestrador) e o <strong>Orca ADE</strong> (como desenvolvedor especialista operando em <em>Git Worktrees</em> isolados), aliada a um <strong>Quadro Kanban Nativo</strong> (<code>KANBAN.md</code>) local, a empresa é capaz de projetar, codificar, validar sintaticamente e colocar em execução ferramentas internas, dashboards interativos em Python/Streamlit e integrações de sistemas em minutos, sem depender de software houses lentas e sem alucinações de código.</p>
+</blockquote>
+<hr>
+<h2 id="o-abismo-entre-a-ideia-de-negocio-e-o-software-funcional" class="scroll-mt-24 group flex items-center justify-between">O Abismo entre a Ideia de Negócio e o Software Funcional <a href="#o-abismo-entre-a-ideia-de-negocio-e-o-software-funcional" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Se você gerencia uma empresa tradicional, uma operação de comércio eletrônico, uma consultoria ou uma estrutura de tráfego pago, certamente já se deparou com este dilema operacional:</p>
+<blockquote>
+<p><em>&quot;Preciso de uma ferramenta interna simples para consolidar as métricas de vendas das minhas filiais, cruzar os dados com o estoque e me enviar um alerta diário com os produtos parados.&quot;</em></p>
+</blockquote>
+<p>A partir desse momento, o gestor de 45 a 55 anos costuma se deparar com três caminhos igualmente frustrantes:</p>
+<ol>
+<li><strong>Contratar uma Software House ou Consultoria de TI:</strong> Orçamentos que começam entre R$ 20.000 e R$ 60.000, prazos de entrega que ultrapassam três a cinco meses e reuniões intermináveis de alinhamento com profissionais que não entendem a dor real do negócio.</li>
+<li><strong>Adotar Plataformas No-Code Comerciais (Bubble, Make, Airtable):</strong> Custos recorrentes cobrados em dólares que aumentam conforme o volume de registros cresce, além da dependência de plataformas proprietárias (<em>vendor lock-in</em>) que tornam sua empresa refém de aumentos arbitrários de preços.</li>
+<li><strong>Tentar Programar Copiando e Colando de Chatbots Convencionais:</strong> O usuário leigo abre o ChatGPT ou Claude na web, pede um script, o código vem incompleto, gera erros de biblioteca no terminal e a pessoa desiste após horas de frustração e telas de erro incompreensíveis.</li>
+</ol>
+<p>A <strong>Fábrica de Software Agêntica</strong> surge para eliminar essa barreira. Ela não exige que você aprenda sintaxe de programação, estruturas de dados ou ponteiros de memória. Em vez disso, você assume o papel executivo de <strong>Tech Lead e Product Owner</strong>, comandando uma equipe de funcionários digitais que planeja, divide tarefas, programa em ambiente isolado, testa e entrega a aplicação pronta para uso na sua própria máquina ou na sua VPS.</p>
+<hr>
+<h2 id="a-arquitetura-da-fabrica-o-hermes-arquiteto-e-o-orca-ade-executor" class="scroll-mt-24 group flex items-center justify-between">A Arquitetura da Fábrica: O Hermes Arquiteto e o Orca ADE Executor <a href="#a-arquitetura-da-fabrica-o-hermes-arquiteto-e-o-orca-ade-executor" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O grande erro das tentativas frustradas de programar com IA é tentar fazer um único modelo de linguagem resolver tudo em um único chat. O mesmo prompt que planeja a regra de negócio tenta escrever centenas de linhas de código, gerando alucinações, perda de contexto e arquivos truncados.</p>
+<p>Na engenharia agêntica profissional desenvolvida em torno do ecossistema <strong>Hermes Agent</strong> (Nous Research), o trabalho é dividido rigidamente em duas camadas especializadas:</p>
+<pre><code>┌──────────────────────────────────────────────────────────────────────────────────┐
+│                    EMPRESÁRIO / GESTOR <span class="token punctuation">(</span>Tech Lead <span class="token operator">&amp;</span> Product Owner<span class="token punctuation">)</span>               │
+│   - Descreve a regra de negócio e a dor operacional em português simples        │
+│   - Não escreve código<span class="token punctuation">;</span> define os critérios de aceitação e valida o resultado    │
+└────────────────────────────────────────┬─────────────────────────────────────────┘
+                                         │ Especificação em linguagem natural
+                                         ▼
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                         HERMES AGENT <span class="token punctuation">(</span>Arquiteto <span class="token operator">&amp;</span> Orquestrador<span class="token punctuation">)</span>                  │
+│   - Analisa o briefing e quebra em histórias técnicas no KANBAN.md <span class="token builtin class-name">local</span>        │
+│   - Define a arquitetura <span class="token keyword">do</span> projeto <span class="token punctuation">(</span>Python, Streamlit, SQLite, Pandas<span class="token punctuation">)</span>         │
+│   - Despacha tarefas específicas para o Orca ADE e audita os critérios de entrega│
+└────────────────────────────────────────┬─────────────────────────────────────────┘
+                                         │ Orquestra execução via CLI
+                                         ▼
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                     ORCA ADE <span class="token punctuation">(</span>Desenvolvedor Executor Especialista<span class="token punctuation">)</span>               │
+│   - Cria isolamento de ambiente <span class="token punctuation">(</span>Git Worktree / Branch temporária<span class="token punctuation">)</span>               │
+│   - Escreve o código limpo, modular e sem funções fantasmas                      │
+│   - Executa testes sintáticos <span class="token punctuation">(</span>Linting<span class="token punctuation">)</span> e testes de fumaça <span class="token punctuation">(</span>Smoke Tests<span class="token punctuation">)</span>         │
+│   - Realiza o commit estruturado e reporta o sucesso ao Hermes                   │
+└────────────────────────────────────────┬─────────────────────────────────────────┘
+                                         │ Retorna status validado
+                                         ▼
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                         ENTREGA VISUAL <span class="token operator">&amp;</span> EXECUÇÃO IMEDIATA                       │
+│   - Atualização <span class="token keyword">do</span> KANBAN.md: tarefa movida para <span class="token punctuation">[</span>Done<span class="token punctuation">]</span>                          │
+│   - Execução <span class="token builtin class-name">local</span> instantânea: <span class="token variable"><span class="token variable">`</span>streamlit run app.py<span class="token variable">`</span></span>                           │
+│   - Painel interativo aberto no navegador <span class="token keyword">do</span> gestor com dados reais              │
+└──────────────────────────────────────────────────────────────────────────────────┘
+</code></pre><h3 id="o-papel-do-hermes-agent-o-arquiteto-chefe" class="scroll-mt-24 group flex items-center justify-between">O Papel do Hermes Agent (O Arquiteto Chefe) <a href="#o-papel-do-hermes-agent-o-arquiteto-chefe" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O Hermes Agent é a inteligência central. Ele conhece o contexto da sua empresa, compreende suas metas de negócio e sabe exatamente como decompor uma funcionalidade complexa em pequenos blocos acionáveis. Ele não gasta seu contexto escrevendo milhares de linhas de HTML ou CSS; seu foco é o planejamento estrutural, a governança e a orquestração da esteira.</p>
+<h3 id="o-papel-do-orca-ade-o-desenvolvedor-executor" class="scroll-mt-24 group flex items-center justify-between">O Papel do Orca ADE (O Desenvolvedor Executor) <a href="#o-papel-do-orca-ade-o-desenvolvedor-executor" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O <strong>Orca ADE</strong> (<em>Agentic Development Environment</em>) é um runtime especializado em tarefas de desenvolvimento de software. Ao receber uma tarefa do Hermes, o Orca não mexe nos seus arquivos de produção diretamente. Ele inicializa uma cópia isolada de trabalho (<em>Git Worktree</em>), cria uma branch limpa, escreve o código fonte, valida sintaxes e testa a execução. Se houver falha, ele mesmo corrige o erro antes de devolver a entrega para o Hermes.</p>
+<hr>
+<h2 id="gestao-agil-sem-saas-o-poder-do-kanban-nativo-kanbanmd" class="scroll-mt-24 group flex items-center justify-between">Gestão Ágil sem SaaS: O Poder do Kanban Nativo (<code>KANBAN.md</code>) <a href="#gestao-agil-sem-saas-o-poder-do-kanban-nativo-kanbanmd" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A maioria dos frameworks de desenvolvimento exige a contratação e configuração de sistemas pesados como Jira, Asana ou Linear. Para agentes autônomos, conectar-se a essas plataformas via APIs externas consome centenas de chamadas de rede desnecessárias, consome tokens caros e cria vulnerabilidade a quedas de internet.</p>
+<p>Na nossa arquitetura, toda a gestão de tarefas é mantida em um arquivo simples e elegante na raiz do projeto: o <strong><code>KANBAN.md</code></strong>.</p>
+<h3 id="como-funciona-o-kanban-nativo-em-markdown" class="scroll-mt-24 group flex items-center justify-between">Como Funciona o Kanban Nativo em Markdown: <a href="#como-funciona-o-kanban-nativo-em-markdown" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 📋 Quadro Kanban do Projeto: Painel Executivo de Vendas</span>
+
+<span class="token title important"><span class="token punctuation">##</span> [Backlog]</span>
+<span class="token list punctuation">-</span> [ ] Implementar exportação de relatórios em formato PDF executivo
+<span class="token list punctuation">-</span> [ ] Adicionar filtro avançado por canal de aquisição (Google Ads vs Meta Ads)
+
+<span class="token title important"><span class="token punctuation">##</span> [To Do]</span>
+<span class="token list punctuation">-</span> [ ] Conectar banco de dados SQLite para gravação histórica diária
+
+<span class="token title important"><span class="token punctuation">##</span> [Doing]</span>
+<span class="token list punctuation">-</span> [ ] Criar visualização gráfica de faturamento diário em Streamlit (Resp: Orca ADE)
+
+<span class="token title important"><span class="token punctuation">##</span> [Done]</span>
+<span class="token list punctuation">-</span> [x] Estruturar base de layout responsivo e sidebar de navegação (Commit: a4b1c2)
+<span class="token list punctuation">-</span> [x] Implementar gerador de dados sintéticos e carga de CSV de leads (Commit: 8f9e01)
+</code></pre><h3 id="por-que-esse-formato-e-imbativel-para-pmes" class="scroll-mt-24 group flex items-center justify-between">Por que esse formato é imbatível para PMEs: <a href="#por-que-esse-formato-e-imbativel-para-pmes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ol>
+<li><strong>Custo Zero e Sem Licenças:</strong> Não há mensalidades de R$ 50/usuário para manter um software de gestão de projetos.</li>
+<li><strong>Rastreabilidade Git Integrada:</strong> Cada tarefa concluída é associada diretamente ao hash do commit gerado pelo agente executor.</li>
+<li><strong>Auditabilidade Absoluta:</strong> Tanto o ser humano quanto qualquer agente da equipe podem ler e atualizar o arquivo instantaneamente com comandos nativos de arquivo (<code>read_file</code> e <code>patch</code>), com zero overhead de rede.</li>
+</ol>
+<hr>
+<h2 id="comparativo-metodos-tradicionais-vs-no-code-vs-fabrica-agentica" class="scroll-mt-24 group flex items-center justify-between">Comparativo: Métodos Tradicionais vs. No-Code vs. Fábrica Agêntica <a href="#comparativo-metodos-tradicionais-vs-no-code-vs-fabrica-agentica" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Critério de Comparação</th>
+<th>Software House Tradicional</th>
+<th>Ferramentas No-Code (Bubble/Make)</th>
+<th>Fábrica Agêntica (Hermes + Orca)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Custo de Desenvolvimento</strong></td>
+<td>R$ 20.000 a R$ 60.000 por projeto</td>
+<td>R$ 300 a R$ 2.500/mês recorrente em dólar</td>
+<td><strong>Praticamente Zero</strong> (apenas tokens LLM locais/nuvem)</td>
+</tr>
+<tr>
+<td><strong>Tempo de Entrega</strong></td>
+<td>3 a 6 meses</td>
+<td>2 a 4 semanas</td>
+<td><strong>10 a 30 minutos</strong> por ferramenta</td>
+</tr>
+<tr>
+<td><strong>Propriedade do Código</strong></td>
+<td>Depende do contrato</td>
+<td>Não há código (preso na plataforma)</td>
+<td><strong>100% Seu</strong> (código aberto Python/Node no seu Git)</td>
+</tr>
+<tr>
+<td><strong>Privacidade dos Dados</strong></td>
+<td>Dados expostos a terceiros</td>
+<td>Servidores em nuvem de terceiros</td>
+<td><strong>Bunker Local / VPS Própria</strong> com isolamento total</td>
+</tr>
+<tr>
+<td><strong>Facilidade de Manutenção</strong></td>
+<td>Cobrança de horas extras caras</td>
+<td>Limitações severas de customização</td>
+<td><strong>O próprio agente corrige e atualiza sob comando</strong></td>
+</tr>
+<tr>
+<td><strong>Risco de Alucinação</strong></td>
+<td>Erro humano de interpretação</td>
+<td>Não se aplica</td>
+<td><strong>Eliminado por testes automáticos e Worktrees</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="caso-real-criando-um-dashboard-executivo-de-leads-em-12-minutos" class="scroll-mt-24 group flex items-center justify-between">Caso Real: Criando um Dashboard Executivo de Leads em 12 Minutos <a href="#caso-real-criando-um-dashboard-executivo-de-leads-em-12-minutos" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para demonstrar a eficácia prática deste modelo, veja o que acontece quando Jean Pierre Schramm abre o terminal do Hermes Agent e envia a seguinte instrução em linguagem natural:</p>
+<blockquote>
+<p><em>&quot;Hermes, crie um painel executivo para monitorar meus leads diários. Preciso de métricas de Total de Leads, Custo por Lead (CPL), Taxa de Conversão da equipe comercial e um gráfico comparativo das campanhas de tráfego. Faça em Python com Streamlit, código limpo e rode um teste de validação.&quot;</em></p>
+</blockquote>
+<h3 id="o-que-acontece-nos-bastidores-em-12-minutos" class="scroll-mt-24 group flex items-center justify-between">O que acontece nos bastidores em 12 minutos: <a href="#o-que-acontece-nos-bastidores-em-12-minutos" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ol>
+<li><p><strong>Minuto 01 — Planejamento e Decomposição:</strong><br>O Hermes Agent lê o diretório, inicializa o arquivo <code>KANBAN.md</code> e decompõe a demanda em três histórias:</p>
+<ul>
+<li><em>História 1:</em> Criar o gerador de dados e lógica de agregação financeira (Pandas).</li>
+<li><em>História 2:</em> Construir a interface visual interativa em Streamlit (<code>app.py</code>).</li>
+<li><em>História 3:</em> Executar smoke test validando se as bibliotecas sobem sem erros.</li>
+</ul>
+</li>
+<li><p><strong>Minuto 03 — Acionamento do Orca ADE:</strong><br>O Hermes chama a CLI do Orca:</p>
+<pre><code class="language-bash">orca develop <span class="token parameter variable">--task</span> <span class="token string">"Construir interface Streamlit do painel de leads conforme KANBAN.md"</span> <span class="token parameter variable">--branch</span> feat/painel-leads
+</code></pre></li>
+<li><p><strong>Minuto 07 — Desenvolvimento e Validação em Worktree:</strong><br>O Orca ADE cria a branch isolada, gera o script <code>app.py</code> com apenas 40 linhas de Python elegante, adiciona filtros interativos por data e status, roda a verificação de sintaxe e realiza o commit limpo.</p>
+</li>
+<li><p><strong>Minuto 10 — Auditoria e Integração:</strong><br>O Hermes verifica que o código não possui dependências quebradas, move a tarefa no <code>KANBAN.md</code> para <code>[Done]</code> e encerra o ciclo.</p>
+</li>
+<li><p><strong>Minuto 12 — Entrega ao Usuário:</strong><br>O Hermes responde no terminal ou no Telegram:</p>
+<blockquote>
+<p><em>&quot;Painel concluído com sucesso! Para abrir no seu navegador, basta executar <code>streamlit run app.py</code>. O quadro KANBAN.md foi atualizado e as métricas estão operacionais.&quot;</em></p>
+</blockquote>
+</li>
+</ol>
+<p>O empresário dá um enter e o navegador abre imediatamente com uma interface moderna, rápida e 100% funcional.</p>
+<hr>
+<h2 id="a-protecao-dos-git-worktrees-por-que-seu-codigo-nunca-quebra" class="scroll-mt-24 group flex items-center justify-between">A Proteção dos <em>Git Worktrees</em>: Por que Seu Código Nunca Quebra <a href="#a-protecao-dos-git-worktrees-por-que-seu-codigo-nunca-quebra" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Um dos maiores receios de quem não é programador é: <em>&quot;E se o agente errar e apagar os arquivos que já estavam funcionando?&quot;</em></p>
+<p>A resposta técnica que garante a segurança da Fábrica de Software Agêntica é o uso de <strong>Git Worktrees</strong>. </p>
+<p>Diferente do desenvolvimento convencional, onde várias pessoas mexem na mesma pasta e geram conflitos que travam o projeto, o <em>Git Worktree</em> permite que o Orca ADE trabalhe em um diretório espelho completamente isolado. </p>
+<ul>
+<li>Se o código der erro de compilação ou falhar no teste, a pasta temporária é descartada sem jamais tocar nos arquivos originais;</li>
+<li>Se o código for aprovado em todos os testes sintáticos e de execução, o Hermes realiza a mesclagem (<em>merge</em>) segura na branch principal;</li>
+<li>O empresário tem sempre um histórico completo e auditável de cada linha criada, podendo reverter qualquer alteração com um único comando.</li>
+</ul>
+<hr>
+<h2 id="como-implementar-a-fabrica-de-software-na-sua-empresa" class="scroll-mt-24 group flex items-center justify-between">Como Implementar a Fábrica de Software na Sua Empresa <a href="#como-implementar-a-fabrica-de-software-na-sua-empresa" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para estruturar essa esteira autônoma no seu negócio, você não precisa de computadores caros ou servidores dedicados complexos. Uma máquina modesta (Windows, Mac ou Linux) ou uma VPS Hostinger de entrada já são suficientes para rodar todo o ambiente.</p>
+<h3 id="passo-1-instalacao-do-ecossistema" class="scroll-mt-24 group flex items-center justify-between">Passo 1: Instalação do Ecossistema <a href="#passo-1-instalacao-do-ecossistema" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Certifique-se de que o Hermes Agent está instalado e operacional via terminal. O comando de bootstrapping do Hermes prepara o ambiente em poucos minutos:</p>
+<pre><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://hermes-agent.nousresearch.com/install.sh <span class="token operator">|</span> <span class="token function">bash</span>
+</code></pre><h3 id="passo-2-registro-da-skill-do-orca-ade" class="scroll-mt-24 group flex items-center justify-between">Passo 2: Registro da Skill do Orca ADE <a href="#passo-2-registro-da-skill-do-orca-ade" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Dentro do Hermes, ative a integração do Orca para que o agente saiba como invocar o executor de código:</p>
+<pre><code class="language-bash">npx skills <span class="token function">add</span> <span class="token parameter variable">--skill</span> orca-linear <span class="token parameter variable">--global</span>
+</code></pre><h3 id="passo-3-definicao-da-sua-primeira-demanda" class="scroll-mt-24 group flex items-center justify-between">Passo 3: Definição da Sua Primeira Demanda <a href="#passo-3-definicao-da-sua-primeira-demanda" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Abra o chat do Hermes, descreva o que sua operação precisa como se estivesse conversando com um diretor de tecnologia e deixe o agente montar o seu primeiro <code>KANBAN.md</code>.</p>
+<hr>
+<h2 id="o-proximo-nivel-tornando-se-um-tech-lead-agentico" class="scroll-mt-24 group flex items-center justify-between">O Próximo Nível: Tornando-se um Tech Lead Agêntico <a href="#o-proximo-nivel-tornando-se-um-tech-lead-agentico" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O mercado de tecnologia mudou para sempre. A vantagem competitiva não está mais em saber digitar código linha por linha, mas em <strong>saber modelar problemas de negócio, desenhar processos lógicos e comandar agentes autônomos com precisão cirúrgica</strong>.</p>
+<p>No curso <strong>Inteligência Agêntica</strong>, ensinamos passo a passo como você pode dominar essa arquitetura do zero, desde a configuração da sua VPS até a criação da sua própria Fábrica de Software Agêntica (abordada em detalhes no <strong>Módulo 14</strong>).</p>
+<p>👉 <strong>Dê o próximo passo e construa seus próprios funcionários digitais:</strong> Conheça o ecossistema completo na <a href="https://inteligenciaagentica.com.br">Comunidade Oficial Inteligência Agêntica</a>.</p>
+
+      </div>
+
+      <!-- Social Share -->
+      <div class="mt-12 py-6 border-y border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Compartilhar este artigo:</span>
+        <div class="flex items-center gap-2">
+          <a href="https://api.whatsapp.com/send?text=F%C3%A1brica%20de%20Software%20Ag%C3%AAntica%3A%20Como%20Criar%20Sistemas%2C%20Dashboards%20e%20Automa%C3%A7%C3%B5es%20com%20Hermes%20Agent%2C%20Orca%20ADE%20e%20Kanban%20Nativo%20-%20https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Ffabrica-de-software-agentica-hermes-orca-kanban" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Ffabrica-de-software-agentica-hermes-orca-kanban" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=F%C3%A1brica%20de%20Software%20Ag%C3%AAntica%3A%20Como%20Criar%20Sistemas%2C%20Dashboards%20e%20Automa%C3%A7%C3%B5es%20com%20Hermes%20Agent%2C%20Orca%20ADE%20e%20Kanban%20Nativo&url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Ffabrica-de-software-agentica-hermes-orca-kanban" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-white/5 text-gray-200 hover:bg-white/10 border border-white/10 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="twitter" class="w-4 h-4"></i> X / Twitter
+          </a>
+        </div>
+      </div>
+
+      <!-- Author Bio Box -->
+      <div class="mt-10 glass rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 border border-white/10">
+        <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-16 h-16 rounded-full border-2 border-ouro">
+        <div class="text-center sm:text-left">
+          <h4 class="text-base font-bold text-white mb-1">Escrito por Jean Pierre Schramm</h4>
+          <p class="text-xs text-gray-400 leading-relaxed mb-3">
+            Especialista em automações autônomas, arquitetura de VPS com Docker Swarm e ecossistemas agênticos com Hermes OS.
+          </p>
+          <div class="flex items-center justify-center sm:justify-start gap-3 text-xs text-ciano">
+            <a href="https://github.com/gigantsc" target="_blank" class="hover:underline">GitHub</a> &bull;
+            <a href="https://linkedin.com/in/jeanpierreschramm" target="_blank" class="hover:underline">LinkedIn</a> &bull;
+            <a href="https://x.com/jepierresolucoes" target="_blank" class="hover:underline">X</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Article Community Banner -->
+      <div class="mt-12 p-8 rounded-2xl glass border border-ouro/30 bg-gradient-to-r from-magenta/10 via-ciano/5 to-ouro/10 text-center">
+        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+          Comunidade Inteligência Agêntica
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Aprenda a aplicar tudo isso na prática</h3>
+        <p class="text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6">
+          Tenha acesso a 4 mentorias ao vivo por mês, biblioteca completa de skills e templates prontos para rodar no seu servidor.
+        </p>
+        <a href="/#oferta" class="btn-gold px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
+          Garantir Vaga na Comunidade <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Related Posts -->
+      
+      <div class="mt-16">
+        <h3 class="text-lg font-bold text-white mb-6">Artigos Relacionados</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+            <a href="/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Hermes Agent</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Guia Definitivo do Hermes Agent: As 30 Respostas Essenciais para Dominar seus Funcionários Digitais</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.</p>
+            </a>
+          
+            <a href="/blog/agente-devops-auto-recuperacao-infraestrutura-ia" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Agentes de IA</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Agente DevOps Autônomo: Como Monitorar Servidores, Prevenir Quedas e Executar Auto-Cura 24/7 com Hermes Agent</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">Aprenda como implementar um Agente DevOps autônomo baseado no Hermes Agent para monitorar servidores VPS, diagnosticar lentidões, limpar logs, reiniciar containers Docker caídos e restabelecer a infraestrutura 24/7 sem necessidade de plantões humanos caros.</p>
+            </a>
+          
+        </div>
+      </div>
+      
+
+    </article>
+  </div>
+  
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <div class="flex items-center gap-3 text-[11px] text-gray-500">
+          <button type="button" class="cookie-consent-banner-open hover:text-ciano transition-colors bg-transparent border-0 p-0 text-inherit cursor-pointer">Preferências de Cookies</button>
+          <span>&bull;</span>
+          <span class="text-[10px]">Ecossistema Hermes OS &bull; Powered by Nous Research</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Mobile Menu Controller
+    (() => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!mobileBtn || !mobileMenu) return;
+
+      const openIcon = mobileBtn.querySelector('.menu-open-icon');
+      const closeIcon = mobileBtn.querySelector('.menu-close-icon');
+
+      function toggleMenu(forceOpen) {
+        const isCurrentlyOpen = !mobileMenu.classList.contains('hidden');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isCurrentlyOpen;
+
+        if (shouldOpen) {
+          mobileMenu.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+          if (openIcon) openIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

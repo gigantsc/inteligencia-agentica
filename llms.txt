@@ -16,6 +16,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Fábrica de Software Agêntica: Como Criar Sistemas, Dashboards e Automações com Hermes Agent, Orca ADE e Kanban Nativo](https://inteligenciaagentica.com.br/blog/fabrica-de-software-agentica-hermes-orca-kanban)
+- **Data de Publicação:** 2026-10-18
+- **Tags:** Fábrica de Software, Orca ADE, Hermes Agent, Kanban Nativo, Automação, Streamlit, Engenharia de Software Agêntica, Negócios
+- **Resumo:** Descubra como empresários e gestores maduros constroem ferramentas internas, dashboards em Streamlit e automações reais atuando como Tech Leads, orquestrando o Hermes Agent e o Orca ADE com Kanban local e custo operacional zero.
+- **URL:** https://inteligenciaagentica.com.br/blog/fabrica-de-software-agentica-hermes-orca-kanban
+
 ### [Agente DevOps Autônomo: Como Monitorar Servidores, Prevenir Quedas e Executar Auto-Cura 24/7 com Hermes Agent](https://inteligenciaagentica.com.br/blog/agente-devops-auto-recuperacao-infraestrutura-ia)
 - **Data de Publicação:** 2026-10-17
 - **Tags:** Agentes de IA, DevOps, VPS, Infraestrutura, Docker, Automação, Hermes Agent, Gestão de TI
