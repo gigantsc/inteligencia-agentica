@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <!-- Google Consent Mode V2 Default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M5JDK6W4');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18FQCREKV5"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-18FQCREKV5');
+  </script>
+
+  <!-- Cookie Consent Banner & Mode V2 Controller -->
+  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <script>
+    window.cookieconsentConfig = {
+      gtmId: 'GTM-M5JDK6W4',
+      autoLoadGtm: false
+    };
+  </script>
+  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineMaker — Máquina de Criar Vídeos Longos com IA em 1 Clique | Inteligência Agêntica</title>
+  <meta name="description" content="Produza vídeos longos, cinematográficos e 100% finalizados sem abrir editores, sem gravar nada e sem assinatura paga no Flow. App nativo CineMaker.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/cinemaker">
+
+  <!-- Open Graph / Social Meta -->
+  <meta property="og:type" content="product">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/cinemaker">
+  <meta property="og:title" content="CineMaker: Sua Máquina de Criar Vídeos Longos com IA com 1 Clique">
+  <meta property="og:description" content="Produções cinematográficas completas no piloto automático: consistência visual real, roteiro estruturado, legendas magnéticas em 7 idiomas e mixagem de estúdio. Zero atrito no Flow.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/cinemaker-cover.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CineMaker — Máquina de Criar Vídeos Longos com IA com 1 Clique">
+  <meta name="twitter:description" content="Aplicativo nativo para Flow que transforma conceitos brutos em produções completas no piloto automático.">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/cinemaker-cover.jpg">
+
+  <!-- Schema.org JSON-LD (Product & SoftwareApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://inteligenciaagentica.com.br/cinemaker#app",
+        "name": "CineMaker — Máquina de Criar Vídeos com IA",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Web, Cloud, Flow Native",
+        "description": "Aplicativo nativo para Flow que transforma conceitos brutos em produções completas no piloto automático com 1 clique.",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "BRL",
+          "availability": "https://schema.org/InStock",
+          "url": "https://inteligenciaagentica.com.br/cinemaker#oferta"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Inteligência Agêntica",
+          "url": "https://inteligenciaagentica.com.br"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Início",
+            "item": "https://inteligenciaagentica.com.br/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "CineMaker",
+            "item": "https://inteligenciaagentica.com.br/cinemaker"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Preconnect + Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Inter Fallback';
+      src: local('Arial');
+      size-adjust: 107%;
+      ascent-override: 90%;
+      descent-override: 22%;
+      line-gap-override: 0%;
+    }
+  </style>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Inter Fallback', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      background-color: #07070A;
+      color: #E2E8F0;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .glass {
+      background: rgba(17, 17, 24, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-hover {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-hover:hover {
+      border-color: rgba(0, 229, 255, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px -12px rgba(0, 229, 255, 0.15);
+    }
+    .top-bar {
+      background: rgba(7, 7, 10, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.18;
+      pointer-events: none;
+      width: 480px;
+      height: 480px;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-text-gold {
+      background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-text-magenta {
+      background: linear-gradient(135deg, #E066FF 0%, #C000FF 50%, #00E5FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%);
+      color: #07070A;
+      font-weight: 800;
+      transition: all 0.2s ease;
+    }
+    .btn-gold:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(223, 186, 107, 0.4);
+    }
+    .cta-pulse {
+      animation: ctaGlow 2.5s infinite;
+    }
+    @keyframes ctaGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(223, 186, 107, 0.35); }
+      50% { box-shadow: 0 0 32px rgba(223, 186, 107, 0.7); }
+    }
+    .glow-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.4), rgba(192, 0, 255, 0.4), transparent);
+    }
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .on-air-badge:hover {
+      transform: scale(1.05);
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    /* Shimmer tag */
+    .shimmer-badge {
+      background: linear-gradient(90deg, rgba(192, 0, 255, 0.15) 0%, rgba(0, 229, 255, 0.25) 50%, rgba(192, 0, 255, 0.15) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 3s infinite linear;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-magenta/30 selection:text-white">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5JDK6W4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- ============================================================
+       TOP BAR (Navbar Fixa)
+       ============================================================ -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-11 sm:h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+      </a>
+
+      <!-- Desktop Nav (hidden on mobile, visible on md+) -->
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="/" class="text-sm font-semibold text-gray-300 hover:text-ciano transition-colors">
+          Início
+        </a>
+        <a href="/cinemaker" class="text-sm font-bold text-magenta-300 hover:text-white transition-colors flex items-center gap-1.5 px-3 py-1 rounded-lg bg-magenta/15 border border-magenta/30">
+          <i data-lucide="video" class="w-4 h-4 text-magenta"></i>
+          <span>CineMaker</span>
+          <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ouro/20 text-ouro border border-ouro/30">App</span>
+        </a>
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-sm font-semibold text-gray-300 hover:text-ciano transition-colors">
+          Cases
+        </a>
+        <a href="/blog" class="text-sm font-semibold text-gray-300 hover:text-ciano transition-colors">
+          Blog
+        </a>
+        <a href="#oferta"
+           class="btn-gold inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide">
+          <span>Ativar CineMaker</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Actions (visible on mobile, hidden on md+) -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="/ao-vivo" class="on-air-badge text-[10px] py-1 px-2.5" title="Encontros ao Vivo">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <button id="mobileMenuBtn" type="button" class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl focus:outline-none transition-colors border border-white/10" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-6 h-6 block menu-open-icon"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden menu-close-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-obsidian-card/95 backdrop-blur-2xl px-5 py-6 space-y-4 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-2">
+        <a href="/" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="home" class="w-4 h-4 text-gray-400"></i>
+            <span>Início</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/cinemaker" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-magenta-300 bg-magenta/15 border border-magenta/30 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="video" class="w-4 h-4 text-magenta"></i>
+            <span>CineMaker App</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-ouro/20 text-ouro border border-ouro/30 px-2 py-0.5 rounded">Novo</span>
+        </a>
+
+        <a href="/ao-vivo" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-red-400 hover:text-red-300 bg-red-950/30 border border-red-800/40 hover:bg-red-950/50 transition-colors">
+          <span class="flex items-center gap-3">
+            <span class="on-air-dot"></span>
+            <span>Encontros ao Vivo</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded">Toda Quinta</span>
+        </a>
+
+        <a href="/cases" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+            <span>Cases de Uso</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/blog" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="newspaper" class="w-4 h-4 text-gray-400"></i>
+            <span>Blog & Artigos</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <a href="#oferta" class="mobile-nav-link w-full btn-gold py-3.5 px-5 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-ouro/20">
+          <span>Ativar CineMaker Agora</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-grow pt-20">
+    <!-- ============================================================
+         DOBRA 1 — HERO SECTION COM VÍDEO DE APRESENTAÇÃO
+         ============================================================ -->
+    <section id="hero" class="relative min-h-screen flex items-center pt-10 sm:pt-14 pb-20 overflow-hidden">
+      <!-- Glow ambientais -->
+      <div class="hero-glow bg-magenta -top-40 -left-40 absolute" aria-hidden="true"></div>
+      <div class="hero-glow bg-ciano -bottom-60 -right-40 absolute" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
+        <!-- Tag de Categoria -->
+        <div class="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-ciano border border-ciano/25 bg-ciano/5 shimmer-badge shadow-lg shadow-ciano/10">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-ciano"></i>
+          <span>APLICATIVO NATIVO FLOW &bull; PRODUÇÃO AUDIOVISUAL COM IA</span>
+        </div>
+
+        <!-- Headline Principal -->
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white max-w-4xl mx-auto leading-[1.12] tracking-tight">
+          CineMaker: Sua Máquina de Criar Vídeos Longos com IA
+          <span class="gradient-text-gold block mt-2 sm:mt-3">com Apenas 1 Clique.</span>
+        </h1>
+
+        <!-- ============================================================
+             ESPAÇO PARA VÍDEO DE APRESENTAÇÃO DA FERRAMENTA
+             (Idêntico ao padrão oficial da home page)
+             ============================================================ -->
+        <div class="my-8 sm:my-10 max-w-4xl mx-auto" id="heroVisual">
+          <div class="glass rounded-2xl p-2 sm:p-3.5 border border-white/10 shadow-2xl shadow-magenta/15 relative group">
+            <div class="relative aspect-video rounded-xl overflow-hidden bg-obsidian-card flex items-center justify-center cursor-pointer" id="videoWrapper">
+              <!-- Video HTML5 -->
+              <video 
+                id="heroVideo"
+                class="w-full h-full object-cover rounded-xl" 
+                playsinline
+                preload="auto"
+                poster="/static/images/cinemaker-cover.jpg"
+              >
+                <source src="/static/videos/cinemaker.mp4" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo HTML5.
+              </video>
+
+              <!-- Dynamic Custom Captions Container -->
+              <div id="captionsBox" class="absolute bottom-2 sm:bottom-3 left-3 right-3 sm:left-4 sm:right-4 flex justify-center pointer-events-none z-25 transition-opacity duration-200">
+                <p id="captionText" class="max-w-[92%] sm:max-w-[85%] bg-black/90 backdrop-blur-md border border-white/20 text-white font-medium text-[11px] sm:text-xs md:text-sm px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl text-center shadow-2xl leading-snug transition-all duration-150 opacity-0"></p>
+              </div>
+
+              <!-- Unmute overlay button -->
+              <button id="unmuteOverlay" class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-obsidian/90 hover:bg-black border border-white/20 text-white text-xs sm:text-sm font-semibold px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl backdrop-blur flex items-center gap-2 transition-all duration-200 z-30 shadow-lg cursor-pointer opacity-0 pointer-events-none">
+                <i data-lucide="volume-x" class="w-4 h-4 text-ouro" id="soundIcon"></i>
+                <span id="soundText">Clique para ativar o som</span>
+              </button>
+
+              <!-- Play & Alert Callout Overlay (Apresentação Inicial) -->
+              <div id="playOverlay" class="absolute inset-0 bg-black/60 backdrop-blur-[3px] flex flex-col items-center justify-center p-4 sm:p-6 text-center z-[35] transition-all duration-300">
+                <!-- Chamada de Alerta -->
+                <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold text-amber-300 bg-amber-500/20 border border-amber-400/40 mb-3 sm:mb-4 shadow-lg shadow-amber-500/10 backdrop-blur-md animate-pulse">
+                  <i data-lucide="clapperboard" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0"></i>
+                  <span>⚠️ DEMONSTRAÇÃO EM VÍDEO: Veja a ferramenta operando na prática</span>
+                </div>
+
+                <!-- Botão de Iniciar Apresentação -->
+                <button id="startVideoBtn" type="button" class="btn-gold text-black font-extrabold text-xs sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl flex items-center gap-3 shadow-2xl shadow-ouro/40 hover:scale-105 active:scale-95 transition-all duration-200 cta-pulse cursor-pointer group">
+                  <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/20 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                    <i data-lucide="play" class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-black text-black ml-0.5"></i>
+                  </span>
+                  <span class="tracking-wide">ASSISTIR APRESENTAÇÃO DA FERRAMENTA</span>
+                </button>
+
+                <p class="mt-2.5 sm:mt-3 text-[11px] sm:text-xs text-gray-300 font-medium drop-shadow flex items-center justify-center gap-2">
+                  <span>Apresentação objetiva passo a passo</span>
+                  <span>&bull;</span>
+                  <span>Assista com o som ligado 🔊</span>
+                </p>
+              </div>
+
+              <!-- Replay & CTA Overlay (Surge ao término da apresentação) -->
+              <div id="replayOverlay" class="absolute inset-0 bg-obsidian/95 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-40 transition-all duration-300 opacity-0 pointer-events-none">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Apresentação Concluída
+                </span>
+                <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Pronto para ter sua produtora audiovisual na tela?</h3>
+                <p class="text-xs sm:text-sm text-gray-300 max-w-md mb-6 leading-relaxed">
+                  Ative o CineMaker hoje mesmo. Roda perfeitamente sem precisar de assinatura paga no Flow.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center gap-3">
+                  <button id="replayBtn" class="btn-gold text-black text-xs sm:text-sm font-bold px-6 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-ouro/20 hover:scale-105 transition-transform duration-200 cursor-pointer">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                    Assistir Novamente
+                  </button>
+                  <a href="#oferta" class="px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/15 transition-all duration-200 flex items-center gap-2">
+                    Ativar o CineMaker Agora
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-ciano"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botão Principal de CTA (Logo abaixo do vídeo) -->
+        <div class="my-7 sm:my-8">
+          <a href="#oferta"
+             class="btn-gold cta-pulse inline-flex items-center gap-2.5 px-8 sm:px-11 py-4 sm:py-4.5 rounded-xl text-sm sm:text-base font-extrabold tracking-wide shadow-2xl shadow-ouro/30">
+            <span>ATIVAR O CINEMAKER AGORA</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <span class="block mt-3 text-xs text-gray-400 font-medium">
+            🔥 Acesso Imediato ao App &bull; Guia Prático em Vídeo Incluso &bull; Sem Assinatura Paga no Flow &bull; Garantia de 7 Dias
+          </span>
+        </div>
+
+        <!-- Sub-headline Explicativa (Abaixo do botão de CTA) -->
+        <div class="max-w-3xl mx-auto mt-8 sm:mt-10">
+          <p class="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed">
+            E se você pudesse produzir <strong class="text-white font-semibold">vídeos longos, cinematográficos e 100% finalizados</strong> sem abrir nenhum editor, sem gravar nada e sem perder dias montando cena por cena?
+          </p>
+          <p class="mt-4 text-sm sm:text-base text-gray-400 leading-relaxed">
+            Conheça o <strong class="text-cyan-300 font-semibold">CineMaker</strong>, o aplicativo nativo para Flow que transforma conceitos brutos em produções completas no piloto automático.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         DOBRA 2 — ZERO ATRITO: POR QUE O CINEMAKER É DIFERENTE
+         ============================================================ -->
+    <section class="relative py-20 sm:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="inline-block mb-3 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase text-ciano border border-ciano/20 bg-ciano/5">
+            Zero Fricção Técnica
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+            Você clica no link de acesso, o sistema abre pronto e <span class="gradient-text">você já começa a criar.</span>
+          </h2>
+          <p class="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+            Eliminamos todo o inferno operacional que impedia você de usar inteligência artificial de vídeo em escala.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- Card 1: Zero Instalações -->
+          <div class="glass glass-hover rounded-2xl p-6 border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-ciano/10 border border-ciano/20 flex items-center justify-center mb-5 text-ciano">
+                <i data-lucide="hard-drive-download" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">Zero Instalações Pesadas</h3>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Esqueça ComfyUI, ambientes Python, bibliotecas CUDA que quebram ou downloads de 50GB no seu computador. Tudo roda 100% online na nuvem.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[11px] font-semibold text-ciano">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Roda em qualquer PC ou Mac</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Sem Conhecimento Avançado -->
+          <div class="glass glass-hover rounded-2xl p-6 border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-magenta/10 border border-magenta/20 flex items-center justify-center mb-5 text-magenta">
+                <i data-lucide="sparkle" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">Zero Barreira Técnica</h3>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Você não precisa ser especialista em prompts complexos nem em edição. A interface do CineMaker foi pensada para guiar suas escolhas em cliques visuais.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[11px] font-semibold text-magenta-300">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Interface visual intuitiva</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Sem Assinatura Paga no Flow -->
+          <div class="glass glass-hover rounded-2xl p-6 border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-ouro/10 border border-ouro/20 flex items-center justify-center mb-5 text-ouro">
+                <i data-lucide="shield-check" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">Sem Assinatura no Flow</h3>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                O CineMaker é um app nativo perfeitamente otimizado para rodar no Flow sem que você seja forçado a pagar mensalidades recorrentes na plataforma.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[11px] font-semibold text-ouro">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Economia real no seu bolso</span>
+            </div>
+          </div>
+
+          <!-- Card 4: 1 Clique para Começar -->
+          <div class="glass glass-hover rounded-2xl p-6 border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-5 text-emerald-400">
+                <i data-lucide="zap" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">Acesso Imediato</h3>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Ao confirmar sua ativação, você recebe o link direto e vitalício. Abre o navegador e seu primeiro roteiro já pode ser gerado na mesma hora.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Pronto para uso instantâneo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         DOBRA 3 — O QUE O CINEMAKER FAZ POR VOCÊ (6 PILARES)
+         ============================================================ -->
+    <section id="recursos" class="relative py-20 sm:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="inline-block mb-3 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase text-ouro border border-ouro/20 bg-ouro/5">
+            Recursos de Alta Fidelidade
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+            O que o <span class="gradient-text-gold">CineMaker</span> faz por você:
+          </h2>
+          <p class="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+            Uma suíte audiovisual completa, inteligente e integrada em uma única tela de comando.
+          </p>
+        </div>
+
+        <!-- 6 Pilares Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Pilar 1: Consistência Visual Real -->
+          <article class="glass glass-hover rounded-2xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-ciano/10 border border-ciano/20 flex items-center justify-center text-ciano">
+                  <i data-lucide="users" class="w-6 h-6"></i>
+                </div>
+                <span class="text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-md bg-ciano/10 text-ciano border border-ciano/20">
+                  Identidade Preservada
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2.5">Consistência Visual Real</h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                Suba fotos de produtos, tecidos ou ambientes. A IA preserva a identidade estética e mantém personagens perfeitamente coerentes ao longo de todas as cenas.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian-light/80 border border-white/5 text-[11px] text-gray-400 space-y-1.5">
+              <div class="flex items-center gap-2 text-ciano">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">Sem rostos que mudam a cada corte</span>
+              </div>
+              <div class="flex items-center gap-2 text-ciano">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">Preserva logos, texturas e embalagens</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pilar 2: Roteiro Estruturado em 1 Clique -->
+          <article class="glass glass-hover rounded-2xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-magenta/10 border border-magenta/20 flex items-center justify-center text-magenta">
+                  <i data-lucide="file-text" class="w-6 h-6"></i>
+                </div>
+                <span class="text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-md bg-magenta/10 text-magenta-300 border border-magenta/20">
+                  Automação Textual
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2.5">Roteiro Estruturado em 1 Clique</h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                Digite o tema, tom de voz e ideias centrais. O sistema gera na hora o roteiro detalhado cena a cena com ações visuais de câmera e falas narrativas sincronizadas.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian-light/80 border border-white/5 text-[11px] text-gray-400 space-y-1.5">
+              <div class="flex items-center gap-2 text-magenta-300">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">Cenas divididas em segundos exatos</span>
+              </div>
+              <div class="flex items-center gap-2 text-magenta-300">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">Prompts de direção cinematográfica prontos</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pilar 3: Direção de Arte e Motores de Ponta -->
+          <article class="glass glass-hover rounded-2xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-ouro/10 border border-ouro/20 flex items-center justify-center text-ouro">
+                  <i data-lucide="palette" class="w-6 h-6"></i>
+                </div>
+                <span class="text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-md bg-ouro/10 text-ouro border border-ouro/20">
+                  Multi-Motores
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2.5">Direção de Arte & Motores</h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                Alterne entre Horizontal (16:9) e Vertical (9:16). Aplique estilos refinados (Cinematográfico, Publicitário, Moda, Realista, Documentário) sob motores como Omni, Flash, VO3.1 e VO3.1 Light.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian-light/80 border border-white/5 text-[11px] text-gray-400 space-y-1.5">
+              <div class="flex items-center gap-2 text-ouro">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">16:9 (YouTube) e 9:16 (Reels/TikTok)</span>
+              </div>
+              <div class="flex items-center gap-2 text-ouro">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">Suporte a VO3.1, VO3.1 Light, Omni e Flash</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pilar 4: Ritmo e Storyboard Sob Medida -->
+          <article class="glass glass-hover rounded-2xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                  <i data-lucide="clock" class="w-6 h-6"></i>
+                </div>
+                <span class="text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  Controle de Ritmo
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2.5">Ritmo e Storyboard Sob Medida</h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                Escolha tomadas dinâmicas de 4s, 6s, 8s ou 10s e visualize toda a sequência antes da renderização. Tenha controle total da narrativa antes de gastar recursos.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian-light/80 border border-white/5 text-[11px] text-gray-400 space-y-1.5">
+              <div class="flex items-center gap-2 text-emerald-400">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">Aprovação visual cena a cena</span>
+              </div>
+              <div class="flex items-center gap-2 text-emerald-400">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">Ajuste de cortes rápidos ou tomadas lentas</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pilar 5: Legendas Inteligentes e Seguras -->
+          <article class="glass glass-hover rounded-2xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                  <i data-lucide="languages" class="w-6 h-6"></i>
+                </div>
+                <span class="text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                  7 Idiomas &bull; Zona Segura
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2.5">Legendas Inteligentes e Seguras</h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                Gera quebra em 2 linhas no campo neutro da tela (sem cobrir o apresentador ou os botões das redes) em 7 idiomas (PT, EN, ES, FR, DE, IT, JA) com estilos magnéticos.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian-light/80 border border-white/5 text-[11px] text-gray-400 space-y-1.5">
+              <div class="flex items-center gap-2 text-blue-400">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">Amarelo Viral, Neon, Minimalista e Cinema</span>
+              </div>
+              <div class="flex items-center gap-2 text-blue-400">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">Globalize seu conteúdo sem retrabalho</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pilar 6: Áudio e Mixagem de Estúdio -->
+          <article class="glass glass-hover rounded-2xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                  <i data-lucide="headphones" class="w-6 h-6"></i>
+                </div>
+                <span class="text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  Mixagem Master
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2.5">Áudio e Mixagem de Estúdio</h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                Sincroniza voz neural e trilhas sonoras selecionadas (Moderna, Cinematográfica, Inspiradora) com balanço e ducking profissional, ou exporta mudo para edições externas.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian-light/80 border border-white/5 text-[11px] text-gray-400 space-y-1.5">
+              <div class="flex items-center gap-2 text-amber-400">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">Ducking automático (música abaixa na fala)</span>
+              </div>
+              <div class="flex items-center gap-2 text-amber-400">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span class="font-semibold text-gray-200">Exportação com áudio masterizado ou mudo</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         DOBRA 4 — FLUXO EM 3 PASSOS SIMPLES
+         ============================================================ -->
+    <section class="relative py-20 sm:py-24 bg-obsidian-light/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="inline-block mb-3 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase text-ciano border border-ciano/20 bg-ciano/5">
+            Workflow Descomplicado
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+            Como funciona a criação em <span class="gradient-text">3 passos simples:</span>
+          </h2>
+          <p class="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+            Do conceito bruto ao vídeo cinematográfico finalizado em menos de 10 minutos.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          <!-- Step 1 -->
+          <div class="glass rounded-2xl p-8 border border-white/10 relative">
+            <span class="text-5xl font-black text-white/10 absolute top-5 right-5 select-none">01</span>
+            <div class="w-12 h-12 rounded-xl bg-magenta/20 border border-magenta/40 flex items-center justify-center text-magenta mb-6">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Defina o Conceito</h3>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Digite o tema, o objetivo do vídeo e suba as fotos de referência do seu produto ou personagem. O CineMaker monta a espinha dorsal narrativa na hora.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="glass rounded-2xl p-8 border border-white/10 relative">
+            <span class="text-5xl font-black text-white/10 absolute top-5 right-5 select-none">02</span>
+            <div class="w-12 h-12 rounded-xl bg-ciano/20 border border-ciano/40 flex items-center justify-center text-ciano mb-6">
+              <i data-lucide="sliders" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Escolha Estilo & Ritmo</h3>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Selecione o formato (16:9 ou 9:16), o estilo visual (Cinema, Ads, Moda, Doc), a duração das tomadas (4s a 10s) e aprove o storyboard gerado.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="glass rounded-2xl p-8 border border-white/10 relative">
+            <span class="text-5xl font-black text-white/10 absolute top-5 right-5 select-none">03</span>
+            <div class="w-12 h-12 rounded-xl bg-ouro/20 border border-ouro/40 flex items-center justify-center text-ouro mb-6">
+              <i data-lucide="film" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Renderize em 1 Clique</h3>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+              O motor renderiza as cenas, aplica as legendas magnéticas no campo seguro, mixa a trilha sonora com a voz e entrega seu vídeo 100% finalizado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         DOBRA 5 — COMPARATIVO: MÉTODO TRADICIONAL VS CINEMAKER
+         ============================================================ -->
+    <section class="relative py-20 sm:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="inline-block mb-3 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase text-red-400 border border-red-500/20 bg-red-500/5">
+            Chega de Perder Tempo
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+            Chega de travar na edição e <span class="gradient-text-gold">perder horas no corte.</span>
+          </h2>
+          <p class="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+            Veja a diferença entre tentar criar vídeos com ferramentas desconectadas e usar o CineMaker.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <!-- Coluna 1: O Método Antigo -->
+          <div class="glass rounded-2xl p-7 sm:p-9 border border-red-500/20 bg-red-950/10">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-red-500/20 border border-red-500/40 flex items-center justify-center text-red-400">
+                <i data-lucide="x" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Método Fragmentado Antigo</h3>
+                <span class="text-xs text-red-400 font-medium">Lento, caro e inconsistente</span>
+              </div>
+            </div>
+
+            <ul class="space-y-4 text-xs sm:text-sm text-gray-300">
+              <li class="flex items-start gap-3">
+                <i data-lucide="x-circle" class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5"></i>
+                <span><strong>5 softwares diferentes abertos:</strong> ChatGPT para roteiro, Midjourney para imagens, Runway/Luma para animar, ElevenLabs para voz e CapCut para cortar.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="x-circle" class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5"></i>
+                <span><strong>Inconsistência gritante:</strong> A cada corte, o personagem ou produto muda de rosto, cor de cabelo ou textura visual.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="x-circle" class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5"></i>
+                <span><strong>Horas de edição manual:</strong> Sincronizar fala com imagem, cortar silêncios, digitar legendas na unha e ajustar volume de trilha.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="x-circle" class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5"></i>
+                <span><strong>Custo mensal exorbitante:</strong> Assinaturas somadas que passam de R$ 1.500 todos os meses no cartão de crédito.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Coluna 2: O Método CineMaker -->
+          <div class="glass rounded-2xl p-7 sm:p-9 border border-ouro/30 bg-gradient-to-br from-ouro/5 via-obsidian-card to-ciano/5 shadow-2xl shadow-ouro/10 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-ouro/10 rounded-full filter blur-2xl pointer-events-none"></div>
+
+            <div class="flex items-center gap-3 mb-6 relative z-10">
+              <div class="w-10 h-10 rounded-xl bg-ouro/20 border border-ouro/40 flex items-center justify-center text-ouro">
+                <i data-lucide="check" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Com o CineMaker</h3>
+                <span class="text-xs text-ouro font-medium">1 único app &bull; Piloto automático</span>
+              </div>
+            </div>
+
+            <ul class="space-y-4 text-xs sm:text-sm text-gray-200 relative z-10">
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-4 h-4 text-ouro flex-shrink-0 mt-0.5"></i>
+                <span><strong>Tudo unificado em 1 clique:</strong> Roteiro estruturado, consistência de identidade, geração de tomadas, legendas e mixagem em uma tela.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-4 h-4 text-ouro flex-shrink-0 mt-0.5"></i>
+                <span><strong>Consistência estética real:</strong> Suba fotos de produtos ou pessoas e mantenha a identidade perfeita em todas as cenas.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-4 h-4 text-ouro flex-shrink-0 mt-0.5"></i>
+                <span><strong>Zero trabalho de edição braçal:</strong> Legendas inteligentes em 2 linhas em 7 idiomas e trilhas mixadas com ducking automático.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-4 h-4 text-ouro flex-shrink-0 mt-0.5"></i>
+                <span><strong>Sem assinatura obrigatória no Flow:</strong> Você tem o aplicativo nativo para rodar sem precisar de planos caros de terceiros.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         DOBRA 6 — O QUE VOCÊ RECEBE AO ATIVAR O CINEMAKER
+         ============================================================ -->
+    <section class="relative py-20 sm:py-24 bg-obsidian-light/30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="inline-block mb-3 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase text-ciano border border-ciano/20 bg-ciano/5">
+            Entregáveis Completos
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+            Tudo o que você precisa para <span class="gradient-text">começar imediatamente:</span>
+          </h2>
+          <p class="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+            Nada de entregas incompletas ou guias teóricos confusos. Você recebe a ferramenta pronta e a instrução prática.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <!-- Entregável 1 -->
+          <div class="glass glass-hover rounded-2xl p-6 sm:p-7 border border-white/10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-magenta/15 border border-magenta/30 flex items-center justify-center text-magenta flex-shrink-0">
+              <i data-lucide="link-2" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-white mb-1.5">Link Direto do App Nativo CineMaker</h3>
+              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+                Acesso imediato ao aplicativo no Flow. Você clica no link de acesso, o sistema abre carregado no navegador e você já começa a criar seus vídeos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Entregável 2 -->
+          <div class="glass glass-hover rounded-2xl p-6 sm:p-7 border border-white/10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-ciano/15 border border-ciano/30 flex items-center justify-center text-ciano flex-shrink-0">
+              <i data-lucide="play-square" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-white mb-1.5">Guia Prático em Vídeo (Passo a Passo)</h3>
+              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+                Um treinamento direto ao ponto ensinando como extrair a máxima qualidade de cada botão, parâmetros de consistência e truques de direção de arte.
+              </p>
+            </div>
+          </div>
+
+          <!-- Entregável 3 -->
+          <div class="glass glass-hover rounded-2xl p-6 sm:p-7 border border-white/10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-ouro/15 border border-ouro/30 flex items-center justify-center text-ouro flex-shrink-0">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-white mb-1.5">Presets Visuais & Biblioteca de Roteiros</h3>
+              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+                Modelos prontos de prompts testados para nichos de alta conversão: e-commerce, anúncios de infoprodutos, vídeos explicativos e moda.
+              </p>
+            </div>
+          </div>
+
+          <!-- Entregável 4 -->
+          <div class="glass glass-hover rounded-2xl p-6 sm:p-7 border border-white/10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
+              <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-white mb-1.5">Atualizações Contínuas de Motores</h3>
+              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+                Conforme novos motores de IA de vídeo forem lançados (evoluções de VO3.1, Omni e Flash), seu acesso permanece compatível com as versões mais recentes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         DOBRA 7 — OFERTA ESPECIAL DE ATIVAÇÃO
+         ============================================================ -->
+    <section id="oferta" class="relative py-20 sm:py-28 overflow-hidden">
+      <!-- Glow dourado no centro da oferta -->
+      <div class="hero-glow bg-ouro -top-20 left-1/2 -translate-x-1/2 absolute opacity-15" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass rounded-3xl p-8 sm:p-12 border-2 border-ouro/40 bg-gradient-to-b from-obsidian-card via-obsidian-card to-obsidian shadow-2xl shadow-ouro/15 text-center relative overflow-hidden">
+          
+          <!-- Badge de Destaque -->
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-widest text-ouro bg-ouro/15 border border-ouro/30 mb-6">
+            <i data-lucide="crown" class="w-4 h-4"></i>
+            <span>ACESSO COMPLETO &bull; LANÇAMENTO EXCLUSIVO</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
+            Ative o CineMaker agora e tenha uma produtora audiovisual completa na sua tela.
+          </h2>
+
+          <p class="mt-4 text-sm sm:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Tenha em mãos a máquina de criar vídeos com inteligência artificial mais ágil e acessível do mercado, pronta para rodar sem atrito.
+          </p>
+
+          <!-- Itens Inclusos Checklist -->
+          <div class="my-8 max-w-xl mx-auto text-left space-y-3 bg-obsidian-light/60 p-5 sm:p-6 rounded-2xl border border-white/5">
+            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+              <span><strong>Link direto do app nativo CineMaker</strong> (Acesso vitalício)</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+              <span><strong>Guia Prático em Vídeo</strong> ensinando cada botão e técnica de consistência</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+              <span><strong>Suporte a 16:9 (Horizontal) e 9:16 (Vertical)</strong> nativo</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+              <span><strong>Legendas automáticas seguras em 7 idiomas</strong> com estilos virais</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+              <span><strong>Mixagem de estúdio</strong> com ducking inteligente ou exportação mudo</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+              <span><strong>Sem necessidade de assinatura paga no Flow</strong></span>
+            </div>
+          </div>
+
+          <!-- Botão de Ação CTA Ouro Principal -->
+          <div class="mt-6 mb-4">
+            <a href="https://pay.hotmart.com/L107410278Y?checkoutMode=2&off=yjri55cz"
+               class="btn-gold cta-pulse inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-2xl text-base sm:text-lg font-black tracking-wide shadow-2xl shadow-ouro/40 hover:scale-105 active:scale-95 transition-all">
+              <i data-lucide="clapperboard" class="w-5 h-5 text-black"></i>
+              <span>QUERO ATIVAR O CINEMAKER AGORA</span>
+              <i data-lucide="arrow-right" class="w-5 h-5 text-black"></i>
+            </a>
+          </div>
+
+          <!-- Selos de Segurança e Garantia -->
+          <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs text-gray-400">
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+              <span>Garantia Incondicional de 7 Dias</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="zap" class="w-4 h-4 text-ouro"></i>
+              <span>Acesso Imediato no E-mail</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="lock" class="w-4 h-4 text-ciano"></i>
+              <span>Pagamento 100% Criptografado</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         DOBRA 8 — PERGUNTAS FREQUENTES (FAQ)
+         ============================================================ -->
+    <section class="relative py-20 sm:py-24">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+          <span class="inline-block mb-3 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase text-ciano border border-ciano/20 bg-ciano/5">
+            Dúvidas Frequentes
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+            Perguntas & Respostas sobre o <span class="gradient-text">CineMaker</span>
+          </h2>
+        </div>
+
+        <div class="space-y-4" id="faqAccordion">
+          <!-- FAQ 1 -->
+          <div class="glass rounded-xl p-5 border border-white/10 cursor-pointer faq-item" onclick="toggleFaq(this)">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm sm:text-base font-bold text-white pr-4">Preciso pagar mensalidade ou assinatura cara no Flow?</h3>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-200 faq-icon flex-shrink-0"></i>
+            </div>
+            <div class="faq-content hidden mt-3 pt-3 border-t border-white/5 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Não! O CineMaker foi construído como um aplicativo nativo otimizado para rodar no Flow sem que você precise assinar nenhum plano pago mensal da plataforma. Você ativa o CineMaker e opera diretamente.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="glass rounded-xl p-5 border border-white/10 cursor-pointer faq-item" onclick="toggleFaq(this)">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm sm:text-base font-bold text-white pr-4">Preciso ter um computador potente com placa de vídeo (GPU)?</h3>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-200 faq-icon flex-shrink-0"></i>
+            </div>
+            <div class="faq-content hidden mt-3 pt-3 border-t border-white/5 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Não. Todo o processamento pesado de inteligência artificial roda na nuvem. Você só precisa de um navegador comum de internet (Google Chrome, Edge, Safari, Brave) em qualquer computador comum ou notebook.
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="glass rounded-xl p-5 border border-white/10 cursor-pointer faq-item" onclick="toggleFaq(this)">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm sm:text-base font-bold text-white pr-4">Como funciona a consistência visual de produtos e pessoas?</h3>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-200 faq-icon flex-shrink-0"></i>
+            </div>
+            <div class="faq-content hidden mt-3 pt-3 border-t border-white/5 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Você pode fazer upload de fotos dos seus produtos físicos, amostras de tecidos, ambientes ou rostos. A IA preserva esses traços essenciais e os injeta contextualmente em todas as tomadas geradas, garantindo que o personagem ou objeto permaneça idêntico do início ao fim.
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="glass rounded-xl p-5 border border-white/10 cursor-pointer faq-item" onclick="toggleFaq(this)">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm sm:text-base font-bold text-white pr-4">Posso criar vídeos tanto para YouTube quanto para Reels e TikTok?</h3>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-200 faq-icon flex-shrink-0"></i>
+            </div>
+            <div class="faq-content hidden mt-3 pt-3 border-t border-white/5 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Sim! O CineMaker possui seletor nativo de proporção: 16:9 (Horizontal para YouTube, TV e cursos) e 9:16 (Vertical para Reels, TikTok, Shorts e Stories).
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="glass rounded-xl p-5 border border-white/10 cursor-pointer faq-item" onclick="toggleFaq(this)">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm sm:text-base font-bold text-white pr-4">Quais idiomas são suportados nas legendas?</h3>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-200 faq-icon flex-shrink-0"></i>
+            </div>
+            <div class="faq-content hidden mt-3 pt-3 border-t border-white/5 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              O CineMaker gera quebras em duas linhas no campo seguro em 7 idiomas: Português (PT), Inglês (EN), Espanhol (ES), Francês (FR), Alemão (DE), Italiano (IT) e Japonês (JA), com 4 estilos magnéticos (Amarelo Viral, Neon, Minimalista e Cinema).
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="glass rounded-xl p-5 border border-white/10 cursor-pointer faq-item" onclick="toggleFaq(this)">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm sm:text-base font-bold text-white pr-4">Como eu recebo o acesso após o pagamento?</h3>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-200 faq-icon flex-shrink-0"></i>
+            </div>
+            <div class="faq-content hidden mt-3 pt-3 border-t border-white/5 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              O envio é 100% automático e imediato. Assim que o pagamento for aprovado, você recebe no seu e-mail cadastrado o link direto do app nativo pronto para rodar, junto com o link do guia prático em vídeo demonstrando cada função.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BOTTOM COMMUNITY CALLOUT (CTA DA COMUNIDADE — PADRÃO OBRIGATÓRIO)
+         ============================================================ -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-20">
+      <div class="glass rounded-2xl p-8 sm:p-10 text-center border border-ouro/20 bg-gradient-to-br from-ouro/5 via-transparent to-ciano/5 relative overflow-hidden shadow-2xl">
+        <div class="relative z-10 max-w-2xl mx-auto">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            Comunidade Inteligência Agêntica
+          </span>
+          <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3">
+            Quer instalar e liderar agentes na sua empresa?
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-300 mb-6 leading-relaxed">
+            Assine a comunidade Inteligência Agêntica com 4 encontros ao vivo por mês, biblioteca completa de automações e suporte técnico dedicado.
+          </p>
+          <a href="/#oferta" class="btn-gold px-7 py-3.5 rounded-xl text-xs sm:text-sm font-bold tracking-wide inline-flex items-center gap-2 shadow-lg shadow-ouro/20">
+            <span>Ver Planos & Assinar Agora</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER COMPLETO EM 4 COLUNAS (PADRÃO OBRIGATÓRIO)
+       ============================================================ -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/cinemaker" class="text-magenta-300 font-semibold hover:text-white transition-colors">🎬 CineMaker (Vídeos IA)</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <div class="flex items-center gap-3 text-[11px] text-gray-500">
+          <button type="button" class="cookie-consent-banner-open hover:text-ciano transition-colors bg-transparent border-0 p-0 text-inherit cursor-pointer">Preferências de Cookies</button>
+          <span>&bull;</span>
+          <span class="text-[10px]">Ecossistema Hermes OS &bull; Powered by Nous Research</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS: MENU MOBILE, VÍDEO HERO, FAQ ACCORDION
+       ============================================================ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Mobile Menu
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const openIcon = mobileMenuBtn?.querySelector('.menu-open-icon');
+      const closeIcon = mobileMenuBtn?.querySelector('.menu-close-icon');
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+          const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+          mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+          mobileMenu.classList.toggle('hidden');
+          openIcon?.classList.toggle('hidden');
+          closeIcon?.classList.toggle('hidden');
+        });
+
+        // Close on link click
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            openIcon?.classList.remove('hidden');
+            closeIcon?.classList.add('hidden');
+          });
+        });
+      }
+
+      // 2. Video Player & Captions Controller
+      const video = document.getElementById('heroVideo');
+      const unmuteBtn = document.getElementById('unmuteOverlay');
+      const replayOverlay = document.getElementById('replayOverlay');
+      const replayBtn = document.getElementById('replayBtn');
+      const captionText = document.getElementById('captionText');
+      const wrapper = document.getElementById('videoWrapper');
+      const playOverlay = document.getElementById('playOverlay');
+      const startVideoBtn = document.getElementById('startVideoBtn');
+
+      if (video) {
+        let hasStarted = false;
+
+        const subtitles = [
+          { start: 0.5, end: 4.8, text: "Bem-vindo ao CineMaker: a sua máquina de criar vídeos longos com IA!" },
+          { start: 5.0, end: 10.2, text: "Produza vídeos cinematográficos 100% finalizados com apenas 1 clique no navegador." },
+          { start: 10.5, end: 15.5, text: "Suba fotos de referência e preserve a identidade de produtos e personagens cena a cena." },
+          { start: 15.8, end: 20.8, text: "Roteiro estruturado, legendas magnéticas em 7 idiomas e mixagem de áudio profissional." },
+          { start: 21.0, end: 26.5, text: "Zero atrito: sem instalações pesadas, sem códigos e sem assinatura paga no Flow." },
+          { start: 27.0, end: 32.0, text: "Ative o CineMaker e tenha uma produtora audiovisual completa na sua tela!" }
+        ];
+
+        // Legendas sincronizadas
+        video.addEventListener('timeupdate', () => {
+          if (!captionText) return;
+          const ct = video.currentTime;
+          const currentSub = subtitles.find(s => ct >= s.start && ct <= s.end);
+          if (currentSub) {
+            if (captionText.textContent !== currentSub.text) {
+              captionText.textContent = currentSub.text;
+            }
+            captionText.style.opacity = '1';
+          } else {
+            captionText.style.opacity = '0';
+          }
+        });
+
+        const startVideo = (e) => {
+          if (e) e.stopPropagation();
+          hasStarted = true;
+          if (playOverlay) {
+            playOverlay.style.opacity = '0';
+            playOverlay.style.pointerEvents = 'none';
+          }
+          video.muted = false;
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              video.muted = true;
+              video.play().catch(() => {});
+              if (unmuteBtn) {
+                unmuteBtn.style.opacity = '1';
+                unmuteBtn.style.pointerEvents = 'auto';
+              }
+            });
+          }
+        };
+
+        if (startVideoBtn) startVideoBtn.addEventListener('click', startVideo);
+        if (playOverlay) playOverlay.addEventListener('click', startVideo);
+
+        // Desmutar se necessário
+        if (unmuteBtn) {
+          unmuteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            video.muted = false;
+            video.play().catch(() => {});
+            unmuteBtn.style.opacity = '0';
+            unmuteBtn.style.pointerEvents = 'none';
+          });
+        }
+
+        // Toggle play/pause no clique
+        if (wrapper) {
+          wrapper.addEventListener('click', (e) => {
+            if (e.target.closest('#replayOverlay button') || e.target.closest('#replayOverlay a')) return;
+            if (!hasStarted) {
+              startVideo(e);
+              return;
+            }
+            if (video.ended) {
+              if (replayBtn) replayBtn.click();
+            } else if (video.paused) {
+              video.play().catch(() => {});
+            } else {
+              video.pause();
+            }
+          });
+        }
+
+        // Fim da reprodução
+        video.addEventListener('ended', () => {
+          if (captionText) captionText.style.opacity = '0';
+          if (replayOverlay) {
+            replayOverlay.style.pointerEvents = 'auto';
+            replayOverlay.style.opacity = '1';
+          }
+        });
+
+        // Replay
+        if (replayBtn) {
+          replayBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (replayOverlay) {
+              replayOverlay.style.opacity = '0';
+              replayOverlay.style.pointerEvents = 'none';
+            }
+            video.currentTime = 0;
+            video.muted = false;
+            video.play().catch(() => {
+              video.muted = true;
+              video.play().catch(() => {});
+            });
+          });
+        }
+      }
+    });
+
+    // 3. FAQ Accordion Toggle
+    function toggleFaq(element) {
+      const content = element.querySelector('.faq-content');
+      const icon = element.querySelector('.faq-icon');
+      const isHidden = content.classList.contains('hidden');
+
+      // Fecha todos os outros
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.querySelector('.faq-content')?.classList.add('hidden');
+        const itIcon = item.querySelector('.faq-icon');
+        if (itIcon) itIcon.style.transform = 'rotate(0deg)';
+      });
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      }
+    }
+  </script>
+</body>
+</html>
