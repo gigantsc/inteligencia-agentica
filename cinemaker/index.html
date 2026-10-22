@@ -44,6 +44,21 @@
   </script>
   <script defer src="/static/cookieconsent.js?v=20261014"></script>
 
+  <!-- Hotmart Checkout Widget -->
+  <script type="text/javascript">
+    function importHotmart(){ 
+      var imported = document.createElement('script'); 
+      imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
+      document.head.appendChild(imported); 
+      var link = document.createElement('link'); 
+      link.rel = 'stylesheet'; 
+      link.type = 'text/css'; 
+      link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
+      document.head.appendChild(link);
+    } 
+    importHotmart(); 
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CineMaker — Máquina de Criar Vídeos Longos com IA em 1 Clique | Inteligência Agêntica</title>
@@ -55,13 +70,13 @@
   <meta property="og:url" content="https://inteligenciaagentica.com.br/cinemaker">
   <meta property="og:title" content="CineMaker: Sua Máquina de Criar Vídeos Longos com IA com 1 Clique">
   <meta property="og:description" content="Produções cinematográficas completas no piloto automático: consistência visual real, roteiro estruturado, legendas magnéticas em 7 idiomas e mixagem de estúdio. Zero atrito no Flow.">
-  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/cinemaker-cover.jpg">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/cinemaker-mockup.jpg">
   <meta property="og:site_name" content="Inteligência Agêntica">
   <meta property="og:locale" content="pt_BR">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CineMaker — Máquina de Criar Vídeos Longos com IA com 1 Clique">
   <meta name="twitter:description" content="Aplicativo nativo para Flow que transforma conceitos brutos em produções completas no piloto automático.">
-  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/cinemaker-cover.jpg">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/cinemaker-mockup.jpg">
 
   <!-- Schema.org JSON-LD (Product & SoftwareApplication) -->
   <script type="application/ld+json">
@@ -481,7 +496,7 @@
                     <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
                     Assistir Novamente
                   </button>
-                  <a href="#oferta" class="px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/15 transition-all duration-200 flex items-center gap-2">
+                  <a onclick="return false;" href="https://pay.hotmart.com/C108132324U?checkoutMode=2&off=zpo5cf1n" class="hotmart-fb hotmart__button-checkout px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/15 transition-all duration-200 flex items-center gap-2 cursor-pointer">
                     Ativar o CineMaker Agora
                     <i data-lucide="arrow-right" class="w-4 h-4 text-ciano"></i>
                   </a>
@@ -601,6 +616,119 @@
             <div class="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400">
               <i data-lucide="check" class="w-3.5 h-3.5"></i>
               <span>Pronto para uso instantâneo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glow divider -->
+    <div class="glow-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         VITRINE VISUAL: A INTERFACE DO CINEMAKER EM AÇÃO (MOCKUP)
+         ============================================================ -->
+    <section class="relative py-20 sm:py-28 bg-gradient-to-b from-transparent via-obsidian-light/50 to-transparent overflow-hidden">
+      <!-- Ambient Glows -->
+      <div class="hero-glow bg-magenta -top-20 -left-20 absolute opacity-20" aria-hidden="true"></div>
+      <div class="hero-glow bg-ciano -bottom-20 -right-20 absolute opacity-20" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+          <span class="inline-flex items-center gap-2 mb-3 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase text-magenta-300 border border-magenta/30 bg-magenta/10">
+            <i data-lucide="layout" class="w-3.5 h-3.5 text-magenta"></i>
+            <span>Interface de Alta Fidelidade</span>
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+            A interface do <span class="gradient-text-magenta">CineMaker</span> na sua tela:
+          </h2>
+          <p class="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+            O poder de uma produtora cinematográfica completa operando no piloto automático. Sem códigos, sem abas desconectadas e sem complicações.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <!-- Coluna 1: Imagem Oficial da Interface (Mockup 3D / Tablet) -->
+          <div class="lg:col-span-7">
+            <div class="glass rounded-3xl p-3 sm:p-4 border-2 border-magenta/30 bg-gradient-to-br from-magenta/10 via-obsidian-card to-ciano/10 shadow-2xl shadow-magenta/20 relative group">
+              <div class="relative overflow-hidden rounded-2xl bg-obsidian-card aspect-square flex items-center justify-center">
+                <img 
+                  src="/static/images/cinemaker-mockup.jpg" 
+                  alt="CineMaker - Máquina de Vídeos com IA" 
+                  class="w-full h-full object-contain rounded-2xl transition-transform duration-500 group-hover:scale-[1.02]"
+                  loading="lazy"
+                >
+                <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none"></div>
+              </div>
+              <div class="mt-3 px-2 flex items-center justify-between text-[11px] text-gray-400">
+                <span class="flex items-center gap-1.5 text-magenta-300 font-semibold">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> App Nativo Flow &bull; Dark Mode
+                </span>
+                <span class="text-gray-400 font-medium">Acesso Imediato &bull; É Clicar e Usar</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna 2: Detalhamento dos Componentes Visuais do Mockup -->
+          <div class="lg:col-span-5 space-y-4">
+            <!-- Item 1: Botão 1-Clique -->
+            <div class="glass glass-hover rounded-2xl p-5 border border-white/10">
+              <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-magenta/20 border border-magenta/40 flex items-center justify-center text-magenta flex-shrink-0">
+                  <i data-lucide="mouse-pointer-click" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-white mb-1">Botão 1-Clique / Criar</h3>
+                  <p class="text-xs text-gray-400 leading-relaxed">
+                    Basta digitar seu tema e acionar o botão principal. O CineMaker estrutura o roteiro, alinha as tomadas e dispara a geração em segundos.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2: Multi-Formato 16:9 e 9:16 -->
+            <div class="glass glass-hover rounded-2xl p-5 border border-white/10">
+              <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-ciano/20 border border-ciano/40 flex items-center justify-center text-ciano flex-shrink-0">
+                  <i data-lucide="smartphone" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-white mb-1">Formatos 16:9 & 9:16 Nativos</h3>
+                  <p class="text-xs text-gray-400 leading-relaxed">
+                    Alterne instantaneamente entre produções em tela cheia para YouTube/Cinema e cortes verticais de alta retenção para Reels, TikTok e Shorts.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3: Barra de Áudio & IA -->
+            <div class="glass glass-hover rounded-2xl p-5 border border-white/10">
+              <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-ouro/20 border border-ouro/40 flex items-center justify-center text-ouro flex-shrink-0">
+                  <i data-lucide="headphones" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-white mb-1">Barra de Áudio & Mixagem Neural</h3>
+                  <p class="text-xs text-gray-400 leading-relaxed">
+                    Sincronia precisa de voz realista e trilhas sonoras selecionadas, aplicando ducking automático de estúdio (a trilha abaixa quando a voz entra).
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4: Acesso Imediato -->
+            <div class="glass glass-hover rounded-2xl p-5 border border-white/10">
+              <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                  <i data-lucide="zap" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-white mb-1">Acesso Imediato: É Clicar e Usar</h3>
+                  <p class="text-xs text-gray-400 leading-relaxed">
+                    Você clica no link de acesso, o sistema abre carregado no navegador e você já começa a criar. Sem instalações nem planos caros no Flow.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1039,63 +1167,87 @@
       <!-- Glow dourado no centro da oferta -->
       <div class="hero-glow bg-ouro -top-20 left-1/2 -translate-x-1/2 absolute opacity-15" aria-hidden="true"></div>
 
-      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="glass rounded-3xl p-8 sm:p-12 border-2 border-ouro/40 bg-gradient-to-b from-obsidian-card via-obsidian-card to-obsidian shadow-2xl shadow-ouro/15 text-center relative overflow-hidden">
+      <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-ouro/40 bg-gradient-to-b from-obsidian-card via-obsidian-card to-obsidian shadow-2xl shadow-ouro/15 relative overflow-hidden">
           
           <!-- Badge de Destaque -->
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-widest text-ouro bg-ouro/15 border border-ouro/30 mb-6">
-            <i data-lucide="crown" class="w-4 h-4"></i>
-            <span>ACESSO COMPLETO &bull; LANÇAMENTO EXCLUSIVO</span>
+          <div class="text-center mb-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-widest text-ouro bg-ouro/15 border border-ouro/30">
+              <i data-lucide="crown" class="w-4 h-4"></i>
+              <span>ACESSO COMPLETO &bull; LANÇAMENTO EXCLUSIVO</span>
+            </div>
           </div>
 
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center leading-tight mb-3">
             Ative o CineMaker agora e tenha uma produtora audiovisual completa na sua tela.
           </h2>
 
-          <p class="mt-4 text-sm sm:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          <p class="text-sm sm:text-base text-gray-300 text-center max-w-2xl mx-auto leading-relaxed mb-10">
             Tenha em mãos a máquina de criar vídeos com inteligência artificial mais ágil e acessível do mercado, pronta para rodar sem atrito.
           </p>
 
-          <!-- Itens Inclusos Checklist -->
-          <div class="my-8 max-w-xl mx-auto text-left space-y-3 bg-obsidian-light/60 p-5 sm:p-6 rounded-2xl border border-white/5">
-            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
-              <span><strong>Link direto do app nativo CineMaker</strong> (Acesso vitalício)</span>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Coluna Visual: Mockup do Produto -->
+            <div class="lg:col-span-5 flex flex-col items-center">
+              <div class="glass rounded-2xl p-3 border border-white/10 shadow-2xl shadow-magenta/15 relative group w-full max-w-sm">
+                <img 
+                  src="/static/images/cinemaker-mockup.jpg" 
+                  alt="CineMaker Mockup - Pacote Completo" 
+                  class="w-full h-auto object-cover rounded-xl"
+                  loading="lazy"
+                >
+                <div class="mt-3 p-2.5 rounded-lg bg-obsidian-light text-center border border-white/5">
+                  <span class="text-[11px] font-bold text-ouro uppercase tracking-wider block">Pacote Completo de Acesso</span>
+                  <span class="text-[10px] text-gray-400">App Nativo Flow + Guia em Vídeo + Presets</span>
+                </div>
+              </div>
             </div>
-            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
-              <span><strong>Guia Prático em Vídeo</strong> ensinando cada botão e técnica de consistência</span>
-            </div>
-            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
-              <span><strong>Suporte a 16:9 (Horizontal) e 9:16 (Vertical)</strong> nativo</span>
-            </div>
-            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
-              <span><strong>Legendas automáticas seguras em 7 idiomas</strong> com estilos virais</span>
-            </div>
-            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
-              <span><strong>Mixagem de estúdio</strong> com ducking inteligente ou exportação mudo</span>
-            </div>
-            <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
-              <span><strong>Sem necessidade de assinatura paga no Flow</strong></span>
-            </div>
-          </div>
 
-          <!-- Botão de Ação CTA Ouro Principal -->
-          <div class="mt-6 mb-4">
-            <a href="https://pay.hotmart.com/L107410278Y?checkoutMode=2&off=yjri55cz"
-               class="btn-gold cta-pulse inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-2xl text-base sm:text-lg font-black tracking-wide shadow-2xl shadow-ouro/40 hover:scale-105 active:scale-95 transition-all">
-              <i data-lucide="clapperboard" class="w-5 h-5 text-black"></i>
-              <span>QUERO ATIVAR O CINEMAKER AGORA</span>
-              <i data-lucide="arrow-right" class="w-5 h-5 text-black"></i>
-            </a>
+            <!-- Coluna Detalhes: Checklist + Botão Oficial Hotmart -->
+            <div class="lg:col-span-7">
+              <!-- Itens Inclusos Checklist -->
+              <div class="space-y-3 bg-obsidian-light/60 p-5 sm:p-6 rounded-2xl border border-white/5 text-left mb-6">
+                <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+                  <span><strong>Link direto do app nativo CineMaker</strong> (Acesso vitalício)</span>
+                </div>
+                <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+                  <span><strong>Guia Prático em Vídeo</strong> ensinando cada botão e técnica de consistência</span>
+                </div>
+                <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+                  <span><strong>Suporte a 16:9 (Horizontal) e 9:16 (Vertical)</strong> nativo</span>
+                </div>
+                <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+                  <span><strong>Legendas automáticas seguras em 7 idiomas</strong> com estilos virais</span>
+                </div>
+                <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+                  <span><strong>Mixagem de estúdio</strong> com ducking inteligente ou exportação mudo</span>
+                </div>
+                <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-200">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-ouro flex-shrink-0"></i>
+                  <span><strong>Sem necessidade de assinatura paga no Flow</strong></span>
+                </div>
+              </div>
+
+              <!-- Botão de Ação CTA Ouro Principal (Oficial Hotmart) -->
+              <div class="text-center lg:text-left mb-4">
+                <a onclick="return false;" 
+                   href="https://pay.hotmart.com/C108132324U?checkoutMode=2&off=zpo5cf1n" 
+                   class="hotmart-fb hotmart__button-checkout btn-gold cta-pulse inline-flex items-center justify-center gap-3 w-full py-4 sm:py-5 px-6 sm:px-8 rounded-2xl text-base sm:text-lg font-black tracking-wide shadow-2xl shadow-ouro/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
+                  <i data-lucide="clapperboard" class="w-5 h-5 text-black"></i>
+                  <span>Comprar Agora</span>
+                  <i data-lucide="arrow-right" class="w-5 h-5 text-black"></i>
+                </a>
+              </div>
+            </div>
           </div>
 
           <!-- Selos de Segurança e Garantia -->
-          <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs text-gray-400">
+          <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs text-gray-400">
             <div class="flex items-center gap-1.5">
               <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
               <span>Garantia Incondicional de 7 Dias</span>
@@ -1106,7 +1258,7 @@
             </div>
             <div class="flex items-center gap-1.5">
               <i data-lucide="lock" class="w-4 h-4 text-ciano"></i>
-              <span>Pagamento 100% Criptografado</span>
+              <span>Pagamento 100% Criptografado Hotmart</span>
             </div>
           </div>
 
