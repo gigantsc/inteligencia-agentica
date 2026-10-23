@@ -144,6 +144,13 @@
       0%, 100% { box-shadow: 0 0 16px rgba(37, 211, 102, 0.25); }
       50% { box-shadow: 0 0 30px rgba(37, 211, 102, 0.55); }
     }
+    .pulse-amber {
+      animation: pulseAmber 2.6s infinite;
+    }
+    @keyframes pulseAmber {
+      0%, 100% { box-shadow: 0 0 16px rgba(245, 158, 11, 0.25); }
+      50% { box-shadow: 0 0 32px rgba(245, 158, 11, 0.6); }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-magenta/30 selection:text-white relative">
@@ -251,6 +258,34 @@
             </p>
           </div>
           <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-ouro group-hover:translate-x-1 transition-all flex-shrink-0"></i>
+        </div>
+      </a>
+
+      <!-- BOTÃO 3: HOT ACHADINHOS (GRUPO WHATSAPP VIP #2) -->
+      <a 
+        href="https://chat.whatsapp.com/HcdMbPrvi0O3jmd62vmB5n" 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="glass rounded-2xl p-4 sm:p-4.5 block border-2 border-amber-500/50 bg-gradient-to-r from-amber-500/15 via-obsidian-card to-obsidian-card hover:border-amber-400 shadow-xl pulse-amber group"
+      >
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-amber-400 flex-shrink-0 group-hover:scale-110 transition-transform">
+            <i data-lucide="flame" class="w-6 h-6"></i>
+          </div>
+          <div class="min-w-0 flex-grow text-left">
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/25 text-amber-300 border border-amber-500/40">
+                🔥 Grupo VIP #2 &bull; Grupo 1 Lotado
+              </span>
+            </div>
+            <h2 class="text-sm sm:text-base font-extrabold text-white group-hover:text-amber-300 transition-colors leading-snug">
+              Hot Achadinhos &bull; Promos & Ofertas
+            </h2>
+            <p class="text-[11px] text-gray-300 leading-tight mt-0.5">
+              Achados secretos, cupons e descontos de até 80% OFF. Entre antes que este lote também!
+            </p>
+          </div>
+          <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-amber-400 group-hover:translate-x-1 transition-all flex-shrink-0"></i>
         </div>
       </a>
 
