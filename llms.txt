@@ -16,6 +16,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [WhatsApp e Agentes de IA: Como Conectar o Hermes Agent ao WhatsApp sem Pagar Mensalidades em Plataformas SaaS](https://inteligenciaagentica.com.br/blog/whatsapp-agentes-ia-automacao-atendimento-baileys)
+- **Data de Publicação:** 2026-10-23
+- **Tags:** WhatsApp, Agentes de IA, Automação, Baileys, Hermes Agent, Atendimento, Negócios, Produtividade
+- **Resumo:** Descubra como integrar o Hermes Agent diretamente ao WhatsApp através da ponte nativa Baileys. Crie um assistente executivo e operacional autônomo na sua VPS para atendimento, triagem, despacho de arquivos e transcrição de áudios com custo zero de mensalidade de software e soberania total sobre seus dados.
+- **URL:** https://inteligenciaagentica.com.br/blog/whatsapp-agentes-ia-automacao-atendimento-baileys
+
 ### [Google Workspace e Agentes de IA: Como Criar uma Secretária Executiva Autônoma para Gmail, Agenda e Planilhas sem Pagar Licenças Abusivas em Dólar](https://inteligenciaagentica.com.br/blog/google-workspace-agentes-ia-automacao-backoffice-gmail-sheets)
 - **Data de Publicação:** 2026-10-22
 - **Tags:** Google Workspace, Agentes de IA, Automação, Gmail, Google Sheets, Produtividade, Hermes Agent, Negócios
