@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <!-- Google Consent Mode V2 Default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M5JDK6W4');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18FQCREKV5"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-18FQCREKV5');
+  </script>
+
+
+  <!-- Cookie Consent Banner & Mode V2 Controller -->
+  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <script>
+    window.cookieconsentConfig = {
+      gtmId: 'GTM-M5JDK6W4',
+      autoLoadGtm: false
+    };
+  </script>
+  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protocolo A2A: Como Conectar Agentes de IA entre Diferentes Empresas, Servidores e Departamentos | Inteligência Agêntica</title>
+  <meta name="description" content="Entenda o Protocolo Agent-to-Agent (A2A v1.0), o padrão aberto da Linux Foundation integrado ao Hermes Agent. Saiba como agentes de inteligência artificial autônomos se comunicam, descobrem habilidades via Agent Card e colaboram em redes corporativas e transações B2B com total segurança e soberania.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/blog/protocolo-a2a-comunicacao-agente-a-agente-b2b">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/blog/protocolo-a2a-comunicacao-agente-a-agente-b2b">
+  <meta property="og:title" content="Protocolo A2A: Como Conectar Agentes de IA entre Diferentes Empresas, Servidores e Departamentos">
+  <meta property="og:description" content="Entenda o Protocolo Agent-to-Agent (A2A v1.0), o padrão aberto da Linux Foundation integrado ao Hermes Agent. Saiba como agentes de inteligência artificial autônomos se comunicam, descobrem habilidades via Agent Card e colaboram em redes corporativas e transações B2B com total segurança e soberania.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/protocolo-a2a-comunicacao-agente-a-agente-b2b.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://inteligenciaagentica.com.br/blog/protocolo-a2a-comunicacao-agente-a-agente-b2b">
+  <meta name="twitter:title" content="Protocolo A2A: Como Conectar Agentes de IA entre Diferentes Empresas, Servidores e Departamentos">
+  <meta name="twitter:description" content="Entenda o Protocolo Agent-to-Agent (A2A v1.0), o padrão aberto da Linux Foundation integrado ao Hermes Agent. Saiba como agentes de inteligência artificial autônomos se comunicam, descobrem habilidades via Agent Card e colaboram em redes corporativas e transações B2B com total segurança e soberania.">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/protocolo-a2a-comunicacao-agente-a-agente-b2b.jpg">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <!-- Prism Syntax Theme -->
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #07070A; color: #E0E0E6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    ::selection { background: rgba(192, 0, 255, 0.35); color: #fff; }
+    .glass { background: rgba(17, 17, 24, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); }
+    .glass-card { background: rgba(14, 14, 20, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+    .glass-card:hover { border-color: rgba(0, 229, 255, 0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); }
+    .gradient-text { background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text-gold { background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gold { background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%); color: #07070A; font-weight: 700; transition: all 0.2s ease; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(223, 186, 107, 0.35); }
+    .hero-glow { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.16; pointer-events: none; }
+    .top-bar { background: rgba(7, 7, 10, 0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .on-air-badge:hover {
+      transform: scale(1.05);
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    
+    /* Article typography styling */
+    .prose-custom { font-size: 1.05rem; line-height: 1.8; color: #D1D5DB; }
+    .prose-custom p { margin-bottom: 1.5rem; }
+    .prose-custom h1 { font-size: 2.25rem; font-weight: 900; color: #fff; margin-top: 2.5rem; margin-bottom: 1.25rem; line-height: 1.2; }
+    .prose-custom h2 { font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; }
+    .prose-custom h3 { font-size: 1.25rem; font-weight: 700; color: #00E5FF; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose-custom ul, .prose-custom ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    .prose-custom ul { list-style-type: disc; }
+    .prose-custom ol { list-style-type: decimal; }
+    .prose-custom li { margin-bottom: 0.5rem; }
+    .prose-custom strong { color: #fff; font-weight: 700; }
+    .prose-custom a { color: #00E5FF; text-decoration: underline; text-underline-offset: 3px; }
+    .prose-custom a:hover { color: #F0D48A; }
+    .prose-custom blockquote { border-left: 4px solid #00E5FF; background: rgba(0, 229, 255, 0.05); padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 0.75rem 0.75rem 0; color: #E5E7EB; }
+    .prose-custom blockquote p { margin-bottom: 0; }
+    .prose-custom code:not(pre code) { background: rgba(255, 255, 255, 0.08); color: #00E5FF; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+    .prose-custom pre { background: #0A0A0F !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.25rem; margin: 1.75rem 0; overflow-x: auto; }
+    .prose-custom pre code { color: #E0E0E6; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; }
+    .prose-custom table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+    .prose-custom th { background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .prose-custom td { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .prose-custom tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    .prose-custom hr { border-color: rgba(255, 255, 255, 0.08); margin: 2.5rem 0; }
+  </style>
+
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Protocolo A2A: Como Conectar Agentes de IA entre Diferentes Empresas, Servidores e Departamentos","description":"Entenda o Protocolo Agent-to-Agent (A2A v1.0), o padrão aberto da Linux Foundation integrado ao Hermes Agent. Saiba como agentes de inteligência artificial autônomos se comunicam, descobrem habilidades via Agent Card e colaboram em redes corporativas e transações B2B com total segurança e soberania.","image":"https://inteligenciaagentica.com.br/static/images/protocolo-a2a-comunicacao-agente-a-agente-b2b.jpg","datePublished":"2026-10-24","dateModified":"2026-10-24","author":{"@type":"Person","name":"Jean Pierre Schramm","url":"https://linkedin.com/in/jeanpierreschramm"},"publisher":{"@type":"Organization","name":"Inteligência Agêntica","url":"https://inteligenciaagentica.com.br","logo":{"@type":"ImageObject","url":"https://inteligenciaagentica.com.br/static/logos.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://inteligenciaagentica.com.br/blog/protocolo-a2a-comunicacao-agente-a-agente-b2b"},"keywords":"protocolo a2a, agent to agent protocol, hermes agent a2a, comunicacao entre agentes de ia, ia agentica b2b, agent card json, redes de agentes autonomos, orquestracao multi-agente distribuida"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://inteligenciaagentica.com.br"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://inteligenciaagentica.com.br/blog"},{"@type":"ListItem","position":3,"name":"Protocolo A2A: Como Conectar Agentes de IA entre Diferentes Empresas, Servidores e Departamentos","item":"https://inteligenciaagentica.com.br/blog/protocolo-a2a-comunicacao-agente-a-agente-b2b"}]}]</script>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5JDK6W4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- TOP NAVBAR -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-11 sm:h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="/" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Início</a>
+
+        <!-- Dropdown Soluções -->
+        <div class="relative group">
+          <button type="button" class="text-sm font-semibold text-gray-300 group-hover:text-white transition-colors flex items-center gap-1.5 py-2 focus:outline-none cursor-pointer">
+            <span>Soluções</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-ciano group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+          
+          <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 absolute top-full left-0 w-80 pt-2 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="glass rounded-2xl p-3 border border-white/10 bg-obsidian-card/95 backdrop-blur-2xl shadow-2xl shadow-black/80 space-y-1">
+              <!-- Item 1: CineMaker -->
+              <a href="/cinemaker" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-magenta/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-magenta/15 border border-magenta/30 flex items-center justify-center text-magenta flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="video" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-magenta-300 transition-colors">CineMaker</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Máquina de criar vídeos longos com IA em 1 clique sem assinatura no Flow.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: Zaalys -->
+              <a href="/zaalys" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ciano/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ciano/15 border border-ciano/30 flex items-center justify-center text-ciano flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="radio" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ciano transition-colors">Zaalys</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Lives & IA</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Sua live no TikTok Shop e vídeos com IA rodando no automático.</p>
+                </div>
+              </a>
+
+              <!-- Item 3: Comunidade Inteligência Agêntica -->
+              <a href="/#oferta" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ouro/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ouro/15 border border-ouro/30 flex items-center justify-center text-ouro flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="crown" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ouro-light transition-colors">Comunidade Agêntica</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ciano/20 text-ciano border border-ciano/30">Ecossistema</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">4 encontros semanais ao vivo, códigos prontos e bunker de agentes 24/7.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Cases</a>
+        <a href="/blog" class="text-sm font-bold text-ciano border-b-2 border-ciano pb-0.5 transition-colors">Blog</a>
+        <a href="/#oferta" class="btn-gold px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide">
+          Acessar Comunidade
+        </a>
+      </div>
+
+      <!-- Mobile Actions (visible on mobile, hidden on md+) -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="/ao-vivo" class="on-air-badge text-[10px] py-1 px-2.5" title="Encontros ao Vivo">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <button id="mobileMenuBtn" type="button" class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl focus:outline-none transition-colors border border-white/10" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-6 h-6 block menu-open-icon"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden menu-close-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-obsidian-card/95 backdrop-blur-2xl px-5 py-6 space-y-4 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-2">
+        <a href="/" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="home" class="w-4 h-4 text-gray-400"></i>
+            <span>Início</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <!-- Bloco Soluções Mobile -->
+        <div class="rounded-xl bg-white/[0.02] border border-white/5 p-2">
+          <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-ciano"></i>
+            <span>Soluções & Produtos</span>
+          </div>
+          <div class="space-y-1 mt-1">
+            <a href="/cinemaker" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-magenta-300 hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="video" class="w-4 h-4 text-magenta"></i>
+                <span>CineMaker (Vídeos IA)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+            </a>
+            <a href="/zaalys" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="radio" class="w-4 h-4 text-ciano"></i>
+                <span>Zaalys (Lives TikTok)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Auto</span>
+            </a>
+            <a href="/#oferta" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ouro transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="crown" class="w-4 h-4 text-ouro"></i>
+                <span>Comunidade Inteligência Agêntica</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ciano/20 text-ciano border border-ciano/30">Membros</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-red-400 hover:text-red-300 bg-red-950/30 border border-red-800/40 hover:bg-red-950/50 transition-colors">
+          <span class="flex items-center gap-3">
+            <span class="on-air-dot"></span>
+            <span>Encontros ao Vivo</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded">Toda Quinta</span>
+        </a>
+
+        <a href="/cases" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+            <span>Cases de Uso</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/blog" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-ciano bg-white/5 border border-ciano/20 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="newspaper" class="w-4 h-4 text-ciano"></i>
+            <span>Blog & Artigos</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-ciano"></i>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <a href="/#oferta" class="mobile-nav-link w-full btn-gold py-3.5 px-5 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-ouro/20">
+          <span>Acessar Comunidade</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN BODY -->
+  <main class="pt-20 flex-grow">
+    
+  <div class="relative py-10 overflow-hidden">
+    <div class="hero-glow bg-magenta/40 -top-40 right-0 w-[500px] h-[500px] absolute"></div>
+    <div class="hero-glow bg-ciano/30 top-1/2 -left-40 w-[500px] h-[500px] absolute"></div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Início</a>
+        <span>&rsaquo;</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span>&rsaquo;</span>
+        <span class="text-ciano truncate max-w-[200px] sm:max-w-none">Protocolo A2A: Como Conectar Agentes de IA entre Diferentes Empresas, Servidores e Departamentos</span>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="mb-10 text-center sm:text-left">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <a href="/tags/protocolo-a2a" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Protocolo A2A</a><a href="/tags/agentes-de-ia" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Agentes de IA</a><a href="/tags/multi-agente" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Multi-Agente</a><a href="/tags/b2b" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#B2B</a><a href="/tags/hermes-agent" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Hermes Agent</a><a href="/tags/automacao" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Automação</a><a href="/tags/seguranca" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Segurança</a><a href="/tags/negocios" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Negócios</a>
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+          Protocolo A2A: Como Conectar Agentes de IA entre Diferentes Empresas, Servidores e Departamentos
+        </h1>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/10 text-xs text-gray-400">
+          <div class="flex items-center gap-3">
+            <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-10 h-10 rounded-full border border-white/10">
+            <div>
+              <p class="font-bold text-white text-sm">Jean Pierre Schramm</p>
+              <p class="text-[11px] text-gray-400">Fundador da JePierre & Especialista em Agentes de IA</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-10-24</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 13 min de leitura</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      
+      <div class="mb-12 rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
+        <img src="https://inteligenciaagentica.com.br/static/images/protocolo-a2a-comunicacao-agente-a-agente-b2b.jpg" alt="Protocolo A2A: Como Conectar Agentes de IA entre Diferentes Empresas, Servidores e Departamentos" class="w-full h-auto max-h-[460px] object-cover">
+      </div>
+      
+
+      <!-- Table of Contents (if > 1 heading) -->
+      
+      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
+          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
+        </h3>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#alem-do-swarm-local-a-necessidade-de-conectar-agentes-no-mundo-real" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Além do Swarm Local: A Necessidade de Conectar Agentes no Mundo Real
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-que-e-o-protocolo-a2a-agent-to-agent-v10" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O que é o Protocolo A2A (Agent-to-Agent v1.0)
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#a-anatomia-da-comunicacao-agent-card-json-rpc-20-e-sse" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> A Anatomia da Comunicação: Agent Card, JSON-RPC 2.0 e SSE
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#1-o-agent-card-well-knownagent-cardjson" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 1. O Agent Card (/.well-known/agent-card.json)
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#2-mensageria-estruturada-via-json-rpc-20" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 2. Mensageria Estruturada via JSON-RPC 2.0
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#3-streaming-server-sent-events-sse" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 3. Streaming Server-Sent Events (SSE)
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#tabela-comparativa-swarms-locais-vs-apis-tradicionais-vs-protocolo-a2a" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Tabela Comparativa: Swarms Locais vs. APIs Tradicionais vs. Protocolo A2A
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-toolset-a2a-no-hermes-agent-comandos-e-operacoes-praticas" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Toolset A2A no Hermes Agent: Comandos e Operações Práticas
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#configuracao-elegante-no-configyaml" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Configuração Elegante no config.yaml
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-bunker-de-seguranca-a2a-blindagem-empresarial-e-governanca" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Bunker de Segurança A2A: Blindagem Empresarial e Governança
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#3-casos-de-uso-reais-para-reduzir-custos-e-otimizar-operacoes" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 3 Casos de Uso Reais para Reduzir Custos e Otimizar Operações
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#caso-1-a-ponte-desktop-vps-offloading-de-tarefas-pesadas" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Caso 1: A Ponte Desktop-VPS (Offloading de Tarefas Pesadas)
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#caso-2-cotacao-e-pedidos-b2b-sem-friccao-humana" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Caso 2: Cotação e Pedidos B2B Sem Fricção Humana
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#caso-3-federacao-departamental-em-empresas-consolidadas" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Caso 3: Federação Departamental em Empresas Consolidadas
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#conclusao-o-proximo-salto-da-automacao-corporativa" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Conclusão: O Próximo Salto da Automação Corporativa
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Main Article Content -->
+      <div class="prose-custom">
+        <blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Protocolo A2A (Agent-to-Agent v1.0)</strong> é uma especificação aberta, gerenciada pela <strong>Linux Foundation</strong>, projetada para permitir que sistemas autônomos de inteligência artificial se comuniquem, negociem, deleguem tarefas e troquem informações de maneira padronizada, segura e agnóstica de framework. Integrado nativamente ao <strong>Hermes Agent</strong> (Nous Research), o A2A resolve o principal limitador das automações tradicionais: a dependência de enxames locais que rodam apenas na mesma máquina física. Com o A2A, um agente rodando no notebook de um executivo pode despachar tarefas de pesquisa pesada para uma VPS Linux na nuvem, ou o agente de compras de uma empresa pode dialogar diretamente com o agente de vendas de um fornecedor parceiro (B2B agêntico). A comunicação ocorre via chamadas JSON-RPC 2.0 e Server-Sent Events (SSE), baseando-se na leitura dinâmica de um <strong>Agent Card</strong> (<code>/.well-known/agent-card.json</code>), que lista as habilidades públicas do agente remoto, sob um bunker rigoroso de segurança com credenciais dedicadas por par (<code>A2A_PEER_TOKENS</code>), sanitização de injeção de prompt e travas automáticas contra loops infinitos de diálogo.</p>
+</blockquote>
+<hr>
+<h2 id="alem-do-swarm-local-a-necessidade-de-conectar-agentes-no-mundo-real" class="scroll-mt-24 group flex items-center justify-between">Além do Swarm Local: A Necessidade de Conectar Agentes no Mundo Real <a href="#alem-do-swarm-local-a-necessidade-de-conectar-agentes-no-mundo-real" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Nos últimos meses, grande parte das discussões corporativas sobre inteligência artificial concentrou-se na criação de <strong>Swarms</strong> (enxames multi-agentes). Nessa abordagem, múltiplos subagentes colaboram para cumprir um objetivo: um arquiteto cria o plano, um desenvolvedor escreve o código e um revisor avalia a entrega.</p>
+<p>Entretanto, para empresários, diretores e gestores que lideram negócios consolidados, essa abordagem local rapidamente esbarra em limites arquiteturais intransponíveis:</p>
+<ol>
+<li><strong>A Barreira da Mesma Máquina (Process Isolation):</strong><br>Em frameworks tradicionais (como <code>delegate_task</code> ou subagentes locais), todos os agentes precisam residir no mesmo computador ou servidor. Isso significa que você não consegue fazer o agente de uma filial remota solicitar dados de estoque ao agente da matriz sem recorrer a gambiarras complexas de sincronização de arquivos.</li>
+<li><strong>O Risco da Mistura Indesejada de Dados Sensíveis:</strong><br>Colocar todos os agentes no mesmo ambiente obriga a compartilhar credenciais. O agente comercial não deve ter acesso às chaves de banco de dados do agente financeiro ou do RH. Departamentos exigem fronteiras de segurança sólidas e auditoria independente.</li>
+<li><strong>A Ausência de um Padrão de Comunicação Entre Empresas (B2B):</strong><br>Quando a sua empresa precisa consultar o prazo de entrega de um fornecedor ou enviar um pedido de compra, o processo atual é manual: um ser humano envia um e-mail ou uma mensagem no WhatsApp para outro ser humano responder. Se cada empresa construir agentes isolados que não conseguem conversar entre si em uma linguagem comum, teremos apenas &quot;ilhas de IA&quot;.</li>
+</ol>
+<p>A resposta para essa desconexão é a padronização aberta. Assim como o protocolo <strong>HTTP</strong> unificou a navegação na web e o protocolo <strong>SMTP</strong> padronizou a troca de e-mails em escala global, o <strong>Protocolo A2A (Agent-to-Agent)</strong> surge como o alicerce fundamental para a <strong>Internet dos Agentes de IA</strong>.</p>
+<hr>
+<h2 id="o-que-e-o-protocolo-a2a-agent-to-agent-v10" class="scroll-mt-24 group flex items-center justify-between">O que é o Protocolo A2A (Agent-to-Agent v1.0) <a href="#o-que-e-o-protocolo-a2a-agent-to-agent-v10" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O protocolo <strong>A2A</strong> foi desenvolvido com um objetivo cristalino: criar um padrão aberto para que agentes inteligentes operem como entidades distribuídas na rede. Sob o guarda-chuva de governança neutra da <strong>Linux Foundation</strong> (em cooperação com gigantes de tecnologia e laboratórios de vanguarda como a <strong>Nous Research</strong>), o protocolo não favorece um ecossistema específico: ele permite a interoperabilidade imediata entre o Hermes Agent, LangChain, CrewAI, AutoGen, Google Agent Development Kit (ADK) ou qualquer código construído sobre o <code>a2a-sdk</code> oficial.</p>
+<p>No ecossistema do <strong>Hermes Agent</strong>, o protocolo opera em duas vias perfeitamente integradas:</p>
+<ul>
+<li><strong>Modo Cliente (Outbound):</strong> Seu agente descobre peers na rede interna ou na internet, consulta o catálogo de serviços do agente remoto e envia tarefas com acompanhamento em tempo real.</li>
+<li><strong>Modo Servidor (Inbound):</strong> Seu agente torna-se um nó na rede (porta padrão <code>9900</code>), expondo suas competências por meio de um contrato público e recebendo demandas externas com isolamento total de execução.</li>
+</ul>
+<hr>
+<h2 id="a-anatomia-da-comunicacao-agent-card-json-rpc-20-e-sse" class="scroll-mt-24 group flex items-center justify-between">A Anatomia da Comunicação: Agent Card, JSON-RPC 2.0 e SSE <a href="#a-anatomia-da-comunicacao-agent-card-json-rpc-20-e-sse" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A arquitetura do A2A elimina a necessidade de programar integrações REST proprietárias para cada ferramenta. O processo baseia-se em três pilares fundamentais:</p>
+<pre><code>┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   EMPRESA A <span class="token punctuation">(</span>AGENTE CLIENTE<span class="token punctuation">)</span>                                     │
+│  - Hermes Agent rodando no Desktop ou Servidor Local                                             │
+│  - Toolset A2A Ativo: a2a_discover, a2a_call, a2a_orchestrate                                    │
+└──────────────────────────────────────────────┬───────────────────────────────────────────────────┘
+                                               │
+                                               │ <span class="token number">1</span>. GET /.well-known/agent-card.json
+                                               │    <span class="token punctuation">(</span>Descoberta dinâmica de competências<span class="token punctuation">)</span>
+                                               ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   EMPRESA B <span class="token punctuation">(</span>AGENTE REMOTO<span class="token punctuation">)</span>                                      │
+│  - Gateway A2A Ativo <span class="token punctuation">(</span>Porta <span class="token number">9900</span><span class="token punctuation">)</span>                                                                │
+│  - Serve o <span class="token string">"Agent Card"</span> canônico com habilidades públicas anunciadas                             │
+└──────────────────────────────────────────────┬───────────────────────────────────────────────────┘
+                                               │
+                                               │ <span class="token number">2</span>. Handshake Criptográfico <span class="token operator">&amp;</span> Autenticação Bearer
+                                               │    Validação de Identidade via A2A_PEER_TOKENS
+                                               ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                              DESPACHO <span class="token operator">&amp;</span> EXECUÇÃO DA DEMANDA                                      │
+│  - POST / via JSON-RPC <span class="token number">2.0</span> <span class="token punctuation">(</span>Método: SendMessage ou SendStreamingMessage<span class="token punctuation">)</span>                         │
+│  - Sessão Isolada com contextId dedicado                                                         │
+│  - Streaming de Resposta via Server-Sent Events <span class="token punctuation">(</span>SSE<span class="token punctuation">)</span>                                            │
+│  - Proteção de Bunker: Filtro Anti-Injection + Redação Automática de Senhas                      │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+</code></pre><h3 id="1-o-agent-card-well-knownagent-cardjson" class="scroll-mt-24 group flex items-center justify-between">1. O Agent Card (<code>/.well-known/agent-card.json</code>) <a href="#1-o-agent-card-well-knownagent-cardjson" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Antes de delegar qualquer trabalho, o agente cliente faz uma requisição HTTP simples para a rota canônica <code>/.well-known/agent-card.json</code> do agente destino. Esse arquivo JSON estruturado funciona como o &quot;currículo profissional&quot; do agente, detalhando:</p>
+<ul>
+<li>O nome da entidade e a organização mantenedora;</li>
+<li>As ferramentas e habilidades habilitadas para uso público (ex: <code>pesquisa_de_mercado</code>, <code>consulta_estoque_pecas</code>, <code>geracao_relatorio_financeiro</code>);</li>
+<li>O tipo de autenticação exigido (ex: <code>Bearer Token</code>);</li>
+<li>O endpoint de recebimento de tarefas e webhooks de notificação push.</li>
+</ul>
+<h3 id="2-mensageria-estruturada-via-json-rpc-20" class="scroll-mt-24 group flex items-center justify-between">2. Mensageria Estruturada via JSON-RPC 2.0 <a href="#2-mensageria-estruturada-via-json-rpc-20" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>As tarefas não são disparadas como mensagens soltas de chat. Elas utilizam a especificação formal <strong>JSON-RPC 2.0</strong>, enviando métodos padronizados como <code>SendMessage</code> e <code>SendStreamingMessage</code>. O agente remoto processa a demanda dentro de uma sessão persistente vinculada a um <code>contextId</code> único, permitindo diálogos de múltiplos turnos caso seja necessário pedir esclarecimentos antes de finalizar a entrega.</p>
+<h3 id="3-streaming-server-sent-events-sse" class="scroll-mt-24 group flex items-center justify-between">3. Streaming Server-Sent Events (SSE) <a href="#3-streaming-server-sent-events-sse" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para operações que exigem raciocínio complexo ou processamento demorado, o protocolo A2A suporta streaming nativo. O agente cliente não precisa travar sua execução esperando minutos: ele recebe blocos de resposta e status parciais em tempo real, mantendo os operadores informados sobre o progresso.</p>
+<hr>
+<h2 id="tabela-comparativa-swarms-locais-vs-apis-tradicionais-vs-protocolo-a2a" class="scroll-mt-24 group flex items-center justify-between">Tabela Comparativa: Swarms Locais vs. APIs Tradicionais vs. Protocolo A2A <a href="#tabela-comparativa-swarms-locais-vs-apis-tradicionais-vs-protocolo-a2a" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para tomar decisões estratégicas de arquitetura, compreenda as diferenças operacionais de cada modelo:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Critério de Avaliação</th>
+<th align="left">Swarms Locais / <code>delegate_task</code></th>
+<th align="left">APIs REST Tradicionais / Webhooks</th>
+<th align="left">Protocolo A2A (Agent-to-Agent)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Alcance Geográfico</strong></td>
+<td align="left">Apenas a mesma máquina física ou contêiner local</td>
+<td align="left">Qualquer servidor na nuvem</td>
+<td align="left"><strong>Totalmente distribuído (Desktop, Nuvem, Servidores Locais e B2B)</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Flexibilidade de Entrada</strong></td>
+<td align="left">Depende de funções internas em Python/TypeScript</td>
+<td align="left">Esquemas JSON rígidos; quebra com mudanças de campos</td>
+<td align="left"><strong>Conversacional e orientado a objetivos (Goal-Driven)</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Descoberta de Habilidades</strong></td>
+<td align="left">Estática (definida no código fonte)</td>
+<td align="left">Manual (desenvolvedores precisam ler documentações Swagger)</td>
+<td align="left"><strong>Dinâmica e autônoma via <code>agent-card.json</code></strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Isolamento de Credenciais</strong></td>
+<td align="left">Baixo: agentes costumam compartilhar variáveis de ambiente</td>
+<td align="left">Alto: restrito aos endpoints da API</td>
+<td align="left"><strong>Máximo: cada agente retém suas próprias credenciais em bunkers locais</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Interoperabilidade de Stacks</strong></td>
+<td align="left">Restrito ao framework utilizado (ex: só Hermes ou só LangChain)</td>
+<td align="left">Universal entre sistemas de software</td>
+<td align="left"><strong>Universal entre frameworks de IA agêntica via padrão aberto Linux Foundation</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Proteção Contra Loops</strong></td>
+<td align="left">Depende do timeout do loop pai</td>
+<td align="left">Risco de loop infinito se não houver idempotência</td>
+<td align="left"><strong>Travas nativas anti-ping-pong integradas (<code>A2A_MAX_PINGPONG_TURNS</code>)</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="o-toolset-a2a-no-hermes-agent-comandos-e-operacoes-praticas" class="scroll-mt-24 group flex items-center justify-between">O Toolset A2A no Hermes Agent: Comandos e Operações Práticas <a href="#o-toolset-a2a-no-hermes-agent-comandos-e-operacoes-praticas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>No Hermes Agent, utilizar o protocolo A2A é tão simples quanto interagir com qualquer outra ferramenta do sistema operacional. As ferramentas são ativadas por plataforma ou sessão com o comando:</p>
+<pre><code class="language-bash">hermes tools <span class="token builtin class-name">enable</span> a2a <span class="token parameter variable">--platform</span> cli
+</code></pre><p>Com o toolset ativo, o agente ganha superpoderes de rede:</p>
+<ul>
+<li><strong><code>a2a_discover(url)</code></strong>: Acessa a URL remota de um parceiro ou filial, inspeciona o Agent Card e gera um sumário executivo das capacidades que aquele agente oferece.</li>
+<li><strong><code>a2a_call(agent, message, context_id)</code></strong>: Dispara uma missão para o agente indicado (usando o alias configurado ou uma URL direta) e recupera o resultado processado.</li>
+<li><strong><code>a2a_list()</code></strong>: Exibe o mapa de todos os agentes parceiros conhecidos, métricas de tempo de resposta e conversações salvas.</li>
+<li><strong><code>a2a_history(context_id)</code></strong>: Recupera o histórico completo de uma negociação ou tarefa técnica realizada anteriormente com outro agente.</li>
+<li><strong><code>a2a_orchestrate(capability, message, mode)</code></strong>: Permite a um agente maestro enviar uma tarefa para todos os agentes da sua rede que anunciem uma determinada especialidade. Os modos suportados são:<ul>
+<li><code>first</code>: Aceita a primeira resposta válida entregue;</li>
+<li><code>best</code>: Avalia as respostas recebidas e seleciona a mais completa e embasada;</li>
+<li><code>all</code>: Consolida e sintetiza as respostas de todos os nós em um único relatório executivo.</li>
+</ul>
+</li>
+</ul>
+<h3 id="configuracao-elegante-no-configyaml" class="scroll-mt-24 group flex items-center justify-between">Configuração Elegante no <code>config.yaml</code> <a href="#configuracao-elegante-no-configyaml" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para que os agentes se comuniquem com facilidade, você pode registrar seus parceiros de confiança diretamente no arquivo de configuração do Hermes:</p>
+<pre><code class="language-yaml"><span class="token key atrule">a2a_agents</span><span class="token punctuation">:</span>
+  <span class="token key atrule">pesquisador_nuvem</span><span class="token punctuation">:</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">"https://vps-pesquisa.suaempresa.com.br:9900"</span>
+    <span class="token key atrule">auth</span><span class="token punctuation">:</span>
+      <span class="token key atrule">type</span><span class="token punctuation">:</span> bearer
+      <span class="token key atrule">token</span><span class="token punctuation">:</span> <span class="token string">"secret_token_alpha_982"</span>
+    <span class="token key atrule">timeout</span><span class="token punctuation">:</span> <span class="token number">180</span>
+    <span class="token key atrule">capabilities</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>web_search<span class="token punctuation">,</span> extracao_dados<span class="token punctuation">,</span> sintese_academica<span class="token punctuation">]</span>
+
+  <span class="token key atrule">fornecedor_pecas</span><span class="token punctuation">:</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">"https://agente.fornecedorindustrial.com.br:9900"</span>
+    <span class="token key atrule">auth</span><span class="token punctuation">:</span>
+      <span class="token key atrule">type</span><span class="token punctuation">:</span> bearer
+      <span class="token key atrule">token</span><span class="token punctuation">:</span> <span class="token string">"token_b2b_fornecedor_2026"</span>
+    <span class="token key atrule">timeout</span><span class="token punctuation">:</span> <span class="token number">60</span>
+    <span class="token key atrule">capabilities</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>consulta_estoque<span class="token punctuation">,</span> orcamento_automatico<span class="token punctuation">]</span>
+</code></pre><p>Uma vez configurado, o operador não precisa lembrar de URLs técnicas. Basta solicitar em linguagem natural:<br><em>&quot;Peça ao pesquisador_nuvem para fazer uma varredura sobre os novos lançamentos de hardware e consolidar um resumo executivo.&quot;</em><br>O Hermes Agent resolve o roteamento, autentica a requisição, envia o payload e traz o retorno formatado.</p>
+<hr>
+<h2 id="o-bunker-de-seguranca-a2a-blindagem-empresarial-e-governanca" class="scroll-mt-24 group flex items-center justify-between">O Bunker de Segurança A2A: Blindagem Empresarial e Governança <a href="#o-bunker-de-seguranca-a2a-blindagem-empresarial-e-governanca" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para empresários seniores, a primeira preocupação diante de qualquer tecnologia de rede é a <strong>segurança da informação</strong>. Colocar um agente conectado à internet não pode significar abrir brechas no servidor corporativo. O Hermes Agent implementa uma estratégia de segurança rigorosa baseada no princípio <em>Secure by Default</em>:</p>
+<pre><code>                                  ESCUDO DO BUNKER A2A
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│  <span class="token number">1</span>. Restrição de Escuta <span class="token punctuation">(</span>Localhost First<span class="token punctuation">)</span>: Sem token configurado, não abre porta externa│
+│  <span class="token number">2</span>. Chaves Dedicadas por Par: <span class="token assign-left variable">A2A_PEER_TOKENS</span><span class="token operator">=</span><span class="token string">"filial_sp:tok1, fornecedor_a:tok2"</span>     │
+│  <span class="token number">3</span>. Filtro Anti-Prompt Injection: Entradas externas são tratadas como dados não confiáveis│
+│  <span class="token number">4</span>. Redação Automática de Segredos: Chaves de API e senhas são apagadas das saídas     │
+│  <span class="token number">5</span>. Trava Anti-Ping-Pong: Limite rígido de turnos para impedir consumo desenfreado     │
+│  <span class="token number">6</span>. Trilha Imutável de Auditoria: Log estruturado em ~/.hermes/a2a_audit.jsonl         │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+</code></pre><ol>
+<li><strong>Vínculo Local Restrito por Padrão:</strong><br>Se nenhum token de autenticação for configurado, o servidor A2A vincula-se exclusivamente a <code>127.0.0.1</code>. A exposição para IPs externos (<code>0.0.0.0</code>) é expressamente bloqueada pelo runtime a menos que um mecanismo de autorização Bearer esteja ativo.</li>
+<li><strong>Credenciais Granulares por Identidade (<code>A2A_PEER_TOKENS</code>):</strong><br>Em vez de usar uma única senha global para todos os parceiros, o Hermes permite associar um token a cada interlocutor: <code>A2A_PEER_TOKENS=&quot;filial_rj:tok_a81,parceiro_logistica:tok_b92&quot;</code>. Dessa forma, se a parceria com um fornecedor for encerrada, basta revogar o token correspondente sem impactar a comunicação das filiais.</li>
+<li><strong>Isolamento de Intenção e Prevenção de Injeção de Prompt:</strong><br>As mensagens enviadas por agentes externos são encapsuladas e rotuladas internamente como <strong>untrusted peer input</strong> (conteúdo externo não-confiável). Um agente externo não tem permissão para emitir comandos privilegiados de sistema (<code>/slash commands</code>, alteração de permissões ou comandos destrutivos de terminal) no seu servidor.</li>
+<li><strong>Redação Ativa de Dados Sensíveis (Outbound Redaction):</strong><br>Antes de despachar qualquer resposta de volta ao solicitante, o motor do Hermes analisa o texto à procura de strings com padrões de chaves criptográficas, tokens JWT ou senhas de banco de dados, substituindo-os por marcadores de redação para evitar vazamentos acidentais.</li>
+<li><strong>Proteção Anti-Looping (Ping-Pong Cap):</strong><br>Um risco real em redes de IA autônomas é dois agentes entrarem em um ciclo infinito de agradecimentos ou pedidos de detalhamento (<em>&quot;Obrigado!&quot; -&gt; &quot;Eu que agradeço, precisa de algo mais?&quot; -&gt; &quot;Estou satisfeito, e você?&quot;</em>), esgotando créditos de API. O parâmetro <code>A2A_MAX_PINGPONG_TURNS</code> impõe um teto estrito (padrão de 5 turnos por contexto), encerrando o diálogo com segurança.</li>
+<li><strong>Auditoria Forense Transparente:</strong><br>Todas as mensagens recebidas, respostas enviadas, tokens utilizados e tempos de execução são gravados de forma incremental em <code>~/.hermes/a2a_audit.jsonl</code>, fornecendo aos diretores compliance total sobre o tráfego agêntico.</li>
+</ol>
+<hr>
+<h2 id="3-casos-de-uso-reais-para-reduzir-custos-e-otimizar-operacoes" class="scroll-mt-24 group flex items-center justify-between">3 Casos de Uso Reais para Reduzir Custos e Otimizar Operações <a href="#3-casos-de-uso-reais-para-reduzir-custos-e-otimizar-operacoes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<h3 id="caso-1-a-ponte-desktop-vps-offloading-de-tarefas-pesadas" class="scroll-mt-24 group flex items-center justify-between">Caso 1: A Ponte Desktop-VPS (Offloading de Tarefas Pesadas) <a href="#caso-1-a-ponte-desktop-vps-offloading-de-tarefas-pesadas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p><strong>O Cenário:</strong> Você está em trânsito com um notebook ultrafino em uma reunião de negócios e precisa de uma pesquisa abrangente de mercado com extração de dezenas de páginas da web e compilação de gráficos.<br><strong>A Solução A2A:</strong> Em vez de drenar a bateria e a memória do seu laptop rodando processos locais, seu Hermes Desktop dispara uma chamada <code>a2a_call</code> para o Hermes Agent rodando na sua VPS Linux Hostinger de 8 núcleos. A VPS processa a demanda em segundo plano na nuvem e entrega o relatório consolidado pronto no seu aplicativo em poucos minutos.</p>
+<h3 id="caso-2-cotacao-e-pedidos-b2b-sem-friccao-humana" class="scroll-mt-24 group flex items-center justify-between">Caso 2: Cotação e Pedidos B2B Sem Fricção Humana <a href="#caso-2-cotacao-e-pedidos-b2b-sem-friccao-humana" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p><strong>O Cenário:</strong> Uma distribuidora de autopeças recebe dezenas de pedidos de cotação por dia via e-mail e planilhas, gastando horas de funcionários apenas consultando tabelas de preços e prazos de transporte.<br><strong>A Solução A2A:</strong> O agente de compras da oficina cliente conecta-se ao agente da distribuidora via A2A. O agente da oficina envia a lista de peças desejadas; o agente da distribuidora confere o estoque no ERP via MCP, aplica a tabela de desconto negociada e retorna um orçamento oficial assinado digitalmente em menos de 10 segundos, liberando a equipe comercial para focar em relacionamento de alto valor.</p>
+<h3 id="caso-3-federacao-departamental-em-empresas-consolidadas" class="scroll-mt-24 group flex items-center justify-between">Caso 3: Federação Departamental em Empresas Consolidadas <a href="#caso-3-federacao-departamental-em-empresas-consolidadas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p><strong>O Cenário:</strong> O departamento comercial precisa confirmar se um cliente está inadimplente antes de liberar um novo pedido de grande porte, mas a diretoria não permite que os vendedores acessem o banco de dados bancário ou as telas confidenciais do setor financeiro.<br><strong>A Solução A2A:</strong> O agente comercial pergunta ao agente financeiro via A2A: <em>&quot;O cliente CNPJ XX.XXX.XXX/0001-XX possui restrições para compras faturadas em R$ 50.000?&quot;</em>. O agente financeiro consulta o banco em seu ambiente isolado e responde apenas: <em>&quot;Status: Aprovado. Limite de crédito disponível de R$ 85.000&quot;</em>. Os dados sensíveis permanecem restritos ao bunker financeiro, enquanto a operação comercial flui sem gargalos.</p>
+<hr>
+<h2 id="conclusao-o-proximo-salto-da-automacao-corporativa" class="scroll-mt-24 group flex items-center justify-between">Conclusão: O Próximo Salto da Automação Corporativa <a href="#conclusao-o-proximo-salto-da-automacao-corporativa" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A inteligência artificial agêntica já superou a fase dos brinquedos de chat. A verdadeira revolução que separa negócios eficientes de empresas engessadas é a <strong>capacidade de orquestração autônoma e descentralizada</strong>.</p>
+<p>O <strong>Protocolo A2A</strong> não é apenas uma conveniência para desenvolvedores: ele é a infraestrutura que viabiliza a criação de ecossistemas empresariais dinâmicos, onde sistemas conversam com sistemas, departamentos operam de forma sinérgica e transações comerciais ocorrem com a velocidade do código e a segurança da criptografia moderna.</p>
+<p>No curso <strong>Inteligência Agêntica</strong>, ensinamos exatamente como construir, proteger e governar essa infraestrutura no mundo real: desde a montagem do seu primeiro agente em VPS até a orquestração de redes federadas de inteligência autônoma.</p>
+<p>Para aprofundar seu conhecimento e dominar a implementação prática de agentes autônomos soberanos, acompanhe nossos conteúdos e participe da comunidade oficial:<br>👉 <strong><a href="https://inteligenciaagentica.com.br">Conheça a Formação Inteligência Agêntica</a></strong></p>
+
+      </div>
+
+      <!-- Social Share -->
+      <div class="mt-12 py-6 border-y border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Compartilhar este artigo:</span>
+        <div class="flex items-center gap-2">
+          <a href="https://api.whatsapp.com/send?text=Protocolo%20A2A%3A%20Como%20Conectar%20Agentes%20de%20IA%20entre%20Diferentes%20Empresas%2C%20Servidores%20e%20Departamentos%20-%20https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fprotocolo-a2a-comunicacao-agente-a-agente-b2b" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fprotocolo-a2a-comunicacao-agente-a-agente-b2b" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Protocolo%20A2A%3A%20Como%20Conectar%20Agentes%20de%20IA%20entre%20Diferentes%20Empresas%2C%20Servidores%20e%20Departamentos&url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fprotocolo-a2a-comunicacao-agente-a-agente-b2b" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-white/5 text-gray-200 hover:bg-white/10 border border-white/10 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="twitter" class="w-4 h-4"></i> X / Twitter
+          </a>
+        </div>
+      </div>
+
+      <!-- Author Bio Box -->
+      <div class="mt-10 glass rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 border border-white/10">
+        <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-16 h-16 rounded-full border-2 border-ouro">
+        <div class="text-center sm:text-left">
+          <h4 class="text-base font-bold text-white mb-1">Escrito por Jean Pierre Schramm</h4>
+          <p class="text-xs text-gray-400 leading-relaxed mb-3">
+            Especialista em automações autônomas, arquitetura de VPS com Docker Swarm e ecossistemas agênticos com Hermes OS.
+          </p>
+          <div class="flex items-center justify-center sm:justify-start gap-3 text-xs text-ciano">
+            <a href="https://github.com/gigantsc" target="_blank" class="hover:underline">GitHub</a> &bull;
+            <a href="https://linkedin.com/in/jeanpierreschramm" target="_blank" class="hover:underline">LinkedIn</a> &bull;
+            <a href="https://x.com/jepierresolucoes" target="_blank" class="hover:underline">X</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Article Community Banner -->
+      <div class="mt-12 p-8 rounded-2xl glass border border-ouro/30 bg-gradient-to-r from-magenta/10 via-ciano/5 to-ouro/10 text-center">
+        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+          Comunidade Inteligência Agêntica
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Aprenda a aplicar tudo isso na prática</h3>
+        <p class="text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6">
+          Tenha acesso a 4 mentorias ao vivo por mês, biblioteca completa de skills e templates prontos para rodar no seu servidor.
+        </p>
+        <a href="/#oferta" class="btn-gold px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
+          Garantir Vaga na Comunidade <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Related Posts -->
+      
+      <div class="mt-16">
+        <h3 class="text-lg font-bold text-white mb-6">Artigos Relacionados</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+            <a href="/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Hermes Agent</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Guia Definitivo do Hermes Agent: As 30 Respostas Essenciais para Dominar seus Funcionários Digitais</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.</p>
+            </a>
+          
+            <a href="/blog/whatsapp-agentes-ia-automacao-atendimento-baileys" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">WhatsApp</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">WhatsApp e Agentes de IA: Como Conectar o Hermes Agent ao WhatsApp sem Pagar Mensalidades em Plataformas SaaS</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">Descubra como integrar o Hermes Agent diretamente ao WhatsApp através da ponte nativa Baileys. Crie um assistente executivo e operacional autônomo na sua VPS para atendimento, triagem, despacho de arquivos e transcrição de áudios com custo zero de mensalidade de software e soberania total sobre seus dados.</p>
+            </a>
+          
+        </div>
+      </div>
+      
+
+    </article>
+  </div>
+  
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/zaalys" class="text-ciano font-semibold hover:text-white transition-colors">⚡ Zaalys (Lives TikTok)</a></li>
+            <li><a href="/cinemaker" class="text-magenta-300 hover:text-white transition-colors">🎬 CineMaker (Vídeos IA)</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <div class="flex items-center gap-3 text-[11px] text-gray-500">
+          <button type="button" class="cookie-consent-banner-open hover:text-ciano transition-colors bg-transparent border-0 p-0 text-inherit cursor-pointer">Preferências de Cookies</button>
+          <span>&bull;</span>
+          <span class="text-[10px]">Ecossistema Hermes OS &bull; Powered by Nous Research</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Mobile Menu Controller
+    (() => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!mobileBtn || !mobileMenu) return;
+
+      const openIcon = mobileBtn.querySelector('.menu-open-icon');
+      const closeIcon = mobileBtn.querySelector('.menu-close-icon');
+
+      function toggleMenu(forceOpen) {
+        const isCurrentlyOpen = !mobileMenu.classList.contains('hidden');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isCurrentlyOpen;
+
+        if (shouldOpen) {
+          mobileMenu.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+          if (openIcon) openIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
