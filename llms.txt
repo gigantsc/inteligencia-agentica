@@ -16,6 +16,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Hermes Profiles: Como Criar Ambientes Blindados de Agentes de IA por Departamento (Financeiro, Jurídico, Vendas e TI) Sem Vazamento de Dados e Sem Pagar Novas Licenças](https://inteligenciaagentica.com.br/blog/hermes-profiles-ambientes-isolados-agentes-ia)
+- **Data de Publicação:** 2026-10-26
+- **Tags:** Hermes Profiles, Governança de IA, Multi-Tenant, Segurança da Informação, Hermes Agent, Automação Corporativa
+- **Resumo:** Aprenda como utilizar o sistema nativo de Profiles do Hermes Agent para rodar múltiplos agentes autônomos departamentais na mesma máquina ou VPS com isolamento estrito de memórias, credenciais (.env), personalidades (SOUL.md) e permissões de ferramentas, evitando contaminação cruzada e custos abusivos de SaaS.
+- **URL:** https://inteligenciaagentica.com.br/blog/hermes-profiles-ambientes-isolados-agentes-ia
+
 ### [Cofre de Credenciais (Credential Vault): Como Deixar Agentes de IA Fazerem Login e Pagamentos Sem Nunca Ver Suas Senhas](https://inteligenciaagentica.com.br/blog/cofre-de-credenciais-credential-vault-agentes-ia)
 - **Data de Publicação:** 2026-10-25
 - **Tags:** Agentes de IA, Segurança, Credential Vault, Automação, Hermes Agent, Negócios
