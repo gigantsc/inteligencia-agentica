@@ -135,19 +135,22 @@
   <!-- Lucide Icons (deferred) -->
   <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-  <!-- Hotmart Checkout Widget -->
-  <script type="text/javascript">
-    function importHotmart(){ 
-      var imported = document.createElement('script'); 
-      imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
-      document.head.appendChild(imported); 
-      var link = document.createElement('link'); 
-      link.rel = 'stylesheet'; 
-      link.type = 'text/css'; 
-      link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
-      document.head.appendChild(link);
-    } 
-    importHotmart(); 
+  <!-- Proteção e Estabilidade dos Botões de Checkout -->
+  <script>
+    (function() {
+      var _origRemove = Element.prototype.remove;
+      Element.prototype.remove = function() {
+        if (this && (
+          (this.matches && this.matches('a[href*="hotmart.com"]')) ||
+          (this.classList && this.classList.contains('hotmart-fb')) ||
+          this.id === 'mainBuyButton'
+        )) {
+          console.warn('[Checkout Guard] Tentativa indevida de remoção de botão de checkout bloqueada:', this);
+          return;
+        }
+        return _origRemove.apply(this, arguments);
+      };
+    })();
   </script>
 
   <style>
@@ -1254,9 +1257,10 @@
 
             <!-- CTA Mensal -->
             <div>
-              <a onclick="return false;"
-                 href="https://pay.hotmart.com/L107410278Y?checkoutMode=2&off=jm3etdun"
-                 class="hotmart-fb block w-full py-4 px-6 text-center text-sm font-bold text-ouro border border-ouro/40 rounded-xl hover:bg-ouro/10 transition-colors tracking-wide cursor-pointer"
+              <a href="https://pay.hotmart.com/L107410278Y?checkoutMode=2&off=jm3etdun"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="block w-full py-4 px-6 text-center text-sm font-bold text-ouro border border-ouro/40 rounded-xl hover:bg-ouro/10 transition-colors tracking-wide cursor-pointer"
                  data-event="cta_mensal_click">
                 ASSINAR MENSAL — R$&nbsp;97/MÊS
               </a>
@@ -1356,9 +1360,10 @@
 
               <!-- CTA Anual -->
               <div>
-                <a onclick="return false;"
-                   href="https://pay.hotmart.com/L107410278Y?checkoutMode=2&off=yjri55cz"
-                   class="hotmart-fb btn-gold cta-pulse block w-full py-4 px-6 text-center text-sm font-bold tracking-wide rounded-xl cursor-pointer"
+                <a href="https://pay.hotmart.com/L107410278Y?checkoutMode=2&off=yjri55cz"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn-gold cta-pulse block w-full py-4 px-6 text-center text-sm font-bold tracking-wide rounded-xl cursor-pointer"
                    data-event="cta_anual_click">
                   ASSINAR ANUAL — R$&nbsp;497/ANO
                 </a>

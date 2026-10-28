@@ -44,30 +44,22 @@
   </script>
   <script defer src="/static/cookieconsent.js?v=20261014"></script>
 
-  <!-- Hotmart Checkout Widget -->
-  <script type="text/javascript">
-    // Protege os botões de checkout contra remoção acidental por healthcheck da Hotmart
+  <!-- Proteção e Estabilidade dos Botões de Checkout -->
+  <script>
     (function() {
       var _origRemove = Element.prototype.remove;
       Element.prototype.remove = function() {
-        if (this && this.classList && (this.classList.contains('hotmart-fb') || this.classList.contains('hotmart-buy-btn') || this.id === 'mainBuyButton')) {
+        if (this && (
+          (this.matches && this.matches('a[href*="hotmart.com"]')) ||
+          (this.classList && (this.classList.contains('hotmart-fb') || this.classList.contains('hotmart-buy-btn'))) ||
+          this.id === 'mainBuyButton'
+        )) {
+          console.warn('[Checkout Guard] Tentativa indevida de remocao de botao de checkout bloqueada:', this);
           return;
         }
         return _origRemove.apply(this, arguments);
       };
     })();
-
-    function importHotmart(){ 
-      var imported = document.createElement('script'); 
-      imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
-      document.head.appendChild(imported); 
-      var link = document.createElement('link'); 
-      link.rel = 'stylesheet'; 
-      link.type = 'text/css'; 
-      link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
-      document.head.appendChild(link);
-    } 
-    importHotmart(); 
   </script>
 
   <meta charset="UTF-8">
@@ -1285,9 +1277,10 @@
 
               <!-- Botão de Ação CTA Ouro Principal (Oficial Hotmart) -->
               <div class="text-center lg:text-left mb-4">
-                <a onclick="return false;" 
-                   href="https://pay.hotmart.com/C108132324U?checkoutMode=2&off=zpo5cf1n" 
-                   class="hotmart-fb hotmart__button-checkout hotmart-buy-btn btn-gold cta-pulse inline-flex items-center justify-center gap-3 w-full py-4 sm:py-5 px-6 sm:px-8 rounded-2xl text-base sm:text-lg font-black tracking-wide shadow-2xl shadow-ouro/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer text-black"
+                <a href="https://pay.hotmart.com/C108132324U?checkoutMode=2&off=zpo5cf1n"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn-gold cta-pulse inline-flex items-center justify-center gap-3 w-full py-4 sm:py-5 px-6 sm:px-8 rounded-2xl text-base sm:text-lg font-black tracking-wide shadow-2xl shadow-ouro/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer text-black"
                    id="mainBuyButton">
                   <i data-lucide="clapperboard" class="w-5 h-5 text-black"></i>
                   <span>Comprar Agora</span>
@@ -1503,19 +1496,6 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       renderLucideIcons();
-
-      // Fallback para botão de compra Hotmart caso adblock bloqueie modal
-      document.querySelectorAll('.hotmart-fb').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const href = btn.getAttribute('href');
-          setTimeout(() => {
-            const fbOpen = document.querySelector('.fancybox-container, .fancybox-wrap, #fancybox-wrap');
-            if (!fbOpen && href) {
-              window.open(href, '_blank');
-            }
-          }, 450);
-        });
-      });
 
       // 1. Mobile Menu
       const mobileMenuBtn = document.getElementById('mobileMenuBtn');
