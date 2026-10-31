@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <!-- Google Consent Mode V2 Default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M5JDK6W4');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18FQCREKV5"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-18FQCREKV5');
+  </script>
+
+
+  <!-- Cookie Consent Banner & Mode V2 Controller -->
+  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <script>
+    window.cookieconsentConfig = {
+      gtmId: 'GTM-M5JDK6W4',
+      autoLoadGtm: false
+    };
+  </script>
+  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modelos Locais e Ollama no Hermes Agent: Soberania de Dados, LGPD Blindada e Custo Zero de API para Empresas | Inteligência Agêntica</title>
+  <meta name="description" content="Aprenda como rodar agentes de IA 100% locais na sua infraestrutura com Ollama e Hermes Agent. Elimine riscos de vazamento e multas da LGPD, proteja segredos comerciais e reduza a zero o custo de tokens em tarefas rotineiras com arquitetura híbrida de fallback.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/blog/modelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/blog/modelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero">
+  <meta property="og:title" content="Modelos Locais e Ollama no Hermes Agent: Soberania de Dados, LGPD Blindada e Custo Zero de API para Empresas">
+  <meta property="og:description" content="Aprenda como rodar agentes de IA 100% locais na sua infraestrutura com Ollama e Hermes Agent. Elimine riscos de vazamento e multas da LGPD, proteja segredos comerciais e reduza a zero o custo de tokens em tarefas rotineiras com arquitetura híbrida de fallback.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/modelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://inteligenciaagentica.com.br/blog/modelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero">
+  <meta name="twitter:title" content="Modelos Locais e Ollama no Hermes Agent: Soberania de Dados, LGPD Blindada e Custo Zero de API para Empresas">
+  <meta name="twitter:description" content="Aprenda como rodar agentes de IA 100% locais na sua infraestrutura com Ollama e Hermes Agent. Elimine riscos de vazamento e multas da LGPD, proteja segredos comerciais e reduza a zero o custo de tokens em tarefas rotineiras com arquitetura híbrida de fallback.">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/modelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero.jpg">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <!-- Prism Syntax Theme -->
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #07070A; color: #E0E0E6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    ::selection { background: rgba(192, 0, 255, 0.35); color: #fff; }
+    .glass { background: rgba(17, 17, 24, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); }
+    .glass-card { background: rgba(14, 14, 20, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+    .glass-card:hover { border-color: rgba(0, 229, 255, 0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); }
+    .gradient-text { background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text-gold { background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gold { background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%); color: #07070A; font-weight: 700; transition: all 0.2s ease; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(223, 186, 107, 0.35); }
+    .hero-glow { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.16; pointer-events: none; }
+    .top-bar { background: rgba(7, 7, 10, 0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .on-air-badge:hover {
+      transform: scale(1.05);
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    
+    /* Article typography styling */
+    .prose-custom { font-size: 1.05rem; line-height: 1.8; color: #D1D5DB; }
+    .prose-custom p { margin-bottom: 1.5rem; }
+    .prose-custom h1 { font-size: 2.25rem; font-weight: 900; color: #fff; margin-top: 2.5rem; margin-bottom: 1.25rem; line-height: 1.2; }
+    .prose-custom h2 { font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; }
+    .prose-custom h3 { font-size: 1.25rem; font-weight: 700; color: #00E5FF; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose-custom ul, .prose-custom ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    .prose-custom ul { list-style-type: disc; }
+    .prose-custom ol { list-style-type: decimal; }
+    .prose-custom li { margin-bottom: 0.5rem; }
+    .prose-custom strong { color: #fff; font-weight: 700; }
+    .prose-custom a { color: #00E5FF; text-decoration: underline; text-underline-offset: 3px; }
+    .prose-custom a:hover { color: #F0D48A; }
+    .prose-custom blockquote { border-left: 4px solid #00E5FF; background: rgba(0, 229, 255, 0.05); padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 0.75rem 0.75rem 0; color: #E5E7EB; }
+    .prose-custom blockquote p { margin-bottom: 0; }
+    .prose-custom code:not(pre code) { background: rgba(255, 255, 255, 0.08); color: #00E5FF; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+    .prose-custom pre { background: #0A0A0F !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.25rem; margin: 1.75rem 0; overflow-x: auto; }
+    .prose-custom pre code { color: #E0E0E6; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; }
+    .prose-custom table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+    .prose-custom th { background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .prose-custom td { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .prose-custom tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    .prose-custom hr { border-color: rgba(255, 255, 255, 0.08); margin: 2.5rem 0; }
+  </style>
+
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Modelos Locais e Ollama no Hermes Agent: Soberania de Dados, LGPD Blindada e Custo Zero de API para Empresas","description":"Aprenda como rodar agentes de IA 100% locais na sua infraestrutura com Ollama e Hermes Agent. Elimine riscos de vazamento e multas da LGPD, proteja segredos comerciais e reduza a zero o custo de tokens em tarefas rotineiras com arquitetura híbrida de fallback.","image":"https://inteligenciaagentica.com.br/static/images/modelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero.jpg","datePublished":"2026-10-31","dateModified":"2026-10-31","author":{"@type":"Person","name":"Jean Pierre Schramm","url":"https://linkedin.com/in/jeanpierreschramm"},"publisher":{"@type":"Organization","name":"Inteligência Agêntica","url":"https://inteligenciaagentica.com.br","logo":{"@type":"ImageObject","url":"https://inteligenciaagentica.com.br/static/logos.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://inteligenciaagentica.com.br/blog/modelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero"},"keywords":"modelos locais ia, ollama hermes agent, ia soberana empresas, agentes de ia locais, lgpd e inteligência artificial, custo zero api llm, arquitetura híbrida ia, llama cpp agentes"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://inteligenciaagentica.com.br"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://inteligenciaagentica.com.br/blog"},{"@type":"ListItem","position":3,"name":"Modelos Locais e Ollama no Hermes Agent: Soberania de Dados, LGPD Blindada e Custo Zero de API para Empresas","item":"https://inteligenciaagentica.com.br/blog/modelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero"}]}]</script>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5JDK6W4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- TOP NAVBAR -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-11 sm:h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="/" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Início</a>
+
+        <!-- Dropdown Soluções -->
+        <div class="relative group">
+          <button type="button" class="text-sm font-semibold text-gray-300 group-hover:text-white transition-colors flex items-center gap-1.5 py-2 focus:outline-none cursor-pointer">
+            <span>Soluções</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-ciano group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+          
+          <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 absolute top-full left-0 w-80 pt-2 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="glass rounded-2xl p-3 border border-white/10 bg-obsidian-card/95 backdrop-blur-2xl shadow-2xl shadow-black/80 space-y-1">
+              <!-- Item 1: CineMaker -->
+              <a href="/cinemaker" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-magenta/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-magenta/15 border border-magenta/30 flex items-center justify-center text-magenta flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="video" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-magenta-300 transition-colors">CineMaker</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Máquina de criar vídeos longos com IA em 1 clique sem assinatura no Flow.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: Zaalys -->
+              <a href="/zaalys" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ciano/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ciano/15 border border-ciano/30 flex items-center justify-center text-ciano flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="radio" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ciano transition-colors">Zaalys</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Lives & IA</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Sua live no TikTok Shop e vídeos com IA rodando no automático.</p>
+                </div>
+              </a>
+
+              <!-- Item 3: Comunidade Inteligência Agêntica -->
+              <a href="/#oferta" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ouro/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ouro/15 border border-ouro/30 flex items-center justify-center text-ouro flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="crown" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ouro-light transition-colors">Comunidade Agêntica</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ciano/20 text-ciano border border-ciano/30">Ecossistema</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">4 encontros semanais ao vivo, códigos prontos e bunker de agentes 24/7.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Cases</a>
+        <a href="/blog" class="text-sm font-bold text-ciano border-b-2 border-ciano pb-0.5 transition-colors">Blog</a>
+        <a href="/#oferta" class="btn-gold px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide">
+          Acessar Comunidade
+        </a>
+      </div>
+
+      <!-- Mobile Actions (visible on mobile, hidden on md+) -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="/ao-vivo" class="on-air-badge text-[10px] py-1 px-2.5" title="Encontros ao Vivo">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <button id="mobileMenuBtn" type="button" class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl focus:outline-none transition-colors border border-white/10" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-6 h-6 block menu-open-icon"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden menu-close-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-obsidian-card/95 backdrop-blur-2xl px-5 py-6 space-y-4 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-2">
+        <a href="/" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="home" class="w-4 h-4 text-gray-400"></i>
+            <span>Início</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <!-- Bloco Soluções Mobile -->
+        <div class="rounded-xl bg-white/[0.02] border border-white/5 p-2">
+          <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-ciano"></i>
+            <span>Soluções & Produtos</span>
+          </div>
+          <div class="space-y-1 mt-1">
+            <a href="/cinemaker" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-magenta-300 hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="video" class="w-4 h-4 text-magenta"></i>
+                <span>CineMaker (Vídeos IA)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+            </a>
+            <a href="/zaalys" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="radio" class="w-4 h-4 text-ciano"></i>
+                <span>Zaalys (Lives TikTok)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Auto</span>
+            </a>
+            <a href="/#oferta" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ouro transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="crown" class="w-4 h-4 text-ouro"></i>
+                <span>Comunidade Inteligência Agêntica</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ciano/20 text-ciano border border-ciano/30">Membros</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-red-400 hover:text-red-300 bg-red-950/30 border border-red-800/40 hover:bg-red-950/50 transition-colors">
+          <span class="flex items-center gap-3">
+            <span class="on-air-dot"></span>
+            <span>Encontros ao Vivo</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded">Toda Quinta</span>
+        </a>
+
+        <a href="/cases" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+            <span>Cases de Uso</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/blog" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-ciano bg-white/5 border border-ciano/20 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="newspaper" class="w-4 h-4 text-ciano"></i>
+            <span>Blog & Artigos</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-ciano"></i>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <a href="/#oferta" class="mobile-nav-link w-full btn-gold py-3.5 px-5 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-ouro/20">
+          <span>Acessar Comunidade</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN BODY -->
+  <main class="pt-20 flex-grow">
+    
+  <div class="relative py-10 overflow-hidden">
+    <div class="hero-glow bg-magenta/40 -top-40 right-0 w-[500px] h-[500px] absolute"></div>
+    <div class="hero-glow bg-ciano/30 top-1/2 -left-40 w-[500px] h-[500px] absolute"></div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Início</a>
+        <span>&rsaquo;</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span>&rsaquo;</span>
+        <span class="text-ciano truncate max-w-[200px] sm:max-w-none">Modelos Locais e Ollama no Hermes Agent: Soberania de Dados, LGPD Blindada e Custo Zero de API para Empresas</span>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="mb-10 text-center sm:text-left">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <a href="/tags/modelos-locais" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Modelos Locais</a><a href="/tags/ollama" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Ollama</a><a href="/tags/privacidade" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Privacidade</a><a href="/tags/lgpd" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#LGPD</a><a href="/tags/hermes-agent" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Hermes Agent</a><a href="/tags/custo-zero" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Custo Zero</a><a href="/tags/automacao-corporativa" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Automação Corporativa</a>
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+          Modelos Locais e Ollama no Hermes Agent: Soberania de Dados, LGPD Blindada e Custo Zero de API para Empresas
+        </h1>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/10 text-xs text-gray-400">
+          <div class="flex items-center gap-3">
+            <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-10 h-10 rounded-full border border-white/10">
+            <div>
+              <p class="font-bold text-white text-sm">Jean Pierre Schramm</p>
+              <p class="text-[11px] text-gray-400">Fundador da JePierre & Especialista em Agentes de IA</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-10-31</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 12 min de leitura</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      
+      <div class="mb-12 rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
+        <img src="https://inteligenciaagentica.com.br/static/images/modelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero.jpg" alt="Modelos Locais e Ollama no Hermes Agent: Soberania de Dados, LGPD Blindada e Custo Zero de API para Empresas" class="w-full h-auto max-h-[460px] object-cover">
+      </div>
+      
+
+      <!-- Table of Contents (if > 1 heading) -->
+      
+      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
+          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
+        </h3>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-dilema-do-empresario-maduro-o-medo-do-vazamento-de-dados-e-o-terror-da-conta-de-api-em-dolar" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Dilema do Empresário Maduro: O Medo do Vazamento de Dados e o Terror da Conta de API em Dólar
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#tabela-comparativa-nuvem-publica-vs-agentes-com-modelos-locais-ollama" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Tabela Comparativa: Nuvem Pública vs. Agentes com Modelos Locais (Ollama)
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#o-segredo-do-hermes-agent-do-chat-passivo-a-acao-agentica-no-hardware-local" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Segredo do Hermes Agent: Do Chat Passivo à Ação Agêntica no Hardware Local
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#diagrama-arquitetural-o-fluxo-de-execucao-hibrida-e-soberana" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Diagrama Arquitetural: O Fluxo de Execução Híbrida e Soberana
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#dimensionamento-de-hardware-o-que-sua-empresa-precisa-para-rodar-ia-local" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Dimensionamento de Hardware: O que Sua Empresa Precisa para Rodar IA Local
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#passo-a-passo-pratico-como-configurar-o-hermes-agent-com-ollama-em-4-etapas" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Passo a Passo Prático: Como Configurar o Hermes Agent com Ollama em 4 Etapas
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#1-instalacao-e-inicializacao-do-ollama" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 1. Instalação e Inicialização do Ollama
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#2-criacao-do-modelfile-com-contexto-expandido-64000-tokens" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 2. Criação do Modelfile com Contexto Expandido (64.000 Tokens)
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#3-configuracao-do-hermes-agent-para-o-endpoint-local" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 3. Configuração do Hermes Agent para o Endpoint Local
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#4-manter-o-modelo-em-memoria-permanente-keep-alive" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> 4. Manter o Modelo em Memória Permanente (*Keep-Alive*)
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#estudo-de-caso-real-auditoria-fiscal-e-contratual-em-distribuidora-com-custo-zero" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Estudo de Caso Real: Auditoria Fiscal e Contratual em Distribuidora com Custo Zero
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#o-problema" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> O Problema:
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#a-solucao-implementada" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> A Solução Implementada:
+              </a>
+            </li>
+          
+            <li class="ml-4 text-gray-400">
+              <a href="#os-resultados-obtidos" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Os Resultados Obtidos:
+              </a>
+            </li>
+          
+            <li class="font-semibold text-gray-200">
+              <a href="#conclusao-a-soberania-tecnologica-e-o-maior-ativo-da-sua-empresa" class="hover:text-ciano transition-colors flex items-center gap-1.5">
+                <span class="text-ciano/60">&rsaquo;</span> Conclusão: A Soberania Tecnológica é o Maior Ativo da Sua Empresa
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Main Article Content -->
+      <div class="prose-custom">
+        <blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>A execução de <strong>modelos locais de IA com Ollama e Hermes Agent</strong> consiste em processar toda a inteligência e as chamadas de ferramentas (<em>tool calling</em>) diretamente no hardware próprio da empresa (seja em uma workstation física com GPU ou em uma VPS privada dedicada), sem trafegar nenhum dado por servidores de terceiros ou nuvens públicas. No ecossistema corporativo do <strong>Hermes Agent</strong> (desenvolvido pela Nous Research), a integração com motores de inferência local (como o <code>llama.cpp</code> nativo ou o <code>Ollama</code> via endpoint customizado compatível com OpenAI) garante <strong>soberania absoluta de dados</strong>, conformidade estrita com a <strong>LGPD</strong> e <strong>custo zero de tokens de API</strong>.<br>Para que um modelo local opere com capacidade agêntica real (executando arquivos, navegando no sistema e integrando bancos de dados), é mandatório utilizar modelos de pesos abertos calibrados para chamadas de função estruturadas (como <em>Gemma 4 31B</em>, <em>Qwen 2.5 32B</em> ou <em>Llama 3.3 70B</em>) com janela de contexto estendida para <strong>64.000 tokens</strong> via Modelfile. A melhor prática empresarial adota uma <strong>arquitetura híbrida de resiliência</strong>, onde o modelo local resolve 90% das rotinas diárias com custo zero e um provedor em nuvem de fronteira atua como <em>fallback</em> automático apenas quando a complexidade lógica extrema assim exigir.</p>
+</blockquote>
+<hr>
+<h2 id="o-dilema-do-empresario-maduro-o-medo-do-vazamento-de-dados-e-o-terror-da-conta-de-api-em-dolar" class="scroll-mt-24 group flex items-center justify-between">O Dilema do Empresário Maduro: O Medo do Vazamento de Dados e o Terror da Conta de API em Dólar <a href="#o-dilema-do-empresario-maduro-o-medo-do-vazamento-de-dados-e-o-terror-da-conta-de-api-em-dolar" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Se você é empresário, diretor ou gestor sênior (especialmente na faixa dos 40 aos 55+ anos, liderando operações consolidadas de serviços, comércio, indústria, tráfego ou infraestrutura), certamente já se deparou com duas barreiras monumentais ao tentar adotar Inteligência Artificial na sua operação:</p>
+<ol>
+<li><strong>A Insegurança Jurídica e Operacional (LGPD e Segredos Comerciais):</strong> Como autorizar que dados sensíveis — balancetes contábeis, margens de lucro de produtos, contratos com fornecedores, faturas bancárias e dados cadastrais de clientes — sejam enviados para servidores externos de Big Techs americanas ou provedores públicos de nuvem? Uma única violação da Lei Geral de Proteção de Dados (LGPD) pode gerar multas de até 2% do faturamento da empresa (limitadas a R$ 50 milhões por infração), sem contar o dano irreparável à reputação da marca.</li>
+<li><strong>O Terror da Fatura Variável em Dólar:</strong> Quando uma empresa começa a automatizar rotinas contínuas (processamento diário de 500 notas fiscais, leitura de contratos de 80 páginas, auditoria de logs e triagem de milhares de e-mails), a cobrança por milhão de tokens em cartões de crédito corporativos torna-se uma torneira aberta. A flutuação cambial do dólar e picos imprevistos de requisições transformam uma promessa de economia em um centro de custos descontrolado.</li>
+</ol>
+<p>Muitas consultorias tentam resolver esse dilema sugerindo que as empresas continuem no trabalho manual braçal ou contratem ferramentas SaaS caras que nada mais são do que invólucros (<em>wrappers</em>) do ChatGPT com mensalidades abusivas por usuário.</p>
+<p>A verdadeira virada estratégica das empresas que lideram a nova economia agêntica está na <strong>IA Soberana</strong>: trazer o cérebro da inteligência artificial para dentro de casa, executando modelos abertos de altíssimo desempenho diretamente no ecossistema <strong>Hermes Agent</strong>.</p>
+<hr>
+<h2 id="tabela-comparativa-nuvem-publica-vs-agentes-com-modelos-locais-ollama" class="scroll-mt-24 group flex items-center justify-between">Tabela Comparativa: Nuvem Pública vs. Agentes com Modelos Locais (Ollama) <a href="#tabela-comparativa-nuvem-publica-vs-agentes-com-modelos-locais-ollama" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para avaliar com clareza executiva onde a infraestrutura local supera os serviços convencionais de nuvem, analisamos os seis pilares críticos de governança corporativa:</p>
+<table>
+<thead>
+<tr>
+<th>Critério de Avaliação</th>
+<th>Nuvem Pública (APIs Comerciais)</th>
+<th>Agentes Locais no Hermes (Ollama / Llama.cpp)</th>
+<th>Impacto para a Operação da Empresa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Privacidade &amp; LGPD</strong></td>
+<td>Dados trafegam e residem em datacenters externos de terceiros.</td>
+<td><strong>100% On-Premise/VPS Privada.</strong> Nenhum byte sai da rede local.</td>
+<td>Risco zero de vazamento de dados fiscais, contratuais ou cadastrais.</td>
+</tr>
+<tr>
+<td><strong>Custo Recorrente de Tokens</strong></td>
+<td>Cobrança por volume (Input/Output) em dólar com variação cambial.</td>
+<td><strong>R$ 0,00 em tokens.</strong> Custo fixo apenas da infraestrutura de hardware.</td>
+<td>Previsibilidade orçamentária total para processamento massivo 24/7.</td>
+</tr>
+<tr>
+<td><strong>Risco de Shadow AI</strong></td>
+<td>Funcionários colam dados em navegadores sem controle de TI.</td>
+<td><strong>Acesso centralizado e auditável</strong> via perfis e políticas do Hermes.</td>
+<td>Blindagem corporativa contra vazamentos acidentais por colaboradores.</td>
+</tr>
+<tr>
+<td><strong>Dependência de Link de Internet</strong></td>
+<td>Se o link cair ou a API oscilar, toda a automação é interrompida.</td>
+<td><strong>Operação autônoma offline/intranet.</strong> Continua rodando sem internet.</td>
+<td>Alta disponibilidade para indústrias, filiais e redes corporativas.</td>
+</tr>
+<tr>
+<td><strong>Capacidade Agêntica (Tool Calling)</strong></td>
+<td>Nativa e de alta qualidade nos modelos proprietários.</td>
+<td><strong>Nativa nos modelos abertos certos</strong> (<em>Gemma 4</em>, <em>Qwen 2.5</em>, <em>Llama 3.3</em>).</td>
+<td>O agente não apenas conversa, mas edita arquivos, roda scripts e lê bancos.</td>
+</tr>
+<tr>
+<td><strong>Arquitetura de Contingência</strong></td>
+<td>Se a conta for suspensa ou a API rate-limitada, a empresa para.</td>
+<td><strong>Arquitetura Híbrida.</strong> Modelo local como padrão e Nuvem como <em>Fallback</em>.</td>
+<td>O melhor dos dois mundos: economia de 90% com garantia de execução.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="o-segredo-do-hermes-agent-do-chat-passivo-a-acao-agentica-no-hardware-local" class="scroll-mt-24 group flex items-center justify-between">O Segredo do Hermes Agent: Do Chat Passivo à Ação Agêntica no Hardware Local <a href="#o-segredo-do-hermes-agent-do-chat-passivo-a-acao-agentica-no-hardware-local" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A maioria das pessoas que tentou rodar modelos locais no passado através de softwares simplórios de chat teve uma experiência frustrante: a máquina respondia de forma lenta, o modelo esquecia o contexto após duas perguntas e não conseguia interagir com os arquivos do computador.</p>
+<p>Isso acontece porque um <strong>Chatbot</strong> apenas recebe texto e gera texto. Já o <strong>Hermes Agent</strong> é um <strong>framework agêntico completo</strong>. </p>
+<p>Quando o Hermes opera sobre uma infraestrutura local, ele orquestra um ecossistema rigoroso de execução:</p>
+<ol>
+<li><strong>Gestão Automatizada de Hardware:</strong> O motor gerencia a memória física da máquina de ponta a ponta. Ele avalia a quantidade de VRAM da sua placa de vídeo (GPU NVIDIA ou Apple Silicon) e de memória RAM do sistema, escolhendo quantizações seguras (4-bit ou superior em formato GGUF) para que o modelo nunca estoure a memória da máquina.</li>
+<li><strong>Suporte Estruturado a Chamadas de Ferramentas (<em>Tool Calling</em>):</strong> Modelos comuns de chat não sabem invocar ferramentas. O Hermes trabalha com modelos abertos modernos treinados especificamente para entender esquemas JSON de ferramentas (leitura e escrita de arquivos, comandos de terminal seguros, consultas SQL via MCP e navegação web).</li>
+<li><strong>Janela de Contexto de Alta Capacidade (64.000 Tokens):</strong> Modelos baixados pelo Ollama vêm por padrão configurados com apenas 2.048 tokens de contexto — o que é insuficiente até para carregar as instruções de sistema e as ferramentas do agente. Com a calibração correta do Modelfile, expandimos essa janela para 64k tokens, permitindo que o agente audite documentos densos e execute planos de múltiplos passos sem perder o raciocínio.</li>
+</ol>
+<hr>
+<h2 id="diagrama-arquitetural-o-fluxo-de-execucao-hibrida-e-soberana" class="scroll-mt-24 group flex items-center justify-between">Diagrama Arquitetural: O Fluxo de Execução Híbrida e Soberana <a href="#diagrama-arquitetural-o-fluxo-de-execucao-hibrida-e-soberana" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Abaixo ilustramos como uma operação corporativa madura distribui as demandas entre o processamento local com custo zero e o provedor de fronteira em nuvem:</p>
+<pre><code>  ┌────────────────────────────────────────────────────────────────────────┐
+  │                 DEMANDA OPERACIONAL DA EMPRESA                         │
+  │   <span class="token punctuation">(</span>Auditoria de <span class="token number">1.000</span> Contratos, Triagem de E-mails, Extração de NFs<span class="token punctuation">)</span>  │
+  └───────────────────────────────────┬────────────────────────────────────┘
+                                      │
+                                      ▼
+  ┌────────────────────────────────────────────────────────────────────────┐
+  │                 CAMADA DE ENTRADA: HERMES AGENT CORE                   │
+  │  • Prompt de Sistema Corporativo com Guardrails de Segurança           │
+  │  • Esquemas de Ferramentas Ativas <span class="token punctuation">(</span>Filesystem, Terminal, MCP, DB<span class="token punctuation">)</span>      │
+  │  • Modelfile Calibrado com Janela de Contexto de <span class="token number">64.000</span> Tokens         │
+  └───────────────────────────────────┬────────────────────────────────────┘
+                                      │
+                                      ▼
+  ┌────────────────────────────────────────────────────────────────────────┐
+  │        ROTEAMENTO INTELIGENTE: LOCAL-FIRST <span class="token punctuation">(</span>OLLAMA / LLAMA.CPP<span class="token punctuation">)</span>         │
+  │                 Endpoint: http://localhost:11434/v1                    │
+  │                                                                        │
+  │   <span class="token punctuation">[</span> <span class="token number">90</span>% a <span class="token number">95</span>% das Tarefas Resolvidas Localmente com R$ <span class="token number">0</span> de API <span class="token punctuation">]</span>      │
+  │                                                                        │
+  │   • Leitura e classificação de faturas e comprovantes fiscais          │
+  │   • Verificação de conformidade em minutas contratuais                 │
+  │   • Execução de scripts de limpeza de planilhas e relatórios           │
+  │   • Operação <span class="token number">100</span>% blindada sob a LGPD <span class="token punctuation">(</span>Dados nunca saem da rede<span class="token punctuation">)</span>       │
+  └───────────────────────────────────┬────────────────────────────────────┘
+                                      │
+                 ┌────────────────────┴────────────────────┐
+                 │                                         │
+                 ▼ <span class="token punctuation">[</span>Sucesso na Execução<span class="token punctuation">]</span>                   ▼ <span class="token punctuation">[</span>Complexidade Extrema /
+  ┌──────────────────────────────┐                           Timeout / Erro de Lógica<span class="token punctuation">]</span>
+  │   EXECUÇÃO LOCAL CONCLUÍDA   │             ┌──────────────────────────────┐
+  │   • Arquivo gerado no disco  │             │ CAMADA DE CONTINGÊNCIA:      │
+  │   • Custo de tokens: R$ <span class="token number">0,00</span> │             │ FALLBACK PROVIDER EM NUVEM   │
+  │   • Notificação no Telegram  │             │ <span class="token punctuation">(</span>Claude <span class="token number">3.7</span> / GPT-4o<span class="token punctuation">)</span>        │
+  └──────────────────────────────┘             │                              │
+                                               │ • Ativado apenas por exceção │
+                                               │ • Resolução de raciocínio de │
+                                               │   altíssima complexidade     │
+                                               └──────────────────────────────┘
+</code></pre><hr>
+<h2 id="dimensionamento-de-hardware-o-que-sua-empresa-precisa-para-rodar-ia-local" class="scroll-mt-24 group flex items-center justify-between">Dimensionamento de Hardware: O que Sua Empresa Precisa para Rodar IA Local <a href="#dimensionamento-de-hardware-o-que-sua-empresa-precisa-para-rodar-ia-local" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Diferente do que muitos pensam, você não precisa comprar um supercomputador de centenas de milhares de reais para rodar agentes de IA locais na sua empresa. O dimensionamento depende do perfil da demanda:</p>
+<table>
+<thead>
+<tr>
+<th>Perfil de Hardware</th>
+<th>Configuração Recomendada</th>
+<th>Modelos Recomendados</th>
+<th>Cenário de Uso Corporativo</th>
+<th>Custo Estimado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Nível Entrada (Workstation Atual)</strong></td>
+<td>CPU 8+ núcleos, 32 GB RAM, sem GPU dedicada</td>
+<td><code>gemma2:9b</code> ou <code>qwen2.5:7b</code></td>
+<td>Chat interno, resumos executivos, Q&amp;A de manuais e procedimentos operacionais.</td>
+<td>R$ 0 (Usa máquinas já existentes na empresa).</td>
+</tr>
+<tr>
+<td><strong>Nível Profissional (Agente Executor)</strong></td>
+<td>32 GB a 64 GB RAM + GPU NVIDIA RTX 3060/4060 (12 GB VRAM)</td>
+<td><code>gemma4:31b</code> ou <code>qwen2.5:32b</code> (Quantização 4-bit)</td>
+<td>Execução plena de ferramentas (<em>tool calling</em>), automação de arquivos, consultas SQL e scripts.</td>
+<td>Investimento único de R$ 2.500 a R$ 4.500 na GPU.</td>
+</tr>
+<tr>
+<td><strong>Nível Servidor Corporativo Dedicado</strong></td>
+<td>VPS Hostinger / Servidor On-Premise com 64 GB+ RAM ou Apple Mac Studio M2/M4 Max</td>
+<td><code>llama3.3:70b</code> ou <code>qwen2.5:72b</code></td>
+<td>Multi-agentes concorrentes, auditorias contratuais massivas e operações 24/7 de alta vazão.</td>
+<td>R$ 350 a R$ 800/mês (VPS) ou investimento em servidor próprio.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="passo-a-passo-pratico-como-configurar-o-hermes-agent-com-ollama-em-4-etapas" class="scroll-mt-24 group flex items-center justify-between">Passo a Passo Prático: Como Configurar o Hermes Agent com Ollama em 4 Etapas <a href="#passo-a-passo-pratico-como-configurar-o-hermes-agent-com-ollama-em-4-etapas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Abaixo está o roteiro técnico direto para colocar o ecossistema operando com modelos locais na sua infraestrutura:</p>
+<h3 id="1-instalacao-e-inicializacao-do-ollama" class="scroll-mt-24 group flex items-center justify-between">1. Instalação e Inicialização do Ollama <a href="#1-instalacao-e-inicializacao-do-ollama" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>No Linux, macOS ou na sua VPS Ubuntu:</p>
+<pre><code class="language-bash"><span class="token comment"># Instalação com um único comando oficial</span>
+<span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://ollama.com/install.sh <span class="token operator">|</span> <span class="token function">sh</span>
+
+<span class="token comment"># Verificação do serviço ativo</span>
+<span class="token function">curl</span> http://localhost:11434/api/tags
+</code></pre><p>No Windows, basta baixar o instalador oficial no site do Ollama e iniciar o executável na bandeja do sistema.</p>
+<h3 id="2-criacao-do-modelfile-com-contexto-expandido-64000-tokens" class="scroll-mt-24 group flex items-center justify-between">2. Criação do Modelfile com Contexto Expandido (64.000 Tokens) <a href="#2-criacao-do-modelfile-com-contexto-expandido-64000-tokens" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Por padrão, o Ollama carrega os modelos com contexto restrito de 2k tokens. Para que o Hermes Agent consiga carregar as ferramentas e executar tarefas completas, crie um arquivo de personalização:</p>
+<pre><code class="language-bash"><span class="token comment"># Criação do Modelfile para expandir o contexto</span>
+<span class="token function">cat</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'EOF'<span class="token bash punctuation"> <span class="token operator">></span> Modelfile</span>
+FROM gemma4:31b
+PARAMETER num_ctx 64000
+PARAMETER temperature 0.2
+EOF</span>
+
+<span class="token comment"># Compilação do modelo local com contexto expandido</span>
+ollama create gemma4-64k <span class="token parameter variable">-f</span> Modelfile
+</code></pre><p><em>(Caso sua máquina possua menor capacidade de memória, você pode utilizar o modelo <code>qwen2.5:14b</code> ou <code>qwen2.5:32b</code> seguindo exatamente o mesmo procedimento).</em></p>
+<h3 id="3-configuracao-do-hermes-agent-para-o-endpoint-local" class="scroll-mt-24 group flex items-center justify-between">3. Configuração do Hermes Agent para o Endpoint Local <a href="#3-configuracao-do-hermes-agent-para-o-endpoint-local" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Edite o arquivo de configuração do seu perfil no Hermes (<code>config.yaml</code>):</p>
+<pre><code class="language-yaml"><span class="token key atrule">model</span><span class="token punctuation">:</span>
+  <span class="token key atrule">default</span><span class="token punctuation">:</span> <span class="token string">"gemma4-64k"</span>
+  <span class="token key atrule">provider</span><span class="token punctuation">:</span> <span class="token string">"custom"</span>
+  <span class="token key atrule">base_url</span><span class="token punctuation">:</span> <span class="token string">"http://localhost:11434/v1"</span>
+
+<span class="token comment"># Configuração de Fallback Híbrido: Se o modelo local falhar ou oscilar,</span>
+<span class="token comment"># o Hermes assume a contingência na nuvem sem travar a empresa:</span>
+<span class="token key atrule">fallback_providers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">provider</span><span class="token punctuation">:</span> openrouter
+    <span class="token key atrule">model</span><span class="token punctuation">:</span> anthropic/claude<span class="token punctuation">-</span>sonnet<span class="token punctuation">-</span><span class="token number">4</span>
+</code></pre><p>No arquivo <code>.env</code> do Hermes, amplie o tempo limite de resposta para evitar encerramentos prematuros em processamentos mais densos:</p>
+<pre><code class="language-bash"><span class="token assign-left variable">HERMES_API_TIMEOUT</span><span class="token operator">=</span><span class="token number">1800</span>
+<span class="token assign-left variable">HERMES_STREAM_READ_TIMEOUT</span><span class="token operator">=</span><span class="token number">1800</span>
+</code></pre><h3 id="4-manter-o-modelo-em-memoria-permanente-keep-alive" class="scroll-mt-24 group flex items-center justify-between">4. Manter o Modelo em Memória Permanente (<em>Keep-Alive</em>) <a href="#4-manter-o-modelo-em-memoria-permanente-keep-alive" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para evitar o atraso de carregar o modelo do disco para a memória a cada nova requisição em um bot do Telegram ou rotina agendada, configure o <em>keep-alive</em> contínuo:</p>
+<pre><code class="language-bash"><span class="token comment"># Mantém o modelo residente na memória por 24 horas</span>
+<span class="token function">curl</span> http://localhost:11434/api/generate <span class="token parameter variable">-d</span> <span class="token string">'{"model": "gemma4-64k", "keep_alive": "24h"}'</span>
+</code></pre><p>Pronto! Agora você tem um agente de inteligência artificial de elite rodando no seu terminal, desktop ou Telegram, consumindo <strong>zero centavos de API</strong> e mantendo cada documento da sua empresa estritamente trancado dentro das suas quatro paredes.</p>
+<hr>
+<h2 id="estudo-de-caso-real-auditoria-fiscal-e-contratual-em-distribuidora-com-custo-zero" class="scroll-mt-24 group flex items-center justify-between">Estudo de Caso Real: Auditoria Fiscal e Contratual em Distribuidora com Custo Zero <a href="#estudo-de-caso-real-auditoria-fiscal-e-contratual-em-distribuidora-com-custo-zero" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para ilustrar o impacto financeiro e operacional da IA local, examinamos o caso de uma distribuidora de médio porte em Curitiba com 45 funcionários e faturamento anual de R$ 28 milhões.</p>
+<h3 id="o-problema" class="scroll-mt-24 group flex items-center justify-between">O Problema: <a href="#o-problema" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Todo final de mês, o departamento fiscal recebia cerca de 1.200 arquivos PDF contendo notas fiscais de frete, recibos de entrega e minutas de contratos de fornecedores. Três funcionários passavam de 4 a 5 dias úteis cruzando manualmente valores, CNPJs e alíquotas com as planilhas do ERP.</p>
+<ul>
+<li>A diretoria não autorizava enviar esses documentos para APIs de nuvem pública por conterem dados bancários e margens comerciais sigilosas.</li>
+<li>O custo estimado em tokens de nuvem para processar esse volume de páginas mensalmente ultrapassaria R$ 2.400,00 por mês em faturas de API, além das horas extras dos funcionários.</li>
+</ul>
+<h3 id="a-solucao-implementada" class="scroll-mt-24 group flex items-center justify-between">A Solução Implementada: <a href="#a-solucao-implementada" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>A empresa implementou um agente autônomo com o <strong>Hermes Agent</strong> configurado em uma workstation local equipada com uma GPU NVIDIA de 16 GB VRAM, utilizando o modelo local com suporte a ferramentas e script de extração em lote.</p>
+<h3 id="os-resultados-obtidos" class="scroll-mt-24 group flex items-center justify-between">Os Resultados Obtidos: <a href="#os-resultados-obtidos" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ol>
+<li><strong>Tempo de Processamento:</strong> Os 1.200 documentos foram auditados e confrontados com o banco de dados em menos de 3 horas durante a madrugada.</li>
+<li><strong>Custo de Tokens de API:</strong> <strong>Exatamente R$ 0,00.</strong></li>
+<li><strong>Segurança da Informação:</strong> Nenhum arquivo saiu da rede local da empresa. O relatório consolidado de discrepâncias foi gravado em uma pasta interna e um alerta executivo foi despachado para o Telegram do diretor financeiro.</li>
+<li><strong>Impacto na Folha:</strong> A equipe fiscal foi realocada para planejamento tributário e recuperação de créditos, eliminando 100% das horas extras recorrentes de fechamento de mês.</li>
+</ol>
+<hr>
+<h2 id="conclusao-a-soberania-tecnologica-e-o-maior-ativo-da-sua-empresa" class="scroll-mt-24 group flex items-center justify-between">Conclusão: A Soberania Tecnológica é o Maior Ativo da Sua Empresa <a href="#conclusao-a-soberania-tecnologica-e-o-maior-ativo-da-sua-empresa" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A revolução da inteligência artificial não precisa ser sinônimo de dependência eterna de provedores estrangeiros, riscos regulatórios com a LGPD ou faturas em dólar imprevisíveis no cartão de crédito da sua empresa.</p>
+<p>Com o <strong>Hermes Agent</strong> e a maturidade dos modelos locais via <strong>Ollama</strong>, empresários e diretores ganham o poder de construir uma fortaleza operacional: agentes rápidos, incansáveis, que dominam as ferramentas do sistema operacional e trabalham 24 horas por dia com sigilo absoluto e custo fixo previsível.</p>
+<p>Se você deseja dominar o passo a passo da construção, infraestrutura e governança de agentes autônomos para a sua empresa — desde a configuração em VPS até a orquestração de swarms e modelos locais —, junte-se à formação executiva <strong>Inteligência Agêntica</strong>, ministrada por Jean Pierre Schramm:</p>
+<p>👉 <strong><a href="https://inteligenciaagentica.com.br">Conheça a Formação Completa e a Comunidade Inteligência Agêntica</a></strong></p>
+
+      </div>
+
+      <!-- Social Share -->
+      <div class="mt-12 py-6 border-y border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Compartilhar este artigo:</span>
+        <div class="flex items-center gap-2">
+          <a href="https://api.whatsapp.com/send?text=Modelos%20Locais%20e%20Ollama%20no%20Hermes%20Agent%3A%20Soberania%20de%20Dados%2C%20LGPD%20Blindada%20e%20Custo%20Zero%20de%20API%20para%20Empresas%20-%20https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fmodelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fmodelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Modelos%20Locais%20e%20Ollama%20no%20Hermes%20Agent%3A%20Soberania%20de%20Dados%2C%20LGPD%20Blindada%20e%20Custo%20Zero%20de%20API%20para%20Empresas&url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fmodelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-white/5 text-gray-200 hover:bg-white/10 border border-white/10 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="twitter" class="w-4 h-4"></i> X / Twitter
+          </a>
+        </div>
+      </div>
+
+      <!-- Author Bio Box -->
+      <div class="mt-10 glass rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 border border-white/10">
+        <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-16 h-16 rounded-full border-2 border-ouro">
+        <div class="text-center sm:text-left">
+          <h4 class="text-base font-bold text-white mb-1">Escrito por Jean Pierre Schramm</h4>
+          <p class="text-xs text-gray-400 leading-relaxed mb-3">
+            Especialista em automações autônomas, arquitetura de VPS com Docker Swarm e ecossistemas agênticos com Hermes OS.
+          </p>
+          <div class="flex items-center justify-center sm:justify-start gap-3 text-xs text-ciano">
+            <a href="https://github.com/gigantsc" target="_blank" class="hover:underline">GitHub</a> &bull;
+            <a href="https://linkedin.com/in/jeanpierreschramm" target="_blank" class="hover:underline">LinkedIn</a> &bull;
+            <a href="https://x.com/jepierresolucoes" target="_blank" class="hover:underline">X</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Article Community Banner -->
+      <div class="mt-12 p-8 rounded-2xl glass border border-ouro/30 bg-gradient-to-r from-magenta/10 via-ciano/5 to-ouro/10 text-center">
+        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+          Comunidade Inteligência Agêntica
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Aprenda a aplicar tudo isso na prática</h3>
+        <p class="text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6">
+          Tenha acesso a 4 mentorias ao vivo por mês, biblioteca completa de skills e templates prontos para rodar no seu servidor.
+        </p>
+        <a href="/#oferta" class="btn-gold px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
+          Garantir Vaga na Comunidade <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Related Posts -->
+      
+      <div class="mt-16">
+        <h3 class="text-lg font-bold text-white mb-6">Artigos Relacionados</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+            <a href="/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Hermes Agent</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Guia Definitivo do Hermes Agent: As 30 Respostas Essenciais para Dominar seus Funcionários Digitais</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.</p>
+            </a>
+          
+            <a href="/blog/triagem-inteligente-de-emails-corporativos-agentes-ia" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Triagem de E-mails</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Triagem Inteligente de E-mails Corporativos com Agentes de IA: Do Caos na Caixa de Entrada à Operação 100% Organizada com Rascunhos Seguros e Alertas no Telegram</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">Descubra como estruturar uma triagem autônoma de e-mails corporativos com Hermes Agent, classificando mensagens em 6 níveis de prioridade, redigindo rascunhos perfeitamente calibrados no tom do gestor com Human-in-the-Loop e despachando resumos executivos diretamente no Telegram.</p>
+            </a>
+          
+        </div>
+      </div>
+      
+
+    </article>
+  </div>
+  
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/zaalys" class="text-ciano font-semibold hover:text-white transition-colors">⚡ Zaalys (Lives TikTok)</a></li>
+            <li><a href="/cinemaker" class="text-magenta-300 hover:text-white transition-colors">🎬 CineMaker (Vídeos IA)</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <div class="flex items-center gap-3 text-[11px] text-gray-500">
+          <button type="button" class="cookie-consent-banner-open hover:text-ciano transition-colors bg-transparent border-0 p-0 text-inherit cursor-pointer">Preferências de Cookies</button>
+          <span>&bull;</span>
+          <span class="text-[10px]">Ecossistema Hermes OS &bull; Powered by Nous Research</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Mobile Menu Controller
+    (() => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!mobileBtn || !mobileMenu) return;
+
+      const openIcon = mobileBtn.querySelector('.menu-open-icon');
+      const closeIcon = mobileBtn.querySelector('.menu-close-icon');
+
+      function toggleMenu(forceOpen) {
+        const isCurrentlyOpen = !mobileMenu.classList.contains('hidden');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isCurrentlyOpen;
+
+        if (shouldOpen) {
+          mobileMenu.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+          if (openIcon) openIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

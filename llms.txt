@@ -16,6 +16,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Modelos Locais e Ollama no Hermes Agent: Soberania de Dados, LGPD Blindada e Custo Zero de API para Empresas](https://inteligenciaagentica.com.br/blog/modelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero)
+- **Data de Publicação:** 2026-10-31
+- **Tags:** Modelos Locais, Ollama, Privacidade, LGPD, Hermes Agent, Custo Zero, Automação Corporativa
+- **Resumo:** Aprenda como rodar agentes de IA 100% locais na sua infraestrutura com Ollama e Hermes Agent. Elimine riscos de vazamento e multas da LGPD, proteja segredos comerciais e reduza a zero o custo de tokens em tarefas rotineiras com arquitetura híbrida de fallback.
+- **URL:** https://inteligenciaagentica.com.br/blog/modelos-locais-ollama-agentes-ia-soberania-privacidade-custo-zero
+
 ### [Triagem Inteligente de E-mails Corporativos com Agentes de IA: Do Caos na Caixa de Entrada à Operação 100% Organizada com Rascunhos Seguros e Alertas no Telegram](https://inteligenciaagentica.com.br/blog/triagem-inteligente-de-emails-corporativos-agentes-ia)
 - **Data de Publicação:** 2026-10-30
 - **Tags:** Triagem de E-mails, Email Inbox Triage, Himalaya CLI, Automação de Backoffice, Hermes Agent, Produtividade Executiva
