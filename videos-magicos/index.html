@@ -545,21 +545,16 @@
             </div>
           </div>
 
-          <!-- Right Column (Interactive Smartphone Mockup & Real Video Player) -->
-          <div class="order-1 md:order-2 relative mx-auto w-full max-w-[340px] md:max-w-[380px]">
+          <!-- Right Column (Real Video Player Mockup & Video Models Catalog) -->
+          <div class="order-1 md:order-2 relative mx-auto w-full max-w-[340px] md:max-w-[380px]" id="videoPlayerSection">
             <div class="absolute inset-0 top-[10%] bg-gradient-to-b from-[#7C3AED]/35 to-[#3B82F6]/20 blur-[60px] rounded-[40px]"></div>
             
-            <!-- Mode Switcher Tabs (Vídeo Real vs Simulador Interativo) -->
-            <div class="mb-4 flex items-center justify-center gap-1.5 p-1 rounded-full bg-white/[0.05] border border-white/10 max-w-[300px] mx-auto text-[11px] font-bold">
-              <button id="tabVideoMode" onclick="switchPhoneMode('video')" type="button" class="flex-1 py-1.5 px-3 rounded-full bg-purple-600 text-white shadow-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer">
-                <i data-lucide="play-circle" class="w-3.5 h-3.5"></i>
-                <span>Vídeo Real</span>
-                <span class="text-[9px] px-1.5 py-0.2 rounded-full bg-emerald-400 text-black font-extrabold uppercase ml-0.5">MP4</span>
-              </button>
-              <button id="tabSimMode" onclick="switchPhoneMode('sim')" type="button" class="flex-1 py-1.5 px-3 rounded-full text-gray-400 hover:text-white flex items-center justify-center gap-1.5 transition-all cursor-pointer">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                <span>Simulador</span>
-              </button>
+            <!-- Video Player Header Label -->
+            <div class="mb-3.5 text-center">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-[11px] font-bold uppercase tracking-wider text-purple-300">
+                <i data-lucide="play-circle" class="w-3.5 h-3.5 text-purple-400"></i>
+                <span>Demonstração em Vídeo Real</span>
+              </span>
             </div>
 
             <!-- Phone Chassis -->
@@ -570,7 +565,7 @@
               <!-- Screen Container -->
               <div class="relative aspect-[9/19.5] bg-black flex flex-col overflow-hidden">
                 
-                <!-- Top Status Bar (Shared across modes) -->
+                <!-- Top Status Bar -->
                 <div class="absolute top-0 inset-x-0 pt-3 px-5 flex items-center justify-between text-[11px] text-white/80 font-medium z-30 pointer-events-none">
                   <span>9:41</span>
                   <div class="flex gap-1.5 items-center">
@@ -579,7 +574,7 @@
                   </div>
                 </div>
 
-                <!-- VIEW 1: REAL VIDEO PLAYER MODE (DEFAULT) -->
+                <!-- REAL VIDEO PLAYER VIEW -->
                 <div id="phoneVideoView" class="relative w-full h-full flex flex-col justify-between">
                   <!-- Video HTML5 -->
                   <video 
@@ -589,8 +584,7 @@
                     preload="auto"
                     poster="/static/images/papai-noel-miguel-poster.jpg"
                   >
-                    <source src="/papai-noel-miguel.mp4" type="video/mp4">
-                    <source src="/static/videos/papai-noel-miguel.mp4" type="video/mp4">
+                    <source id="videoSource" src="/papai-noel-miguel.mp4" type="video/mp4">
                     Seu navegador não suporta vídeos MP4.
                   </video>
 
@@ -598,7 +592,7 @@
                   <div class="relative z-20 pt-11 px-4 flex justify-center pointer-events-none">
                     <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-bold text-amber-300">
                       <span class="h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>
-                      <span>EXEMPLO REAL: PAPAI NOEL & MIGUEL</span>
+                      <span id="videoBadgeTop">🎅 MODELO REAL: PAPAI NOEL & MIGUEL</span>
                     </div>
                   </div>
 
@@ -610,8 +604,8 @@
                     <p class="mt-4 text-xs font-extrabold text-white bg-black/75 backdrop-blur border border-white/20 px-3.5 py-1.5 rounded-full shadow-lg">
                       Toque para ouvir o recado com som 🔊
                     </p>
-                    <p class="mt-2 text-[11px] text-white/70 max-w-[200px]">
-                      Vídeo real gerado com IA falando o nome da criança
+                    <p class="mt-2 text-[11px] text-white/70 max-w-[200px]" id="videoPlaySubtitle">
+                      Vídeo real gerado com IA falando o nome do Miguel
                     </p>
                   </div>
 
@@ -657,61 +651,10 @@
                     <div class="mt-2.5 flex items-center justify-between text-[10px] text-white/70">
                       <span class="flex items-center gap-1">
                         <i data-lucide="user-check" class="h-3 w-3 text-emerald-400"></i>
-                        <span>Para: Miguel (6 anos)</span>
+                        <span id="videoBadgeBottom">Para: Miguel (6 anos)</span>
                       </span>
                       <span class="text-white/50">Vertical 9:16</span>
                     </div>
-                  </div>
-                </div>
-
-                <!-- VIEW 2: INTERACTIVE SIMULATOR CARD MODE -->
-                <div id="phoneSimView" class="hidden relative w-full h-full p-4 pt-12 flex flex-col bg-gradient-to-br from-[#1E1B4B] via-[#4C1D95] to-[#0E7490]">
-                  <!-- White Interactive Card in Screen -->
-                  <div class="mt-4 flex-1 rounded-[28px] bg-white/95 backdrop-blur p-4 flex flex-col shadow-xl text-zinc-900">
-                    <div class="flex items-center gap-2">
-                      <div class="h-8 w-8 rounded-full bg-gradient-to-br from-violet-600 to-blue-500 flex items-center justify-center text-white font-bold text-[12px]">
-                        IA
-                      </div>
-                      <div>
-                        <p class="text-[12px] font-bold leading-none text-zinc-900">Bom Velhinho do Polo Norte</p>
-                        <p class="text-[10px] text-zinc-500">criação original</p>
-                      </div>
-                      <div class="ml-auto h-6 w-6 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-700">
-                        <i data-lucide="sparkles" class="h-3 w-3 text-purple-600"></i>
-                      </div>
-                    </div>
-
-                    <!-- Personalized Message Simulation -->
-                    <div class="mt-4 rounded-2xl bg-gradient-to-br from-violet-50 to-blue-50 p-4 border border-violet-100">
-                      <p class="text-[11px] font-bold uppercase tracking-wide text-violet-600 mb-1">Simulação com seu nome</p>
-                      <p class="display text-[22px] leading-[1.1] font-semibold text-zinc-900">
-                        Olá, <span id="previewName" class="text-violet-600">Miguel</span>! Que alegria saber que você vai fazer <span id="previewAge">6</span> aninhos!
-                      </p>
-                      <div class="mt-3 h-[3px] w-full bg-zinc-100 rounded-full overflow-hidden">
-                        <div class="h-full w-[68%] bg-gradient-to-r from-violet-600 to-blue-500"></div>
-                      </div>
-                    </div>
-
-                    <!-- Selector Chips in App -->
-                    <div class="mt-auto grid grid-cols-3 gap-2">
-                      <div class="rounded-xl bg-zinc-900 text-white p-2.5 text-center">
-                        <p class="text-[10px] opacity-70">CONVITE</p>
-                        <p class="text-[11px] font-bold">Animado</p>
-                      </div>
-                      <div class="rounded-xl bg-violet-600 text-white p-2.5 text-center ring-2 ring-violet-300">
-                        <p class="text-[10px] opacity-80">RECADO</p>
-                        <p class="text-[11px] font-bold">Com nome</p>
-                      </div>
-                      <div class="rounded-xl bg-white border border-zinc-200 p-2.5 text-center text-zinc-800">
-                        <p class="text-[10px] text-zinc-500">BÔNUS</p>
-                        <p class="text-[11px] font-bold">Cartão</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Bottom Indicator -->
-                  <div class="mt-3 flex items-center justify-center gap-2">
-                    <span class="h-1 w-12 bg-white rounded-full"></span>
                   </div>
                 </div>
 
@@ -733,28 +676,61 @@
               <span>100% com o nome</span>
             </div>
 
-            <!-- Live Name Tester Input -->
-            <div class="mt-5 mx-auto max-w-[320px] rounded-2xl border border-white/10 bg-white/[0.04] p-3 shadow-sm focus-within:border-purple-500/50 transition-colors">
-              <div class="flex items-center justify-between mb-1.5 px-1">
-                <span class="text-[11px] font-bold uppercase tracking-wide text-gray-400 flex items-center gap-1.5">
-                  <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-400"></i>
-                  <span>Simule o nome da criança:</span>
+            <!-- Catálogo de Modelos (Seletor Interativo de Vídeos) -->
+            <div class="mt-5 mx-auto w-full max-w-[340px] md:max-w-[380px] rounded-2xl border border-white/10 bg-[#111118]/95 backdrop-blur p-3.5 shadow-xl">
+              <div class="flex items-center justify-between mb-3 px-1">
+                <span class="text-[12px] font-bold text-white flex items-center gap-1.5">
+                  <i data-lucide="clapperboard" class="w-4 h-4 text-purple-400"></i>
+                  <span>Modelos de Vídeo</span>
                 </span>
-                <span class="text-[10px] text-purple-300 font-semibold">Exemplo real</span>
+                <span class="text-[10px] text-purple-300 font-semibold bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 rounded-full">Toque para trocar</span>
               </div>
-              <div class="flex items-center gap-2">
-                <input id="childNameInput" type="text" value="Miguel" maxlength="12" placeholder="Digite o nome..." class="flex-1 bg-black/40 px-3 py-2 rounded-xl border border-white/10 outline-none text-[14px] font-semibold text-white placeholder:text-gray-500 focus:border-purple-500">
-                <button onclick="scrollToOffer()" type="button" class="h-9 px-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-emerald-500 text-white font-bold text-xs flex items-center gap-1 shrink-0 hover:opacity-90 transition-opacity cursor-pointer">
-                  <span>Pedir</span>
-                  <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
-                </button>
+
+              <!-- Lista de Modelos (Preenchida dinamicamente via JS) -->
+              <div id="modelsSelectorList" class="space-y-1.5">
+                <!-- Cards de modelos inseridos aqui -->
               </div>
-              <p class="mt-2 text-center text-[11px] text-gray-400 leading-tight">
-                Veja o exemplo real do <strong class="text-white">Miguel</strong> no vídeo acima. O seu será gerado com o nome do seu filho!
-              </p>
+              
+              <div class="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-[11px] text-gray-400">
+                <span>Quer outro personagem?</span>
+                <a href="#oferta" class="text-purple-300 font-bold hover:underline">Ver Oferta →</a>
+              </div>
             </div>
           </div>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: CATÁLOGO DE MODELOS DE VÍDEO -->
+    <section id="modelos" class="py-16 md:py-20 bg-[#0A0A0E] border-t border-white/[0.08]">
+      <div class="mx-auto max-w-[1200px] px-5 md:px-8">
+        <div class="max-w-[720px] mx-auto text-center mb-10 md:mb-14">
+          <p class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-[11px] font-bold tracking-wide uppercase text-purple-300">
+            <i data-lucide="clapperboard" class="w-3.5 h-3.5"></i>
+            Catálogo de Modelos
+          </p>
+          <h2 class="mt-4 text-[28px] md:text-[40px] font-[800] leading-[1.05] text-white">
+            Escolha o modelo que mais combina com seu filho
+          </h2>
+          <p class="mt-3 text-[15px] md:text-[16px] text-gray-300">
+            Personagens originais desenvolvidos com IA de última geração. Clique em qualquer modelo para carregar o vídeo no celular ou incluir no seu pacote.
+          </p>
+        </div>
+
+        <!-- Grid de Cards de Modelos de Vídeo -->
+        <div id="modelsGridGallery" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Preenchido dinamicamente via JS -->
+        </div>
+
+        <div class="mt-10 text-center">
+          <p class="text-xs text-gray-400 mb-4">
+            Precisa de um tema personalizado diferente dos modelos acima? Produzimos sob encomenda.
+          </p>
+          <button onclick="scrollToOffer()" type="button" class="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold shadow-lg shadow-ouro/20 cursor-pointer">
+            <span>Garantir Meu Pacote por R$ 47</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
         </div>
       </div>
     </section>
@@ -1303,10 +1279,93 @@
     window.addEventListener('load', renderLucideIcons);
     document.addEventListener('DOMContentLoaded', renderLucideIcons);
 
-    // 2. Mobile Menu Controller
+    // ============================================================
+    // CATÁLOGO DE MODELOS DE VÍDEOS
+    // Para adicionar novos modelos de vídeos no futuro, basta adicionar
+    // um novo objeto no array abaixo:
+    // ============================================================
+    const VIDEO_MODELS = [
+      {
+        id: 'papai-noel',
+        title: 'Papai Noel',
+        character: 'Bom Velhinho do Polo Norte',
+        child: 'Miguel (6 anos)',
+        theme: 'Natal & Festas',
+        src: '/papai-noel-miguel.mp4',
+        poster: '/static/images/papai-noel-miguel-poster.jpg',
+        duration: '0:24',
+        badgeText: 'Disponível',
+        badgeClass: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+        icon: 'gift',
+        description: 'Recado acolhedor e mágico com cenário de neve e lareira, citando o nome e idade da criança.'
+      },
+      {
+        id: 'princesa',
+        title: 'Princesa do Reino',
+        character: 'Princesa Encantada',
+        child: 'Helena (5 anos)',
+        theme: 'Reino Mágico',
+        src: '/papai-noel-miguel.mp4',
+        poster: '/static/images/papai-noel-miguel-poster.jpg',
+        duration: '0:24',
+        badgeText: 'Disponível',
+        badgeClass: 'bg-pink-500/20 text-pink-300 border-pink-500/30',
+        icon: 'crown',
+        description: 'Abertura real direto do castelo convocando os convidados para o baile de aniversário.'
+      },
+      {
+        id: 'guardiao-teia',
+        title: 'Guardião da Teia',
+        character: 'Herói Mascarado',
+        child: 'Arthur (7 anos)',
+        theme: 'Super-Heróis',
+        src: '/papai-noel-miguel.mp4',
+        poster: '/static/images/papai-noel-miguel-poster.jpg',
+        duration: '0:24',
+        badgeText: 'Disponível',
+        badgeClass: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+        icon: 'shield',
+        description: 'Mensagem eletrizante de coragem no topo da cidade convidando para a missão de aniversário.'
+      },
+      {
+        id: 'patrulha-filhotes',
+        title: 'Patrulha de Filhotes',
+        character: 'Filhote Resgatista',
+        child: 'Theo (4 anos)',
+        theme: 'Aventura & Resgate',
+        src: '/papai-noel-miguel.mp4',
+        poster: '/static/images/papai-noel-miguel-poster.jpg',
+        duration: '0:24',
+        badgeText: 'Disponível',
+        badgeClass: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+        icon: 'heart',
+        description: 'Chamada animada dos cachorrinhos heróis para comemorar mais um aninho em equipe.'
+      },
+      {
+        id: 'coelhinho-magico',
+        title: 'Coelhinho Mágico',
+        character: 'Coelho da Floresta',
+        child: 'Laura (3 anos)',
+        theme: 'Páscoa & Primavera',
+        src: '/papai-noel-miguel.mp4',
+        poster: '/static/images/papai-noel-miguel-poster.jpg',
+        duration: '0:24',
+        badgeText: 'Disponível',
+        badgeClass: 'bg-teal-500/20 text-teal-300 border-teal-500/30',
+        icon: 'sparkles',
+        description: 'Recado fofo e animado com música suave e muitas cores feito para encantar os bem pequenininhos.'
+      }
+    ];
+
+    let currentModelId = 'papai-noel';
+
+    // 2. Mobile Menu Controller & Inicialização dos Modelos
     document.addEventListener('DOMContentLoaded', () => {
       // Setup Video Player Handlers
       setupSantaVideo();
+
+      // Renderiza os modelos de vídeos no Hero e na Galeria
+      renderModelsCatalog();
 
       const mobileBtn = document.getElementById('mobileMenuBtn');
       const mobileMenu = document.getElementById('mobileMenu');
@@ -1358,36 +1417,7 @@
         });
       }
 
-      // 3. Simulador Interativo do Nome da Criança no Mockup
-      const childInput = document.getElementById('childNameInput');
-      const previewName = document.getElementById('previewName');
-      const previewAge = document.getElementById('previewAge');
-      let debounceTimer = null;
-
-      if (childInput && previewName && previewAge) {
-        childInput.addEventListener('input', (e) => {
-          const rawVal = e.target.value.slice(0, 12);
-          e.target.value = rawVal;
-          const trimmed = rawVal.trim();
-          previewName.textContent = trimmed || 'Miguel';
-          previewAge.textContent = (trimmed.toLowerCase() === 'miguel' || !trimmed) ? '6' : '5';
-
-          // Disparar evento de engajamento no dataLayer
-          clearTimeout(debounceTimer);
-          debounceTimer = setTimeout(() => {
-            if (trimmed.length >= 2) {
-              window.dataLayer = window.dataLayer || [];
-              window.dataLayer.push({
-                event: 'simulator_test_name',
-                child_name: trimmed,
-                page_path: window.location.pathname
-              });
-            }
-          }, 800);
-        });
-      }
-
-      // 4. Disparo inicial de E-commerce: view_item (GA4) e ViewContent (Meta Pixel)
+      // 3. Disparo inicial de E-commerce: view_item (GA4) e ViewContent (Meta Pixel)
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'view_item',
@@ -1414,7 +1444,7 @@
         });
       }
 
-      // 5. Captura automática de cliques em elementos com data-event
+      // 4. Captura automática de cliques em elementos com data-event
       document.querySelectorAll('[data-event]').forEach(el => {
         el.addEventListener('click', () => {
           window.dataLayer = window.dataLayer || [];
@@ -1426,7 +1456,147 @@
       });
     });
 
-    // 6. Controle do Player de Vídeo e Alternância de Modo
+    // 5. Renderização do Catálogo de Modelos de Vídeo
+    function renderModelsCatalog() {
+      const selectorList = document.getElementById('modelsSelectorList');
+      const gridGallery = document.getElementById('modelsGridGallery');
+
+      // 1. Renderiza a lista no mockup do Hero
+      if (selectorList) {
+        selectorList.innerHTML = VIDEO_MODELS.map(m => {
+          const isActive = m.id === currentModelId;
+          return `
+            <button onclick="selectModel('${m.id}', true)" type="button" class="model-item-btn w-full flex items-center justify-between p-2 rounded-xl text-left transition-all cursor-pointer ${isActive ? 'bg-purple-600/20 border border-purple-500/50 shadow-md' : 'bg-white/[0.03] border border-white/5 hover:bg-white/[0.08]'}" data-model-id="${m.id}">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0 ${isActive ? 'text-purple-300' : 'text-gray-400'}">
+                  <i data-lucide="${m.icon}" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <p class="text-[12px] font-bold text-white truncate leading-tight">${m.title}</p>
+                  <p class="text-[10px] text-gray-400 truncate">${m.child}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0 ml-2">
+                <span class="text-[9px] font-bold px-2 py-0.5 rounded-full border ${m.badgeClass}">${m.badgeText}</span>
+                <span class="h-5 w-5 rounded-full ${isActive ? 'bg-purple-600 text-white' : 'bg-white/10 text-gray-400'} flex items-center justify-center">
+                  <i data-lucide="${isActive ? 'play' : 'chevron-right'}" class="w-3 h-3 ${isActive ? 'fill-current ml-0.5' : ''}"></i>
+                </span>
+              </div>
+            </button>
+          `;
+        }).join('');
+      }
+
+      // 2. Renderiza a grade de modelos na seção de Catálogo
+      if (gridGallery) {
+        gridGallery.innerHTML = VIDEO_MODELS.map(m => {
+          const isActive = m.id === currentModelId;
+          return `
+            <div class="model-card rounded-[22px] border ${isActive ? 'border-purple-500/60 bg-purple-950/20 shadow-[0_10px_30px_-10px_rgba(124,58,237,0.3)]' : 'border-white/10 bg-[#121218] hover:border-white/20'} p-5 flex flex-col justify-between transition-all" data-grid-model-id="${m.id}">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <div class="inline-flex items-center gap-2">
+                    <div class="h-8 w-8 rounded-lg bg-purple-500/15 border border-purple-500/30 text-purple-400 flex items-center justify-center">
+                      <i data-lucide="${m.icon}" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                      <span class="text-[10px] uppercase font-bold tracking-wider text-gray-400">${m.theme}</span>
+                      <h3 class="text-[15px] font-bold text-white leading-tight">${m.title}</h3>
+                    </div>
+                  </div>
+                  <span class="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full border ${m.badgeClass}">${m.badgeText}</span>
+                </div>
+
+                <p class="text-[13px] text-gray-300 leading-relaxed mb-4">${m.description}</p>
+              </div>
+
+              <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+                <div class="flex items-center gap-1.5 text-[11px] text-gray-400">
+                  <i data-lucide="user-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                  <span>Exemplo: <strong>${m.child}</strong></span>
+                </div>
+                <button onclick="selectModel('${m.id}', true)" type="button" class="btn-gold inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all hover:scale-105 cursor-pointer shadow-sm">
+                  <i data-lucide="play" class="w-3 h-3 fill-current"></i>
+                  <span>Assistir Modelo</span>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    }
+
+    // 6. Seleção Dinâmica de Modelo de Vídeo
+    function selectModel(modelId, shouldPlay = true) {
+      const model = VIDEO_MODELS.find(m => m.id === modelId);
+      if (!model) return;
+      currentModelId = modelId;
+
+      const video = document.getElementById('santaVideo');
+      const badgeTop = document.getElementById('videoBadgeTop');
+      const badgeBottom = document.getElementById('videoBadgeBottom');
+      const playSubtitle = document.getElementById('videoPlaySubtitle');
+      const timeDisplay = document.getElementById('videoTimeDisplay');
+      const progressBar = document.getElementById('videoProgressBar');
+
+      if (badgeTop) badgeTop.textContent = `🎅 MODELO REAL: ${model.title.toUpperCase()} & ${model.child.split(' ')[0].toUpperCase()}`;
+      if (badgeBottom) badgeBottom.textContent = `Para: ${model.child}`;
+      if (playSubtitle) playSubtitle.textContent = `Vídeo modelo gerado com IA para ${model.child}`;
+      if (timeDisplay) timeDisplay.textContent = `0:00 / ${model.duration}`;
+      if (progressBar) progressBar.style.width = '0%';
+
+      if (video) {
+        video.pause();
+        const currentSrc = video.currentSrc || video.querySelector('source')?.src || '';
+        if (!currentSrc.includes(model.src)) {
+          video.src = model.src;
+          video.poster = model.poster;
+          video.load();
+        }
+      }
+
+      // Atualiza o estado visual das listas
+      document.querySelectorAll('#modelsSelectorList .model-item-btn').forEach(btn => {
+        const isMatch = btn.getAttribute('data-model-id') === modelId;
+        if (isMatch) {
+          btn.className = 'model-item-btn w-full flex items-center justify-between p-2 rounded-xl text-left transition-all cursor-pointer bg-purple-600/20 border border-purple-500/50 shadow-md';
+        } else {
+          btn.className = 'model-item-btn w-full flex items-center justify-between p-2 rounded-xl text-left transition-all cursor-pointer bg-white/[0.03] border border-white/5 hover:bg-white/[0.08]';
+        }
+      });
+
+      document.querySelectorAll('#modelsGridGallery .model-card').forEach(card => {
+        const isMatch = card.getAttribute('data-grid-model-id') === modelId;
+        if (isMatch) {
+          card.className = 'model-card rounded-[22px] border border-purple-500/60 bg-purple-950/20 shadow-[0_10px_30px_-10px_rgba(124,58,237,0.3)] p-5 flex flex-col justify-between transition-all';
+        } else {
+          card.className = 'model-card rounded-[22px] border border-white/10 bg-[#121218] hover:border-white/20 p-5 flex flex-col justify-between transition-all';
+        }
+      });
+
+      if (shouldPlay) {
+        const playerSec = document.getElementById('videoPlayerSection');
+        if (playerSec && window.scrollY > 400) {
+          playerSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        playSantaVideo();
+      }
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'select_video_model',
+        model_id: model.id,
+        model_title: model.title,
+        model_theme: model.theme,
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    // 7. Controle do Player de Vídeo Principal
     function setupSantaVideo() {
       const video = document.getElementById('santaVideo');
       if (!video) return;
@@ -1561,40 +1731,7 @@
       video.currentTime = pct * (video.duration || 24);
     }
 
-    function switchPhoneMode(mode) {
-      const videoView = document.getElementById('phoneVideoView');
-      const simView = document.getElementById('phoneSimView');
-      const tabVideo = document.getElementById('tabVideoMode');
-      const tabSim = document.getElementById('tabSimMode');
-      const santaVideo = document.getElementById('santaVideo');
-
-      if (mode === 'video') {
-        videoView?.classList.remove('hidden');
-        simView?.classList.add('hidden');
-
-        tabVideo?.classList.add('bg-purple-600', 'text-white', 'shadow-sm');
-        tabVideo?.classList.remove('text-gray-400');
-        tabSim?.classList.remove('bg-purple-600', 'text-white', 'shadow-sm');
-        tabSim?.classList.add('text-gray-400');
-      } else {
-        // Pausa vídeo se estiver tocando
-        santaVideo?.pause();
-
-        videoView?.classList.add('hidden');
-        simView?.classList.remove('hidden');
-
-        tabSim?.classList.add('bg-purple-600', 'text-white', 'shadow-sm');
-        tabSim?.classList.remove('text-gray-400');
-        tabVideo?.classList.remove('bg-purple-600', 'text-white', 'shadow-sm');
-        tabVideo?.classList.add('text-gray-400');
-
-        // Foca no input para digitar
-        const input = document.getElementById('childNameInput');
-        input?.focus();
-      }
-    }
-
-    // 7. Smooth Scroll para a Oferta com Efeito de Glow e tracking
+    // 8. Smooth Scroll para a Oferta com Efeito de Glow e tracking
     function scrollToOffer() {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
