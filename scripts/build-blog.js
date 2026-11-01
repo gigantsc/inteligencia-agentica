@@ -354,7 +354,21 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
                 </div>
               </a>
 
-              <!-- Item 3: Comunidade Inteligência Agêntica -->
+              <!-- Item 3: Vídeos Mágicos -->
+              <a href="/videos-magicos" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-purple-500/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="sparkles" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-purple-300 transition-colors">Vídeos Mágicos</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">Novo</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Vídeos e convites com personagens de IA falando o nome da criança.</p>
+                </div>
+              </a>
+
+              <!-- Item 4: Comunidade Inteligência Agêntica -->
               <a href="/#oferta" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ouro/25 transition-all group/item">
                 <div class="w-9 h-9 rounded-lg bg-ouro/15 border border-ouro/30 flex items-center justify-center text-ouro flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
                   <i data-lucide="crown" class="w-4 h-4"></i>
@@ -427,6 +441,13 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
               </span>
               <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Auto</span>
             </a>
+            <a href="/videos-magicos" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-purple-300 hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="sparkles" class="w-4 h-4 text-purple-400"></i>
+                <span>Vídeos Mágicos (Aniversário IA)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">Novo</span>
+            </a>
             <a href="/#oferta" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ouro transition-colors">
               <span class="flex items-center gap-2.5">
                 <i data-lucide="crown" class="w-4 h-4 text-ouro"></i>
@@ -495,6 +516,7 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
             <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
             <li><a href="/zaalys" class="text-ciano font-semibold hover:text-white transition-colors">⚡ Zaalys (Lives TikTok)</a></li>
             <li><a href="/cinemaker" class="text-magenta-300 hover:text-white transition-colors">🎬 CineMaker (Vídeos IA)</a></li>
+            <li><a href="/videos-magicos" class="text-purple-300 font-semibold hover:text-white transition-colors">🪄 Vídeos Mágicos</a></li>
             <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
             <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
             <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
@@ -1115,6 +1137,12 @@ function generateSitemapXml(posts) {
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>${siteConfig.url}/videos-magicos</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>${siteConfig.url}/blog</loc>
     <lastmod>${now}</lastmod>
     <changefreq>daily</changefreq>
@@ -1155,6 +1183,9 @@ function generateLlmsTxt(posts) {
 ## Informações Principais
 - **Website:** ${siteConfig.url}
 - **Casos Reais de Agentes de IA:** ${siteConfig.url}/cases (326 casos práticos divididos por setores empresariais)
+- **CineMaker (Vídeos Longos IA):** ${siteConfig.url}/cinemaker (Produtora completa de vídeos com IA)
+- **Zaalys (Lives TikTok Shop):** ${siteConfig.url}/zaalys (Automação de lives infinitas e IA)
+- **Vídeos Mágicos (Aniversário IA):** ${siteConfig.url}/videos-magicos (Vídeos e convites personalizados com o nome da criança em personagens de IA)
 - **Assinatura / Comunidade:** ${siteConfig.url}/#oferta (Planos Mensal R$ 97 / Anual R$ 497)
 - **Pilares:** 4 encontros ao vivo por mês, biblioteca viva de automações semanais, tutoriais de VPS e Docker Swarm.
 
