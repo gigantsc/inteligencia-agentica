@@ -913,11 +913,11 @@
                   </li>
                 </ul>
 
-                <!-- CTA Action Button -->
-                <button onclick="toggleCheckoutNotice()" type="button" class="w-full inline-flex items-center justify-center gap-2 px-6 py-[18px] rounded-full bg-gradient-to-r from-[#5B21B6] via-[#7C3AED] to-[#10B981] text-white font-bold text-[16px] shadow-[0_16px_32px_-10px_rgba(16,185,129,0.5)] hover:-translate-y-[1px] active:translate-y-[1px] transition-all cursor-pointer">
-                  <i data-lucide="message-circle" class="h-5 w-5"></i>
-                  <span>Quero o Pacote de 3 por R$47</span>
-                </button>
+        <!-- CTA Action Button -->
+        <button id="mainOfferBtn" onclick="toggleCheckoutNotice()" data-event="cta_checkout_pacote_magico" type="button" class="w-full inline-flex items-center justify-center gap-2 px-6 py-[18px] rounded-full bg-gradient-to-r from-[#5B21B6] via-[#7C3AED] to-[#10B981] text-white font-bold text-[16px] shadow-[0_16px_32px_-10px_rgba(16,185,129,0.5)] hover:-translate-y-[1px] active:translate-y-[1px] transition-all cursor-pointer">
+          <i data-lucide="message-circle" class="h-5 w-5"></i>
+          <span>Quero o Pacote de 3 por R$47</span>
+        </button>
 
                 <!-- Integration Notice (Toggled when clicked) -->
                 <div id="checkoutNotice" class="hidden rounded-2xl border border-purple-500/30 bg-purple-500/10 p-4 text-left transition-all">
@@ -1248,6 +1248,7 @@
       const childInput = document.getElementById('childNameInput');
       const previewName = document.getElementById('previewName');
       const previewAge = document.getElementById('previewAge');
+      let debounceTimer = null;
 
       if (childInput && previewName && previewAge) {
         childInput.addEventListener('input', (e) => {
@@ -1256,12 +1257,72 @@
           const trimmed = rawVal.trim();
           previewName.textContent = trimmed || 'Miguel';
           previewAge.textContent = (trimmed.toLowerCase() === 'miguel' || !trimmed) ? '6' : '5';
+
+          // Disparar evento de engajamento no dataLayer
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(() => {
+            if (trimmed.length >= 2) {
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push({
+                event: 'simulator_test_name',
+                child_name: trimmed,
+                page_path: window.location.pathname
+              });
+            }
+          }, 800);
         });
       }
+
+      // 4. Disparo inicial de E-commerce: view_item (GA4) e ViewContent (Meta Pixel)
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'view_item',
+        ecommerce: {
+          currency: 'BRL',
+          value: 47.00,
+          items: [{
+            item_id: 'pacote-aniversario-magico',
+            item_name: 'Pacote Aniversário Mágico 3 em 1',
+            item_category: 'Vídeos Mágicos',
+            price: 47.00,
+            quantity: 1
+          }]
+        }
+      });
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'ViewContent', {
+          content_name: 'Pacote Aniversário Mágico 3 em 1',
+          content_category: 'Vídeos Mágicos',
+          content_ids: ['pacote-aniversario-magico'],
+          content_type: 'product',
+          value: 47.00,
+          currency: 'BRL'
+        });
+      }
+
+      // 5. Captura automática de cliques em elementos com data-event
+      document.querySelectorAll('[data-event]').forEach(el => {
+        el.addEventListener('click', () => {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: el.dataset.event,
+            timestamp: new Date().toISOString()
+          });
+        });
+      });
     });
 
-    // 4. Smooth Scroll para a Oferta com Efeito de Glow
+    // 6. Smooth Scroll para a Oferta com Efeito de Glow e tracking
     function scrollToOffer() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'cta_click',
+        event_category: 'Engagement',
+        event_action: 'Click CTA Oferta',
+        event_label: 'Garantir Pacote',
+        timestamp: new Date().toISOString()
+      });
+
       const el = document.getElementById('oferta');
       const card = document.getElementById('ofertaCard');
       if (el) {
@@ -1277,8 +1338,50 @@
       }
     }
 
-    // 5. Toggle Notice do Checkout
+    // 7. Toggle Notice do Checkout e Disparo de Conversão (begin_checkout / InitiateCheckout)
     function toggleCheckoutNotice() {
+      window.dataLayer = window.dataLayer || [];
+      
+      // GA4 Standard E-commerce: begin_checkout
+      window.dataLayer.push({
+        event: 'begin_checkout',
+        event_category: 'Ecommerce',
+        event_action: 'Initiate Checkout',
+        event_label: 'Pacote Aniversário Mágico 3 em 1',
+        ecommerce: {
+          currency: 'BRL',
+          value: 47.00,
+          items: [{
+            item_id: 'pacote-aniversario-magico',
+            item_name: 'Pacote Aniversário Mágico 3 em 1',
+            item_category: 'Vídeos Mágicos',
+            price: 47.00,
+            quantity: 1
+          }]
+        }
+      });
+
+      // Evento de disparo direto de checkout para tags do GTM
+      window.dataLayer.push({
+        event: 'initiate_checkout',
+        product_name: 'Pacote Aniversário Mágico 3 em 1',
+        value: 47.00,
+        currency: 'BRL'
+      });
+
+      // Meta Pixel (Facebook) InitiateCheckout
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'InitiateCheckout', {
+          content_name: 'Pacote Aniversário Mágico 3 em 1',
+          content_category: 'Vídeos Mágicos',
+          content_ids: ['pacote-aniversario-magico'],
+          content_type: 'product',
+          value: 47.00,
+          currency: 'BRL',
+          num_items: 1
+        });
+      }
+
       const box = document.getElementById('checkoutNotice');
       if (box) {
         box.classList.toggle('hidden');
@@ -1290,11 +1393,18 @@
       }
     }
 
-    // 6. Copiar Link do Checkout
+    // 8. Copiar Link do Checkout e tracking
     function copyCheckoutUrl() {
       const field = document.getElementById('checkoutUrlField');
       const feedback = document.getElementById('copyFeedback');
       if (field) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'copy_checkout_url',
+          product_name: 'Pacote Aniversário Mágico 3 em 1',
+          checkout_url: field.value
+        });
+
         navigator.clipboard.writeText(field.value).then(() => {
           if (feedback) {
             feedback.classList.remove('hidden');
@@ -1304,7 +1414,7 @@
       }
     }
 
-    // 7. Toggle do FAQ Accordion
+    // 9. Toggle do FAQ Accordion
     function toggleFaq(btn) {
       const item = btn.closest('.faq-item');
       const answer = item?.querySelector('.faq-answer');
