@@ -19,6 +19,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Persistent Goals e o Loop de Ralph no Hermes Agent: Como Dar Autonomia Real a Agentes de IA com Contratos de Conclusão e Quality Gates](https://inteligenciaagentica.com.br/blog/persistent-goals-ralph-loop-autonomia-agentes-ia)
+- **Data de Publicação:** 2026-11-02
+- **Tags:** Agentes de IA, Automação, Hermes Agent, Gestão, Produtividade, Negócios
+- **Resumo:** Entenda como o comando /goal e o Ralph Loop no Hermes Agent eliminam a necessidade de 'ficar de babá' de chatbots, permitindo que agentes iterem autonomamente até comprovarem resultados através de contratos formais de conclusão e quality gates determinísticos.
+- **URL:** https://inteligenciaagentica.com.br/blog/persistent-goals-ralph-loop-autonomia-agentes-ia
+
 ### [Checkpoints e /rollback no Hermes Agent: A Rede de Segurança Definitiva contra Alucinações e Erros de IA em Empresas](https://inteligenciaagentica.com.br/blog/checkpoints-rollback-seguranca-anti-alucinacao-agentes-ia)
 - **Data de Publicação:** 2026-11-01
 - **Tags:** Checkpoints, Rollback, Segurança Corporativa, Hermes Agent, Governança de IA, Shadow Git, Resiliência
