@@ -11,7 +11,7 @@ def sync():
         return False
         
     dirs_to_copy = ["static", "blog", "content", "tags", "cases", "ao-vivo", "obrigado", "gtm", "cinemaker", "linknabio", "zaalys", "videos-magicos"]
-    files_to_copy = ["index.html", "site.config.js", "sitemap.xml", "llms.txt", "llms-full.txt", "feed.xml", "robots.txt", "video-inicial.mp4", "papai-noel-miguel.mp4"]
+    files_to_copy = ["index.html", "site.config.js", "sitemap.xml", "llms.txt", "llms-full.txt", "feed.xml", "robots.txt", "video-inicial.mp4", "papai-noel-miguel.mp4", "guardiao-miguel.mp4", "fada-maria.mp4"]
     
     import subprocess
 
