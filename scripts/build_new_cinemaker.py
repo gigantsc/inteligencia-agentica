@@ -2,7 +2,7 @@ import os
 import re
 
 def main():
-    art_path = "C:/Users/Jean/AppData/Local/hermes/profiles/devops/attachments/Cinemaker-Nova-Pagina-Campea-3.html"
+    art_path = "C:/Users/Jean/AppData/Local/hermes/profiles/devops/attachments/Cinemaker-Nova-Pagina-Campea-4.html"
     scratch_sections_path = "C:/Users/Jean/AppData/Local/hermes/profiles/devops/cache/scratch/cinemaker_new_sections.html"
     old_index_path = "D:/DevCod/inteligencia-agentica/cinemaker/index.html"
     new_index_path = "D:/DevCod/inteligencia-agentica/cinemaker/index.html"
@@ -109,6 +109,16 @@ def main():
     checkout_old = 'href="#checkout" class="mt-6 w-full rounded-full bg-[#FF4D12] hover:bg-[#FF5A26] text-black font-[800] text-[16px] md:text-[18px] uppercase tracking-[-0.01em] py-[18px] md:py-[20px] flex items-center justify-center gap-3 transition-colors cursor-pointer" style="box-shadow: 0 0 40px -10px var(--accent-glow);"'
     checkout_new = 'href="https://pay.hotmart.com/C108132324U?checkoutMode=2&off=zpo5cf1n" target="_blank" rel="noopener noreferrer" id="mainBuyButton" class="mt-6 w-full rounded-full bg-[#FF4D12] hover:bg-[#FF5A26] text-black font-[800] text-[16px] md:text-[18px] uppercase tracking-[-0.01em] py-[18px] md:py-[20px] flex items-center justify-center gap-3 transition-colors cursor-pointer" style="box-shadow: 0 0 40px -10px var(--accent-glow);"'
     sections_html = sections_html.replace(checkout_old, checkout_new)
+
+    # Remove 12x de (produto com pagamento unico de R$49,90)
+    sections_html = sections_html.replace(
+        '<div class="text-[11px] text-white/30">12x de</div>',
+        ''
+    )
+    sections_html = sections_html.replace(
+        '<div class="mono text-[10px] text-white/30">12x de</div>',
+        ''
+    )
 
     # Remove dummy checkout feedback
     sections_html = sections_html.replace(
