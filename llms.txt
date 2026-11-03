@@ -19,6 +19,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Alta Disponibilidade em Agentes de IA: O Guia Definitivo de Credential Pools, Fallback Providers e Provider Routing no Hermes Agent](https://inteligenciaagentica.com.br/blog/credential-pools-fallback-providers-alta-disponibilidade-agentes-ia)
+- **Data de Publicação:** 2026-11-03
+- **Tags:** Alta Disponibilidade, Hermes Agent, Automação, Resiliência, APIs, Negócios
+- **Resumo:** Descubra como blindar agentes autônomos 24/7 contra quedas de API, limites de requisição (HTTP 429) e estouro de saldo (HTTP 402) com a arquitetura de resiliência em 3 camadas do Hermes Agent.
+- **URL:** https://inteligenciaagentica.com.br/blog/credential-pools-fallback-providers-alta-disponibilidade-agentes-ia
+
 ### [Persistent Goals e o Loop de Ralph no Hermes Agent: Como Dar Autonomia Real a Agentes de IA com Contratos de Conclusão e Quality Gates](https://inteligenciaagentica.com.br/blog/persistent-goals-ralph-loop-autonomia-agentes-ia)
 - **Data de Publicação:** 2026-11-02
 - **Tags:** Agentes de IA, Automação, Hermes Agent, Gestão, Produtividade, Negócios
