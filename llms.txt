@@ -19,6 +19,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Egress Proxy e Iron-Proxy: Como Blindar Agentes de IA Contra Exfiltração de Chaves de API, Ataques SSRF e Prompt Injection em Produção](https://inteligenciaagentica.com.br/blog/egress-proxy-iron-proxy-seguranca-anti-exfiltracao-agentes-ia)
+- **Data de Publicação:** 2026-11-04
+- **Tags:** Segurança, Docker, Hermes Agent, DevOps, Firewall, Negócios, SSRF
+- **Resumo:** Aprenda como blindar agentes autônomos em containers Docker utilizando o hermes egress e o iron-proxy, garantindo injeção transparente de segredos, bloqueio de SSRF e proteção contra roubo de credenciais via prompt injection.
+- **URL:** https://inteligenciaagentica.com.br/blog/egress-proxy-iron-proxy-seguranca-anti-exfiltracao-agentes-ia
+
 ### [Alta Disponibilidade em Agentes de IA: O Guia Definitivo de Credential Pools, Fallback Providers e Provider Routing no Hermes Agent](https://inteligenciaagentica.com.br/blog/credential-pools-fallback-providers-alta-disponibilidade-agentes-ia)
 - **Data de Publicação:** 2026-11-03
 - **Tags:** Alta Disponibilidade, Hermes Agent, Automação, Resiliência, APIs, Negócios
