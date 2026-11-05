@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Wed, 04 Nov 2026 11:23:38 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 05 Nov 2026 11:11:38 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,190 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Computer Use em Segundo Plano: Como Agentes de IA Operam ERPs e Softwares Desktop sem Roubar o Mouse]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/computer-use-segundo-plano-automacao-erps-sistemas-legados-desktop</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/computer-use-segundo-plano-automacao-erps-sistemas-legados-desktop</guid>
+            <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Descubra como o Hermes Agent utiliza o driver CUA e o contrato No-Foreground para automatizar ERPs legados, sistemas contábeis e softwares Windows em segundo plano, sem APIs e sem interromper o operador humano.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Computer Use em Segundo Plano (Background CUA)</strong> do ecossistema Hermes Agent resolve o maior gargalo da automação corporativa: interagir com sistemas legados de desktop (como ERPs SAP GUI, TOTVS Protheus, WinThor ou emissores fiscais) que não possuem APIs REST. Ao implementar o rigoroso <strong>No-Foreground Contract</strong> através do <code>cua-driver</code>, o agente lê diretamente a árvore de acessibilidade do sistema operacional (Windows UIAutomation, macOS SkyLight ou Linux AT-SPI) e despacha cliques e digitações sintetizados direto para o processo da aplicação (PID), sem sequestrar a tela, sem roubar o foco da janela ativa e sem mover o cursor físico do mouse. Dessa forma, o agente autônomo e o colaborador humano coexistem e trabalham simultaneamente na mesma estação de trabalho ou VPS corporativa.</p>
+</blockquote>
+<hr>
+<h2 id="o-gargalo-dos-sistemas-legados-nas-empresas-reais" class="scroll-mt-24 group flex items-center justify-between">O Gargalo dos Sistemas Legados nas Empresas Reais <a href="#o-gargalo-dos-sistemas-legados-nas-empresas-reais" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Em empresas consolidadas com faturamento maduro e dezenas de colaboradores — em setores como atacado, logística, varejo, manufatura e serviços —, a maior parte das rotinas operacionais críticas não acontece em plataformas web modernas. </p>
+<p>Elas operam em sistemas desktop desenvolvidos há 10, 15 ou 20 anos:</p>
+<ul>
+<li><strong>ERPs de grande porte instalados localmente:</strong> SAP GUI, TOTVS Protheus, Linx, Senior Sistemas, Sankhya ou WinThor;</li>
+<li><strong>Sistemas fiscais e contábeis de governos:</strong> Validadores SPED, emissores de NF-e/NFS-e, programas de remessa bancária CNAB 240/400;</li>
+<li><strong>Aplicativos legados em Win32, WPF, Delphi ou Java Swing</strong> cujas equipes de desenvolvimento originais sequer existem mais.</li>
+</ul>
+<p>Até hoje, quando o diretor de operações ou o empresário buscava automatizar o preenchimento de notas, conferência de ordens de serviço ou conciliação financeira, esbarrava em duas opções dolorosas:</p>
+<ol>
+<li><strong>Pagar orçamentos estratosféricos (R$ 50 mil a R$ 200 mil+)</strong> para customizar APIs legadas no fornecedor do ERP — processo que costuma levar meses de burocracia;</li>
+<li><strong>Implementar ferramentas de RPA (Robotic Process Automation) tradicional</strong> como UiPath ou Automation Anywhere, que exigem licenças anuais caríssimas e operam travando a máquina: quando o robô roda, a tela fica &quot;possuída&quot;, o mouse se move sozinho e nenhum ser humano pode tocar no computador.</li>
+</ol>
+<p>Com a evolução dos agentes autônomos no <strong>Hermes Agent</strong>, esse paradigma foi completamente superado pelo conceito de <strong>Computer Use em Segundo Plano</strong>.</p>
+<hr>
+<h2 id="o-que-e-o-contrato-andquotno-foregroundandquot-background-cua" class="scroll-mt-24 group flex items-center justify-between">O Que É o Contrato &quot;No-Foreground&quot; (Background CUA)? <a href="#o-que-e-o-contrato-andquotno-foregroundandquot-background-cua" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O grande diferencial da arquitetura de Computer Use do Hermes Agent em relação a outras abordagens do mercado (como a implementação proprietária de Computer Use da Anthropic) reside no <strong>No-Foreground Contract</strong> viabilizado pelo <code>cua-driver</code> integrado nativamente como um servidor MCP (<em>Model Context Protocol</em>).</p>
+<p>Em ferramentas comuns de controle de mouse/teclado (como PyAutoGUI ou scripts baseados em OCR), o software simplesmente assume as coordenadas globais da tela <code>(X, Y)</code> e despacha eventos no monitor ativo. Se uma janela de chat pipocar na frente ou se o usuário mover o mouse, a automação erra o clique e corrompe dados.</p>
+<p>No Hermes Agent, o <code>cua-driver</code> opera em uma camada muito mais profunda do sistema operacional:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                          ARQUITETURA BACKGROUND COMPUTER USE                           │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+
+     COLABORADOR HUMANO                                    AGENTE HERMES <span class="token punctuation">(</span>AUTÔNOMO<span class="token punctuation">)</span>
+  <span class="token punctuation">(</span>Digitando proposta no Word<span class="token punctuation">)</span>                       <span class="token punctuation">(</span>Lançando faturas no ERP Desktop<span class="token punctuation">)</span>
+               │                                                      │
+               ▼                                                      ▼
+  ┌─────────────────────────┐                            ┌─────────────────────────┐
+  │   Janela em Foco Ativo  │                            │  Janela em Segundo Plano│
+  │     <span class="token punctuation">(</span>Microsoft Word<span class="token punctuation">)</span>    │                            │    <span class="token punctuation">(</span>TOTVS / SAP GUI<span class="token punctuation">)</span>    │
+  └────────────┬────────────┘                            └────────────┬────────────┘
+               │                                                      ▲
+               │ Cursor e Foco Intactos                               │ Eventos Direcionados por PID
+               │                                                      │ <span class="token punctuation">(</span>Sem roubo de foco<span class="token punctuation">)</span>
+               ▼                                                      │
+  ┌───────────────────────────────────────────────────────────────────┴─────────────────┐
+  │                       KERNEL <span class="token operator">&amp;</span> SUBSISTEMAS DO SISTEMA OPERACIONAL                   │
+  │                                                                                     │
+  │  • Windows: UIAutomation Tree Reader  +  PostMessage / SendInput <span class="token punctuation">(</span>Scoped to PID<span class="token punctuation">)</span>    │
+  │  • macOS:   SkyLight SPIs <span class="token punctuation">(</span>SLPSPostEventRecordTo<span class="token punctuation">)</span>                                   │
+  │  • Linux:   AT-SPI Accessibility Bus  +  Virtual Input                              │
+  └─────────────────────────────────────────────────────────────────────────────────────┘
+</code></pre><h3 id="como-cada-plataforma-garante-o-isolamento" class="scroll-mt-24 group flex items-center justify-between">Como cada plataforma garante o isolamento: <a href="#como-cada-plataforma-garante-o-isolamento" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ol>
+<li><strong>No Windows 10/11:</strong> O driver conecta à árvore nativa do <strong>UIAutomation</strong>, identificando cada botão, caixa de seleção, tabela e campo de entrada por identificadores semânticos (AutomationId, Name, ClassName). Os disparos de clique e teclas utilizam <code>PostMessage</code> e injeções com escopo restrito ao identificador de processo (PID), sem precisar trazer a janela para o primeiro plano;</li>
+<li><strong>No macOS:</strong> Utiliza as APIs internas de acessibilidade (AX) e chamadas do SkyLight (<code>SLPSPostEventRecordTo</code>), disparando eventos diretamente ao processo alvo sem deslocar o cursor físico do mouse nem alternar espaços/desktops virtuais;</li>
+<li><strong>No Linux (X11 e Wayland):</strong> Conecta ao barramento AT-SPI e despacha eventos sintetizados através de pontes de teclado e ponteiro virtual.</li>
+</ol>
+<hr>
+<h2 id="tabela-comparativa-rpa-tradicional-vs-computer-use-agentico" class="scroll-mt-24 group flex items-center justify-between">Tabela Comparativa: RPA Tradicional vs. Computer Use Agêntico <a href="#tabela-comparativa-rpa-tradicional-vs-computer-use-agentico" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Dimensão</th>
+<th>RPA Tradicional (UiPath / Automation Anywhere)</th>
+<th>Scripts Simples (PyAutoGUI / Coordenadas)</th>
+<th>Computer Use Agêntico (Hermes Agent + CUA)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Interrupção do Operador</strong></td>
+<td>🔴 Bloqueia o mouse e a máquina inteira</td>
+<td>🔴 Bloqueia o mouse e falha se a tela mudar</td>
+<td>🟢 <strong>Zero interrupção</strong> (roda 100% em background)</td>
+</tr>
+<tr>
+<td><strong>Resiliência a Mudanças de Layout</strong></td>
+<td>🟡 Frágil (exige remapeamento manual constante)</td>
+<td>🔴 Péssima (qualquer pixel fora quebra o fluxo)</td>
+<td>🟢 <strong>Alta</strong> (compreensão semântica da árvore de UI)</td>
+</tr>
+<tr>
+<td><strong>Dependência de Modelo</strong></td>
+<td>N/A (Regras rígidas pré-programadas)</td>
+<td>N/A (Scripts estáticos)</td>
+<td>🟢 <strong>Agnóstico:</strong> Claude, GPT-4o, DeepSeek, Ollama</td>
+</tr>
+<tr>
+<td><strong>Custo de Licenciamento</strong></td>
+<td>🔴 R$ 3.000 a R$ 15.000+ por mês por robô</td>
+<td>🟢 Gratuito (mas com alto custo de manutenção)</td>
+<td>🟢 <strong>Open-source</strong>, pagando apenas centavos de API</td>
+</tr>
+<tr>
+<td><strong>Tratamento de Exceções</strong></td>
+<td>🔴 Para e dispara alerta de erro ao menor desvio</td>
+<td>🔴 Trava ou clica no lugar errado</td>
+<td>🟢 <strong>Raciocínio autônomo</strong> para contornar pop-ups e avisos</td>
+</tr>
+<tr>
+<td><strong>Segurança e Restrições</strong></td>
+<td>🟡 Dependente de senhas gravadas na ferramenta</td>
+<td>🔴 Sem qualquer controle de fronteira</td>
+<td>🟢 <strong>Manifesto formal (<code>bounded mode</code>)</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="modelo-agnostico-fuja-do-aprisionamento-tecnologico-vendor-lock-in" class="scroll-mt-24 group flex items-center justify-between">Modelo-Agnóstico: Fuja do Aprisionamento Tecnológico (Vendor Lock-in) <a href="#modelo-agnostico-fuja-do-aprisionamento-tecnologico-vendor-lock-in" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando a Anthropic anunciou sua prévia de Computer Use, ela exigiu chamadas proprietárias com endpoints exclusivos da API do Claude 3.5 Sonnet. Isso criou um dilema sério para as empresas: como confiar operações volumosas de milhares de telas por dia em um modelo com custos elevados por milhão de tokens?</p>
+<p>O subsistema <code>computer_use</code> do Hermes Agent desacoplou o controle de desktop da inferência do modelo:</p>
+<ul>
+<li>Ele traduz ações de tela (ler árvore, capturar screenshot, focar campo, clicar, rolar, digitar texto) em ferramentas padrão no protocolo MCP;</li>
+<li>Qualquer modelo com capacidade nativa de <em>Tool-Calling</em> (chamada de ferramentas) pode pilotar o computador;</li>
+<li>Empresas podem utilizar modelos de altíssimo custo-benefício, como <strong>DeepSeek V3</strong> ou <strong>Gemini 2.0 Flash</strong>, ou até mesmo <strong>modelos locais via Ollama/vLLM</strong>, garantindo que nenhum dado confidencial ou tela de cliente saia da rede corporativa local.</li>
+</ul>
+<hr>
+<h2 id="os-tres-niveis-de-governanca-e-seguranca" class="scroll-mt-24 group flex items-center justify-between">Os Três Níveis de Governança e Segurança <a href="#os-tres-niveis-de-governanca-e-seguranca" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Dar acesso ao desktop para uma inteligência artificial exige controles rígidos. No Hermes Agent, isso é gerenciado por três modos de permissão imutáveis durante a inicialização da sessão:</p>
+<pre><code class="language-yaml"><span class="token comment"># Exemplo de configuração de segurança no ~/.hermes/config.yaml</span>
+<span class="token key atrule">computer_use</span><span class="token punctuation">:</span>
+  <span class="token key atrule">permission_mode</span><span class="token punctuation">:</span> bounded
+  <span class="token key atrule">capability_manifest</span><span class="token punctuation">:</span> ~/.hermes/cua<span class="token punctuation">-</span>manifest.yaml
+</code></pre><h3 id="1-modo-standard-supervisionado-smart-approvals" class="scroll-mt-24 group flex items-center justify-between">1. Modo <code>standard</code> (Supervisionado / Smart Approvals) <a href="#1-modo-standard-supervisionado-smart-approvals" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O comportamento padrão do Hermes Agent. Toda ação que envolva comandos potencialmente críticos no sistema operacional exige autorização prévia do usuário ou é avaliada pelo motor de aprovação inteligente. Ideal para tarefas assistidas durante o expediente.</p>
+<h3 id="2-modo-bounded-manifesto-corporativo-restrito" class="scroll-mt-24 group flex items-center justify-between">2. Modo <code>bounded</code> (Manifesto Corporativo Restrito) <a href="#2-modo-bounded-manifesto-corporativo-restrito" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O modo perfeito para automações contínuas e fluxos de backoffice em produção. Você define um arquivo formal de capacidades (<code>cua-manifest.yaml</code>) especificando:</p>
+<ul>
+<li>A lista exata de executáveis autorizados (ex: <code>totvs_smartclient.exe</code>, <code>saplogon.exe</code>);</li>
+<li>Os títulos de janelas permitidos;</li>
+<li>As ações de teclado/mouse autorizadas;</li>
+<li>Os perfis de navegador permitidos.</li>
+</ul>
+<p>Se o agente sofrer alucinação ou tentar alternar para um aplicativo não listado (como um leitor de e-mails ou terminal desautorizado), o <code>cua-driver</code> <strong>aborta a chamada imediatamente na raiz</strong> (<em>fail-closed</em>), impedindo qualquer ação fora do escopo.</p>
+<h3 id="3-modo-unrestricted-isolamento-em-sandbox-vm" class="scroll-mt-24 group flex items-center justify-between">3. Modo <code>unrestricted</code> (Isolamento em Sandbox / VM) <a href="#3-modo-unrestricted-isolamento-em-sandbox-vm" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Acionado via parâmetro <code>--yolo</code> ou <code>/yolo</code>. Desativa confirmações interativas para máxima velocidade. Deve ser utilizado <strong>exclusivamente</strong> em containers Docker isolados (como a imagem oficial <code>nousresearch/hermes-sandbox:desktop</code>) ou em máquinas virtuais dedicadas e descartáveis.</p>
+<hr>
+<h2 id="diagnostico-e-instalacao-na-pratica" class="scroll-mt-24 group flex items-center justify-between">Diagnóstico e Instalação na Prática <a href="#diagnostico-e-instalacao-na-pratica" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O Hermes Agent inclui ferramentas de verificação instantânea para garantir que os subsistemas de acessibilidade e captura estejam 100% operacionais na sua máquina física ou VPS Windows.</p>
+<h3 id="1-ativacao-do-toolset" class="scroll-mt-24 group flex items-center justify-between">1. Ativação do Toolset <a href="#1-ativacao-do-toolset" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para habilitar o Computer Use em sua sessão interativa ou terminal:</p>
+<pre><code class="language-bash"><span class="token comment"># Ativar para uma sessão direta</span>
+hermes <span class="token parameter variable">-t</span> computer_use chat
+
+<span class="token comment"># Ou instalar os binários do driver via gerenciador de pacotes do Hermes</span>
+hermes computer-use <span class="token function">install</span>
+</code></pre><h3 id="2-rodando-o-diagnostico-com-doctor" class="scroll-mt-24 group flex items-center justify-between">2. Rodando o Diagnóstico com <code>doctor</code> <a href="#2-rodando-o-diagnostico-com-doctor" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O comando <code>hermes computer-use doctor</code> executa uma auditoria completa na infraestrutura gráfica:</p>
+<pre><code class="language-bash">hermes computer-use doctor
+</code></pre><p>Saída típica de validação em ambiente Windows corporativo:</p>
+<pre><code class="language-text">✅ binary_version: cua-driver v0.20.4
+✅ platform_supported: Windows 11 Pro 64-bit (build 26100)
+✅ session_active: MCP session is active via stdio
+✅ uiautomation_capability: UIAutomation backend reachable and registered
+✅ screen_capture_capability: Desktop capture available (Display 1: 1920x1080)
+✅ input_synthesizer: PostMessage &amp; SendInput background dispatch ready
+Status: OPERATIONAL (Ready for background automation)
+</code></pre><hr>
+<h2 id="caso-real-de-aplicacao-distribuidora-de-medicamentos" class="scroll-mt-24 group flex items-center justify-between">Caso Real de Aplicação: Distribuidora de Medicamentos <a href="#caso-real-de-aplicacao-distribuidora-de-medicamentos" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para ilustrar o impacto financeiro dessa tecnologia em operações tradicionais, acompanhe o caso de uma distribuidora com 180 colaboradores no interior de São Paulo.</p>
+<h3 id="o-desafio" class="scroll-mt-24 group flex items-center justify-between">O Desafio <a href="#o-desafio" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>A empresa recebia diariamente cerca de 320 pedidos de compra de hospitais e clínicas através de planilhas e e-mails não padronizados. O ERP interno da empresa é uma versão cliente-servidor em Windows desenvolvida na década de 2000, sem qualquer API de integração. </p>
+<p>Para lançar esses pedidos, conferir o estoque físico e gerar os espelhos de notas fiscais, a distribuidora mantinha <strong>4 colaboradores dedicados full-time</strong> apenas digitando códigos de produto, validando lotes e clicando em telas do ERP — consumindo mais de 600 horas de digitação manual todo mês, com frequentes erros de digitação de lote e vencimento.</p>
+<h3 id="a-solucao-com-hermes-agent-andamp-computer-use" class="scroll-mt-24 group flex items-center justify-between">A Solução com Hermes Agent &amp; Computer Use <a href="#a-solucao-com-hermes-agent-andamp-computer-use" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ol>
+<li><strong>Configuração da VPS Windows:</strong> O Hermes Agent foi instalado em uma instância Windows Server conectada à rede local do ERP;</li>
+<li><strong>Definição do Manifesto Bounded:</strong> O arquivo <code>cua-manifest.yaml</code> autorizou exclusivamente a execução do executável do ERP (<code>distrib_erp.exe</code>) e as telas com cabeçalho &quot;Lançamento de Pedidos&quot; e &quot;Consulta de Lotes&quot;;</li>
+<li><strong>Agente Triador e Digitador:</strong> Um agente Hermes monitora o recebimento dos pedidos, extrai os itens das ordens de compra, verifica a coerência com as regras de negócio e assume o preenchimento dos campos do ERP diretamente pela árvore de UIAutomation em background;</li>
+<li><strong>Alerta e Auditoria:</strong> Ao finalizar cada pedido, o agente envia o comprovante de lançamento e o número da ordem gerada diretamente para o canal de logística no Telegram/WhatsApp corporativo.</li>
+</ol>
+<h3 id="o-resultado" class="scroll-mt-24 group flex items-center justify-between">O Resultado <a href="#o-resultado" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ul>
+<li><strong>Redução de 85% no tempo de faturamento:</strong> O tempo médio de processamento de um pedido hospitalar caiu de 22 minutos para 1 minuto e 40 segundos;</li>
+<li><strong>Zero erros de digitação:</strong> Eliminação total de devoluções por divergência de lote ou quantidade;</li>
+<li><strong>Realocação estratégica da equipe:</strong> Os 4 colaboradores deixaram o trabalho mecânico de digitação e foram realocados para atendimento comercial e relacionamento com compradores hospitalares, aumentando o faturamento da distribuidora em 18% no primeiro trimestre.</li>
+</ul>
+<hr>
+<h2 id="como-comecar-na-sua-empresa" class="scroll-mt-24 group flex items-center justify-between">Como Começar na Sua Empresa <a href="#como-comecar-na-sua-empresa" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A automação agêntica de telas legadas não é um projeto para daqui a cinco anos — ela é uma realidade técnica disponível hoje. Se a sua empresa possui sistemas antigos que você achava impossível integrar sem gastar fortunas em desenvolvimento, o Computer Use em segundo plano é a chave para destravar a eficiência operacional do seu negócio.</p>
+<p>Quer aprender a estruturar agentes autônomos seguros, configurar o <code>cua-driver</code> em máquinas Windows, desenhar manifestos corporativos rígidos e construir rotinas de alto impacto para a sua empresa? </p>
+<p>Conheça a formação executiva e prática do curso <strong><a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a></strong> e junte-se a empresários e gestores que estão colocando agentes autônomos para trabalhar na ponta do negócio com segurança, rentabilidade e soberania de dados.</p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/computer-use-segundo-plano-automacao-desktop.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Egress Proxy e Iron-Proxy: Como Blindar Agentes de IA Contra Exfiltração de Chaves de API, Ataques SSRF e Prompt Injection em Produção]]></title>
