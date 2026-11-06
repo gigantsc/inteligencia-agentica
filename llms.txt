@@ -19,6 +19,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Deliverable Mode: Como Agentes de IA Entregam Planilhas Excel (.xlsx), PDFs e Gráficos Nativos no Telegram e WhatsApp](https://inteligenciaagentica.com.br/blog/deliverable-mode-artefatos-chat-planilhas-excel-pdf-telegram-whatsapp)
+- **Data de Publicação:** 2026-11-06
+- **Tags:** Deliverable Mode, Automação Corporativa, Hermes Agent, Telegram & WhatsApp, Relatórios Executivos, Excel e PDF
+- **Resumo:** Conheça o Deliverable Mode do Hermes Agent: a arquitetura que permite a agentes de IA gerarem planilhas Excel reais, relatórios diagramados em PDF e gráficos executivos, entregando-os como anexos nativos no celular sem exibir código ou caminhos de arquivos.
+- **URL:** https://inteligenciaagentica.com.br/blog/deliverable-mode-artefatos-chat-planilhas-excel-pdf-telegram-whatsapp
+
 ### [Computer Use em Segundo Plano: Como Agentes de IA Operam ERPs e Softwares Desktop sem Roubar o Mouse](https://inteligenciaagentica.com.br/blog/computer-use-segundo-plano-automacao-erps-sistemas-legados-desktop)
 - **Data de Publicação:** 2026-11-05
 - **Tags:** Computer Use, RPA Agêntico, ERPs Legados, Hermes Agent, Automação Corporativa, Gestão de Negócios

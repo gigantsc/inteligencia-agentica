@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Thu, 05 Nov 2026 11:11:38 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 06 Nov 2026 11:11:48 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,235 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Deliverable Mode: Como Agentes de IA Entregam Planilhas Excel (.xlsx), PDFs e Gráficos Nativos no Telegram e WhatsApp]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/deliverable-mode-artefatos-chat-planilhas-excel-pdf-telegram-whatsapp</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/deliverable-mode-artefatos-chat-planilhas-excel-pdf-telegram-whatsapp</guid>
+            <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Conheça o Deliverable Mode do Hermes Agent: a arquitetura que permite a agentes de IA gerarem planilhas Excel reais, relatórios diagramados em PDF e gráficos executivos, entregando-os como anexos nativos no celular sem exibir código ou caminhos de arquivos.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Deliverable Mode (Modo de Entrega de Artefatos)</strong> do Hermes Agent resolve a maior deficiência dos assistentes de inteligência artificial convencionais em ambientes corporativos: a entrega de dados inacabados. Enquanto ferramentas web tradicionais (ChatGPT ou Claude) respondem a solicitações analíticas despejando blocos de código Python (<code>import pandas...</code>) ou tabelas Markdown ilegíveis na tela de um smartphone, o Hermes Agent gera os arquivos binários reais no sistema de arquivos corporativo (<code>.xlsx</code>, <code>.pdf</code>, <code>.png</code>, <code>.docx</code>, <code>.pptx</code>). Ao processar a resposta, o <strong>Gateway de Mensageria</strong> (conectado ao Telegram, WhatsApp, Slack, Teams ou Discord) intercepta automaticamente os caminhos absolutos dos arquivos gerados, remove os termos técnicos da mensagem visível e faz o upload dos documentos como anexos nativos. O empresário ou diretor recebe a planilha formatada com fórmulas operacionais e o relatório em PDF com design executivo diretamente na palma da mão, pronto para compartilhamento ou auditoria.</p>
+</blockquote>
+<hr>
+<h2 id="o-problema-dos-andquotdados-inacabadosandquot-no-dia-a-dia-da-gestao" class="scroll-mt-24 group flex items-center justify-between">O Problema dos &quot;Dados Inacabados&quot; no Dia a Dia da Gestão <a href="#o-problema-dos-andquotdados-inacabadosandquot-no-dia-a-dia-da-gestao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para empresários, diretores de operações e gestores sêniores (40 a 55+ anos), o tempo é o recurso mais escasso. Em rotinas dinâmicas de tomada de decisão — durante deslocamentos, viagens ou reuniões com clientes —, o canal preferencial de comunicação e comando é o smartphone, quase sempre via Telegram ou WhatsApp.</p>
+<p>Entretanto, ao tentar utilizar soluções populares de inteligência artificial generativa para tarefas analíticas ou administrativas reais, o gestor depara-se sistematicamente com três barreiras frustrantes:</p>
+<ol>
+<li><strong>O Pesadelo das Tabelas Markdown em Telas Pequenas:</strong> Uma análise com 10 colunas (Data, Cliente, Produto, Quantidade, Preço Unitário, Desconto, Margem Bruta, Custo de Aquisição, Impostos, Lucro Líquido) quebra totalmente em dispositivos móveis, gerando uma massa de texto ilegível que exige rolagem horizontal truncada;</li>
+<li><strong>A &quot;Transferência de Trabalho&quot; por Blocos de Código:</strong> Ao solicitar um gráfico de sazonalidade de vendas ou uma projeção de fluxo de caixa, muitos modelos devolvem 50 linhas de script em Python (<code>matplotlib.pyplot</code> ou <code>pandas</code>), acompanhadas da instrução condescendente: <em>&quot;Copie este código, instale o interpretador em seu computador e execute para visualizar o resultado&quot;</em>;</li>
+<li><strong>Caminhos Fantasma de Servidor:</strong> Agentes mal integrados frequentemente respondem com mensagens como <em>&quot;Seu relatório foi compilado com sucesso e salvo em <code>/home/ubuntu/.data/exports/fechamento_semanal.pdf</code>&quot;</em>, deixando o executivo sem qualquer meio prático de extrair o documento da VPS através do celular.</li>
+</ol>
+<p>Essa fricção impede a adoção real da inteligência artificial no backoffice de empresas tradicionais. O que a diretoria necessita não é de um programador em tela aberta, mas de um <strong>entregável executivo acabado</strong>: o arquivo <code>.xlsx</code> que abre no Excel do celular com todas as abas e fórmulas calculadas, o relatório em PDF com a identidade visual da empresa ou o gráfico estatístico exibido como imagem direta na conversa.</p>
+<p>No ecossistema do <strong>Hermes Agent</strong>, essa entrega de ponta a ponta é garantida pelo <strong>Deliverable Mode</strong>.</p>
+<hr>
+<h2 id="como-funciona-a-arquitetura-do-deliverable-mode" class="scroll-mt-24 group flex items-center justify-between">Como Funciona a Arquitetura do Deliverable Mode <a href="#como-funciona-a-arquitetura-do-deliverable-mode" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O Deliverable Mode opera na intersecção entre o núcleo de execução do agente (ferramentas e <em>skills</em> especialistas) e o subsistema de <strong>Messaging Gateway</strong>, que gerencia os canais de comunicação com o usuário humano.</p>
+<p>O pipeline de entrega não exige que o operador humano use comandos complexos ou tags especiais como <code>MEDIA:</code>. Todo o ciclo ocorre de maneira fluida e transparente:</p>
+<pre><code>┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                             PIPELINE DO DELIVERABLE MODE NO HERMES AGENT                         │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+   DIRETOR / GESTOR
+  <span class="token punctuation">(</span>Telegram / WhatsApp<span class="token punctuation">)</span>
+         │
+         │  <span class="token number">1</span>. Comando em áudio ou texto:
+         │     <span class="token string">"Hermes, gere o fechamento de comissões de outubro em Excel com os gráficos"</span>
+         ▼
+ ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
+ │                                   NÚCLEO DO HERMES AGENT <span class="token punctuation">(</span>VPS<span class="token punctuation">)</span>                                  │
+ │                                                                                                 │
+ │   <span class="token number">2</span>. Planejamento <span class="token operator">&amp;</span> Execução com Ferramentas Especialistas:                                     │
+ │      • Skill <span class="token string">'xlsx'</span> ──────► Gera a pasta de trabalho com formatação e fórmulas                  │
+ │      • execute_code ──────► Renderiza gráficos analíticos via matplotlib/seaborn                │
+ │      • Skill <span class="token string">'pdf'</span>  ──────► Compila o dossiê formal de auditoria                                │
+ │                                                                                                 │
+ │   <span class="token number">3</span>. Gravação em Disco Local Seguro:                                                            │
+ │      ~/.hermes/cache/scratch/comissoes_outubro_2026.xlsx                                        │
+ │      ~/.hermes/cache/scratch/distribuicao_margens.png                                           │
+ │                                                                                                 │
+ │   <span class="token number">4</span>. Resposta Textual <span class="token keyword">do</span> Cérebro <span class="token punctuation">(</span>Menciona os caminhos absolutos no raciocínio<span class="token punctuation">)</span>                 │
+ └────────────────────────────────────────────────┬────────────────────────────────────────────────┘
+                                                  │
+                                                  ▼
+ ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
+ │                           MESSAGING GATEWAY INTERCEPTOR <span class="token operator">&amp;</span> DISPATCHER                            │
+ │                                                                                                 │
+ │   <span class="token number">5</span>. Regex Scanner: Detecta caminhos de arquivos suportados fora de blocos de código            │
+ │   <span class="token number">6</span>. Sanitização: Remove os caminhos brutos da bolha de texto legível para o usuário            │
+ │   <span class="token number">7</span>. Dispatcher Polimórfico:                                                                    │
+ │      • Imagens <span class="token punctuation">(</span>.png/.jpg<span class="token punctuation">)</span>   ──► Dispara como foto inline <span class="token punctuation">(</span>sendPhoto / media message<span class="token punctuation">)</span>           │
+ │      • Documentos <span class="token punctuation">(</span>.xlsx/.pdf<span class="token punctuation">)</span>──► Dispara como documento anexo nativo <span class="token punctuation">(</span>sendDocument / <span class="token function">file</span><span class="token punctuation">)</span>   │
+ └────────────────────────────────────────────────┬────────────────────────────────────────────────┘
+                                                  │
+                                                  ▼
+   SMARTPHONE DO GESTOR
+   ┌──────────────────────────────────────────────────────────────────┐
+   │ 💬 <span class="token punctuation">[</span>Hermes Agent<span class="token punctuation">]</span>                                                │
+   │ <span class="token string">"Fechamento de comissões concluído! Foram processados 412 pedidos│
+   │ com R$ 1.84M em vendas brutas. Os arquivos seguem em anexo."</span>     │
+   │                                                                  │
+   │ <span class="token punctuation">[</span>📷 Imagem <span class="token keyword">do</span> Gráfico de Distribuição de Vendas<span class="token punctuation">]</span> <span class="token punctuation">(</span>Inline<span class="token punctuation">)</span>        │
+   │ <span class="token punctuation">[</span>📄 comissoes_outubro_2026.xlsx - <span class="token number">148</span> KB<span class="token punctuation">]</span> <span class="token punctuation">(</span>Download Direto<span class="token punctuation">)</span>      │
+   │ <span class="token punctuation">[</span>📄 relatorio_executivo_auditoria.pdf - <span class="token number">1.2</span> MB<span class="token punctuation">]</span> <span class="token punctuation">(</span>Download Direto<span class="token punctuation">)</span> │
+   └──────────────────────────────────────────────────────────────────┘
+</code></pre><hr>
+<h2 id="comparativo-assistentes-comuns-vs-deliverable-mode-agentico" class="scroll-mt-24 group flex items-center justify-between">Comparativo: Assistentes Comuns vs. Deliverable Mode Agêntico <a href="#comparativo-assistentes-comuns-vs-deliverable-mode-agentico" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para compreender o impacto operacional na produtividade de um negócio, compare as três abordagens disponíveis no mercado:</p>
+<table>
+<thead>
+<tr>
+<th>Critério de Avaliação</th>
+<th>Chatbots Web Convencionais (ChatGPT / Claude)</th>
+<th>Scripts Python &amp; Bots Legados</th>
+<th>Hermes Agent (Deliverable Mode)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Formato de Entrega</strong></td>
+<td>Tabelas markdown quebradas ou blocos de código</td>
+<td>Arquivos salvos em pastas locais do servidor</td>
+<td><strong>Anexos nativos no chat</strong> (<code>.xlsx</code>, <code>.pdf</code>, <code>.png</code>, <code>.docx</code>)</td>
+</tr>
+<tr>
+<td><strong>Experiência Mobile</strong></td>
+<td>Péssima (exige zoom e rolagem horizontal confusa)</td>
+<td>Inexistente (depende de acesso SSH ou FTP)</td>
+<td><strong>Perfeita</strong> (abre diretamente nos apps nativos do celular)</td>
+</tr>
+<tr>
+<td><strong>Integridade de Fórmulas</strong></td>
+<td>Nenhuma (apenas números estáticos em texto)</td>
+<td>Limitada a bibliotecas básicas sem formatação</td>
+<td><strong>Células vivas</strong>, formatação condicional, estilos e fórmulas reais</td>
+</tr>
+<tr>
+<td><strong>Sanitização de Mensagens</strong></td>
+<td>Deixa o texto poluído com scripts e logs</td>
+<td>Erros e mensagens de depuração expostos</td>
+<td><strong>Remove caminhos brutos</strong>, entregando apenas o resumo executivo</td>
+</tr>
+<tr>
+<td><strong>Soberania e Custódia</strong></td>
+<td>Dados passam pela nuvem pública de terceiros</td>
+<td>Local, mas complexo de manter e escalar</td>
+<td><strong>100% privado na VPS da empresa</strong>, em conformidade com a LGPD</td>
+</tr>
+<tr>
+<td><strong>Suporte Multi-Agente</strong></td>
+<td>Inexistente (sessão monousuário)</td>
+<td>Rígido e difícil de orquestrar</td>
+<td><strong>Integrado ao Kanban Agêntico</strong> (<code>kanban_complete</code>)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="matriz-de-extensoes-e-tratamento-de-midia" class="scroll-mt-24 group flex items-center justify-between">Matriz de Extensões e Tratamento de Mídia <a href="#matriz-de-extensoes-e-tratamento-de-midia" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O gateway do Hermes Agent implementa regras estritas de classificação por extensão para garantir que cada documento seja despachado com o tipo de visualização correto e sem falhas de renderização:</p>
+<table>
+<thead>
+<tr>
+<th>Categoria</th>
+<th>Extensões Suportadas</th>
+<th>Mecanismo de Despacho no Gateway</th>
+<th>Exemplo de Aplicação Prática no Negócio</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Planilhas &amp; Dados</strong></td>
+<td><code>.xlsx</code>, <code>.xls</code>, <code>.ods</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code></td>
+<td>Documento nativo para download imediato</td>
+<td>Balancetes mensais, conciliações bancárias, tabelas de precificação</td>
+</tr>
+<tr>
+<td><strong>Relatórios Formais</strong></td>
+<td><code>.pdf</code>, <code>.docx</code>, <code>.doc</code>, <code>.odt</code>, <code>.rtf</code>, <code>.epub</code></td>
+<td>Arquivo anexo com visualizador embutido</td>
+<td>Contratos comerciais, pareceres jurídicos, DREs de auditoria</td>
+</tr>
+<tr>
+<td><strong>Gráficos &amp; Imagens</strong></td>
+<td><code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>, <code>.webp</code>, <code>.svg</code>, <code>.gif</code></td>
+<td>Imagem inline com preview direto na conversa</td>
+<td>Gráficos de vendas, funil de marketing, monitoramento de infraestrutura</td>
+</tr>
+<tr>
+<td><strong>Apresentações</strong></td>
+<td><code>.pptx</code>, <code>.ppt</code>, <code>.odp</code>, <code>.key</code></td>
+<td>Apresentação em anexo</td>
+<td>Decks rápidos de resultados semanais para reuniões de sócios</td>
+</tr>
+<tr>
+<td><strong>Áudio &amp; Voz</strong></td>
+<td><code>.mp3</code>, <code>.wav</code>, <code>.ogg</code>, <code>.opus</code>, <code>.m4a</code></td>
+<td>Bolha de áudio nativa com player</td>
+<td>Resumos executivos falados (áudio do agente sintetizado)</td>
+</tr>
+<tr>
+<td><strong>Compactados</strong></td>
+<td><code>.zip</code>, <code>.tar.gz</code>, <code>.7z</code>, <code>.rar</code></td>
+<td>Pacote zipado para download</td>
+<td>Dossiês completos contendo 50 notas fiscais em XML e PDFs</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Nota de Segurança:</strong> Extensões de código-fonte como <code>.py</code>, <code>.sh</code>, <code>.js</code> ou arquivos de sistema como <code>.log</code> são propositalmente excluídas do envio automático pelo gateway. Se o agente desejar apresentar um trecho de código ao usuário técnico, ele utilizará um bloco de código Markdown tradicional, impedindo que scripts do sistema sejam enviados acidentalmente como arquivos executáveis.</p>
+</blockquote>
+<hr>
+<h2 id="o-poder-do-kanbancomplete-em-operacoes-multi-agentes" class="scroll-mt-24 group flex items-center justify-between">O Poder do <code>kanban_complete</code> em Operações Multi-Agentes <a href="#o-poder-do-kanbancomplete-em-operacoes-multi-agentes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando a empresa implementa uma equipe coordenada de agentes (Swarms) operando em regime de fábrica de demandas com o sistema Kanban nativo do Hermes Agent, o Deliverable Mode atinge seu ápice de sofisticação.</p>
+<p>Em tarefas analíticas de maior envergadura — como uma <strong>Auditoria Fiscal Trimestral</strong> ou um <strong>Estudo de Concorrência de Tráfego Pago</strong> —, diferentes subagentes são alocados para coletar dados, cruzar informações fiscais e gerar os relatórios. Ao concluir o fluxo de trabalho, o agente líder consolida os arquivos e invoca a ferramenta <code>kanban_complete</code>:</p>
+<pre><code class="language-python"><span class="token comment"># O agente encerra a tarefa corporativa anexando os arquivos compilados</span>
+kanban_complete<span class="token punctuation">(</span>
+    task_id<span class="token operator">=</span><span class="token string">"AUDIT-2026-Q3"</span><span class="token punctuation">,</span>
+    summary<span class="token operator">=</span><span class="token string">"Auditoria de conformidade de notas fiscais concluída. 1.250 notas validadas contra as regras do SPED Fiscal. Encontradas 4 divergências de alíquota de ICMS-ST devidamente documentadas no relatório executivo."</span><span class="token punctuation">,</span>
+    artifacts<span class="token operator">=</span><span class="token punctuation">[</span>
+        <span class="token string">"/home/ubuntu/.hermes/cache/scratch/auditoria_sped_q3_2026.pdf"</span><span class="token punctuation">,</span>
+        <span class="token string">"/home/ubuntu/.hermes/cache/scratch/divergencias_aliquotas.xlsx"</span><span class="token punctuation">,</span>
+        <span class="token string">"/home/ubuntu/.hermes/cache/scratch/grafico_conformidade_fiscal.png"</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+</code></pre><p>No exato momento em que o comando é registrado, o serviço de notificação do gateway publica no canal de gestão do Telegram ou Slack:</p>
+<ol>
+<li>O texto executivo sintetizando os resultados;</li>
+<li>A imagem do gráfico de conformidade embutida na mensagem;</li>
+<li>O arquivo PDF pronto para envio ao escritório de contabilidade;</li>
+<li>A planilha em Excel contendo os apontamentos detalhados para o departamento financeiro.</li>
+</ol>
+<p>Nenhum colaborador humano precisou abrir terminais, compilar dados no computador de mesa ou unificar documentos manualmente.</p>
+<hr>
+<h2 id="como-configurar-o-comportamento-de-entrega-no-seu-agente" class="scroll-mt-24 group flex items-center justify-between">Como Configurar o Comportamento de Entrega no Seu Agente <a href="#como-configurar-o-comportamento-de-entrega-no-seu-agente" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Por padrão, um modelo de linguagem pode tentar descrever dados textualmente antes de decidir construir um arquivo. Para garantir que seu agente sempre entregue arquivos reais nas solicitações do dia a dia, configure a diretriz de comportamento em camadas.</p>
+<h3 id="1-no-arquivo-de-alma-global-hermessoulmd" class="scroll-mt-24 group flex items-center justify-between">1. No Arquivo de Alma Global (<code>~/.hermes/SOUL.md</code>) <a href="#1-no-arquivo-de-alma-global-hermessoulmd" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Adicione a seguinte orientação no arquivo de identidade corporativa do seu agente:</p>
+<pre><code class="language-markdown"><span class="token title important"><span class="token punctuation">###</span> Diretrizes de Entregáveis Executivos (Deliverable Mode):</span>
+<span class="token list punctuation">-</span> Sempre que o usuário solicitar listas com mais de 10 itens, relatórios financeiros, cálculos de margem, conferências ou gráficos comparativos, NÃO despeje tabelas Markdown longas no chat.
+<span class="token list punctuation">-</span> Utilize a skill 'xlsx' para gerar uma planilha estruturada com abas nomeadas, cabeçalhos destacados e fórmulas nativas (SOMA, MÉDIA, SE).
+<span class="token list punctuation">-</span> Para sínteses gerenciais e contratos, gere um documento PDF elegante com a skill 'pdf'.
+<span class="token list punctuation">-</span> Para análises visuais de tendência e dispersão, utilize o ambiente de código para renderizar gráficos em PNG com alta resolução.
+<span class="token list punctuation">-</span> Salve sempre os entregáveis no diretório temporário scratch do sistema e cite o caminho absoluto no encerramento da resposta para despacho automático do Gateway.
+</code></pre><h3 id="2-ativacao-rapida-por-prompt-no-telegram-ou-whatsapp" class="scroll-mt-24 group flex items-center justify-between">2. Ativação Rápida por Prompt no Telegram ou WhatsApp <a href="#2-ativacao-rapida-por-prompt-no-telegram-ou-whatsapp" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Caso não deseje alterar as configurações globais, basta instruir o agente na própria mensagem:</p>
+<blockquote>
+<p><em>&quot;Hermes, extraia as conversões das nossas campanhas no Facebook Ads dos últimos 30 dias. Entregue um resumo em três tópicos no chat e envie o detalhamento completo em uma planilha Excel <code>.xlsx</code> com o custo por aquisição calculado por fórmula e o gráfico comparativo em anexo.&quot;</em></p>
+</blockquote>
+<p>O agente entenderá a demanda, chamará as ferramentas adequadas em segundo plano e entregará a resposta limpa e os anexos prontos para visualização.</p>
+<hr>
+<h2 id="privacidade-soberania-e-conformidade-lgpd" class="scroll-mt-24 group flex items-center justify-between">Privacidade, Soberania e Conformidade (LGPD) <a href="#privacidade-soberania-e-conformidade-lgpd" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Iniciativas proprietárias recentes do mercado (como a integração do Perplexity Computer com o Slack) tentam oferecer geração de artefatos, mas cobram assinaturas elevadas por usuário e operam em nuvens multi-inquilino (<em>multi-tenant</em>). Nessas soluções, planilhas financeiras, dados de salários de funcionários e contratos estratégicos são processados em servidores compartilhados de terceiros, violando com frequência diretrizes corporativas de segurança e normas da LGPD.</p>
+<p>No ecossistema do <strong>Hermes Agent</strong>:</p>
+<ul>
+<li><strong>Ambiente 100% Sob Controle:</strong> O agente executa na sua própria máquina local ou em uma VPS privada (como Hostinger ou AWS dedicada);</li>
+<li><strong>Geração Local:</strong> As bibliotecas de geração de planilhas (<code>openpyxl</code>), compilação de PDFs (<code>reportlab</code> / <code>typst</code>) e renderização de imagens (<code>matplotlib</code>) rodam no interpretador Python isolado do seu servidor;</li>
+<li><strong>Zero Retenção Externa:</strong> Nenhum dado da sua planilha ou documento corporativo fica retido em bancos de dados de intermediários. Os arquivos trafegam de forma ponta a ponta criptografada entre seu servidor e a API do aplicativo de mensageria selecionado.</li>
+</ul>
+<hr>
+<h2 id="o-proximo-passo-na-sua-jornada-agentica" class="scroll-mt-24 group flex items-center justify-between">O Próximo Passo na Sua Jornada Agêntica <a href="#o-proximo-passo-na-sua-jornada-agentica" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A transição de &quot;conversar com uma IA&quot; para <strong>&quot;ter uma força de trabalho autônoma que entrega resultados prontos&quot;</strong> é o grande diferencial competitivo das empresas nos próximos anos.</p>
+<p>No curso <strong><a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a></strong>, ministrado pelo Jean Pierre Schramm, você aprende a configurar toda essa infraestrutura do zero: desde a contratação da VPS e blindagem de segurança até a integração do Hermes com o Telegram, WhatsApp e rotinas que geram relatórios executivos e auditorias automáticas todos os dias sem intervenção humana.</p>
+<p>Acesse o portal oficial e prepare seu negócio para a era dos agentes autônomos de verdade:<br>👉 <strong><a href="https://inteligenciaagentica.com.br">https://inteligenciaagentica.com.br</a></strong></p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/deliverable-mode-artefatos-chat-planilhas-pdf.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Computer Use em Segundo Plano: Como Agentes de IA Operam ERPs e Softwares Desktop sem Roubar o Mouse]]></title>
