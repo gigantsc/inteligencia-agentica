@@ -11,7 +11,7 @@ featured: false
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > O **Hermes Vision Watchdog** é uma arquitetura avançada de monitoramento visual que combina detecção local em tempo real (via YOLO ou OpenCV) com o raciocínio multimodal do **Hermes Agent**. Em vez de transmitir vídeo 24/7 para modelos caros de IA na nuvem (o que consumiria milhares de dólares em tokens e banda), o sistema monitora a câmera localmente a 30 FPS sem custo e só aciona o Hermes com um **snapshot fotográfico** quando um evento atinge um limite configurável (ex: suspeita de fumaça, violação de área restrita ou ausência de EPI). O Hermes então valida a evidência, descarta falsos positivos (como vapor, poeira ou reflexos de luz) e envia um alerta detalhado no Telegram ou WhatsApp com foto, nível de confiança e solicitação de aprovação humana.
 
 ---

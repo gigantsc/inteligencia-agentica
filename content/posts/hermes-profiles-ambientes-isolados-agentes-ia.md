@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/hermes-profiles-ambien
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > O **Hermes Profiles** é o mecanismo nativo do ecossistema Hermes Agent (desenvolvido pela Nous Research) que permite criar e operar dezenas de agentes de inteligência artificial totalmente estanques dentro de uma única máquina física ou VPS, sem necessidade de pagar múltiplas licenças corporativas de SaaS. Cada perfil atua sob uma fronteira hermética de diretório (`HERMES_HOME`), possuindo seu próprio banco de dados SQLite de memória persistente (`state.db`), arquivo de segredos e chaves de API (`.env`), diretriz comportamental executiva (`SOUL.md`), catálogo de habilidades (`skills/`) e rotinas agendadas (`cron/`). Essa arquitetura elimina em 100% o risco de contaminação cruzada de dados confidenciais (por exemplo, impedindo que o agente de atendimento ao cliente acesse folhas de pagamento ou relatórios fiscais do financeiro) e reduz o custo de tokens em até 70% através da desativação cirúrgica de ferramentas desnecessárias por função operacional.
 
 ---

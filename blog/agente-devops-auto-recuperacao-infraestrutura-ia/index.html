@@ -407,82 +407,13 @@
       </div>
       
 
-      <!-- Table of Contents (if > 1 heading) -->
-      
-      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
-          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
-        </h3>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-pesadelo-da-infraestrutura-servidores-caem-de-madrugada-e-o-custo-humano-do-sobreaviso" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Pesadelo da Infraestrutura: Servidores Caem de Madrugada e o Custo Humano do Sobreaviso
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-que-e-um-agente-devops-e-como-funciona-a-auto-cura-self-healing" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Que É um Agente DevOps e Como Funciona a Auto-Cura (*Self-Healing*)
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#comparativo-estrategico-monitoramento-tradicional-vs-scripts-rigidos-vs-agente-devops-hermes" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Comparativo Estratégico: Monitoramento Tradicional vs. Scripts Rígidos vs. Agente DevOps Hermes
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#4-casos-praticos-de-aplicacao-do-agente-devops-no-mundo-real" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 4 Casos Práticos de Aplicação do Agente DevOps no Mundo Real
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#1-prevencao-e-recuperacao-de-estouro-de-memoria-oom-killer-em-bancos-de-dados" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. Prevenção e Recuperação de Estouro de Memória (OOM Killer) em Bancos de Dados
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#2-sentinela-de-containers-docker-em-campanhas-de-trafego-intenso" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Sentinela de Containers Docker em Campanhas de Tráfego Intenso
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#3-gestao-proativa-de-espaco-em-disco-e-rotacao-inteligente-de-logs" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 3. Gestão Proativa de Espaço em Disco e Rotação Inteligente de Logs
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#4-renovacao-e-diagnostico-de-certificados-sslhttps-com-rollback-imediato" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 4. Renovação e Diagnóstico de Certificados SSL/HTTPS com Rollback Imediato
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#governanca-e-seguranca-o-bunker-de-execucao-devops" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Governança e Segurança: O Bunker de Execução DevOps
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#como-comecar-a-transicao-do-bombeiro-de-ti-para-a-lideranca-estrategica" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Como Começar: A Transição do Bombeiro de TI para a Liderança Estratégica
-              </a>
-            </li>
-          
-        </ul>
-      </div>
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       
 
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>Um <strong>Agente DevOps Autônomo</strong> é uma entidade de inteligência artificial agêntica configurada para atuar diretamente no nível de infraestrutura de sistemas operacionais (como Linux Ubuntu e ambientes Docker). Ao invés de apenas disparar alertas passivos que acordam engenheiros de TI de madrugada, o agente executa uma rotina contínua de inspeção semântica de telemetria (CPU, memória RAM, consumo de disco I/O e logs de containers), identifica anomalias e atua ativamente por meio de <strong>auto-cura</strong> (<em>self-healing</em>). Ele é capaz de encerrar processos zumbis, rotacionar arquivos de log saturados, reiniciar serviços travados e reverter deploys defeituosos dentro de limites rígidos de governança e segurança, reduzindo o tempo médio de recuperação (MTTR) de horas para segundos e eliminando os elevados custos de plantão de sobreaviso.</p>
+<p><strong>Em resumo:</strong><br>Um <strong>Agente DevOps Autônomo</strong> é uma entidade de inteligência artificial agêntica configurada para atuar diretamente no nível de infraestrutura de sistemas operacionais (como Linux Ubuntu e ambientes Docker). Ao invés de apenas disparar alertas passivos que acordam engenheiros de TI de madrugada, o agente executa uma rotina contínua de inspeção semântica de telemetria (CPU, memória RAM, consumo de disco I/O e logs de containers), identifica anomalias e atua ativamente por meio de <strong>auto-cura</strong> (<em>self-healing</em>). Ele é capaz de encerrar processos zumbis, rotacionar arquivos de log saturados, reiniciar serviços travados e reverter deploys defeituosos dentro de limites rígidos de governança e segurança, reduzindo o tempo médio de recuperação (MTTR) de horas para segundos e eliminando os elevados custos de plantão de sobreaviso.</p>
 </blockquote>
 <hr>
 <h2 id="o-pesadelo-da-infraestrutura-servidores-caem-de-madrugada-e-o-custo-humano-do-sobreaviso" class="scroll-mt-24 group flex items-center justify-between">O Pesadelo da Infraestrutura: Servidores Caem de Madrugada e o Custo Humano do Sobreaviso <a href="#o-pesadelo-da-infraestrutura-servidores-caem-de-madrugada-e-o-custo-humano-do-sobreaviso" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>

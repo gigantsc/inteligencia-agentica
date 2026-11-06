@@ -10,7 +10,7 @@ image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First):**  
+> **Em resumo:**  
 > **GEO (Generative Engine Optimization)** é o conjunto de estratégias de arquitetura de dados, semântica e redação estruturada projetado para fazer com que modelos de linguagem (LLMs como ChatGPT, Claude, Perplexity e Google AI Overviews) **encontrem, compreendam e citem** sua marca e seu conteúdo como fonte de autoridade primária nas respostas geradas.
 
 ---

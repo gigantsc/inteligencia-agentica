@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/deliverable-mode-artef
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O **Deliverable Mode (Modo de Entrega de Artefatos)** do Hermes Agent resolve a maior deficiência dos assistentes de inteligência artificial convencionais em ambientes corporativos: a entrega de dados inacabados. Enquanto ferramentas web tradicionais (ChatGPT ou Claude) respondem a solicitações analíticas despejando blocos de código Python (`import pandas...`) ou tabelas Markdown ilegíveis na tela de um smartphone, o Hermes Agent gera os arquivos binários reais no sistema de arquivos corporativo (`.xlsx`, `.pdf`, `.png`, `.docx`, `.pptx`). Ao processar a resposta, o **Gateway de Mensageria** (conectado ao Telegram, WhatsApp, Slack, Teams ou Discord) intercepta automaticamente os caminhos absolutos dos arquivos gerados, remove os termos técnicos da mensagem visível e faz o upload dos documentos como anexos nativos. O empresário ou diretor recebe a planilha formatada com fórmulas operacionais e o relatório em PDF com design executivo diretamente na palma da mão, pronto para compartilhamento ou auditoria.
 
 ---

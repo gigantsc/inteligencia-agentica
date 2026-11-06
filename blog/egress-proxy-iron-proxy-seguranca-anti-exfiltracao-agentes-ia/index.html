@@ -407,112 +407,13 @@
       </div>
       
 
-      <!-- Table of Contents (if > 1 heading) -->
-      
-      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
-          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
-        </h3>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-paradoxo-da-autonomia-por-que-agentes-capazes-sao-alvos-de-exfiltracao" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Paradoxo da Autonomia: Por que Agentes Capazes São Alvos de Exfiltração?
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#a-arquitetura-de-defesa-como-funciona-o-egress-proxy-and-iron-proxy" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> A Arquitetura de Defesa: Como Funciona o Egress Proxy & Iron-Proxy
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#tabela-comparativa-execucao-convencional-vs-sandboxing-blindado-com-egress-proxy" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Tabela Comparativa: Execução Convencional vs. Sandboxing Blindado com Egress Proxy
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#passo-a-passo-pratico-ativando-a-protecao-egress-no-hermes-agent" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Passo a Passo Prático: Ativando a Proteção Egress no Hermes Agent
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#1-instalacao-do-binario-assinado-hermes-egress-install" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. Instalação do Binário Assinado (hermes egress install)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#2-executando-o-assistente-de-inicializacao-hermes-egress-setup" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Executando o Assistente de Inicialização (hermes egress setup)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#3-inicializacao-e-monitoramento-do-daemon" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 3. Inicialização e Monitoramento do Daemon
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#configuracao-avancada-no-configyaml-governanca-e-regras-de-firewall" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Configuração Avançada no config.yaml: Governança e Regras de Firewall
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#o-que-acontece-quando-o-docker-backend-e-disparado" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Que Acontece Quando o Docker Backend é Disparado?
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#caso-real-de-negocio-defendendo-a-automacao-contabil-de-um-grupo-com-45-lojas" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Caso Real de Negócio: Defendendo a Automação Contábil de um Grupo com 45 Lojas
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#o-desafio-operacional" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Desafio Operacional
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#a-tentativa-de-invasao" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> A Tentativa de Invasão
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#a-atuacao-do-egress-proxy" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> A Atuação do Egress Proxy
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#auditoria-e-conformidade-lgpd-em-tempo-real" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Auditoria e Conformidade LGPD em Tempo Real
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#conclusao-inteligencia-com-responsabilidade-corporativa" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Conclusão: Inteligência com Responsabilidade Corporativa
-              </a>
-            </li>
-          
-        </ul>
-      </div>
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       
 
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>A execução autônoma de ferramentas (terminal, scripts Python e web scraping) por agentes de IA introduz o risco crítico de <strong>exfiltração de credenciais via Prompt Injection Indireto</strong>: conteúdos externos hostis podem induzir o agente a ler suas variáveis de ambiente (<code>printenv</code>, <code>cat ~/.env</code>) e transmiti-las para servidores externos. No ecossistema <strong>Hermes Agent</strong> (Nous Research), essa vulnerabilidade é neutralizada na raiz através do subsistema <strong><code>hermes egress</code></strong> operado em conjunto com o daemon <strong>iron-proxy</strong> (escrito em Go, Apache-2.0):  </p>
+<p><strong>Em resumo:</strong><br>A execução autônoma de ferramentas (terminal, scripts Python e web scraping) por agentes de IA introduz o risco crítico de <strong>exfiltração de credenciais via Prompt Injection Indireto</strong>: conteúdos externos hostis podem induzir o agente a ler suas variáveis de ambiente (<code>printenv</code>, <code>cat ~/.env</code>) e transmiti-las para servidores externos. No ecossistema <strong>Hermes Agent</strong> (Nous Research), essa vulnerabilidade é neutralizada na raiz através do subsistema <strong><code>hermes egress</code></strong> operado em conjunto com o daemon <strong>iron-proxy</strong> (escrito em Go, Apache-2.0):  </p>
 <ol>
 <li><strong>Tokens Opacos de Proxy:</strong> O container Docker onde o agente executa tarefas nunca recebe as chaves de API reais (como <code>OPENROUTER_API_KEY</code> ou credenciais bancárias). Em seu lugar, são injetados tokens opacos descartáveis (<code>tok_...</code>) que só têm validade dentro da ponte interna do host;  </li>
 <li><strong>Injeção Transparente com CA Privada:</strong> Todo tráfego de saída do container é forçado via <code>HTTPS_PROXY</code> para o daemon local (<code>host.docker.internal:9090</code>). O <code>iron-proxy</code> realiza a terminação TLS por meio de uma Autoridade Certificadora privada dedicada, substitui o token de proxy pela credencial verdadeira em trânsito no host e encaminha a requisição aos provedores oficiais de IA;  </li>

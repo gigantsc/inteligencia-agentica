@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/jev-typesafe-ia-de-dec
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > **Jev** é um novo modelo de inteligência artificial criado pela **TypeSafe AI** que pertence à categoria de **Modelos Sistema 1 (Reflexo Rápido)**. Diferente de IAs tradicionais (como ChatGPT ou Claude) que geram frases e conversam, o Jev **não gera texto**: ele foi projetado exclusivamente para avaliar dados e tomar **decisões estruturadas instantâneas** (Sim/Não, classificação de categorias ou notas). Na prática empresarial, ele é até **190 vezes mais rápido**, **400 vezes mais barato** e possui **zero risco de alucinação**, sendo ideal para triagem de mensagens no WhatsApp, aprovação de regras financeiras e roteamento de tarefas para agentes executores como o **Hermes Agent**.
 
 ---

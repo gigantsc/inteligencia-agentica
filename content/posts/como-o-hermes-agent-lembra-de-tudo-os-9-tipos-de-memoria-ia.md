@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/como-o-hermes-agent-le
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > **A memória no Hermes Agent** é a capacidade que permite a um funcionário digital reter preferências, regras de negócios, decisões e aprendizados entre diferentes conversas e ao longo dos meses. Diferente de chatbots tradicionais que "esquecem" tudo quando a janela é fechada, o Hermes Agent suporta **9 provedores de memória especializados** (desde arquivos locais simples em Markdown até Grafos de Conhecimento e redes neurais relacionais como Hindsight e Honcho). Além disso, o sistema separa de forma inteligente a **Memória de Longo Prazo** (fatos duradouros), o **Contexto** (o que está sendo discutido agora) e a **Compressão** (o resumo automático que evita lentidão e custos desnecessários).
 
 ---

@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/mcp-model-context-prot
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O **Model Context Protocol (MCP)** é o padrão aberto universal que conecta agentes autônomos de IA diretamente aos sistemas internos e bancos de dados da sua empresa (como PostgreSQL, MySQL, ERPs, planilhas e CRMs). Funcionando como uma porta de comunicação padronizada e segura, o MCP permite que o agente execute consultas reais sob demanda, eliminando as alucinações clássicas de modelos de linguagem e entregando números exatos de estoque, faturamento e vendas diretamente no celular do gestor.
 
 ---

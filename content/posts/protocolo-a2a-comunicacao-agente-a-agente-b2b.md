@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/protocolo-a2a-comunica
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O **Protocolo A2A (Agent-to-Agent v1.0)** é uma especificação aberta, gerenciada pela **Linux Foundation**, projetada para permitir que sistemas autônomos de inteligência artificial se comuniquem, negociem, deleguem tarefas e troquem informações de maneira padronizada, segura e agnóstica de framework. Integrado nativamente ao **Hermes Agent** (Nous Research), o A2A resolve o principal limitador das automações tradicionais: a dependência de enxames locais que rodam apenas na mesma máquina física. Com o A2A, um agente rodando no notebook de um executivo pode despachar tarefas de pesquisa pesada para uma VPS Linux na nuvem, ou o agente de compras de uma empresa pode dialogar diretamente com o agente de vendas de um fornecedor parceiro (B2B agêntico). A comunicação ocorre via chamadas JSON-RPC 2.0 e Server-Sent Events (SSE), baseando-se na leitura dinâmica de um **Agent Card** (`/.well-known/agent-card.json`), que lista as habilidades públicas do agente remoto, sob um bunker rigoroso de segurança com credenciais dedicadas por par (`A2A_PEER_TOKENS`), sanitização de injeção de prompt e travas automáticas contra loops infinitos de diálogo.
 
 ---

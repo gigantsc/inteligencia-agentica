@@ -395,7 +395,7 @@
 
           <div class="flex items-center gap-4 text-xs">
             <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-09-19</span>
-            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 11 min de leitura</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 10 min de leitura</span>
           </div>
         </div>
       </header>
@@ -407,196 +407,13 @@
       </div>
       
 
-      <!-- Table of Contents (if > 1 heading) -->
-      
-      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
-          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
-        </h3>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-problema-automacao-burra-vs-automacao-inteligente" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Problema: Automação Burra vs. Automação Inteligente
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-que-sao-cron-jobs-inteligentes-no-hermes-agent" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O que São Cron Jobs Inteligentes no Hermes Agent
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#capacidades-nativas" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Capacidades Nativas
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#como-criar-um-cron-job-inteligente-na-pratica" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Como Criar um Cron Job Inteligente — Na Prática
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#1-por-conversa-natural" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. Por Conversa Natural
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#2-por-comando-slash-no-chat" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Por Comando Slash no Chat
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#3-pela-cli-standalone" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 3. Pela CLI Standalone
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#skills-cron-o-poder-do-conhecimento-especializado-agendado" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Skills + Cron: O Poder do Conhecimento Especializado Agendado
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#multi-skill-combinando-capacidades" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Multi-Skill: Combinando Capacidades
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#memoria-persistente-o-job-que-lembra-do-que-fez-antes" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Memória Persistente: O Job que Lembra do Que Fez Antes
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#memoria-expandida-com-providers-externos" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Memória Expandida com Providers Externos
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#validacao-automatica-pre-execucao" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Validação Automática Pré-Execução
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#controle-granular-de-custos-por-job" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Controle Granular de Custos por Job
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#supressao-inteligente-com-silent" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Supressão Inteligente com [SILENT]
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#historico-auditoria-e-resiliencia" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Histórico, Auditoria e Resiliência
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#executions-database" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Executions Database
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#failure-streak-e-nudge-automatico" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Failure Streak e Nudge Automático
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#incidentes-persistentes" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Incidentes Persistentes
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#fleet-health-check" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Fleet Health Check
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#encadeamento-de-jobs-com-contextfrom" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Encadeamento de Jobs com context_from
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#modo-no-agent-zero-tokens-llm" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Modo No-Agent: Zero Tokens LLM
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#5-padroes-de-automacao-que-todo-empresario-deveria-implementar" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 5 Padrões de Automação Que Todo Empresário Deveria Implementar
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#1-radar-de-mercado-diario" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. Radar de Mercado Diário
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#2-watchdog-de-infraestrutura" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Watchdog de Infraestrutura
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#3-pipeline-de-conteudo" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 3. Pipeline de Conteúdo
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#4-relatorio-semanal-executivo" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 4. Relatório Semanal Executivo
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#5-monitoramento-de-precosestoque" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 5. Monitoramento de Preços/Estoque
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#comparativo-final-por-que-cron-jobs-inteligentes-mudam-o-jogo" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Comparativo Final: Por Que Cron Jobs Inteligentes Mudam o Jogo
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#conclusao-automacao-que-evolui-com-o-seu-negocio" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Conclusão: Automação que Evolui com o Seu Negócio
-              </a>
-            </li>
-          
-        </ul>
-      </div>
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       
 
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br><strong>Cron Jobs Inteligentes</strong> no Hermes Agent são rotinas automatizadas que vão além do cron tradicional do Linux: elas carregam skills (pacotes de conhecimento especializado), mantêm memória persistente entre execuções, validam sua própria configuração antes de rodar, registram histórico completo de cada execução e entregam resultados diretamente no Telegram, Discord, WhatsApp ou qualquer uma das 21+ plataformas suportadas — tudo operando 24/7 sem supervisão humana, com custo controlado e recuperação automática de falhas.</p>
+<p><strong>Em resumo:</strong><br><strong>Cron Jobs Inteligentes</strong> no Hermes Agent são rotinas automatizadas que vão além do cron tradicional do Linux: elas carregam skills (pacotes de conhecimento especializado), mantêm memória persistente entre execuções, validam sua própria configuração antes de rodar, registram histórico completo de cada execução e entregam resultados diretamente no Telegram, Discord, WhatsApp ou qualquer uma das 21+ plataformas suportadas — tudo operando 24/7 sem supervisão humana, com custo controlado e recuperação automática de falhas.</p>
 </blockquote>
 <hr>
 <h2 id="o-problema-automacao-burra-vs-automacao-inteligente" class="scroll-mt-24 group flex items-center justify-between">O Problema: Automação Burra vs. Automação Inteligente <a href="#o-problema-automacao-burra-vs-automacao-inteligente" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>

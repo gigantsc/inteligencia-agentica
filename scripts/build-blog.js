@@ -871,28 +871,36 @@ function buildPostPage(post, allPosts) {
           : ''
       }
 
-      <!-- Table of Contents (if > 1 heading) -->
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       ${
         post.toc && post.toc.length > 1
           ? `
-      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
-          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
-        </h3>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          ${post.toc
-            .map(
-              (item) => `
-            <li class="${item.level === 3 ? 'ml-4 text-gray-400' : 'font-semibold text-gray-200'}">
-              <a href="#${item.id}" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> ${item.text}
-              </a>
-            </li>
-          `
-            )
-            .join('')}
-        </ul>
-      </div>
+      <details class="mb-8 glass rounded-xl border border-white/10 overflow-hidden group">
+        <summary class="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white flex items-center justify-between cursor-pointer select-none transition-colors">
+          <span class="flex items-center gap-2 text-ouro">
+            <i data-lucide="list" class="w-4 h-4 text-ouro"></i>
+            <span>Tópicos do Artigo (${post.toc.length})</span>
+          </span>
+          <span class="text-[11px] text-gray-500 font-normal flex items-center gap-1 group-open:rotate-180 transition-transform duration-200">
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </span>
+        </summary>
+        <div class="px-5 pb-5 pt-2 border-t border-white/5">
+          <ul class="space-y-2 text-xs sm:text-sm">
+            ${post.toc
+              .map(
+                (item) => `
+              <li class="${item.level === 3 ? 'ml-4 text-gray-400' : 'font-semibold text-gray-200'}">
+                <a href="#${item.id}" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> ${item.text}
+                </a>
+              </li>
+            `
+              )
+              .join('')}
+          </ul>
+        </div>
+      </details>
       `
           : ''
       }

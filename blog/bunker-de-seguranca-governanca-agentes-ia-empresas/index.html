@@ -407,76 +407,13 @@
       </div>
       
 
-      <!-- Table of Contents (if > 1 heading) -->
-      
-      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
-          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
-        </h3>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-dilema-do-gestor-produtividade-agentica-vs-risco-operacional" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Dilema do Gestor: Produtividade Agêntica vs. Risco Operacional
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#os-4-pilares-da-blindagem-operacional" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Os 4 Pilares da Blindagem Operacional
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#1-separacao-de-segredos-e-redacao-ativa-secret-redaction" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. Separação de Segredos e Redação Ativa (Secret Redaction)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#2-sanitizacao-de-pii-personally-identifiable-information-e-lgpd" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Sanitização de PII (Personally Identifiable Information) e LGPD
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#3-modos-de-aprovacao-granular-human-in-the-loop" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 3. Modos de Aprovação Granular (Human-in-the-Loop)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#4-sandboxing-e-conteineres-isolados-na-vps" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 4. Sandboxing e Contêineres Isolados na VPS
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#comparativo-abordagem-amadora-vs-bunker-agentico-corporativo" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Comparativo: Abordagem Amadora vs. Bunker Agêntico Corporativo
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#caso-real-automacao-financeira-sem-risco-de-fraude-ou-erro" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Caso Real: Automação Financeira sem Risco de Fraude ou Erro
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#como-comecar-a-blindar-a-operacao-da-sua-empresa" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Como Começar a Blindar a Operação da Sua Empresa
-              </a>
-            </li>
-          
-        </ul>
-      </div>
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       
 
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>Implementar agentes autônomos em empresas sem risco de vazamentos ou falhas críticas exige uma <strong>arquitetura de bunker em quatro camadas</strong>: (1) <strong>Isolamento de Credenciais e Redação Ativa</strong>, onde chaves de API e senhas ficam em arquivos criptografados e são automaticamente expurgadas do fluxo de contexto antes de qualquer envio a LLMs externos; (2) <strong>Sanitização de Dados Pessoais (PII/LGPD)</strong>, mascarando CPFs, telefones e e-mails de clientes na camada de ingestão; (3) <strong>Políticas Granulares de Aprovação (Human-in-the-Loop)</strong>, bloqueando execuções destrutivas no sistema operacional ou banco de dados sem a chancela explícita de um gestor; e (4) <strong>Sandboxing de Ferramentas</strong>, limitando o raio de ação das ferramentas em ambientes controlados na VPS. No ecossistema <strong>Hermes Agent</strong>, esses mecanismos são nativos e garantem conformidade e auditoria em tempo real.</p>
+<p><strong>Em resumo:</strong><br>Implementar agentes autônomos em empresas sem risco de vazamentos ou falhas críticas exige uma <strong>arquitetura de bunker em quatro camadas</strong>: (1) <strong>Isolamento de Credenciais e Redação Ativa</strong>, onde chaves de API e senhas ficam em arquivos criptografados e são automaticamente expurgadas do fluxo de contexto antes de qualquer envio a LLMs externos; (2) <strong>Sanitização de Dados Pessoais (PII/LGPD)</strong>, mascarando CPFs, telefones e e-mails de clientes na camada de ingestão; (3) <strong>Políticas Granulares de Aprovação (Human-in-the-Loop)</strong>, bloqueando execuções destrutivas no sistema operacional ou banco de dados sem a chancela explícita de um gestor; e (4) <strong>Sandboxing de Ferramentas</strong>, limitando o raio de ação das ferramentas em ambientes controlados na VPS. No ecossistema <strong>Hermes Agent</strong>, esses mecanismos são nativos e garantem conformidade e auditoria em tempo real.</p>
 </blockquote>
 <hr>
 <h2 id="o-dilema-do-gestor-produtividade-agentica-vs-risco-operacional" class="scroll-mt-24 group flex items-center justify-between">O Dilema do Gestor: Produtividade Agêntica vs. Risco Operacional <a href="#o-dilema-do-gestor-produtividade-agentica-vs-risco-operacional" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>

@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/checkpoints-rollback-s
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > O sistema de **Checkpoints e `/rollback` do Hermes Agent** é a arquitetura de segurança nativa desenvolvida pela Nous Research para proteger sistemas de arquivos e repositórios corporativos contra mutações destrutivas, alucinações de código ou comandos acidentais executados por agentes autônomos de IA. Operando de forma completamente invisível através de um repositório Git oculto (*Shadow Git Store* localizado em `~/.hermes/checkpoints/store/`), o Hermes captura um **snapshot instantâneo e desduplicado** do diretório de trabalho imediatamente antes de ferramentas de alto risco entrarem em ação — como `write_file`, `patch`, `rm`, `mv`, `sed -i`, `truncate` e comandos de terminal equivalentes.
 > 
 > A grande inovação corporativa dessa arquitetura reside no **Agent-Write Ledger** (livro-razão de escritas do agente): ao executar o comando de restauração `/rollback <N>`, o Hermes Agent restaura com precisão cirúrgica apenas os arquivos que a própria inteligência artificial modificou de forma errônea, **preservando intactas todas as edições manuais que colaboradores humanos tenham feito no mesmo projeto**. Diferente de backups tradicionais lentos ou de comandos arriscados no Git de produção, o sistema de Checkpoints do Hermes garante tolerância zero a desastres com custo zero de infraestrutura e restauração instantânea em frações de segundo.

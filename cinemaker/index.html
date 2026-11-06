@@ -2642,8 +2642,14 @@ html {
     }
 
     /* Font isolation */
-    .top-bar, .top-bar *, footer, footer *, #community-callout, #community-callout * {
+    .top-bar, .top-bar *, footer, footer *, #community-callout, #community-callout *, #mediaflowmz-cta, #mediaflowmz-cta * {
       font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    }
+    .gradient-text-cyan {
+      background: linear-gradient(135deg, #38BDF8 0%, #00E5FF 50%, #34D399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .cinemaker-content, .cinemaker-content * {
       font-family: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
@@ -2924,6 +2930,89 @@ html {
       </div><div class="mt-12 text-center"><a href="#oferta" class="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-[14px] font-[800] uppercase tracking-[-0.01em] text-black hover:scale-[1.02] transition-transform">Ativar agora com garantia <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right h-4 w-4"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a><div class="mt-3 mono text-[11px] text-white/30">Acesso imediato • Sem mensalidade • 7 dias de garantia</div></div></div></section>
 
     <!-- ============================================================
+         SEÇÃO — CROSS-SELL CTA: MEDIAFLOWMZ (LIVES INFINITAS NO TIKTOK SHOP)
+         ============================================================ -->
+    <section id="mediaflowmz-cta" class="py-16 sm:py-24 border-t border-white/10 relative overflow-hidden bg-obsidian-light/60">
+      <!-- Glows ambientais ciano e magenta -->
+      <div class="absolute -top-32 -left-32 w-96 h-96 bg-ciano/15 rounded-full blur-[130px] pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-magenta/15 rounded-full blur-[130px] pointer-events-none" aria-hidden="true"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="glass rounded-3xl p-8 sm:p-12 lg:p-14 border border-ciano/30 bg-gradient-to-br from-ciano/10 via-obsidian-card to-obsidian shadow-2xl shadow-ciano/10 relative overflow-hidden text-center">
+          
+          <!-- Linha superior decorativa com gradiente ciano -->
+          <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-ciano to-transparent" aria-hidden="true"></div>
+
+          <div class="max-w-3xl mx-auto">
+            <!-- Pill / Badge Chamativo -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black tracking-wider uppercase text-ciano bg-ciano/15 border border-ciano/40 mb-5 shadow-lg shadow-ciano/20 animate-pulse">
+              <i data-lucide="radio" class="w-4 h-4 text-ciano"></i>
+              <span>O Próximo Passo: Monetização Contínua</span>
+            </div>
+
+            <!-- Headline de Alto Impacto -->
+            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12]">
+              Você já cria os vídeos em 1 clique. Agora coloque eles para 
+              <span class="gradient-text-cyan block mt-1.5 sm:mt-2">Vender em Lives Infinitas 24/7 no Automático.</span>
+            </h2>
+
+            <!-- Copy Persuasiva e Direta -->
+            <p class="mt-5 text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto">
+              Não deixe seus vídeos cinematográficos parados no disco. Coloque suas produções do CineMaker rodando em <strong class="text-white">loop contínuo no TikTok Shop</strong> e transforme transmissões ao vivo em um canal infinito de faturamento.
+            </p>
+            <p class="mt-3 text-xs sm:text-sm text-gray-400 leading-relaxed max-w-2xl mx-auto">
+              Com a <strong class="text-ciano">MediaFlowMZ</strong>, você transmite sem precisar aparecer na câmera: a extensão no Chrome fixa o produto a cada minuto, responde o chat no automático e avisa no celular caso a live caia. <span class="text-ouro font-semibold">Tudo com super descontão no acesso vitalício!</span>
+            </p>
+
+            <!-- Grid de Destaques Rápidos -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-8 mb-10 text-left">
+              <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-ciano/30 transition-all">
+                <div class="w-8 h-8 rounded-lg bg-ciano/15 border border-ciano/30 flex items-center justify-center text-ciano mb-2.5">
+                  <i data-lucide="repeat" class="w-4 h-4"></i>
+                </div>
+                <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Lives Infinitas 24/7</h4>
+                <p class="text-[11px] text-gray-400 leading-snug">Seus vídeos do CineMaker transmitidos em loop contínuo sem você precisar abrir a câmera.</p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-400/30 transition-all">
+                <div class="w-8 h-8 rounded-lg bg-emerald-400/15 border border-emerald-400/30 flex items-center justify-center text-emerald-400 mb-2.5">
+                  <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                </div>
+                <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Fixador de Produtos</h4>
+                <p class="text-[11px] text-gray-400 leading-snug">Fixa o produto do carrinho do TikTok Shop a cada minuto para não perder vendas.</p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-ouro/30 transition-all">
+                <div class="w-8 h-8 rounded-lg bg-ouro/15 border border-ouro/30 flex items-center justify-center text-ouro mb-2.5">
+                  <i data-lucide="bot" class="w-4 h-4"></i>
+                </div>
+                <h4 class="text-xs sm:text-sm font-bold text-white mb-1">IA no Chat ao Vivo</h4>
+                <p class="text-[11px] text-gray-400 leading-snug">Responde as dúvidas dos compradores no chat automaticamente em tempo real.</p>
+              </div>
+            </div>
+
+            <!-- Botão de Ação Magnético -->
+            <div class="flex flex-col items-center">
+              <a 
+                href="/mediaflowmz" 
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl text-sm sm:text-base font-black tracking-wide text-black bg-gradient-to-r from-ciano via-[#70efff] to-ciano hover:from-ciano-dim hover:to-ciano shadow-2xl shadow-ciano/40 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer group border border-ciano/40"
+              >
+                <span>CONHECER A MEDIAFLOWMZ COM DESCONTÃO</span>
+                <i data-lucide="arrow-right" class="w-5 h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform"></i>
+              </a>
+
+              <p class="mt-3 text-[11px] sm:text-xs text-gray-400 flex items-center justify-center gap-2">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Cupom exclusivo ativado • Licença vitalícia sem mensalidades</span>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
          BOTTOM COMMUNITY CALLOUT (CTA DA COMUNIDADE — PADRÃO OBRIGATÓRIO)
          ============================================================ -->
     <div id="community-callout">
@@ -3192,6 +3281,19 @@ html {
             event_category: 'CTA',
             event_action: 'Click Offer Anchor',
             event_label: el.textContent.trim().substring(0, 50)
+          });
+        });
+      });
+
+      // MediaFlowMZ cross-sell click tracking
+      document.querySelectorAll('a[href*="/mediaflowmz"]').forEach(el => {
+        el.addEventListener('click', () => {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'cta_click',
+            event_category: 'Cross-Sell',
+            event_action: 'Click MediaFlowMZ CTA',
+            event_label: 'CineMaker to MediaFlowMZ'
           });
         });
       });

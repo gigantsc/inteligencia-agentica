@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/fabrica-de-software-ag
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > Uma **Fábrica de Software Agêntica** é uma esteira de engenharia autônoma onde o empresário ou gestor atua como *Product Owner* e *Tech Lead*, definindo necessidades de negócio em linguagem natural, enquanto agentes de IA especializados dividem as funções de arquitetura, desenvolvimento e validação. Utilizando a arquitetura mestre-executor com o **Hermes Agent** (como arquiteto orquestrador) e o **Orca ADE** (como desenvolvedor especialista operando em *Git Worktrees* isolados), aliada a um **Quadro Kanban Nativo** (`KANBAN.md`) local, a empresa é capaz de projetar, codificar, validar sintaticamente e colocar em execução ferramentas internas, dashboards interativos em Python/Streamlit e integrações de sistemas em minutos, sem depender de software houses lentas e sem alucinações de código.
 
 ---

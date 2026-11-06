@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/cron-jobs-inteligentes
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > **Cron Jobs Inteligentes** no Hermes Agent são rotinas automatizadas que vão além do cron tradicional do Linux: elas carregam skills (pacotes de conhecimento especializado), mantêm memória persistente entre execuções, validam sua própria configuração antes de rodar, registram histórico completo de cada execução e entregam resultados diretamente no Telegram, Discord, WhatsApp ou qualquer uma das 21+ plataformas suportadas — tudo operando 24/7 sem supervisão humana, com custo controlado e recuperação automática de falhas.
 
 ---

@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/credential-pools-fallb
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > A alta disponibilidade (High Availability - HA) em agentes de inteligência artificial autônomos depende de eliminar pontos únicos de falha na camada de inferência de LLMs. No ecossistema **Hermes Agent** (Nous Research), essa resiliência é operada em três camadas complementares:  
 > 1. **Credential Pools (`hermes auth`):** Rotação multichave intra-provedor com estratégias de alternância (`fill_first`, `round_robin`, `least_used`) e suporte a travas de processo (`threading/file lock`), substituindo automaticamente chaves que atinjam *HTTP 429 (Rate Limit)* ou *HTTP 402 (Quota/Billing)* sem derrubar a sessão;  
 > 2. **Fallback Providers (`hermes fallback`):** Cascata entre provedores distintos (ex: Anthropic Claude → OpenRouter DeepSeek → Modelo Local Ollama) com reconstrução a quente do cliente de API, preservação de histórico, ferramentas e variáveis, operando sob lógica *reset-aware* que restaura o modelo principal assim que a janela de bloqueio expira;  

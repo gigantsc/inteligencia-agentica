@@ -407,106 +407,13 @@
       </div>
       
 
-      <!-- Table of Contents (if > 1 heading) -->
-      
-      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
-          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
-        </h3>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-ralo-invisivel-de-produtividade-no-backoffice-corporativo" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Ralo Invisível de Produtividade no Backoffice Corporativo
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#a-arquitetura-da-secretaria-executiva-com-hermes-agent" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> A Arquitetura da Secretária Executiva com Hermes Agent
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#comparativo-assistentes-tradicionais-vs-agente-autonomo-com-oauth2" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Comparativo: Assistentes Tradicionais vs. Agente Autônomo com OAuth2
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#os-4-pilares-da-secretaria-executiva-agentica-na-pratica" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Os 4 Pilares da Secretária Executiva Agêntica na Prática
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#1-o-daily-morning-briefing-comece-o-dia-com-clareza-absoluta" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. O Daily Morning Briefing: Comece o Dia com Clareza Absoluta
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#2-triagem-e-rascunho-com-display-name-customizado" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Triagem e Rascunho com Display Name Customizado
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#3-consolidacao-operacional-no-google-sheets" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 3. Consolidação Operacional no Google Sheets
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#4-inteligencia-documental-no-google-drive" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 4. Inteligência Documental no Google Drive
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-passo-a-passo-de-implementacao-segura" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Passo a Passo de Implementação Segura
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#passo-1-criacao-do-projeto-na-google-cloud-platform-gcp" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Passo 1: Criação do Projeto na Google Cloud Platform (GCP)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#passo-2-autorizacao-assistida-pelo-agente" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Passo 2: Autorização Assistida pelo Agente
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#principios-inviolaveis-de-governanca-e-seguranca" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Princípios Invioláveis de Governança e Segurança
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#conclusao-tirando-o-lider-da-operacao-mecanica" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Conclusão: Tirando o Líder da Operação Mecânica
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#quer-implementar-essa-infraestrutura-na-sua-empresa" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Quer implementar essa infraestrutura na sua empresa?
-              </a>
-            </li>
-          
-        </ul>
-      </div>
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       
 
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>A integração entre o <strong>Hermes Agent</strong> e o <strong>Google Workspace</strong> é a arquitetura que permite transformar um agente autônomo de inteligência artificial em uma secretária executiva de alto nível para a sua empresa, operando diretamente sobre o Gmail, Google Calendar, Google Drive, Google Sheets e Google Docs via autenticação segura <strong>OAuth2 nativa</strong> com renovação automática de tokens. Diferente de soluções comerciais engessadas (como o Gemini for Workspace ou add-ons corporativos que custam entre US$ 20 e US$ 30 por usuário/mês apenas para exibir um chat lateral passivo), o agente agêntico atua em segundo plano de forma proativa: realiza auditorias matinais de compromissos (<strong>Daily Briefing</strong>), detecta choques de horário, cruza pautas de reuniões com e-mails recentes dos participantes, faz a triagem de mensagens urgentes, redige rascunhos de resposta com o tom do gestor e atualiza planilhas financeiras automaticamente, tudo sob estrita governança humana e com custo de infraestrutura quase nulo.</p>
+<p><strong>Em resumo:</strong><br>A integração entre o <strong>Hermes Agent</strong> e o <strong>Google Workspace</strong> é a arquitetura que permite transformar um agente autônomo de inteligência artificial em uma secretária executiva de alto nível para a sua empresa, operando diretamente sobre o Gmail, Google Calendar, Google Drive, Google Sheets e Google Docs via autenticação segura <strong>OAuth2 nativa</strong> com renovação automática de tokens. Diferente de soluções comerciais engessadas (como o Gemini for Workspace ou add-ons corporativos que custam entre US$ 20 e US$ 30 por usuário/mês apenas para exibir um chat lateral passivo), o agente agêntico atua em segundo plano de forma proativa: realiza auditorias matinais de compromissos (<strong>Daily Briefing</strong>), detecta choques de horário, cruza pautas de reuniões com e-mails recentes dos participantes, faz a triagem de mensagens urgentes, redige rascunhos de resposta com o tom do gestor e atualiza planilhas financeiras automaticamente, tudo sob estrita governança humana e com custo de infraestrutura quase nulo.</p>
 </blockquote>
 <hr>
 <h2 id="o-ralo-invisivel-de-produtividade-no-backoffice-corporativo" class="scroll-mt-24 group flex items-center justify-between">O Ralo Invisível de Produtividade no Backoffice Corporativo <a href="#o-ralo-invisivel-de-produtividade-no-backoffice-corporativo" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>

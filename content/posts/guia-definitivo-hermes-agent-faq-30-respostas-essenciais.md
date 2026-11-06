@@ -11,7 +11,7 @@ featured: true
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > **O Hermes Agent** (desenvolvido pela Nous Research) é a principal plataforma open source do mundo para criação e operação de **funcionários digitais autônomos**. Diferente de chatbots comuns que apenas respondem perguntas, o Hermes possui acesso a ferramentas reais (navegação web, leitura/escrita de arquivos, execução de terminal, bancos de dados e agendamento de tarefas 24/7). Este guia reúne as **30 respostas essenciais** sobre como estruturar a mente do robô (os 4 arquivos fundamentais: `SOUL.md`, `AGENTS.md`, `MEMORY.md`, `USER.md`), operar em múltiplos canais (Telegram, WhatsApp, Desktop), reduzir custos com modelos econômicos e colocar rotinas empresariais no piloto automático sem precisar programar.
 
 ---

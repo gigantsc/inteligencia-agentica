@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/egress-proxy-iron-prox
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > A execução autônoma de ferramentas (terminal, scripts Python e web scraping) por agentes de IA introduz o risco crítico de **exfiltração de credenciais via Prompt Injection Indireto**: conteúdos externos hostis podem induzir o agente a ler suas variáveis de ambiente (`printenv`, `cat ~/.env`) e transmiti-las para servidores externos. No ecossistema **Hermes Agent** (Nous Research), essa vulnerabilidade é neutralizada na raiz através do subsistema **`hermes egress`** operado em conjunto com o daemon **iron-proxy** (escrito em Go, Apache-2.0):  
 > 1. **Tokens Opacos de Proxy:** O container Docker onde o agente executa tarefas nunca recebe as chaves de API reais (como `OPENROUTER_API_KEY` ou credenciais bancárias). Em seu lugar, são injetados tokens opacos descartáveis (`tok_...`) que só têm validade dentro da ponte interna do host;  
 > 2. **Injeção Transparente com CA Privada:** Todo tráfego de saída do container é forçado via `HTTPS_PROXY` para o daemon local (`host.docker.internal:9090`). O `iron-proxy` realiza a terminação TLS por meio de uma Autoridade Certificadora privada dedicada, substitui o token de proxy pela credencial verdadeira em trânsito no host e encaminha a requisição aos provedores oficiais de IA;  

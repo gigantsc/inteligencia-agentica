@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/webhooks-agentes-ia-ar
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > Agentes de IA orientados a eventos (*Event-Driven AI*) são sistemas autônomos acionados instantaneamente por sinais HTTP externos (**Webhooks**) no momento exato em que um evento de negócio ocorre — como uma compra no Stripe/Hotmart, um lead preenchendo um formulário, ou um alerta de infraestrutura. Diferente dos chatbots tradicionais (que exigem um humano digitando um comando) ou de automações por cron job (que fazem consultas periódicas com atraso e desperdício computacional), a arquitetura orientada a eventos do **Hermes Agent** executa validação criptográfica HMAC, filtragem declarativa de dados sem gasto de tokens e debouncing inteligente (*coalescing*), disparando ações remediadoras, despachando subagentes e notificando gestores no Telegram ou WhatsApp em menos de 1 segundo.
 
 ---

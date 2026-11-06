@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/computer-use-segundo-p
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O **Computer Use em Segundo Plano (Background CUA)** do ecossistema Hermes Agent resolve o maior gargalo da automação corporativa: interagir com sistemas legados de desktop (como ERPs SAP GUI, TOTVS Protheus, WinThor ou emissores fiscais) que não possuem APIs REST. Ao implementar o rigoroso **No-Foreground Contract** através do `cua-driver`, o agente lê diretamente a árvore de acessibilidade do sistema operacional (Windows UIAutomation, macOS SkyLight ou Linux AT-SPI) e despacha cliques e digitações sintetizados direto para o processo da aplicação (PID), sem sequestrar a tela, sem roubar o foco da janela ativa e sem mover o cursor físico do mouse. Dessa forma, o agente autônomo e o colaborador humano coexistem e trabalham simultaneamente na mesma estação de trabalho ou VPS corporativa.
 
 ---

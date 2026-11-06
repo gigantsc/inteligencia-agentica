@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/whatsapp-agentes-ia-au
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > A conexão entre o **Hermes Agent** e o **WhatsApp** através da ponte nativa **Baileys** é a solução definitiva para empresas que desejam colocar agentes autônomos de inteligência artificial operando diretamente no principal canal de comunicação do mercado brasileiro sem se submeter a mensalidades abusivas de plataformas SaaS (como Z-API, ManyChat ou Evolution API) nem às tarifas e burocracias da API Cloud oficial da Meta. Ao emular uma sessão de WhatsApp Web de forma ultra-leve em Node.js (sem a necessidade de navegadores headless pesados como Chromium ou Puppeteer), o Hermes Agent permite realizar o pareamento via QR Code no terminal (`hermes whatsapp`), mantém a sessão persistente em sua própria VPS (`~/.hermes/platforms/whatsapp/session`), transcreve áudios recebidos com Whisper, responde em tempo real com streaming de texto ou áudio sintetizado (TTS), gera enquetes nativas, executa ferramentas corporativas (consultas a bancos SQL via MCP, CRM e Google Workspace) e protege a operação com debounce inteligente contra spam e desperdício de tokens.
 
 ---

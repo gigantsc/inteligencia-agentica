@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/cofre-de-credenciais-c
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O **Cofre de Credenciais (*Credential Vault*)** é a tecnologia que viabiliza a automação autônoma de tarefas corporativas autenticadas (como emissão de notas fiscais em prefeituras, download de extratos bancários, compras de insumos e atualização de ERPs legados) **sem que o modelo de inteligência artificial (LLM) jamais tenha acesso às suas senhas, chaves secretas ou números de cartão de crédito**. Em vez de colar credenciais no prompt ou gravá-las em texto puro em scripts amadores, os dados são armazenados localmente com criptografia Fernet AES-256 (`~/.hermes/vault/`) ou consultados sob demanda via gerenciadores corporativos (Bitwarden e 1Password). Quando o agente navega até a página de login, o runtime do **Hermes Agent** injeta os dados diretamente no DOM do navegador através do Chrome DevTools Protocol (CDP) por um socket local protegido. O modelo de IA recebe apenas um recibo estruturado (`{filled_fields: 1, origin: "https://..."}`), garantindo blindagem contra ataques de *prompt injection*, proteção contra vazamentos em provedores de IA e conformidade rigorosa com a LGPD e políticas corporativas de segurança.
 
 ---

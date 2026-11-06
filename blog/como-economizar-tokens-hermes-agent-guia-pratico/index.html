@@ -407,100 +407,13 @@
       </div>
       
 
-      <!-- Table of Contents (if > 1 heading) -->
-      
-      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
-          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
-        </h3>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-mito-do-consumo-desconhecido-de-tokens" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Mito do Consumo Desconhecido de Tokens
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#passo-1-nao-adivinhe-separe-os-4-conceitos-fundamentais" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 🔍 Passo 1: Não Adivinhe — Separe os 4 Conceitos Fundamentais
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#passo-2-o-diagnostico-rapido-da-sua-operacao" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 🛠️ Passo 2: O Diagnóstico Rápido da sua Operação
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#passo-3-otimizando-a-mochila-inicial-sessoes-novas" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 🎒 Passo 3: Otimizando a "Mochila Inicial" (Sessões Novas)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#1-ferramentas-tools" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. Ferramentas (Tools):
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#2-memoria-permanente-memorymd-e-usermd" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Memória Permanente (MEMORY.md e USER.md):
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#3-identidade-e-regras-soulmd-e-agentsmd" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 3. Identidade e Regras (SOUL.md e AGENTS.md):
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#passo-4-como-controlar-conversas-que-crescem-demais" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> ⚡ Passo 4: Como Controlar Conversas que Crescem Demais
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#passo-5-estrategia-de-custos-o-modelo-certo-para-a-funcao-certa" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 💰 Passo 5: Estratégia de Custos — O Modelo Certo para a Função Certa
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#dicas-praticas-de-economia-de-fatura" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Dicas Práticas de Economia de Fatura:
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#as-falsas-otimizacoes-o-que-nao-economiza-tokens" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> ❌ As "Falsas Otimizações" (O que NÃO economiza tokens)
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-check-up-definitivo-de-eficiencia-do-seu-hermes" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 📋 O Check-up Definitivo de Eficiência do seu Hermes
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#conclusao-gaste-tokens-no-trabalho-nao-na-bagagem" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 🎓 Conclusão: Gaste Tokens no Trabalho, Não na Bagagem
-              </a>
-            </li>
-          
-        </ul>
-      </div>
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       
 
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O consumo excessivo de tokens no <strong>Hermes Agent</strong> raramente é causado pela conversa em si, mas sim pela &quot;mochila&quot; de ferramentas, regras e memórias que o robô carrega a cada turno. Para economizar até 90% da sua fatura sem perder qualidade, siga a regra de ouro da engenharia agêntica: <strong>Medir ➔ Localizar a camada pesada ➔ Ajustar a camada ➔ Medir novamente</strong>. Utilize ferramentas nativas de diagnóstico como <code>hermes prompt-size</code> (para inspecionar a mochila inicial), <code>/context all</code> (para ver o peso de cada ferramenta e skill) e <code>/usage</code> (para auditar os custos reais em dólares). Isole tarefas paralelas com <code>/btw</code> ou subagentes e reserve modelos de alto raciocínio apenas para tarefas complexas.</p>
+<p><strong>Em resumo:</strong><br>O consumo excessivo de tokens no <strong>Hermes Agent</strong> raramente é causado pela conversa em si, mas sim pela &quot;mochila&quot; de ferramentas, regras e memórias que o robô carrega a cada turno. Para economizar até 90% da sua fatura sem perder qualidade, siga a regra de ouro da engenharia agêntica: <strong>Medir ➔ Localizar a camada pesada ➔ Ajustar a camada ➔ Medir novamente</strong>. Utilize ferramentas nativas de diagnóstico como <code>hermes prompt-size</code> (para inspecionar a mochila inicial), <code>/context all</code> (para ver o peso de cada ferramenta e skill) e <code>/usage</code> (para auditar os custos reais em dólares). Isole tarefas paralelas com <code>/btw</code> ou subagentes e reserve modelos de alto raciocínio apenas para tarefas complexas.</p>
 </blockquote>
 <hr>
 <h2 id="o-mito-do-consumo-desconhecido-de-tokens" class="scroll-mt-24 group flex items-center justify-between">O Mito do Consumo Desconhecido de Tokens <a href="#o-mito-do-consumo-desconhecido-de-tokens" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>

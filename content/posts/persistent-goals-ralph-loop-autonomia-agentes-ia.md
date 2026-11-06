@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/persistent-goals-ralph
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O comando **/goal (Persistent Goals)** no **Hermes Agent** implementa a arquitetura de **Ralph Loop**, conferindo autonomia multi-turno contínua a agentes de inteligência artificial sem a necessidade de intervenção humana a cada passo. Em vez de depender do usuário para digitar repetidamente *"continue"* ou *"ainda falta fazer X"*, o sistema utiliza um **modelo juiz auxiliar (goal_judge)** que avalia cada resposta da IA contra um **Contrato de Conclusão** estruturado em 5 dimensões (*outcome*, *verification*, *constraints*, *boundaries* e *stop_when*). A tarefa só é considerada finalizada quando atinge evidência empírica ou quando passa por **Quality Gates determinísticos** (scripts do sistema operacional que exigem código de saída 0). Caso contrário, o Hermes injeta automaticamente prompts de continuação mantendo o agente focado até concluir o objetivo ou atingir o orçamento parametrizado de turnos.
 
 ---

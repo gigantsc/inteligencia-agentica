@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/triagem-inteligente-de
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > A **triagem inteligente de e-mails corporativos com agentes de IA** é uma arquitetura autônoma orientada a processos que conecta modelos avançados de linguagem à caixa de entrada da empresa (via IMAP/SMTP seguro com ferramentas como Himalaya CLI ou via API Google Workspace/Microsoft 365) para ler, classificar e despachar comunicações sem intervenção manual exaustiva. No ecossistema **Hermes Agent** (Nous Research), essa rotina é operada através do módulo de **Email Inbox Triage**, que categoriza as threads em 6 disposições objetivas (urgente, resposta necessária, ação operacional sem resposta, aguardando terceiros, referência e ruído/spam), calibra o tom de escrita com base nos e-mails enviados anteriormente pelo gestor e adota uma política rigorosa de **Rascunho Seguro (*Draft-First / Human-in-the-Loop*)**. Isso significa que o agente **nunca dispara e-mails diretamente** sem aprovação humana expressa, eliminando riscos de alucinação ou erros comerciais, enquanto reduz o tempo gasto com e-mails em mais de 80% e entrega um resumo executivo sintetizado direto no Telegram ou WhatsApp do diretor.
 
 ---

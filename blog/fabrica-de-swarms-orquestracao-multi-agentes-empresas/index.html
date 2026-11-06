@@ -407,94 +407,13 @@
       </div>
       
 
-      <!-- Table of Contents (if > 1 heading) -->
-      
-      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
-          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
-        </h3>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-problema-do-agente-faz-tudo-monolitico" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Problema do Agente "Faz-Tudo" Monolítico
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#a-anatomia-de-uma-fabrica-de-swarm-corporativa" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> A Anatomia de uma Fábrica de Swarm Corporativa
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#1-o-orquestrador-lider-da-operacao" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. O Orquestrador (Líder da Operação)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#2-os-especialistas-de-dominio-trabalhadores-isolados" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Os Especialistas de Domínio (Trabalhadores Isolados)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#3-o-revisor-de-qualidade-qa-and-fact-checking" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 3. O Revisor de Qualidade (QA & Fact-Checking)
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#tabela-comparativa-abordagem-monolitica-vs-swarm-especializado" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Tabela Comparativa: Abordagem Monolítica vs. Swarm Especializado
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#mecanismos-de-comunicacao-e-delegacao-no-hermes-agent" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Mecanismos de Comunicação e Delegação no Hermes Agent
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#1-subagentes-efemeros-via-delegatetask" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. Subagentes Efêmeros via delegate_task
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#2-spawning-de-processos-independentes-com-worktrees-w" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Spawning de Processos Independentes com Worktrees (-w)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#3-protocolo-a2a-agent-to-agent-and-bot-mode" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 3. Protocolo A2A (Agent-to-Agent) & Bot-Mode
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#caso-pratico-um-swarm-de-inteligencia-competitiva-em-acao" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Caso Prático: Um Swarm de Inteligência Competitiva em Ação
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#como-comecar-a-implementar-swarms-na-sua-empresa" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Como Começar a Implementar Swarms na Sua Empresa
-              </a>
-            </li>
-          
-        </ul>
-      </div>
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       
 
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>Uma <strong>Fábrica de Swarms</strong> (ou enxame multi-agente) é um padrão arquitetural em que múltiplos agentes de IA especializados trabalham de forma coordenada sob a liderança de um agente orquestrador. Em vez de sobrecarregar um único agente generalista com centenas de instruções conflitantes, o Swarm fragmenta tarefas complexas entre subagentes efêmeros ou persistentes com contextos de memória isolados, ferramentas dedicadas e validação cruzada de qualidade. No ecossistema corporativo do <strong>Hermes Agent</strong>, isso permite paralelizar pesquisas, análises financeiras, automações de infraestrutura e redação de relatórios, reduzindo em até 70% o consumo de tokens e eliminando o esquecimento de diretrizes operacionais.</p>
+<p><strong>Em resumo:</strong><br>Uma <strong>Fábrica de Swarms</strong> (ou enxame multi-agente) é um padrão arquitetural em que múltiplos agentes de IA especializados trabalham de forma coordenada sob a liderança de um agente orquestrador. Em vez de sobrecarregar um único agente generalista com centenas de instruções conflitantes, o Swarm fragmenta tarefas complexas entre subagentes efêmeros ou persistentes com contextos de memória isolados, ferramentas dedicadas e validação cruzada de qualidade. No ecossistema corporativo do <strong>Hermes Agent</strong>, isso permite paralelizar pesquisas, análises financeiras, automações de infraestrutura e redação de relatórios, reduzindo em até 70% o consumo de tokens e eliminando o esquecimento de diretrizes operacionais.</p>
 </blockquote>
 <hr>
 <h2 id="o-problema-do-agente-andquotfaz-tudoandquot-monolitico" class="scroll-mt-24 group flex items-center justify-between">O Problema do Agente &quot;Faz-Tudo&quot; Monolítico <a href="#o-problema-do-agente-andquotfaz-tudoandquot-monolitico" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>

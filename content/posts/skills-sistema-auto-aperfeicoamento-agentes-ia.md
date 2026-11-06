@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/skills-sistema-auto-ap
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > O sistema de Skills do Hermes Agent funciona como um manual de procedimentos vivo que o próprio agente escreve, consulta e atualiza. Cada vez que o agente resolve um problema novo, ele pode salvar a solução como uma skill reutilizável — e na próxima vez que enfrentar um desafio semelhante, já sabe exatamente o que fazer, sem precisar ser ensinado de novo. É o equivalente digital de um funcionário que documenta cada processo que domina e nunca mais perde esse conhecimento.
 
 ---

@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/bunker-de-seguranca-go
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > Implementar agentes autônomos em empresas sem risco de vazamentos ou falhas críticas exige uma **arquitetura de bunker em quatro camadas**: (1) **Isolamento de Credenciais e Redação Ativa**, onde chaves de API e senhas ficam em arquivos criptografados e são automaticamente expurgadas do fluxo de contexto antes de qualquer envio a LLMs externos; (2) **Sanitização de Dados Pessoais (PII/LGPD)**, mascarando CPFs, telefones e e-mails de clientes na camada de ingestão; (3) **Políticas Granulares de Aprovação (Human-in-the-Loop)**, bloqueando execuções destrutivas no sistema operacional ou banco de dados sem a chancela explícita de um gestor; e (4) **Sandboxing de Ferramentas**, limitando o raio de ação das ferramentas em ambientes controlados na VPS. No ecossistema **Hermes Agent**, esses mecanismos são nativos e garantem conformidade e auditoria em tempo real.
 
 ---

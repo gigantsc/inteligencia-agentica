@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/bot-mode-equipe-agente
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):** Bot Mode é uma funcionalidade embutida no Hermes Desktop (v0.21.0+) que transforma cada perfil do agente em um "Bot" nomeado com avatar próprio, memória isolada, modelo de IA específico e skills dedicados. Bots podem conversar entre si em chats em grupo (2 a 6 participantes), trocar mensagens diretas via `hermes peer` e executar rotinas agendadas que lembram do que fizeram ontem. É como montar uma equipe de funcionários digitais especializados — cada um com seu cargo, sua mesa e suas responsabilidades — que coordenam o trabalho sem que você precise ser o mensageiro entre eles.
+> **Em resumo:** Bot Mode é uma funcionalidade embutida no Hermes Desktop (v0.21.0+) que transforma cada perfil do agente em um "Bot" nomeado com avatar próprio, memória isolada, modelo de IA específico e skills dedicados. Bots podem conversar entre si em chats em grupo (2 a 6 participantes), trocar mensagens diretas via `hermes peer` e executar rotinas agendadas que lembram do que fizeram ontem. É como montar uma equipe de funcionários digitais especializados — cada um com seu cargo, sua mesa e suas responsabilidades — que coordenam o trabalho sem que você precise ser o mensageiro entre eles.
 
 ---
 

@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/bi-conversacional-anal
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O **BI Conversacional com Agentes de IA** é a evolução direta dos dashboards analíticos tradicionais (como Power BI, Tableau e Metabase). Em vez de exigir que diretores e gestores naveguem por dezenas de gráficos estáticos ou aguardem dias por relatórios elaborados por analistas de dados, um agente autônomo conectado aos bancos de dados corporativos (via Protocolo MCP ou APIs financeiras) interpreta perguntas em linguagem natural, executa consultas SQL seguras em modo somente leitura (*read-only*), cruza métricas de faturamento com custos operacionais e entrega respostas estratégicas estruturadas diretamente no Telegram, WhatsApp ou Slack em menos de cinco segundos.
 
 ---

@@ -407,100 +407,13 @@
       </div>
       
 
-      <!-- Table of Contents (if > 1 heading) -->
-      
-      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
-          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
-        </h3>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#1-o-fim-da-ia-reativa-por-que-empresas-maduras-estao-abandonando-o-chatbot-de-navegador" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. O Fim da IA Reativa: Por Que Empresas Maduras Estão Abandonando o Chatbot de Navegador
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#2-anatomia-do-gateway-de-webhooks-no-hermes-agent" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Anatomia do Gateway de Webhooks no Hermes Agent
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#3-as-4-armas-de-eficiencia-como-rodar-eventos-sem-explodir-a-fatura-de-tokens" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 3. As 4 Armas de Eficiência: Como Rodar Eventos Sem Explodir a Fatura de Tokens
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#1-filtragem-declarativa-de-payloads-filters" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. Filtragem Declarativa de Payloads (filters:)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#2-direct-delivery-mode-deliveronly-true-custo-zero" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Direct Delivery Mode (deliver_only: true = Custo Zero)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#3-event-coalescing-debouncing-inteligente-de-rajadas" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 3. Event Coalescing (Debouncing Inteligente de Rajadas)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#4-event-triggered-cron-jobs-cronjob" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 4. Event-Triggered Cron Jobs (cron_job:)
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#4-casos-praticos-de-aplicacao-no-mundo-empresarial" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 4. Casos Práticos de Aplicação no Mundo Empresarial
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#5-como-configurar-na-pratica-no-seu-hermes-agent-na-vps" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 5. Como Configurar na Prática no seu Hermes Agent na VPS
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#passo-1-habilitar-o-webhook-no-env-da-vps" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Passo 1: Habilitar o Webhook no .env da VPS
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#passo-2-configurar-o-nginx-como-reverse-proxy-seguro" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Passo 2: Configurar o Nginx como Reverse Proxy Seguro
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#passo-3-testar-a-conectividade" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Passo 3: Testar a Conectividade
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#6-o-futuro-da-gestao-empresarial-agentes-que-nao-dormem-e-nao-esperam" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 6. O Futuro da Gestão Empresarial: Agentes que Não Dormem e Não Esperam
-              </a>
-            </li>
-          
-        </ul>
-      </div>
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       
 
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>Agentes de IA orientados a eventos (<em>Event-Driven AI</em>) são sistemas autônomos acionados instantaneamente por sinais HTTP externos (<strong>Webhooks</strong>) no momento exato em que um evento de negócio ocorre — como uma compra no Stripe/Hotmart, um lead preenchendo um formulário, ou um alerta de infraestrutura. Diferente dos chatbots tradicionais (que exigem um humano digitando um comando) ou de automações por cron job (que fazem consultas periódicas com atraso e desperdício computacional), a arquitetura orientada a eventos do <strong>Hermes Agent</strong> executa validação criptográfica HMAC, filtragem declarativa de dados sem gasto de tokens e debouncing inteligente (<em>coalescing</em>), disparando ações remediadoras, despachando subagentes e notificando gestores no Telegram ou WhatsApp em menos de 1 segundo.</p>
+<p><strong>Em resumo:</strong><br>Agentes de IA orientados a eventos (<em>Event-Driven AI</em>) são sistemas autônomos acionados instantaneamente por sinais HTTP externos (<strong>Webhooks</strong>) no momento exato em que um evento de negócio ocorre — como uma compra no Stripe/Hotmart, um lead preenchendo um formulário, ou um alerta de infraestrutura. Diferente dos chatbots tradicionais (que exigem um humano digitando um comando) ou de automações por cron job (que fazem consultas periódicas com atraso e desperdício computacional), a arquitetura orientada a eventos do <strong>Hermes Agent</strong> executa validação criptográfica HMAC, filtragem declarativa de dados sem gasto de tokens e debouncing inteligente (<em>coalescing</em>), disparando ações remediadoras, despachando subagentes e notificando gestores no Telegram ou WhatsApp em menos de 1 segundo.</p>
 </blockquote>
 <hr>
 <h2 id="1-o-fim-da-ia-reativa-por-que-empresas-maduras-estao-abandonando-o-chatbot-de-navegador" class="scroll-mt-24 group flex items-center justify-between">1. O Fim da IA Reativa: Por Que Empresas Maduras Estão Abandonando o Chatbot de Navegador <a href="#1-o-fim-da-ia-reativa-por-que-empresas-maduras-estao-abandonando-o-chatbot-de-navegador" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>

@@ -11,7 +11,7 @@ featured: false
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > O consumo excessivo de tokens no **Hermes Agent** raramente é causado pela conversa em si, mas sim pela "mochila" de ferramentas, regras e memórias que o robô carrega a cada turno. Para economizar até 90% da sua fatura sem perder qualidade, siga a regra de ouro da engenharia agêntica: **Medir ➔ Localizar a camada pesada ➔ Ajustar a camada ➔ Medir novamente**. Utilize ferramentas nativas de diagnóstico como `hermes prompt-size` (para inspecionar a mochila inicial), `/context all` (para ver o peso de cada ferramenta e skill) e `/usage` (para auditar os custos reais em dólares). Isole tarefas paralelas com `/btw` ou subagentes e reserve modelos de alto raciocínio apenas para tarefas complexas.
 
 ---

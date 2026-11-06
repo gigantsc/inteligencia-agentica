@@ -407,64 +407,13 @@
       </div>
       
 
-      <!-- Table of Contents (if > 1 heading) -->
-      
-      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
-          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
-        </h3>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-dilema-das-cameras-de-seguranca-tradicionais" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Dilema das Câmeras de Segurança Tradicionais
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#como-o-hermes-elimina-falsos-alarmes" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Como o Hermes Elimina Falsos Alarmes
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#os-tres-vereditos-do-robo" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Os Três Vereditos do Robô:
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#casos-praticos-de-aplicacao-nas-empresas" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 🏢 Casos Práticos de Aplicação nas Empresas
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-exemplo-real-de-um-alerta-no-telegram" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 🚨 O Exemplo Real de um Alerta no Telegram
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#regras-de-seguranca-e-privacidade-inegociaveis" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 🔒 Regras de Segurança e Privacidade Inegociáveis
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#conclusao" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 🎓 Conclusão
-              </a>
-            </li>
-          
-        </ul>
-      </div>
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       
 
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Hermes Vision Watchdog</strong> é uma arquitetura avançada de monitoramento visual que combina detecção local em tempo real (via YOLO ou OpenCV) com o raciocínio multimodal do <strong>Hermes Agent</strong>. Em vez de transmitir vídeo 24/7 para modelos caros de IA na nuvem (o que consumiria milhares de dólares em tokens e banda), o sistema monitora a câmera localmente a 30 FPS sem custo e só aciona o Hermes com um <strong>snapshot fotográfico</strong> quando um evento atinge um limite configurável (ex: suspeita de fumaça, violação de área restrita ou ausência de EPI). O Hermes então valida a evidência, descarta falsos positivos (como vapor, poeira ou reflexos de luz) e envia um alerta detalhado no Telegram ou WhatsApp com foto, nível de confiança e solicitação de aprovação humana.</p>
+<p><strong>Em resumo:</strong><br>O <strong>Hermes Vision Watchdog</strong> é uma arquitetura avançada de monitoramento visual que combina detecção local em tempo real (via YOLO ou OpenCV) com o raciocínio multimodal do <strong>Hermes Agent</strong>. Em vez de transmitir vídeo 24/7 para modelos caros de IA na nuvem (o que consumiria milhares de dólares em tokens e banda), o sistema monitora a câmera localmente a 30 FPS sem custo e só aciona o Hermes com um <strong>snapshot fotográfico</strong> quando um evento atinge um limite configurável (ex: suspeita de fumaça, violação de área restrita ou ausência de EPI). O Hermes então valida a evidência, descarta falsos positivos (como vapor, poeira ou reflexos de luz) e envia um alerta detalhado no Telegram ou WhatsApp com foto, nível de confiança e solicitação de aprovação humana.</p>
 </blockquote>
 <hr>
 <h2 id="o-dilema-das-cameras-de-seguranca-tradicionais" class="scroll-mt-24 group flex items-center justify-between">O Dilema das Câmeras de Segurança Tradicionais <a href="#o-dilema-das-cameras-de-seguranca-tradicionais" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>

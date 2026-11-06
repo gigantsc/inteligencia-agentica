@@ -407,88 +407,13 @@
       </div>
       
 
-      <!-- Table of Contents (if > 1 heading) -->
-      
-      <div class="mb-10 glass rounded-2xl p-6 border border-white/10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-ouro mb-3 flex items-center gap-2">
-          <i data-lucide="list" class="w-4 h-4"></i> Índice do Artigo
-        </h3>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-problema-dos-dados-inacabados-no-dia-a-dia-da-gestao" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Problema dos "Dados Inacabados" no Dia a Dia da Gestão
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#como-funciona-a-arquitetura-do-deliverable-mode" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Como Funciona a Arquitetura do Deliverable Mode
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#comparativo-assistentes-comuns-vs-deliverable-mode-agentico" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Comparativo: Assistentes Comuns vs. Deliverable Mode Agêntico
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#matriz-de-extensoes-e-tratamento-de-midia" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Matriz de Extensões e Tratamento de Mídia
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-poder-do-kanbancomplete-em-operacoes-multi-agentes" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Poder do kanban_complete em Operações Multi-Agentes
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#como-configurar-o-comportamento-de-entrega-no-seu-agente" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Como Configurar o Comportamento de Entrega no Seu Agente
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#1-no-arquivo-de-alma-global-hermessoulmd" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 1. No Arquivo de Alma Global (~/.hermes/SOUL.md)
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#diretrizes-de-entregaveis-executivos-deliverable-mode" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Diretrizes de Entregáveis Executivos (Deliverable Mode):
-              </a>
-            </li>
-          
-            <li class="ml-4 text-gray-400">
-              <a href="#2-ativacao-rapida-por-prompt-no-telegram-ou-whatsapp" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> 2. Ativação Rápida por Prompt no Telegram ou WhatsApp
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#privacidade-soberania-e-conformidade-lgpd" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> Privacidade, Soberania e Conformidade (LGPD)
-              </a>
-            </li>
-          
-            <li class="font-semibold text-gray-200">
-              <a href="#o-proximo-passo-na-sua-jornada-agentica" class="hover:text-ciano transition-colors flex items-center gap-1.5">
-                <span class="text-ciano/60">&rsaquo;</span> O Próximo Passo na Sua Jornada Agêntica
-              </a>
-            </li>
-          
-        </ul>
-      </div>
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       
 
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Deliverable Mode (Modo de Entrega de Artefatos)</strong> do Hermes Agent resolve a maior deficiência dos assistentes de inteligência artificial convencionais em ambientes corporativos: a entrega de dados inacabados. Enquanto ferramentas web tradicionais (ChatGPT ou Claude) respondem a solicitações analíticas despejando blocos de código Python (<code>import pandas...</code>) ou tabelas Markdown ilegíveis na tela de um smartphone, o Hermes Agent gera os arquivos binários reais no sistema de arquivos corporativo (<code>.xlsx</code>, <code>.pdf</code>, <code>.png</code>, <code>.docx</code>, <code>.pptx</code>). Ao processar a resposta, o <strong>Gateway de Mensageria</strong> (conectado ao Telegram, WhatsApp, Slack, Teams ou Discord) intercepta automaticamente os caminhos absolutos dos arquivos gerados, remove os termos técnicos da mensagem visível e faz o upload dos documentos como anexos nativos. O empresário ou diretor recebe a planilha formatada com fórmulas operacionais e o relatório em PDF com design executivo diretamente na palma da mão, pronto para compartilhamento ou auditoria.</p>
+<p><strong>Em resumo:</strong><br>O <strong>Deliverable Mode (Modo de Entrega de Artefatos)</strong> do Hermes Agent resolve a maior deficiência dos assistentes de inteligência artificial convencionais em ambientes corporativos: a entrega de dados inacabados. Enquanto ferramentas web tradicionais (ChatGPT ou Claude) respondem a solicitações analíticas despejando blocos de código Python (<code>import pandas...</code>) ou tabelas Markdown ilegíveis na tela de um smartphone, o Hermes Agent gera os arquivos binários reais no sistema de arquivos corporativo (<code>.xlsx</code>, <code>.pdf</code>, <code>.png</code>, <code>.docx</code>, <code>.pptx</code>). Ao processar a resposta, o <strong>Gateway de Mensageria</strong> (conectado ao Telegram, WhatsApp, Slack, Teams ou Discord) intercepta automaticamente os caminhos absolutos dos arquivos gerados, remove os termos técnicos da mensagem visível e faz o upload dos documentos como anexos nativos. O empresário ou diretor recebe a planilha formatada com fórmulas operacionais e o relatório em PDF com design executivo diretamente na palma da mão, pronto para compartilhamento ou auditoria.</p>
 </blockquote>
 <hr>
 <h2 id="o-problema-dos-andquotdados-inacabadosandquot-no-dia-a-dia-da-gestao" class="scroll-mt-24 group flex items-center justify-between">O Problema dos &quot;Dados Inacabados&quot; no Dia a Dia da Gestão <a href="#o-problema-dos-andquotdados-inacabadosandquot-no-dia-a-dia-da-gestao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>

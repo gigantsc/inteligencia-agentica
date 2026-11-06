@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/modelos-locais-ollama-
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > A execução de **modelos locais de IA com Ollama e Hermes Agent** consiste em processar toda a inteligência e as chamadas de ferramentas (*tool calling*) diretamente no hardware próprio da empresa (seja em uma workstation física com GPU ou em uma VPS privada dedicada), sem trafegar nenhum dado por servidores de terceiros ou nuvens públicas. No ecossistema corporativo do **Hermes Agent** (desenvolvido pela Nous Research), a integração com motores de inferência local (como o `llama.cpp` nativo ou o `Ollama` via endpoint customizado compatível com OpenAI) garante **soberania absoluta de dados**, conformidade estrita com a **LGPD** e **custo zero de tokens de API**. 
 > Para que um modelo local opere com capacidade agêntica real (executando arquivos, navegando no sistema e integrando bancos de dados), é mandatório utilizar modelos de pesos abertos calibrados para chamadas de função estruturadas (como *Gemma 4 31B*, *Qwen 2.5 32B* ou *Llama 3.3 70B*) com janela de contexto estendida para **64.000 tokens** via Modelfile. A melhor prática empresarial adota uma **arquitetura híbrida de resiliência**, onde o modelo local resolve 90% das rotinas diárias com custo zero e um provedor em nuvem de fronteira atua como *fallback* automático apenas quando a complexidade lógica extrema assim exigir.
 
