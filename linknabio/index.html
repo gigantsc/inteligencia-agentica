@@ -9,13 +9,13 @@
       'ad_storage': 'denied',
       'ad_user_data': 'denied',
       'ad_personalization': 'denied',
-      'analytics_storage': 'denied',
+      'analytics_storage': 'granted',
       'functionality_storage': 'granted',
       'personalization_storage': 'denied',
       'security_storage': 'granted',
       'wait_for_update': 500
     });
-    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'ads_data_redaction', false);
     gtag('set', 'url_passthrough', true);
   </script>
 
@@ -421,7 +421,7 @@
     </p>
   </footer>
 
-  <!-- SCRIPT LUCIDE -->
+  <!-- SCRIPT LUCIDE & TRACKING -->
   <script>
     function renderLucideIcons() {
       if (window.lucide && typeof window.lucide.createIcons === 'function') {
@@ -433,6 +433,31 @@
     renderLucideIcons();
     window.addEventListener('load', renderLucideIcons);
     document.addEventListener('DOMContentLoaded', renderLucideIcons);
+
+    // DataLayer Event Tracking para Link na Bio
+    window.dataLayer = window.dataLayer || [];
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          const title = link.querySelector('h2')?.textContent.trim() || link.getAttribute('href');
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'link_bio_click',
+            event_category: 'Link in Bio',
+            event_action: 'Click Link',
+            event_label: title,
+            link_url: link.getAttribute('href')
+          });
+          if (link.getAttribute('href')?.includes('mediaflowmz.com')) {
+            window.dataLayer.push({
+              event: 'initiate_checkout',
+              product_name: 'MediaFlowMZ Acesso Vitalício',
+              coupon: 'JEPIERREMKT30'
+            });
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>

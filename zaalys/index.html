@@ -9,13 +9,13 @@
       'ad_storage': 'denied',
       'ad_user_data': 'denied',
       'ad_personalization': 'denied',
-      'analytics_storage': 'denied',
+      'analytics_storage': 'granted',
       'functionality_storage': 'granted',
       'personalization_storage': 'denied',
       'security_storage': 'granted',
       'wait_for_update': 500
     });
-    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'ads_data_redaction', false);
     gtag('set', 'url_passthrough', true);
   </script>
 
@@ -311,6 +311,10 @@
   </style>
 </head>
 <body class="bg-obsidian text-gray-100 antialiased min-h-screen flex flex-col selection:bg-ciano selection:text-black">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5JDK6W4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- ============================================================
        TOP BAR (Navbar Fixa)
@@ -1093,6 +1097,12 @@
         const startVideo = (e) => {
           if (e) e.stopPropagation();
           hasStarted = true;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'video_start',
+            video_title: 'Apresentação MediaFlowMZ',
+            video_url: '/static/videos/zaalys.mp4'
+          });
           if (playOverlay) {
             playOverlay.style.opacity = '0';
             playOverlay.style.pointerEvents = 'none';
@@ -1145,6 +1155,12 @@
 
         // Fim do vídeo -> Replay Overlay
         video.addEventListener('ended', () => {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'video_complete',
+            video_title: 'Apresentação MediaFlowMZ',
+            video_url: '/static/videos/zaalys.mp4'
+          });
           if (captionText) captionText.style.opacity = '0';
           if (replayOverlay) {
             replayOverlay.style.opacity = '1';
@@ -1165,6 +1181,72 @@
           });
         }
       }
+
+      // 3. DataLayer E-commerce & CTA Tracking (MediaFlowMZ)
+      window.dataLayer = window.dataLayer || [];
+
+      // View Item on page load
+      window.dataLayer.push({
+        event: 'view_item',
+        ecommerce: {
+          currency: 'BRL',
+          value: 30.00,
+          items: [{
+            item_id: 'mediaflowmz-vitalicio',
+            item_name: 'MediaFlowMZ — Automação de Live e Vídeos no TikTok Shop',
+            item_category: 'TikTok Shop Live',
+            coupon: 'JEPIERREMKT30',
+            quantity: 1
+          }]
+        }
+      });
+
+      // Checkout click tracking
+      document.querySelectorAll('a[href*="mediaflowmz.com"]').forEach(el => {
+        el.addEventListener('click', () => {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'begin_checkout',
+            event_category: 'Ecommerce',
+            event_action: 'Begin Checkout',
+            event_label: 'MediaFlowMZ Vitalício',
+            coupon: 'JEPIERREMKT30',
+            ecommerce: {
+              currency: 'BRL',
+              items: [{
+                item_id: 'mediaflowmz-vitalicio',
+                item_name: 'MediaFlowMZ — Automação de Live e Vídeos no TikTok Shop',
+                coupon: 'JEPIERREMKT30',
+                quantity: 1
+              }]
+            }
+          });
+          window.dataLayer.push({
+            event: 'initiate_checkout',
+            product_name: 'MediaFlowMZ Acesso Vitalício',
+            coupon: 'JEPIERREMKT30'
+          });
+          if (typeof window.fbq === 'function') {
+            window.fbq('track', 'InitiateCheckout', {
+              content_name: 'MediaFlowMZ Acesso Vitalício',
+              coupon: 'JEPIERREMKT30'
+            });
+          }
+        });
+      });
+
+      // Community anchor tracking
+      document.querySelectorAll('a[href*="#oferta"]').forEach(el => {
+        el.addEventListener('click', () => {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'cta_click',
+            event_category: 'CTA',
+            event_action: 'Click Community Link',
+            event_label: el.textContent.trim().substring(0, 50)
+          });
+        });
+      });
     });
   </script>
 </body>

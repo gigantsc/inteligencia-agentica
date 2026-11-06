@@ -31,10 +31,10 @@
 
 // Required global queue for `gtag` calls.
 window.dataLayer = window.dataLayer || [];
+function gtag() { window.dataLayer.push(arguments); }
 if (typeof window.gtag !== 'function') {
-  window.gtag = function() { window.dataLayer.push(arguments); };
+  window.gtag = gtag;
 }
-function gtag() { (window.gtag || function() { window.dataLayer.push(arguments); }).apply(null, arguments); }
 
 /* ---------------------------
  * Static Configuration
@@ -61,7 +61,7 @@ const DEFAULT_CONSENT = {
   'ad_user_data': 'denied',
   'ad_personalization': 'denied',
   'personalization_storage': 'denied',
-  'analytics_storage': 'denied',
+  'analytics_storage': 'granted',
   'wait_for_update': 500,
 };
 
@@ -159,7 +159,7 @@ function normalizeConsentForUpdate(consent) {
 
   const normalized = {
     'ad_storage': 'denied',
-    'analytics_storage': 'denied',
+    'analytics_storage': 'granted',
     'ad_user_data': 'denied',
     'ad_personalization': 'denied',
     'functionality_storage': 'granted',

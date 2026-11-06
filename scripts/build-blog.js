@@ -139,13 +139,13 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
       'ad_storage': 'denied',
       'ad_user_data': 'denied',
       'ad_personalization': 'denied',
-      'analytics_storage': 'denied',
+      'analytics_storage': 'granted',
       'functionality_storage': 'granted',
       'personalization_storage': 'denied',
       'security_storage': 'granted',
       'wait_for_update': 500
     });
-    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'ads_data_redaction', false);
     gtag('set', 'url_passthrough', true);
   </script>${gtmSnippet}${gaSnippet}
 
@@ -578,6 +578,20 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
         }
       });
     })();
+
+    // DataLayer CTA Tracking
+    window.dataLayer = window.dataLayer || [];
+    document.querySelectorAll('a[href*="#oferta"], a[href="/#oferta"]').forEach(el => {
+      el.addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'cta_click',
+          event_category: 'CTA',
+          event_action: 'Click Offer Anchor',
+          event_label: el.textContent.trim().substring(0, 50) || 'CTA Oferta'
+        });
+      });
+    });
   </script>
 </body>
 </html>`;

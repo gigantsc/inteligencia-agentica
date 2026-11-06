@@ -9,13 +9,13 @@
       'ad_storage': 'denied',
       'ad_user_data': 'denied',
       'ad_personalization': 'denied',
-      'analytics_storage': 'denied',
+      'analytics_storage': 'granted',
       'functionality_storage': 'granted',
       'personalization_storage': 'denied',
       'security_storage': 'granted',
       'wait_for_update': 500
     });
-    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'ads_data_redaction', false);
     gtag('set', 'url_passthrough', true);
   </script>
 
@@ -3345,13 +3345,85 @@ summary {
       }, 4000);
     })();
 
-    // 7. DataLayer Event Tracking
+    // 7. DataLayer Event Tracking & E-commerce (GA4 + Meta Pixel)
     window.dataLayer = window.dataLayer || [];
+
+    // View Item on page load
+    window.dataLayer.push({
+      event: 'view_item',
+      ecommerce: {
+        currency: 'BRL',
+        value: 497.00,
+        items: [{
+          item_id: 'ia-anual-lote2',
+          item_name: 'Comunidade Inteligência Agêntica - Plano Anual',
+          item_category: 'Comunidade & Assinatura',
+          price: 497.00,
+          quantity: 1
+        }]
+      }
+    });
+
+    // Main checkout button click
+    const mainBuyBtn = document.getElementById('mainBuyButton');
+    if (mainBuyBtn) {
+      mainBuyBtn.addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'begin_checkout',
+          event_category: 'Ecommerce',
+          event_action: 'Begin Checkout',
+          event_label: 'Comunidade Inteligência Agêntica - Plano Anual',
+          ecommerce: {
+            currency: 'BRL',
+            value: 497.00,
+            items: [{
+              item_id: 'ia-anual-lote2',
+              item_name: 'Comunidade Inteligência Agêntica - Plano Anual',
+              item_category: 'Comunidade & Assinatura',
+              price: 497.00,
+              quantity: 1
+            }]
+          }
+        });
+        window.dataLayer.push({
+          event: 'initiate_checkout',
+          product_name: 'Comunidade Inteligência Agêntica - Plano Anual',
+          value: 497.00,
+          currency: 'BRL'
+        });
+        if (typeof window.fbq === 'function') {
+          window.fbq('track', 'InitiateCheckout', {
+            content_name: 'Comunidade Inteligência Agêntica - Plano Anual',
+            value: 497.00,
+            currency: 'BRL',
+            num_items: 1
+          });
+        }
+      });
+    }
+
+    // Generic listener for elements with data-event
     document.querySelectorAll('[data-event]').forEach(el => {
       el.addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: el.dataset.event,
           timestamp: new Date().toISOString()
+        });
+      });
+    });
+
+    // Tracking all CTA links pointing to #oferta
+    document.querySelectorAll('a[href="#oferta"], a[href="/#oferta"]').forEach(el => {
+      if (el.id === 'mainBuyButton') return;
+      el.addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'cta_click',
+          event_category: 'CTA',
+          event_action: 'Click Anchor Oferta',
+          event_label: el.textContent.trim().substring(0, 60) || 'CTA Oferta'
         });
       });
     });
