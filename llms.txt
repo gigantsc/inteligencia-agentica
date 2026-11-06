@@ -6,7 +6,7 @@
 - **Website:** https://inteligenciaagentica.com.br
 - **Casos Reais de Agentes de IA:** https://inteligenciaagentica.com.br/cases (326 casos práticos divididos por setores empresariais)
 - **CineMaker (Vídeos Longos IA):** https://inteligenciaagentica.com.br/cinemaker (Produtora completa de vídeos com IA)
-- **MediaFlowMZ (Lives TikTok Shop):** https://inteligenciaagentica.com.br/zaalys (Automação de lives infinitas e IA)
+- **MediaFlowMZ (Lives TikTok Shop):** https://inteligenciaagentica.com.br/mediaflowmz (Automação de lives infinitas e IA)
 - **Vídeos Mágicos (Aniversário IA):** https://inteligenciaagentica.com.br/videos-magicos (Vídeos e convites personalizados com o nome da criança em personagens de IA)
 - **Assinatura / Comunidade:** https://inteligenciaagentica.com.br/#oferta (Planos Mensal R$ 97 / Anual R$ 497)
 - **Pilares:** 4 encontros ao vivo por mês, biblioteca viva de automações semanais, tutoriais de VPS e Docker Swarm.

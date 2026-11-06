@@ -341,7 +341,7 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
               </a>
 
               <!-- Item 2: MediaFlowMZ -->
-              <a href="/zaalys" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ciano/25 transition-all group/item">
+              <a href="/mediaflowmz" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ciano/25 transition-all group/item">
                 <div class="w-9 h-9 rounded-lg bg-ciano/15 border border-ciano/30 flex items-center justify-center text-ciano flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
                   <i data-lucide="radio" class="w-4 h-4"></i>
                 </div>
@@ -420,7 +420,7 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
               </span>
               <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
             </a>
-            <a href="/zaalys" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+            <a href="/mediaflowmz" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
               <span class="flex items-center gap-2.5">
                 <i data-lucide="radio" class="w-4 h-4 text-ciano"></i>
                 <span>MediaFlowMZ (Lives TikTok)</span>
@@ -493,7 +493,7 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
           <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
           <ul class="space-y-2 text-xs text-gray-400">
             <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
-            <li><a href="/zaalys" class="text-ciano font-semibold hover:text-white transition-colors">⚡ MediaFlowMZ (Lives TikTok)</a></li>
+            <li><a href="/mediaflowmz" class="text-ciano font-semibold hover:text-white transition-colors">⚡ MediaFlowMZ (Lives TikTok)</a></li>
             <li><a href="/cinemaker" class="text-magenta-300 hover:text-white transition-colors">🎬 CineMaker (Vídeos IA)</a></li>
             <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
             <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
@@ -1123,7 +1123,7 @@ function generateSitemapXml(posts) {
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>${siteConfig.url}/zaalys</loc>
+    <loc>${siteConfig.url}/mediaflowmz</loc>
     <lastmod>${now}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -1176,7 +1176,7 @@ function generateLlmsTxt(posts) {
 - **Website:** ${siteConfig.url}
 - **Casos Reais de Agentes de IA:** ${siteConfig.url}/cases (326 casos práticos divididos por setores empresariais)
 - **CineMaker (Vídeos Longos IA):** ${siteConfig.url}/cinemaker (Produtora completa de vídeos com IA)
-- **MediaFlowMZ (Lives TikTok Shop):** ${siteConfig.url}/zaalys (Automação de lives infinitas e IA)
+- **MediaFlowMZ (Lives TikTok Shop):** ${siteConfig.url}/mediaflowmz (Automação de lives infinitas e IA)
 - **Vídeos Mágicos (Aniversário IA):** ${siteConfig.url}/videos-magicos (Vídeos e convites personalizados com o nome da criança em personagens de IA)
 - **Assinatura / Comunidade:** ${siteConfig.url}/#oferta (Planos Mensal R$ 97 / Anual R$ 497)
 - **Pilares:** 4 encontros ao vivo por mês, biblioteca viva de automações semanais, tutoriais de VPS e Docker Swarm.

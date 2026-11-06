@@ -1,2 +1,6 @@
-/mediaflowmz /zaalys 301
-/mediaflowmz/ /zaalys 301
+/zaalys /mediaflowmz 301
+/zaalys/ /mediaflowmz 301
+/zaalys/* /mediaflowmz 301
+/MediaFlowMZ /mediaflowmz 301
+/MediaFlowMZ/ /mediaflowmz 301
+/MediaFlowMZ/* /mediaflowmz 301
