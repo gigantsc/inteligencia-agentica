@@ -55,13 +55,13 @@
   <meta property="og:url" content="https://inteligenciaagentica.com.br/mediaflowmz">
   <meta property="og:title" content="MediaFlowMZ: Sua Live no TikTok Shop e Vídeos com IA no Automático">
   <meta property="og:description" content="Coloque suas vendas no TikTok Shop no piloto automático com a MediaFlowMZ: live infinita sem câmera, extensão que fixa produtos e responde o chat, estúdio de influencers virtuais e Raio-X de vídeos virais. Garanta um super descontão no vitalício com o cupom exclusivo JEPIERREMKT30.">
-  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/zaalys-cover.jpg">
+  <meta property="og:image" content="https://img.youtube.com/vi/CpVNCsGm2c8/maxresdefault.jpg">
   <meta property="og:site_name" content="Inteligência Agêntica">
   <meta property="og:locale" content="pt_BR">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MediaFlowMZ — Sua Live no TikTok Shop e Vídeos com IA no Automático">
   <meta name="twitter:description" content="Automatize suas lives e vídeos no TikTok Shop com a MediaFlowMZ. Cupom exclusivo JEPIERREMKT30 garantindo um super descontão no plano vitalício.">
-  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/zaalys-cover.jpg">
+  <meta name="twitter:image" content="https://img.youtube.com/vi/CpVNCsGm2c8/maxresdefault.jpg">
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -122,6 +122,15 @@
       ascent-override: 90%;
       descent-override: 22%;
       line-gap-override: 0%;
+    }
+    /* Video Wrapper & YouTube Iframe */
+    #videoWrapper iframe,
+    #youtubePlayer {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      border: 0;
     }
   </style>
 
@@ -524,32 +533,12 @@
              ============================================================ -->
         <div class="my-8 sm:my-10 max-w-4xl mx-auto" id="heroVisual">
           <div class="glass rounded-2xl p-2 sm:p-3.5 border border-white/10 shadow-2xl shadow-ciano/15 relative group">
-            <div class="relative aspect-video rounded-xl overflow-hidden bg-obsidian-card flex items-center justify-center cursor-pointer" id="videoWrapper">
-              <!-- Video HTML5 -->
-              <video 
-                id="heroVideo"
-                class="w-full h-full object-cover rounded-xl" 
-                playsinline
-                preload="auto"
-                poster="/static/images/zaalys-cover.jpg"
-              >
-                <source src="/static/videos/zaalys.mp4" type="video/mp4">
-                Seu navegador não suporta a tag de vídeo HTML5.
-              </video>
-
-              <!-- Dynamic Custom Captions Container -->
-              <div id="captionsBox" class="absolute bottom-2 sm:bottom-3 left-3 right-3 sm:left-4 sm:right-4 flex justify-center pointer-events-none z-25 transition-opacity duration-200">
-                <p id="captionText" class="max-w-[92%] sm:max-w-[85%] bg-black/90 backdrop-blur-md border border-white/20 text-white font-medium text-[11px] sm:text-xs md:text-sm px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl text-center shadow-2xl leading-snug transition-all duration-150 opacity-0"></p>
-              </div>
-
-              <!-- Unmute overlay button -->
-              <button id="unmuteOverlay" class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-obsidian/90 hover:bg-black border border-white/20 text-white text-xs sm:text-sm font-semibold px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl backdrop-blur flex items-center gap-2 transition-all duration-200 z-30 shadow-lg cursor-pointer opacity-0 pointer-events-none">
-                <i data-lucide="volume-x" class="w-4 h-4 text-ouro" id="soundIcon"></i>
-                <span id="soundText">Clique para ativar o som</span>
-              </button>
+                        <div class="relative aspect-video rounded-xl overflow-hidden bg-obsidian-card flex items-center justify-center" id="videoWrapper" style="background-image: url('https://img.youtube.com/vi/CpVNCsGm2c8/maxresdefault.jpg'); background-size: cover; background-position: center;">
+              <!-- YouTube Embed Player Container -->
+              <div id="youtubePlayer" class="w-full h-full rounded-xl"></div>
 
               <!-- Play & Alert Callout Overlay (Apresentação Inicial em Destaque) -->
-              <div id="playOverlay" class="absolute inset-0 bg-black/65 backdrop-blur-[3px] flex flex-col items-center justify-center p-4 sm:p-6 text-center z-[35] transition-all duration-300">
+              <div id="playOverlay" class="absolute inset-0 bg-black/65 backdrop-blur-[3px] flex flex-col items-center justify-center p-4 sm:p-6 text-center z-[35] transition-all duration-300 cursor-pointer">
                 <!-- Chamada de Alerta -->
                 <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold text-amber-300 bg-amber-500/20 border border-amber-400/40 mb-3 sm:mb-4 shadow-lg shadow-amber-500/10 backdrop-blur-md animate-pulse">
                   <i data-lucide="clapperboard" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0"></i>
@@ -1140,132 +1129,131 @@
         });
       }
 
-      // 2. Video Player & Captions Controller
-      const video = document.getElementById('heroVideo');
-      const unmuteBtn = document.getElementById('unmuteOverlay');
+      // 2. YouTube Video Player Controller (MediaFlowMZ)
+      const YOUTUBE_VIDEO_ID = 'CpVNCsGm2c8';
+      const YOUTUBE_VIDEO_URL = 'https://youtu.be/CpVNCsGm2c8';
       const replayOverlay = document.getElementById('replayOverlay');
       const replayBtn = document.getElementById('replayBtn');
-      const captionText = document.getElementById('captionText');
-      const wrapper = document.getElementById('videoWrapper');
       const playOverlay = document.getElementById('playOverlay');
       const startVideoBtn = document.getElementById('startVideoBtn');
 
-      if (video) {
-        let hasStarted = false;
+      let ytPlayer = null;
+      let hasStarted = false;
+      let isPlayerReady = false;
+      let pendingPlay = false;
 
-        const subtitles = [
-          { start: 0.5, end: 4.8, text: "Conheça a MediaFlowMZ: sua live e vídeos no TikTok Shop no automático!" },
-          { start: 5.0, end: 10.2, text: "Lives infinitas 24/7 sem precisar aparecer na frente da câmera." },
-          { start: 10.5, end: 15.8, text: "Extensão no Chrome que dá oi para quem entra, fixa o produto e responde o chat." },
-          { start: 16.0, end: 21.0, text: "Alerta imediato no celular se a live cair, mesmo com o computador fechado." },
-          { start: 21.2, end: 26.5, text: "Estúdio de IA com influencers consistentes e Raio-X de vídeos virais." },
-          { start: 26.8, end: 32.0, text: "Garanta seu descontão exclusivo no acesso vitalício pelo botão abaixo!" }
-        ];
+      function loadYouTubeAPI() {
+        if (window.YT && window.YT.Player) {
+          createPlayer();
+          return;
+        }
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      }
 
-        // Legendas sincronizadas
-        video.addEventListener('timeupdate', () => {
-          if (!captionText) return;
-          const ct = video.currentTime;
-          const currentSub = subtitles.find(s => ct >= s.start && ct <= s.end);
-          if (currentSub) {
-            if (captionText.textContent !== currentSub.text) {
-              captionText.textContent = currentSub.text;
-            }
-            captionText.style.opacity = '1';
-          } else {
-            captionText.style.opacity = '0';
+      window.onYouTubeIframeAPIReady = function() {
+        createPlayer();
+      };
+
+      function createPlayer() {
+        if (ytPlayer || !document.getElementById('youtubePlayer')) return;
+        ytPlayer = new YT.Player('youtubePlayer', {
+          videoId: YOUTUBE_VIDEO_ID,
+          width: '100%',
+          height: '100%',
+          playerVars: {
+            autoplay: 0,
+            controls: 1,
+            rel: 0,
+            modestbranding: 1,
+            playsinline: 1,
+            enablejsapi: 1
+          },
+          events: {
+            onReady: onPlayerReady,
+            onStateChange: handleStateChange
           }
         });
+      }
 
-        const startVideo = (e) => {
-          if (e) e.stopPropagation();
-          hasStarted = true;
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            event: 'video_start',
-            video_title: 'Apresentação MediaFlowMZ',
-            video_url: '/static/videos/zaalys.mp4'
-          });
-          if (playOverlay) {
-            playOverlay.style.opacity = '0';
-            playOverlay.style.pointerEvents = 'none';
-          }
-          video.muted = false;
-          const playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {
-              video.muted = true;
-              video.play().catch(() => {});
-              if (unmuteBtn) {
-                unmuteBtn.style.opacity = '1';
-                unmuteBtn.style.pointerEvents = 'auto';
-              }
-            });
-          }
-        };
-
-        if (startVideoBtn) startVideoBtn.addEventListener('click', startVideo);
-        if (playOverlay) playOverlay.addEventListener('click', startVideo);
-
-        // Desmutar se necessário
-        if (unmuteBtn) {
-          unmuteBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            video.muted = false;
-            video.play().catch(() => {});
-            unmuteBtn.style.opacity = '0';
-            unmuteBtn.style.pointerEvents = 'none';
-          });
-        }
-
-        // Toggle play/pause no clique
-        if (wrapper) {
-          wrapper.addEventListener('click', (e) => {
-            if (e.target.closest('#replayOverlay button') || e.target.closest('#replayOverlay a')) return;
-            if (!hasStarted) {
-              startVideo(e);
-              return;
-            }
-            if (video.ended) {
-              if (replayBtn) replayBtn.click();
-            } else if (video.paused) {
-              video.play().catch(() => {});
-            } else {
-              video.pause();
-            }
-          });
-        }
-
-        // Fim do vídeo -> Replay Overlay
-        video.addEventListener('ended', () => {
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            event: 'video_complete',
-            video_title: 'Apresentação MediaFlowMZ',
-            video_url: '/static/videos/zaalys.mp4'
-          });
-          if (captionText) captionText.style.opacity = '0';
-          if (replayOverlay) {
-            replayOverlay.style.opacity = '1';
-            replayOverlay.style.pointerEvents = 'auto';
-          }
-        });
-
-        if (replayBtn) {
-          replayBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (replayOverlay) {
-              replayOverlay.style.opacity = '0';
-              replayOverlay.style.pointerEvents = 'none';
-            }
-            video.currentTime = 0;
-            video.muted = false;
-            video.play().catch(() => {});
-          });
+      function onPlayerReady(event) {
+        isPlayerReady = true;
+        if (pendingPlay) {
+          ytPlayer.playVideo();
         }
       }
 
-      // 3. DataLayer E-commerce & CTA Tracking (MediaFlowMZ)
+      function handleStateChange(event) {
+        // YT.PlayerState.PLAYING === 1
+        if (event.data === 1 && !hasStarted) {
+          registerVideoStart();
+        }
+        // YT.PlayerState.ENDED === 0
+        if (event.data === 0) {
+          registerVideoComplete();
+        }
+      }
+
+      function registerVideoStart() {
+        if (hasStarted) return;
+        hasStarted = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'video_start',
+          video_title: 'Apresentação MediaFlowMZ',
+          video_url: YOUTUBE_VIDEO_URL
+        });
+        if (playOverlay) {
+          playOverlay.style.opacity = '0';
+          playOverlay.style.pointerEvents = 'none';
+        }
+      }
+
+      function registerVideoComplete() {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'video_complete',
+          video_title: 'Apresentação MediaFlowMZ',
+          video_url: YOUTUBE_VIDEO_URL
+        });
+        if (replayOverlay) {
+          replayOverlay.style.opacity = '1';
+          replayOverlay.style.pointerEvents = 'auto';
+        }
+      }
+
+      function startVideo(e) {
+        if (e) e.stopPropagation();
+        registerVideoStart();
+        if (isPlayerReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+          ytPlayer.playVideo();
+        } else {
+          pendingPlay = true;
+        }
+      }
+
+      if (startVideoBtn) startVideoBtn.addEventListener('click', startVideo);
+      if (playOverlay) playOverlay.addEventListener('click', startVideo);
+
+      if (replayBtn) {
+        replayBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (replayOverlay) {
+            replayOverlay.style.opacity = '0';
+            replayOverlay.style.pointerEvents = 'none';
+          }
+          if (ytPlayer && typeof ytPlayer.seekTo === 'function') {
+            ytPlayer.seekTo(0);
+            ytPlayer.playVideo();
+          }
+        });
+      }
+
+      loadYouTubeAPI();
+
+// 3. DataLayer E-commerce & CTA Tracking (MediaFlowMZ)
       window.dataLayer = window.dataLayer || [];
 
       // View Item on page load
