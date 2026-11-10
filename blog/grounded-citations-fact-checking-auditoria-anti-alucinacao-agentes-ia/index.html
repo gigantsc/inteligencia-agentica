@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <!-- Google Consent Mode V2 Default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'granted',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', false);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M5JDK6W4');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18FQCREKV5"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-18FQCREKV5');
+  </script>
+
+
+  <!-- Cookie Consent Banner & Mode V2 Controller -->
+  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <script>
+    window.cookieconsentConfig = {
+      gtmId: 'GTM-M5JDK6W4',
+      autoLoadGtm: false
+    };
+  </script>
+  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais | Inteligência Agêntica</title>
+  <meta name="description" content="O ecossistema Hermes Agent estabelece um novo patamar de segurança corporativa com o pipeline de Grounded Citations: um livro-razão mecânico de fontes (ledger.json) e validação textual estrita (verbatim matching) que impedem que agentes de IA inventem dados, datas ou números em relatórios executivos e auditorias de mercado.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/blog/grounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/blog/grounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia">
+  <meta property="og:title" content="Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais">
+  <meta property="og:description" content="O ecossistema Hermes Agent estabelece um novo patamar de segurança corporativa com o pipeline de Grounded Citations: um livro-razão mecânico de fontes (ledger.json) e validação textual estrita (verbatim matching) que impedem que agentes de IA inventem dados, datas ou números em relatórios executivos e auditorias de mercado.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/grounded-citations-fact-checking-hermes.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://inteligenciaagentica.com.br/blog/grounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia">
+  <meta name="twitter:title" content="Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais">
+  <meta name="twitter:description" content="O ecossistema Hermes Agent estabelece um novo patamar de segurança corporativa com o pipeline de Grounded Citations: um livro-razão mecânico de fontes (ledger.json) e validação textual estrita (verbatim matching) que impedem que agentes de IA inventem dados, datas ou números em relatórios executivos e auditorias de mercado.">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/grounded-citations-fact-checking-hermes.jpg">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <!-- Prism Syntax Theme -->
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #07070A; color: #E0E0E6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    ::selection { background: rgba(192, 0, 255, 0.35); color: #fff; }
+    .glass { background: rgba(17, 17, 24, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); }
+    .glass-card { background: rgba(14, 14, 20, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+    .glass-card:hover { border-color: rgba(0, 229, 255, 0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); }
+    .gradient-text { background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text-gold { background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gold { background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%); color: #07070A; font-weight: 700; transition: all 0.2s ease; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(223, 186, 107, 0.35); }
+    .hero-glow { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.16; pointer-events: none; }
+    .top-bar { background: rgba(7, 7, 10, 0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .on-air-badge:hover {
+      transform: scale(1.05);
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    
+    /* Article typography styling */
+    .prose-custom { font-size: 1.05rem; line-height: 1.8; color: #D1D5DB; }
+    .prose-custom p { margin-bottom: 1.5rem; }
+    .prose-custom h1 { font-size: 2.25rem; font-weight: 900; color: #fff; margin-top: 2.5rem; margin-bottom: 1.25rem; line-height: 1.2; }
+    .prose-custom h2 { font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; }
+    .prose-custom h3 { font-size: 1.25rem; font-weight: 700; color: #00E5FF; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose-custom ul, .prose-custom ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    .prose-custom ul { list-style-type: disc; }
+    .prose-custom ol { list-style-type: decimal; }
+    .prose-custom li { margin-bottom: 0.5rem; }
+    .prose-custom strong { color: #fff; font-weight: 700; }
+    .prose-custom a { color: #00E5FF; text-decoration: underline; text-underline-offset: 3px; }
+    .prose-custom a:hover { color: #F0D48A; }
+    .prose-custom blockquote { border-left: 4px solid #00E5FF; background: rgba(0, 229, 255, 0.05); padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 0.75rem 0.75rem 0; color: #E5E7EB; }
+    .prose-custom blockquote p { margin-bottom: 0; }
+    .prose-custom code:not(pre code) { background: rgba(255, 255, 255, 0.08); color: #00E5FF; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+    .prose-custom pre { background: #0A0A0F !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.25rem; margin: 1.75rem 0; overflow-x: auto; }
+    .prose-custom pre code { color: #E0E0E6; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; }
+    .prose-custom table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+    .prose-custom th { background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .prose-custom td { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .prose-custom tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    .prose-custom hr { border-color: rgba(255, 255, 255, 0.08); margin: 2.5rem 0; }
+  </style>
+
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais","description":"O ecossistema Hermes Agent estabelece um novo patamar de segurança corporativa com o pipeline de Grounded Citations: um livro-razão mecânico de fontes (ledger.json) e validação textual estrita (verbatim matching) que impedem que agentes de IA inventem dados, datas ou números em relatórios executivos e auditorias de mercado.","image":"https://inteligenciaagentica.com.br/static/images/grounded-citations-fact-checking-hermes.jpg","datePublished":"2026-11-10","dateModified":"2026-11-10","author":{"@type":"Person","name":"Jean Pierre Schramm","url":"https://linkedin.com/in/jeanpierreschramm"},"publisher":{"@type":"Organization","name":"Inteligência Agêntica","url":"https://inteligenciaagentica.com.br","logo":{"@type":"ImageObject","url":"https://inteligenciaagentica.com.br/static/logos.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://inteligenciaagentica.com.br/blog/grounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia"},"keywords":"Grounded Citations IA, Fact-checking com inteligência artificial, Eliminar alucinações em agentes de IA, Hermes Agent citations ledger, Auditoria de dados para executivos, Governança e conformidade em IA, Relatórios executivos com IA sem erros, Perplexity corporativo on-premise"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://inteligenciaagentica.com.br"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://inteligenciaagentica.com.br/blog"},{"@type":"ListItem","position":3,"name":"Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais","item":"https://inteligenciaagentica.com.br/blog/grounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia"}]}]</script>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5JDK6W4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- TOP NAVBAR -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-11 sm:h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="/" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Início</a>
+
+        <!-- Dropdown Soluções -->
+        <div class="relative group">
+          <button type="button" class="text-sm font-semibold text-gray-300 group-hover:text-white transition-colors flex items-center gap-1.5 py-2 focus:outline-none cursor-pointer">
+            <span>Soluções</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-ciano group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+          
+          <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 absolute top-full left-0 w-80 pt-2 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="glass rounded-2xl p-3 border border-white/10 bg-obsidian-card/95 backdrop-blur-2xl shadow-2xl shadow-black/80 space-y-1">
+              <!-- Item 1: CineMaker -->
+              <a href="/cinemaker" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-magenta/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-magenta/15 border border-magenta/30 flex items-center justify-center text-magenta flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="video" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-magenta-300 transition-colors">CineMaker</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Máquina de criar vídeos longos com IA em 1 clique sem assinatura no Flow.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: MediaFlowMZ -->
+              <a href="/mediaflowmz" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ciano/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ciano/15 border border-ciano/30 flex items-center justify-center text-ciano flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="radio" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ciano transition-colors">MediaFlowMZ</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Lives & IA</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Sua live no TikTok Shop e vídeos com IA rodando no automático.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: Comunidade Inteligência Agêntica -->
+              <a href="/#oferta" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ouro/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ouro/15 border border-ouro/30 flex items-center justify-center text-ouro flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="crown" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ouro-light transition-colors">Comunidade Agêntica</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ciano/20 text-ciano border border-ciano/30">Ecossistema</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">4 encontros semanais ao vivo, códigos prontos e bunker de agentes 24/7.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Cases</a>
+        <a href="/blog" class="text-sm font-bold text-ciano border-b-2 border-ciano pb-0.5 transition-colors">Blog</a>
+        <a href="/#oferta" class="btn-gold px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide">
+          Acessar Comunidade
+        </a>
+      </div>
+
+      <!-- Mobile Actions (visible on mobile, hidden on md+) -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="/ao-vivo" class="on-air-badge text-[10px] py-1 px-2.5" title="Encontros ao Vivo">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <button id="mobileMenuBtn" type="button" class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl focus:outline-none transition-colors border border-white/10" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-6 h-6 block menu-open-icon"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden menu-close-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-obsidian-card/95 backdrop-blur-2xl px-5 py-6 space-y-4 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-2">
+        <a href="/" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="home" class="w-4 h-4 text-gray-400"></i>
+            <span>Início</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <!-- Bloco Soluções Mobile -->
+        <div class="rounded-xl bg-white/[0.02] border border-white/5 p-2">
+          <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-ciano"></i>
+            <span>Soluções & Produtos</span>
+          </div>
+          <div class="space-y-1 mt-1">
+            <a href="/cinemaker" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-magenta-300 hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="video" class="w-4 h-4 text-magenta"></i>
+                <span>CineMaker (Vídeos IA)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+            </a>
+            <a href="/mediaflowmz" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="radio" class="w-4 h-4 text-ciano"></i>
+                <span>MediaFlowMZ (Lives TikTok)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Auto</span>
+            </a>
+            <a href="/#oferta" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ouro transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="crown" class="w-4 h-4 text-ouro"></i>
+                <span>Comunidade Inteligência Agêntica</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ciano/20 text-ciano border border-ciano/30">Membros</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-red-400 hover:text-red-300 bg-red-950/30 border border-red-800/40 hover:bg-red-950/50 transition-colors">
+          <span class="flex items-center gap-3">
+            <span class="on-air-dot"></span>
+            <span>Encontros ao Vivo</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded">Toda Quinta</span>
+        </a>
+
+        <a href="/cases" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+            <span>Cases de Uso</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/blog" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-ciano bg-white/5 border border-ciano/20 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="newspaper" class="w-4 h-4 text-ciano"></i>
+            <span>Blog & Artigos</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-ciano"></i>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <a href="/#oferta" class="mobile-nav-link w-full btn-gold py-3.5 px-5 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-ouro/20">
+          <span>Acessar Comunidade</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN BODY -->
+  <main class="pt-20 flex-grow">
+    
+  <div class="relative py-10 overflow-hidden">
+    <div class="hero-glow bg-magenta/40 -top-40 right-0 w-[500px] h-[500px] absolute"></div>
+    <div class="hero-glow bg-ciano/30 top-1/2 -left-40 w-[500px] h-[500px] absolute"></div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Início</a>
+        <span>&rsaquo;</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span>&rsaquo;</span>
+        <span class="text-ciano truncate max-w-[200px] sm:max-w-none">Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais</span>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="mb-10 text-center sm:text-left">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <a href="/tags/agentes-de-ia" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Agentes de IA</a><a href="/tags/hermes-agent" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Hermes Agent</a><a href="/tags/seguranca-corporativa" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Segurança Corporativa</a><a href="/tags/governanca-de-ia" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Governança de IA</a><a href="/tags/auditoria" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Auditoria</a><a href="/tags/anti-alucinacao" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Anti-Alucinação</a><a href="/tags/negocios" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Negócios</a>
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+          Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais
+        </h1>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/10 text-xs text-gray-400">
+          <div class="flex items-center gap-3">
+            <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-10 h-10 rounded-full border border-white/10">
+            <div>
+              <p class="font-bold text-white text-sm">Jean Pierre Schramm</p>
+              <p class="text-[11px] text-gray-400">Fundador da JePierre & Especialista em Agentes de IA</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-11-10</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 11 min de leitura</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      
+      <div class="mb-12 rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
+        <img src="https://inteligenciaagentica.com.br/static/images/grounded-citations-fact-checking-hermes.jpg" alt="Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais" class="w-full h-auto max-h-[460px] object-cover">
+      </div>
+      
+
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
+      
+      <details class="mb-8 glass rounded-xl border border-white/10 overflow-hidden group">
+        <summary class="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white flex items-center justify-between cursor-pointer select-none transition-colors">
+          <span class="flex items-center gap-2 text-ouro">
+            <i data-lucide="list" class="w-4 h-4 text-ouro"></i>
+            <span>Tópicos do Artigo (17)</span>
+          </span>
+          <span class="text-[11px] text-gray-500 font-normal flex items-center gap-1 group-open:rotate-180 transition-transform duration-200">
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </span>
+        </summary>
+        <div class="px-5 pb-5 pt-2 border-t border-white/5">
+          <ul class="space-y-2 text-xs sm:text-sm">
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#o-maior-freio-na-adocao-de-ia-por-empresarios-seniores-a-alucinacao-confiante" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> O Maior Freio na Adoção de IA por Empresários Seniores: A Alucinação Confiante
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#por-que-engenharia-de-prompt-nao-resolve-o-problema" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Por que Engenharia de Prompt Não Resolve o Problema
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#a-arquitetura-grounded-citations-no-hermes-agent" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> A Arquitetura Grounded Citations no Hermes Agent
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#1-desacoplamento-absoluto-ledger-mecanico" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 1. Desacoplamento Absoluto (Ledger Mecânico)
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#2-validacao-textual-estrita-verbatim-matching" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 2. Validação Textual Estrita (Verbatim Matching)
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#3-portao-de-cobertura-e-transparencia-obrigatoria-min-coverage" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 3. Portão de Cobertura e Transparência Obrigatória (--min-coverage)
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#comparativo-estrutural-chatbots-de-consumo-vs-hermes-grounded-citations" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Comparativo Estrutural: Chatbots de Consumo vs. Hermes Grounded Citations
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#exemplo-real-o-radar-de-suprimentos-a-prova-de-alucinacao" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Exemplo Real: O Radar de Suprimentos à Prova de Alucinação
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#1-reajuste-de-tarifas-de-cabotagem" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 1. Reajuste de Tarifas de Cabotagem
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#2-estoque-de-materia-prima-nos-portos-do-sul" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 2. Estoque de Matéria-Prima nos Portos do Sul
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#sources" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Sources:
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#como-estruturar-essa-esteira-na-sua-empresa-o-guia-em-4-passos" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Como Estruturar Essa Esteira na sua Empresa: O Guia em 4 Passos
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#passo-1-inicializacao-limpa-do-livro-razao" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Passo 1: Inicialização Limpa do Livro-Razão
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#passo-2-ingestao-com-registro-imediato" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Passo 2: Ingestão com Registro Imediato
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#passo-3-vinculacao-de-evidencias-verbatim" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Passo 3: Vinculação de Evidências Verbatim
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#passo-4-portao-de-validacao-e-renderizacao-automatica" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Passo 4: Portão de Validação e Renderização Automática
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#governanca-nao-e-burocracia-e-o-diferencial-competitivo-da-ia-corporativa" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Governança Não é Burocracia: É o Diferencial Competitivo da IA Corporativa
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </details>
+      
+
+      <!-- Main Article Content -->
+      <div class="prose-custom">
+        <blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>A arquitetura de <strong>Grounded Citations e Fact-Checking Auditável</strong> do Hermes Agent é a solução definitiva de infraestrutura para eliminar alucinações em relatórios executivos, auditorias de mercado e análises contratuais. Enquanto chatbots convencionais (como ChatGPT ou Claude em navegadores) geram links mortos e inventam dados estatísticos com tom de certeza absoluta, o Hermes Agent desacopla a geração de texto da validação de fatos através de um <strong>livro-razão mecânico independente (<code>ledger.json</code>)</strong>. As fontes são registradas em tempo de extração real com identificadores imutáveis (<code>[1]</code>, <code>[2]</code>), as afirmações críticas são submetidas a testes de correspondência textual exata (<em>verbatim quote matching</em>) contra o documento original, e o relatório é submetido a um portão de qualidade (<em>gate</em> <code>--min-coverage</code>). Se um dado não possuir comprovação empírica literal, o agente bloqueia a publicação ou exige a etiqueta explícita <code>[unverified]</code>, garantindo a diretores e conselhos de administração um relatório estilo Perplexity corporativo 100% auditável.</p>
+</blockquote>
+<hr>
+<h2 id="o-maior-freio-na-adocao-de-ia-por-empresarios-seniores-a-alucinacao-confiante" class="scroll-mt-24 group flex items-center justify-between">O Maior Freio na Adoção de IA por Empresários Seniores: A Alucinação Confiante <a href="#o-maior-freio-na-adocao-de-ia-por-empresarios-seniores-a-alucinacao-confiante" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Se você tem mais de 40 anos e gerencia uma empresa com folha de pagamento real, clientes exigentes e contratos de responsabilidade jurídica, certamente já vivenciou o seguinte dilema: você sabe que a Inteligência Artificial pode acelerar drasticamente pesquisas de mercado, análises de concorrência e triagem de documentos regulatórios, mas <strong>simplesmente não confia no que ela escreve</strong>.</p>
+<p>E essa desconfiança não é preconceito tecnológico; é prudência de negócios.</p>
+<p>O mercado corporativo já assistiu a casos embaraçosos — e caríssimos — de empresas que utilizaram modelos de linguagem sem rédeas:</p>
+<ul>
+<li>Escritórios de advocacia multados por citar jurisprudências e acórdãos que nunca existiram, inventados do zero pelo modelo;</li>
+<li>Diretores comerciais que entraram em negociações bilaterais citando tabelas de preços de concorrentes que eram meras alucinações estatísticas;</li>
+<li>Gestores de suprimentos que aprovaram cotações baseadas em prazos de entrega que não constavam nos PDFs anexados pelas fornecedoras.</li>
+</ul>
+<pre><code>+-----------------------------------------------------------------------------------+
+<span class="token operator">|</span>                        O CICLO TRADICIONAL DA ALUCINAÇÃO                          <span class="token operator">|</span>
+<span class="token operator">|</span>                                                                                   <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token punctuation">[</span>LLM Genérico<span class="token punctuation">]</span> ---<span class="token operator">></span> Gera texto plausível ---<span class="token operator">></span> Inventa URLs/Dados com convicção   <span class="token operator">|</span>
+<span class="token operator">|</span>         <span class="token operator">|</span>                                                       <span class="token operator">|</span>                 <span class="token operator">|</span>
+<span class="token operator">|</span>         <span class="token function">v</span>                                                       <span class="token function">v</span>                 <span class="token operator">|</span>
+<span class="token operator">|</span>  Probabilidade pura                                   Executivo toma decisão      <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token punctuation">(</span>Não há consulta real<span class="token punctuation">)</span>                               <span class="token punctuation">(</span>Prejuízo / Dano Jurídico<span class="token punctuation">)</span>  <span class="token operator">|</span>
++-----------------------------------------------------------------------------------+
+</code></pre><p>Quando um executivo confronta um assistente comum com a pergunta <em>&quot;De onde você tirou essa informação?&quot;</em>, a resposta padrão costuma ser um pedido de desculpas genérico ou um link que resulta em Erro 404. </p>
+<p>Para operações maduras, isso é inaceitável. Negócios operam sob auditoria, rastreabilidade e governança. Se uma informação não possui fonte verificável com data, autor e parágrafo original, ela não é inteligência de mercado: é mero ruído probabilístico.</p>
+<hr>
+<h2 id="por-que-engenharia-de-prompt-nao-resolve-o-problema" class="scroll-mt-24 group flex items-center justify-between">Por que Engenharia de Prompt Não Resolve o Problema <a href="#por-que-engenharia-de-prompt-nao-resolve-o-problema" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Muitos consultores prometem eliminar alucinações adicionando instruções nos prompts, como:<br><em>“Seja estritamente factual e nunca invente informações”</em> ou <em>“Cite as fontes com links reais”</em>.</p>
+<p>Isso não funciona de forma confiável em ambientes de produção por uma razão matemática simples: <strong>modelos de linguagem autoregressivos geram tokens baseados em probabilidade condicional, não em verificação lógica</strong>.</p>
+<p>Quando um modelo é forçado a incluir uma citação ao mesmo tempo em que redige um parágrafo complexo, ocorrem três falhas estruturais:</p>
+<ol>
+<li><strong>Alucinação de URLs:</strong> O modelo recorda padrões sintáticos da web e inventa URLs perfeitamente estruturadas (ex: <code>https://forbes.com/business/2026/04/growth-report.html</code>) que levam ao vazio;</li>
+<li><strong>Atribuição Falsa:</strong> O modelo pega uma informação real e atribui a um veículo de renome que jamais publicou aquela frase;</li>
+<li><strong>Distorção de Proporção:</strong> Um dado secundário de uma nota de rodapé é transformado no título principal da conclusão estratégica.</li>
+</ol>
+<p>Para resolver a raiz desse problema, o Hermes Agent (desenvolvido pela Nous Research) adota uma abordagem de engenharia de software pura: <strong>Grounded Citations</strong>. A verificação não fica a cargo da memória do LLM; ela é governada por um processo determinístico de ledger independente.</p>
+<hr>
+<h2 id="a-arquitetura-grounded-citations-no-hermes-agent" class="scroll-mt-24 group flex items-center justify-between">A Arquitetura Grounded Citations no Hermes Agent <a href="#a-arquitetura-grounded-citations-no-hermes-agent" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O ecossistema Hermes Agent trata citações como uma esteira criptográfica de livro-razão (ledger). A ferramenta nativa <code>grounded-citations</code> (orquestrada pelo script utilitário <code>sources.py</code>) impõe um fluxo rígido de cinco etapas entre a leitura dos dados e a entrega final do briefing para o empresário.</p>
+<pre><code>+-----------------------------------------------------------------------------------+
+<span class="token operator">|</span>                  ARQUITETURA GROUNDED CITATIONS NO HERMES AGENT                   <span class="token operator">|</span>
++-----------------------------------------------------------------------------------+
+                                                                                     
+  <span class="token punctuation">[</span>Fontes Externas<span class="token punctuation">]</span>                                                                 
+  <span class="token punctuation">(</span>Web, PDFs, Contratos, ERPs<span class="token punctuation">)</span>                                                      
+           <span class="token operator">|</span>                                                                        
+           <span class="token function">v</span>                                                                        
+  <span class="token punctuation">[</span><span class="token number">1</span>. Ingestão <span class="token operator">&amp;</span> Normalização<span class="token punctuation">]</span> -----<span class="token operator">></span> Extrai texto integral                         
+           <span class="token operator">|</span>                          Salva arquivo fonte <span class="token builtin class-name">local</span>                     
+           <span class="token function">v</span>                                                                        
+  <span class="token punctuation">[</span><span class="token number">2</span>. Ledger Mecânico<span class="token punctuation">]</span> -------------<span class="token operator">></span> Registra URL/Arquivo no ledger.json           
+                                      Emite IDs imutáveis: <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>, <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>, <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">..</span>.         
+           <span class="token operator">|</span>                                                                        
+           <span class="token function">v</span>                                                                        
+  <span class="token punctuation">[</span><span class="token number">3</span>. Redação Vinculada<span class="token punctuation">]</span> -----------<span class="token operator">></span> Agente usa APENAS IDs numéricos estritos      
+                                      <span class="token punctuation">(</span>Proibido digitar URLs na redação<span class="token punctuation">)</span>            
+           <span class="token operator">|</span>                                                                        
+           <span class="token function">v</span>                                                                        
+  <span class="token punctuation">[</span><span class="token number">4</span>. Fact-Checking Verbatim<span class="token punctuation">]</span> ------<span class="token operator">></span> sources.py quote <span class="token operator">&lt;</span>id<span class="token operator">></span> <span class="token parameter variable">--text</span> <span class="token string">"..."</span>            
+                                      Valida se a frase exata existe no texto bruto 
+           <span class="token operator">|</span>                                                                        
+           <span class="token function">v</span>                                                                        
+  <span class="token punctuation">[</span><span class="token number">5</span>. Gate de Governança<span class="token punctuation">]</span> ----------<span class="token operator">></span> sources.py verify --min-coverage <span class="token number">0.7</span>          
+                                      Exige declaração de procedência               
+           <span class="token operator">|</span>                                                                        
+           +---<span class="token operator">></span> <span class="token punctuation">[</span>APROVADO<span class="token punctuation">]</span> --------<span class="token operator">></span> Briefing Executivo Auditado no Telegram       
+           <span class="token operator">|</span>                                                                        
+           +---<span class="token operator">></span> <span class="token punctuation">[</span>REJEITADO<span class="token punctuation">]</span> -------<span class="token operator">></span> Bloqueio Imediato <span class="token operator">&amp;</span> Retentativa               
+</code></pre><h3 id="1-desacoplamento-absoluto-ledger-mecanico" class="scroll-mt-24 group flex items-center justify-between">1. Desacoplamento Absoluto (Ledger Mecânico) <a href="#1-desacoplamento-absoluto-ledger-mecanico" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O modelo nunca digita uma URL de cabeça no corpo do texto. Quando o agente realiza uma consulta na web (<code>web_search</code>), extrai uma página (<code>web_extract</code>) ou inspeciona um contrato (<code>read_file</code>), as URLs são imediatamente registradas no arquivo de livro-razão:</p>
+<pre><code class="language-bash">python scripts/sources.py <span class="token function">add</span> <span class="token string">"https://noticia-oficial.com/relatorio-anual"</span> <span class="token parameter variable">--title</span> <span class="token string">"Relatório Anual 2026"</span>
+<span class="token comment"># O script responde mecânica e deterministicamente: [1]</span>
+</code></pre><p>O agente recebe o número <code>[1]</code>. No rascunho do relatório, a regra do sistema é explícita: o agente só tem permissão de inserir pequenos inteiros entre colchetes imediatamente após a sentença que suporta o fato.</p>
+<h3 id="2-validacao-textual-estrita-verbatim-matching" class="scroll-mt-24 group flex items-center justify-between">2. Validação Textual Estrita (Verbatim Matching) <a href="#2-validacao-textual-estrita-verbatim-matching" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Nas decisões de alto risco (modo Fact-Checking), o sistema não aceita que o agente resuma livremente. O agente é obrigado a registrar a evidência literal:</p>
+<pre><code class="language-bash">python scripts/sources.py quote <span class="token number">1</span> <span class="token parameter variable">--text</span> <span class="token string">"O faturamento do setor cresceu 14,2% no terceiro trimestre."</span> <span class="token parameter variable">--from</span> pagina_extraida.txt
+</code></pre><p>O script lê o arquivo bruto da página extraída e compara byte a byte a citação contra o conteúdo real. Se a palavra &quot;14,2%&quot; não existir literalmente no documento de origem (por exemplo, se o documento dizia &quot;11,5%&quot; e o modelo interpretou errado), o comando <strong>falha e rejeita a evidência</strong>. O modelo não consegue &quot;dar um jeitinho&quot; nem fantasiar números.</p>
+<h3 id="3-portao-de-cobertura-e-transparencia-obrigatoria-min-coverage" class="scroll-mt-24 group flex items-center justify-between">3. Portão de Cobertura e Transparência Obrigatória (<code>--min-coverage</code>) <a href="#3-portao-de-cobertura-e-transparencia-obrigatoria-min-coverage" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Antes de despachar o relatório para o WhatsApp ou Telegram do diretor da empresa, a esteira roda o verificador:</p>
+<pre><code class="language-bash">python scripts/sources.py verify relatorio.md <span class="token parameter variable">--strict</span> --min-coverage <span class="token number">0.7</span> <span class="token parameter variable">--evidence</span>
+</code></pre><ul>
+<li>Se houver qualquer citação a um ID que não consta no ledger: <strong>Erro</strong>.</li>
+<li>Se as URLs da lista final de fontes não coincidirem com as referências do texto: <strong>Erro</strong>.</li>
+<li>Se a densidade de evidências comprovadas for inferior a 70% das afirmações factuais: <strong>Erro</strong>.</li>
+</ul>
+<p>E o que acontece se o agente precisar expressar uma inferência analítica ou uma suposição de mercado para a qual não existe documento escrito? Ele é obrigado pelo compilador a rotular a frase com o marcador especial <code>[unverified]</code>. </p>
+<p>Dessa forma, o empresário lê o relatório com total clareza mental: tudo que tem <code>[1]</code>, <code>[2]</code> tem prova documental imediata; o que tem <code>[unverified]</code> é análise probabilística do modelo.</p>
+<hr>
+<h2 id="comparativo-estrutural-chatbots-de-consumo-vs-hermes-grounded-citations" class="scroll-mt-24 group flex items-center justify-between">Comparativo Estrutural: Chatbots de Consumo vs. Hermes Grounded Citations <a href="#comparativo-estrutural-chatbots-de-consumo-vs-hermes-grounded-citations" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para entender o abismo operacional entre uma ferramenta comum de mercado e uma infraestrutura agêntica de classe empresarial, analise a matriz abaixo:</p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade / Critério</th>
+<th>Chatbots Comuns (ChatGPT / Claude / Copilot)</th>
+<th>Hermes Agent (Grounded Citations Pipeline)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Origem dos Links Citados</strong></td>
+<td>Alucinação probabilística em tempo de geração de texto</td>
+<td>Registro mecânico antecipado no <code>ledger.json</code></td>
+</tr>
+<tr>
+<td><strong>Comprovação de Citações</strong></td>
+<td>Nenhuma (o modelo finge que leu o documento)</td>
+<td>Correspondência literal de strings (<em>verbatim quote match</em>)</td>
+</tr>
+<tr>
+<td><strong>Tratamento de Alucinações</strong></td>
+<td>Depende do discernimento e da sorte do usuário</td>
+<td>O pipeline bloqueia o relatório antes do envio via CLI</td>
+</tr>
+<tr>
+<td><strong>Rastreabilidade de Fontes</strong></td>
+<td>Links quebrados, redirecionamentos ou páginas 404</td>
+<td>Normalização estrita de URLs e IDs numéricos imutáveis</td>
+</tr>
+<tr>
+<td><strong>Transparência em Opiniões</strong></td>
+<td>Mistura fatos comprovados com opiniões no mesmo tom</td>
+<td>Marcação obrigatória de sentenças com <code>[unverified]</code></td>
+</tr>
+<tr>
+<td><strong>Auditabilidade Jurídica</strong></td>
+<td>Nenhuma (sem logs imutáveis de extração)</td>
+<td>Ledger JSON versionado + arquivos de texto extraídos em disco</td>
+</tr>
+<tr>
+<td><strong>Custo de Implementação</strong></td>
+<td>Alto risco de prejuízos operacionais por dados errados</td>
+<td>Custo previsível em VPS própria com governança total</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="exemplo-real-o-radar-de-suprimentos-a-prova-de-alucinacao" class="scroll-mt-24 group flex items-center justify-between">Exemplo Real: O Radar de Suprimentos à Prova de Alucinação <a href="#exemplo-real-o-radar-de-suprimentos-a-prova-de-alucinacao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Imagine uma distribuidora com faturamento mensal de R$ 5 milhões. Todos os dias, o gestor de compras precisa monitorar a cotação de matérias-primas, mudanças nas tarifas de importação no Diário Oficial e tabelas de frete dos principais operadores logísticos.</p>
+<p>Em vez de pagar analistas humanos para gastar 4 horas diárias navegando manualmente em dezenas de portais, o Hermes Agent roda em uma VPS Ubuntu às 06:00 da manhã.</p>
+<p>Veja o trecho real de como o relatório final é entregue no canal executivo:</p>
+<pre><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 🔍 Radar de Suprimentos &amp; Tarifas — 10 de Novembro de 2026</span>
+<span class="token blockquote punctuation">></span> Status: Verificado e Auditado via Grounded Citations Ledger (Cobertura: 88%)
+
+<span class="token title important"><span class="token punctuation">##</span> 1. Reajuste de Tarifas de Cabotagem</span>
+A Agência Nacional de Transportes autorizou o reajuste extraordinário de 4,8% 
+para operadores da Região Sudeste a partir da próxima segunda-feira.[1] 
+A medida visa cobrir o aumento de custos operacionais e combustíveis marítimos.[1] 
+Estima-se que esse aumento pressione a margem de distribuição em 0,6% caso 
+não haja renegociação com os operadores locais.[unverified]
+
+<span class="token title important"><span class="token punctuation">##</span> 2. Estoque de Matéria-Prima nos Portos do Sul</span>
+O Porto de Paranaguá registrou um tempo médio de espera para atracação 
+de navios graneleiros de 8,4 dias durante a última semana útil.[2] 
+Três navios com insumos do nosso consórcio continuam fundeados ao largo.[2]
+
+<span class="token hr punctuation">---</span>
+<span class="token title important"><span class="token punctuation">##</span> Sources:</span>
+[1] https://portal-regulatorio.gov.br/atos/resolucao-tarifa-cabotagem-2026
+    "Fica homologado o reajuste tarifário médio de 4,8% para as concessionárias da rota Sudeste..."
+[2] https://porto-dados.com.br/operacoes/lineup-espera-novembro-2026
+    "O tempo médio de fundeio registrado para embarcações graneleiras foi de 8,4 dias no período..."
+</code></pre><p>Observe a precisão cirúrgica:</p>
+<ul>
+<li>O empresário clica no link <code>[1]</code> e abre a resolução oficial exata, com a frase destacada;</li>
+<li>Ao ler a frase sobre a pressão de margem de 0,6%, ele vê a etiqueta <code>[unverified]</code>, sabendo que aquilo é uma dedução inteligente do agente, e não uma cláusula pública;</li>
+<li>Se o agente tivesse inventado o percentual de reajuste (ex: &quot;7,5%&quot;), o comando <code>sources.py quote</code> teria abortado a compilação e alertado a esteira de DevOps antes do envio.</li>
+</ul>
+<hr>
+<h2 id="como-estruturar-essa-esteira-na-sua-empresa-o-guia-em-4-passos" class="scroll-mt-24 group flex items-center justify-between">Como Estruturar Essa Esteira na sua Empresa: O Guia em 4 Passos <a href="#como-estruturar-essa-esteira-na-sua-empresa-o-guia-em-4-passos" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para os gestores que desejam implementar esse padrão de governança na operação diária, o roteiro técnico no Hermes Agent envolve quatro pilares simples:</p>
+<h3 id="passo-1-inicializacao-limpa-do-livro-razao" class="scroll-mt-24 group flex items-center justify-between">Passo 1: Inicialização Limpa do Livro-Razão <a href="#passo-1-inicializacao-limpa-do-livro-razao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Antes de disparar a rotina matinal de varredura (seja via Cron Job na VPS ou comando pontual no terminal), inicializa-se o ledger da sessão:</p>
+<pre><code class="language-bash">python ~/.hermes/skills/research/grounded-citations/scripts/sources.py reset
+</code></pre><p>Isso garante que referências de dias anteriores não interfiram na integridade dos IDs da pesquisa atual.</p>
+<h3 id="passo-2-ingestao-com-registro-imediato" class="scroll-mt-24 group flex items-center justify-between">Passo 2: Ingestão com Registro Imediato <a href="#passo-2-ingestao-com-registro-imediato" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Sempre que uma ferramenta do agente (<code>web_search</code>, <code>web_extract</code> ou <code>read_file</code>) extrair um documento, o comando <code>add</code> é invocado de forma automática:</p>
+<pre><code class="language-bash">python scripts/sources.py <span class="token function">add</span> <span class="token string">"https://exemplo.com/documento-auditoria"</span> <span class="token parameter variable">--title</span> <span class="token string">"Balanço Auditado 2026"</span>
+</code></pre><h3 id="passo-3-vinculacao-de-evidencias-verbatim" class="scroll-mt-24 group flex items-center justify-between">Passo 3: Vinculação de Evidências Verbatim <a href="#passo-3-vinculacao-de-evidencias-verbatim" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para afirmações críticas de valores, datas, nomes e cláusulas, anexe a comprovação literal:</p>
+<pre><code class="language-bash">python scripts/sources.py quote <span class="token number">1</span> <span class="token parameter variable">--text</span> <span class="token string">"Texto exato copiado da página"</span> <span class="token parameter variable">--from</span> /tmp/pagina_extraida.txt
+</code></pre><h3 id="passo-4-portao-de-validacao-e-renderizacao-automatica" class="scroll-mt-24 group flex items-center justify-between">Passo 4: Portão de Validação e Renderização Automática <a href="#passo-4-portao-de-validacao-e-renderizacao-automatica" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O relatório só é enviado para a equipe ou diretoria após ser aprovado pelo validador:</p>
+<pre><code class="language-bash">python scripts/sources.py verify relatorio_rascunho.md <span class="token parameter variable">--strict</span> --min-coverage <span class="token number">0.6</span> <span class="token parameter variable">--evidence</span>
+python scripts/sources.py render --replace-in relatorio_rascunho.md
+</code></pre><p>O comando <code>render</code> reescreve a seção <code>## Sources:</code> ao final do documento com as URLs e as evidências literais formatadas, sem margem para erro de digitação humana ou alucinação algorítmica.</p>
+<hr>
+<h2 id="governanca-nao-e-burocracia-e-o-diferencial-competitivo-da-ia-corporativa" class="scroll-mt-24 group flex items-center justify-between">Governança Não é Burocracia: É o Diferencial Competitivo da IA Corporativa <a href="#governanca-nao-e-burocracia-e-o-diferencial-competitivo-da-ia-corporativa" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>No mercado de inteligência artificial de 2026, assistentes de texto que geram respostas bonitas e criativas são commodities baratas. Qualquer profissional júnior consegue abrir uma aba de navegador e pedir um resumo genérico.</p>
+<p>A verdadeira vantagem competitiva de uma empresa não está na criatividade do robô, mas na <strong>confiabilidade matemática da sua esteira operacional</strong>. </p>
+<p>Quando uma organização implementa o Hermes Agent em sua infraestrutura soberana (VPS própria, sob seu controle, conectado aos seus canais e com guardrails determinísticos como o Grounded Citations), ela deixa para trás a fase do brinquedo tecnológico e entra na era da automação corporativa de alto rendimento.</p>
+<p>Decisões de negócios exigem dados em que você confiaria a chave da sua empresa. Com citações grounded e fact-checking auditável, a Inteligência Agêntica entrega exatamente isso: assertividade sem concessões.</p>
+<hr>
+<p><em>Quer dominar a instalação, orquestração e blindagem de agentes autônomos na infraestrutura real da sua empresa, do zero à operação 24/7 sem risco de alucinações? Conheça a formação completa na comunidade <a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a>.</em></p>
+
+      </div>
+
+      <!-- Social Share -->
+      <div class="mt-12 py-6 border-y border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Compartilhar este artigo:</span>
+        <div class="flex items-center gap-2">
+          <a href="https://api.whatsapp.com/send?text=Grounded%20Citations%20e%20Fact-Checking%20Audit%C3%A1vel%3A%20Como%20Agentes%20de%20IA%20Eliminam%20Alucina%C3%A7%C3%B5es%20em%20Decis%C3%B5es%20Empresariais%20com%20Provas%20Literais%20-%20https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fgrounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fgrounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Grounded%20Citations%20e%20Fact-Checking%20Audit%C3%A1vel%3A%20Como%20Agentes%20de%20IA%20Eliminam%20Alucina%C3%A7%C3%B5es%20em%20Decis%C3%B5es%20Empresariais%20com%20Provas%20Literais&url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fgrounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-white/5 text-gray-200 hover:bg-white/10 border border-white/10 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="twitter" class="w-4 h-4"></i> X / Twitter
+          </a>
+        </div>
+      </div>
+
+      <!-- Author Bio Box -->
+      <div class="mt-10 glass rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 border border-white/10">
+        <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-16 h-16 rounded-full border-2 border-ouro">
+        <div class="text-center sm:text-left">
+          <h4 class="text-base font-bold text-white mb-1">Escrito por Jean Pierre Schramm</h4>
+          <p class="text-xs text-gray-400 leading-relaxed mb-3">
+            Especialista em automações autônomas, arquitetura de VPS com Docker Swarm e ecossistemas agênticos com Hermes OS.
+          </p>
+          <div class="flex items-center justify-center sm:justify-start gap-3 text-xs text-ciano">
+            <a href="https://github.com/gigantsc" target="_blank" class="hover:underline">GitHub</a> &bull;
+            <a href="https://linkedin.com/in/jeanpierreschramm" target="_blank" class="hover:underline">LinkedIn</a> &bull;
+            <a href="https://x.com/jepierresolucoes" target="_blank" class="hover:underline">X</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Article Community Banner -->
+      <div class="mt-12 p-8 rounded-2xl glass border border-ouro/30 bg-gradient-to-r from-magenta/10 via-ciano/5 to-ouro/10 text-center">
+        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+          Comunidade Inteligência Agêntica
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Aprenda a aplicar tudo isso na prática</h3>
+        <p class="text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6">
+          Tenha acesso a 4 mentorias ao vivo por mês, biblioteca completa de skills e templates prontos para rodar no seu servidor.
+        </p>
+        <a href="/#oferta" class="btn-gold px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
+          Garantir Vaga na Comunidade <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Related Posts -->
+      
+      <div class="mt-16">
+        <h3 class="text-lg font-bold text-white mb-6">Artigos Relacionados</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+            <a href="/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Hermes Agent</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Guia Definitivo do Hermes Agent: As 30 Respostas Essenciais para Dominar seus Funcionários Digitais</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.</p>
+            </a>
+          
+            <a href="/blog/teams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Agentes de IA</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Microsoft Teams Meeting Pipeline: Como Agentes de IA Ingerem Reuniões, Transcrevem Áudio e Criam Tarefas sem 'Bots Fantasmas'</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O Microsoft Teams Meeting Pipeline no Hermes Agent revoluciona a governança corporativa: ingere eventos do Microsoft 365 via Graph Webhooks, prioriza transcrições com fallback para áudio e STT via ffmpeg, extrai planos de ação determinísticos e despacha atas sem nenhum bot intrusivo na chamada.</p>
+            </a>
+          
+        </div>
+      </div>
+      
+
+    </article>
+  </div>
+  
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/mediaflowmz" class="text-ciano font-semibold hover:text-white transition-colors">⚡ MediaFlowMZ (Lives TikTok)</a></li>
+            <li><a href="/cinemaker" class="text-magenta-300 hover:text-white transition-colors">🎬 CineMaker (Vídeos IA)</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <div class="flex items-center gap-3 text-[11px] text-gray-500">
+          <button type="button" class="cookie-consent-banner-open hover:text-ciano transition-colors bg-transparent border-0 p-0 text-inherit cursor-pointer">Preferências de Cookies</button>
+          <span>&bull;</span>
+          <span class="text-[10px]">Ecossistema Hermes OS &bull; Powered by Nous Research</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Mobile Menu Controller
+    (() => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!mobileBtn || !mobileMenu) return;
+
+      const openIcon = mobileBtn.querySelector('.menu-open-icon');
+      const closeIcon = mobileBtn.querySelector('.menu-close-icon');
+
+      function toggleMenu(forceOpen) {
+        const isCurrentlyOpen = !mobileMenu.classList.contains('hidden');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isCurrentlyOpen;
+
+        if (shouldOpen) {
+          mobileMenu.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+          if (openIcon) openIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+    })();
+
+    // DataLayer CTA Tracking
+    window.dataLayer = window.dataLayer || [];
+    document.querySelectorAll('a[href*="#oferta"], a[href="/#oferta"]').forEach(el => {
+      el.addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'cta_click',
+          event_category: 'CTA',
+          event_action: 'Click Offer Anchor',
+          event_label: el.textContent.trim().substring(0, 50) || 'CTA Oferta'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

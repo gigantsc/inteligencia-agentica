@@ -19,6 +19,18 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais](https://inteligenciaagentica.com.br/blog/grounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia)
+- **Data de Publicação:** 2026-11-10
+- **Tags:** Agentes de IA, Hermes Agent, Segurança Corporativa, Governança de IA, Auditoria, Anti-Alucinação, Negócios
+- **Resumo:** O ecossistema Hermes Agent estabelece um novo patamar de segurança corporativa com o pipeline de Grounded Citations: um livro-razão mecânico de fontes (ledger.json) e validação textual estrita (verbatim matching) que impedem que agentes de IA inventem dados, datas ou números em relatórios executivos e auditorias de mercado.
+- **URL:** https://inteligenciaagentica.com.br/blog/grounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia
+
+### [Microsoft Teams Meeting Pipeline: Como Agentes de IA Ingerem Reuniões, Transcrevem Áudio e Criam Tarefas sem 'Bots Fantasmas'](https://inteligenciaagentica.com.br/blog/teams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph)
+- **Data de Publicação:** 2026-11-08
+- **Tags:** Agentes de IA, Microsoft Teams, Microsoft 365, Automação Corporativa, Hermes Agent, Produtividade, Governança
+- **Resumo:** O Microsoft Teams Meeting Pipeline no Hermes Agent revoluciona a governança corporativa: ingere eventos do Microsoft 365 via Graph Webhooks, prioriza transcrições com fallback para áudio e STT via ffmpeg, extrai planos de ação determinísticos e despacha atas sem nenhum bot intrusivo na chamada.
+- **URL:** https://inteligenciaagentica.com.br/blog/teams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph
+
 ### [Document Extraction: Como Agentes de IA Auditam PDFs Escaneados, Contratos, Excel e SQLite sem Alucinação](https://inteligenciaagentica.com.br/blog/document-extraction-ingestao-pdf-escaneado-excel-sqlite-agentes-ia)
 - **Data de Publicação:** 2026-11-07
 - **Tags:** Agentes de IA, Document Extraction, PDF, Excel, SQLite, Automação, Hermes OS, Negócios

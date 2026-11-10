@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Sat, 07 Nov 2026 11:08:35 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 10 Nov 2026 11:07:33 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,456 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/grounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/grounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia</guid>
+            <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[O ecossistema Hermes Agent estabelece um novo patamar de segurança corporativa com o pipeline de Grounded Citations: um livro-razão mecânico de fontes (ledger.json) e validação textual estrita (verbatim matching) que impedem que agentes de IA inventem dados, datas ou números em relatórios executivos e auditorias de mercado.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>A arquitetura de <strong>Grounded Citations e Fact-Checking Auditável</strong> do Hermes Agent é a solução definitiva de infraestrutura para eliminar alucinações em relatórios executivos, auditorias de mercado e análises contratuais. Enquanto chatbots convencionais (como ChatGPT ou Claude em navegadores) geram links mortos e inventam dados estatísticos com tom de certeza absoluta, o Hermes Agent desacopla a geração de texto da validação de fatos através de um <strong>livro-razão mecânico independente (<code>ledger.json</code>)</strong>. As fontes são registradas em tempo de extração real com identificadores imutáveis (<code>[1]</code>, <code>[2]</code>), as afirmações críticas são submetidas a testes de correspondência textual exata (<em>verbatim quote matching</em>) contra o documento original, e o relatório é submetido a um portão de qualidade (<em>gate</em> <code>--min-coverage</code>). Se um dado não possuir comprovação empírica literal, o agente bloqueia a publicação ou exige a etiqueta explícita <code>[unverified]</code>, garantindo a diretores e conselhos de administração um relatório estilo Perplexity corporativo 100% auditável.</p>
+</blockquote>
+<hr>
+<h2 id="o-maior-freio-na-adocao-de-ia-por-empresarios-seniores-a-alucinacao-confiante" class="scroll-mt-24 group flex items-center justify-between">O Maior Freio na Adoção de IA por Empresários Seniores: A Alucinação Confiante <a href="#o-maior-freio-na-adocao-de-ia-por-empresarios-seniores-a-alucinacao-confiante" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Se você tem mais de 40 anos e gerencia uma empresa com folha de pagamento real, clientes exigentes e contratos de responsabilidade jurídica, certamente já vivenciou o seguinte dilema: você sabe que a Inteligência Artificial pode acelerar drasticamente pesquisas de mercado, análises de concorrência e triagem de documentos regulatórios, mas <strong>simplesmente não confia no que ela escreve</strong>.</p>
+<p>E essa desconfiança não é preconceito tecnológico; é prudência de negócios.</p>
+<p>O mercado corporativo já assistiu a casos embaraçosos — e caríssimos — de empresas que utilizaram modelos de linguagem sem rédeas:</p>
+<ul>
+<li>Escritórios de advocacia multados por citar jurisprudências e acórdãos que nunca existiram, inventados do zero pelo modelo;</li>
+<li>Diretores comerciais que entraram em negociações bilaterais citando tabelas de preços de concorrentes que eram meras alucinações estatísticas;</li>
+<li>Gestores de suprimentos que aprovaram cotações baseadas em prazos de entrega que não constavam nos PDFs anexados pelas fornecedoras.</li>
+</ul>
+<pre><code>+-----------------------------------------------------------------------------------+
+<span class="token operator">|</span>                        O CICLO TRADICIONAL DA ALUCINAÇÃO                          <span class="token operator">|</span>
+<span class="token operator">|</span>                                                                                   <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token punctuation">[</span>LLM Genérico<span class="token punctuation">]</span> ---<span class="token operator">></span> Gera texto plausível ---<span class="token operator">></span> Inventa URLs/Dados com convicção   <span class="token operator">|</span>
+<span class="token operator">|</span>         <span class="token operator">|</span>                                                       <span class="token operator">|</span>                 <span class="token operator">|</span>
+<span class="token operator">|</span>         <span class="token function">v</span>                                                       <span class="token function">v</span>                 <span class="token operator">|</span>
+<span class="token operator">|</span>  Probabilidade pura                                   Executivo toma decisão      <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token punctuation">(</span>Não há consulta real<span class="token punctuation">)</span>                               <span class="token punctuation">(</span>Prejuízo / Dano Jurídico<span class="token punctuation">)</span>  <span class="token operator">|</span>
++-----------------------------------------------------------------------------------+
+</code></pre><p>Quando um executivo confronta um assistente comum com a pergunta <em>&quot;De onde você tirou essa informação?&quot;</em>, a resposta padrão costuma ser um pedido de desculpas genérico ou um link que resulta em Erro 404. </p>
+<p>Para operações maduras, isso é inaceitável. Negócios operam sob auditoria, rastreabilidade e governança. Se uma informação não possui fonte verificável com data, autor e parágrafo original, ela não é inteligência de mercado: é mero ruído probabilístico.</p>
+<hr>
+<h2 id="por-que-engenharia-de-prompt-nao-resolve-o-problema" class="scroll-mt-24 group flex items-center justify-between">Por que Engenharia de Prompt Não Resolve o Problema <a href="#por-que-engenharia-de-prompt-nao-resolve-o-problema" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Muitos consultores prometem eliminar alucinações adicionando instruções nos prompts, como:<br><em>“Seja estritamente factual e nunca invente informações”</em> ou <em>“Cite as fontes com links reais”</em>.</p>
+<p>Isso não funciona de forma confiável em ambientes de produção por uma razão matemática simples: <strong>modelos de linguagem autoregressivos geram tokens baseados em probabilidade condicional, não em verificação lógica</strong>.</p>
+<p>Quando um modelo é forçado a incluir uma citação ao mesmo tempo em que redige um parágrafo complexo, ocorrem três falhas estruturais:</p>
+<ol>
+<li><strong>Alucinação de URLs:</strong> O modelo recorda padrões sintáticos da web e inventa URLs perfeitamente estruturadas (ex: <code>https://forbes.com/business/2026/04/growth-report.html</code>) que levam ao vazio;</li>
+<li><strong>Atribuição Falsa:</strong> O modelo pega uma informação real e atribui a um veículo de renome que jamais publicou aquela frase;</li>
+<li><strong>Distorção de Proporção:</strong> Um dado secundário de uma nota de rodapé é transformado no título principal da conclusão estratégica.</li>
+</ol>
+<p>Para resolver a raiz desse problema, o Hermes Agent (desenvolvido pela Nous Research) adota uma abordagem de engenharia de software pura: <strong>Grounded Citations</strong>. A verificação não fica a cargo da memória do LLM; ela é governada por um processo determinístico de ledger independente.</p>
+<hr>
+<h2 id="a-arquitetura-grounded-citations-no-hermes-agent" class="scroll-mt-24 group flex items-center justify-between">A Arquitetura Grounded Citations no Hermes Agent <a href="#a-arquitetura-grounded-citations-no-hermes-agent" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O ecossistema Hermes Agent trata citações como uma esteira criptográfica de livro-razão (ledger). A ferramenta nativa <code>grounded-citations</code> (orquestrada pelo script utilitário <code>sources.py</code>) impõe um fluxo rígido de cinco etapas entre a leitura dos dados e a entrega final do briefing para o empresário.</p>
+<pre><code>+-----------------------------------------------------------------------------------+
+<span class="token operator">|</span>                  ARQUITETURA GROUNDED CITATIONS NO HERMES AGENT                   <span class="token operator">|</span>
++-----------------------------------------------------------------------------------+
+                                                                                     
+  <span class="token punctuation">[</span>Fontes Externas<span class="token punctuation">]</span>                                                                 
+  <span class="token punctuation">(</span>Web, PDFs, Contratos, ERPs<span class="token punctuation">)</span>                                                      
+           <span class="token operator">|</span>                                                                        
+           <span class="token function">v</span>                                                                        
+  <span class="token punctuation">[</span><span class="token number">1</span>. Ingestão <span class="token operator">&amp;</span> Normalização<span class="token punctuation">]</span> -----<span class="token operator">></span> Extrai texto integral                         
+           <span class="token operator">|</span>                          Salva arquivo fonte <span class="token builtin class-name">local</span>                     
+           <span class="token function">v</span>                                                                        
+  <span class="token punctuation">[</span><span class="token number">2</span>. Ledger Mecânico<span class="token punctuation">]</span> -------------<span class="token operator">></span> Registra URL/Arquivo no ledger.json           
+                                      Emite IDs imutáveis: <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>, <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>, <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">..</span>.         
+           <span class="token operator">|</span>                                                                        
+           <span class="token function">v</span>                                                                        
+  <span class="token punctuation">[</span><span class="token number">3</span>. Redação Vinculada<span class="token punctuation">]</span> -----------<span class="token operator">></span> Agente usa APENAS IDs numéricos estritos      
+                                      <span class="token punctuation">(</span>Proibido digitar URLs na redação<span class="token punctuation">)</span>            
+           <span class="token operator">|</span>                                                                        
+           <span class="token function">v</span>                                                                        
+  <span class="token punctuation">[</span><span class="token number">4</span>. Fact-Checking Verbatim<span class="token punctuation">]</span> ------<span class="token operator">></span> sources.py quote <span class="token operator">&lt;</span>id<span class="token operator">></span> <span class="token parameter variable">--text</span> <span class="token string">"..."</span>            
+                                      Valida se a frase exata existe no texto bruto 
+           <span class="token operator">|</span>                                                                        
+           <span class="token function">v</span>                                                                        
+  <span class="token punctuation">[</span><span class="token number">5</span>. Gate de Governança<span class="token punctuation">]</span> ----------<span class="token operator">></span> sources.py verify --min-coverage <span class="token number">0.7</span>          
+                                      Exige declaração de procedência               
+           <span class="token operator">|</span>                                                                        
+           +---<span class="token operator">></span> <span class="token punctuation">[</span>APROVADO<span class="token punctuation">]</span> --------<span class="token operator">></span> Briefing Executivo Auditado no Telegram       
+           <span class="token operator">|</span>                                                                        
+           +---<span class="token operator">></span> <span class="token punctuation">[</span>REJEITADO<span class="token punctuation">]</span> -------<span class="token operator">></span> Bloqueio Imediato <span class="token operator">&amp;</span> Retentativa               
+</code></pre><h3 id="1-desacoplamento-absoluto-ledger-mecanico" class="scroll-mt-24 group flex items-center justify-between">1. Desacoplamento Absoluto (Ledger Mecânico) <a href="#1-desacoplamento-absoluto-ledger-mecanico" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O modelo nunca digita uma URL de cabeça no corpo do texto. Quando o agente realiza uma consulta na web (<code>web_search</code>), extrai uma página (<code>web_extract</code>) ou inspeciona um contrato (<code>read_file</code>), as URLs são imediatamente registradas no arquivo de livro-razão:</p>
+<pre><code class="language-bash">python scripts/sources.py <span class="token function">add</span> <span class="token string">"https://noticia-oficial.com/relatorio-anual"</span> <span class="token parameter variable">--title</span> <span class="token string">"Relatório Anual 2026"</span>
+<span class="token comment"># O script responde mecânica e deterministicamente: [1]</span>
+</code></pre><p>O agente recebe o número <code>[1]</code>. No rascunho do relatório, a regra do sistema é explícita: o agente só tem permissão de inserir pequenos inteiros entre colchetes imediatamente após a sentença que suporta o fato.</p>
+<h3 id="2-validacao-textual-estrita-verbatim-matching" class="scroll-mt-24 group flex items-center justify-between">2. Validação Textual Estrita (Verbatim Matching) <a href="#2-validacao-textual-estrita-verbatim-matching" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Nas decisões de alto risco (modo Fact-Checking), o sistema não aceita que o agente resuma livremente. O agente é obrigado a registrar a evidência literal:</p>
+<pre><code class="language-bash">python scripts/sources.py quote <span class="token number">1</span> <span class="token parameter variable">--text</span> <span class="token string">"O faturamento do setor cresceu 14,2% no terceiro trimestre."</span> <span class="token parameter variable">--from</span> pagina_extraida.txt
+</code></pre><p>O script lê o arquivo bruto da página extraída e compara byte a byte a citação contra o conteúdo real. Se a palavra &quot;14,2%&quot; não existir literalmente no documento de origem (por exemplo, se o documento dizia &quot;11,5%&quot; e o modelo interpretou errado), o comando <strong>falha e rejeita a evidência</strong>. O modelo não consegue &quot;dar um jeitinho&quot; nem fantasiar números.</p>
+<h3 id="3-portao-de-cobertura-e-transparencia-obrigatoria-min-coverage" class="scroll-mt-24 group flex items-center justify-between">3. Portão de Cobertura e Transparência Obrigatória (<code>--min-coverage</code>) <a href="#3-portao-de-cobertura-e-transparencia-obrigatoria-min-coverage" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Antes de despachar o relatório para o WhatsApp ou Telegram do diretor da empresa, a esteira roda o verificador:</p>
+<pre><code class="language-bash">python scripts/sources.py verify relatorio.md <span class="token parameter variable">--strict</span> --min-coverage <span class="token number">0.7</span> <span class="token parameter variable">--evidence</span>
+</code></pre><ul>
+<li>Se houver qualquer citação a um ID que não consta no ledger: <strong>Erro</strong>.</li>
+<li>Se as URLs da lista final de fontes não coincidirem com as referências do texto: <strong>Erro</strong>.</li>
+<li>Se a densidade de evidências comprovadas for inferior a 70% das afirmações factuais: <strong>Erro</strong>.</li>
+</ul>
+<p>E o que acontece se o agente precisar expressar uma inferência analítica ou uma suposição de mercado para a qual não existe documento escrito? Ele é obrigado pelo compilador a rotular a frase com o marcador especial <code>[unverified]</code>. </p>
+<p>Dessa forma, o empresário lê o relatório com total clareza mental: tudo que tem <code>[1]</code>, <code>[2]</code> tem prova documental imediata; o que tem <code>[unverified]</code> é análise probabilística do modelo.</p>
+<hr>
+<h2 id="comparativo-estrutural-chatbots-de-consumo-vs-hermes-grounded-citations" class="scroll-mt-24 group flex items-center justify-between">Comparativo Estrutural: Chatbots de Consumo vs. Hermes Grounded Citations <a href="#comparativo-estrutural-chatbots-de-consumo-vs-hermes-grounded-citations" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para entender o abismo operacional entre uma ferramenta comum de mercado e uma infraestrutura agêntica de classe empresarial, analise a matriz abaixo:</p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade / Critério</th>
+<th>Chatbots Comuns (ChatGPT / Claude / Copilot)</th>
+<th>Hermes Agent (Grounded Citations Pipeline)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Origem dos Links Citados</strong></td>
+<td>Alucinação probabilística em tempo de geração de texto</td>
+<td>Registro mecânico antecipado no <code>ledger.json</code></td>
+</tr>
+<tr>
+<td><strong>Comprovação de Citações</strong></td>
+<td>Nenhuma (o modelo finge que leu o documento)</td>
+<td>Correspondência literal de strings (<em>verbatim quote match</em>)</td>
+</tr>
+<tr>
+<td><strong>Tratamento de Alucinações</strong></td>
+<td>Depende do discernimento e da sorte do usuário</td>
+<td>O pipeline bloqueia o relatório antes do envio via CLI</td>
+</tr>
+<tr>
+<td><strong>Rastreabilidade de Fontes</strong></td>
+<td>Links quebrados, redirecionamentos ou páginas 404</td>
+<td>Normalização estrita de URLs e IDs numéricos imutáveis</td>
+</tr>
+<tr>
+<td><strong>Transparência em Opiniões</strong></td>
+<td>Mistura fatos comprovados com opiniões no mesmo tom</td>
+<td>Marcação obrigatória de sentenças com <code>[unverified]</code></td>
+</tr>
+<tr>
+<td><strong>Auditabilidade Jurídica</strong></td>
+<td>Nenhuma (sem logs imutáveis de extração)</td>
+<td>Ledger JSON versionado + arquivos de texto extraídos em disco</td>
+</tr>
+<tr>
+<td><strong>Custo de Implementação</strong></td>
+<td>Alto risco de prejuízos operacionais por dados errados</td>
+<td>Custo previsível em VPS própria com governança total</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="exemplo-real-o-radar-de-suprimentos-a-prova-de-alucinacao" class="scroll-mt-24 group flex items-center justify-between">Exemplo Real: O Radar de Suprimentos à Prova de Alucinação <a href="#exemplo-real-o-radar-de-suprimentos-a-prova-de-alucinacao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Imagine uma distribuidora com faturamento mensal de R$ 5 milhões. Todos os dias, o gestor de compras precisa monitorar a cotação de matérias-primas, mudanças nas tarifas de importação no Diário Oficial e tabelas de frete dos principais operadores logísticos.</p>
+<p>Em vez de pagar analistas humanos para gastar 4 horas diárias navegando manualmente em dezenas de portais, o Hermes Agent roda em uma VPS Ubuntu às 06:00 da manhã.</p>
+<p>Veja o trecho real de como o relatório final é entregue no canal executivo:</p>
+<pre><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 🔍 Radar de Suprimentos &amp; Tarifas — 10 de Novembro de 2026</span>
+<span class="token blockquote punctuation">></span> Status: Verificado e Auditado via Grounded Citations Ledger (Cobertura: 88%)
+
+<span class="token title important"><span class="token punctuation">##</span> 1. Reajuste de Tarifas de Cabotagem</span>
+A Agência Nacional de Transportes autorizou o reajuste extraordinário de 4,8% 
+para operadores da Região Sudeste a partir da próxima segunda-feira.[1] 
+A medida visa cobrir o aumento de custos operacionais e combustíveis marítimos.[1] 
+Estima-se que esse aumento pressione a margem de distribuição em 0,6% caso 
+não haja renegociação com os operadores locais.[unverified]
+
+<span class="token title important"><span class="token punctuation">##</span> 2. Estoque de Matéria-Prima nos Portos do Sul</span>
+O Porto de Paranaguá registrou um tempo médio de espera para atracação 
+de navios graneleiros de 8,4 dias durante a última semana útil.[2] 
+Três navios com insumos do nosso consórcio continuam fundeados ao largo.[2]
+
+<span class="token hr punctuation">---</span>
+<span class="token title important"><span class="token punctuation">##</span> Sources:</span>
+[1] https://portal-regulatorio.gov.br/atos/resolucao-tarifa-cabotagem-2026
+    "Fica homologado o reajuste tarifário médio de 4,8% para as concessionárias da rota Sudeste..."
+[2] https://porto-dados.com.br/operacoes/lineup-espera-novembro-2026
+    "O tempo médio de fundeio registrado para embarcações graneleiras foi de 8,4 dias no período..."
+</code></pre><p>Observe a precisão cirúrgica:</p>
+<ul>
+<li>O empresário clica no link <code>[1]</code> e abre a resolução oficial exata, com a frase destacada;</li>
+<li>Ao ler a frase sobre a pressão de margem de 0,6%, ele vê a etiqueta <code>[unverified]</code>, sabendo que aquilo é uma dedução inteligente do agente, e não uma cláusula pública;</li>
+<li>Se o agente tivesse inventado o percentual de reajuste (ex: &quot;7,5%&quot;), o comando <code>sources.py quote</code> teria abortado a compilação e alertado a esteira de DevOps antes do envio.</li>
+</ul>
+<hr>
+<h2 id="como-estruturar-essa-esteira-na-sua-empresa-o-guia-em-4-passos" class="scroll-mt-24 group flex items-center justify-between">Como Estruturar Essa Esteira na sua Empresa: O Guia em 4 Passos <a href="#como-estruturar-essa-esteira-na-sua-empresa-o-guia-em-4-passos" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para os gestores que desejam implementar esse padrão de governança na operação diária, o roteiro técnico no Hermes Agent envolve quatro pilares simples:</p>
+<h3 id="passo-1-inicializacao-limpa-do-livro-razao" class="scroll-mt-24 group flex items-center justify-between">Passo 1: Inicialização Limpa do Livro-Razão <a href="#passo-1-inicializacao-limpa-do-livro-razao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Antes de disparar a rotina matinal de varredura (seja via Cron Job na VPS ou comando pontual no terminal), inicializa-se o ledger da sessão:</p>
+<pre><code class="language-bash">python ~/.hermes/skills/research/grounded-citations/scripts/sources.py reset
+</code></pre><p>Isso garante que referências de dias anteriores não interfiram na integridade dos IDs da pesquisa atual.</p>
+<h3 id="passo-2-ingestao-com-registro-imediato" class="scroll-mt-24 group flex items-center justify-between">Passo 2: Ingestão com Registro Imediato <a href="#passo-2-ingestao-com-registro-imediato" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Sempre que uma ferramenta do agente (<code>web_search</code>, <code>web_extract</code> ou <code>read_file</code>) extrair um documento, o comando <code>add</code> é invocado de forma automática:</p>
+<pre><code class="language-bash">python scripts/sources.py <span class="token function">add</span> <span class="token string">"https://exemplo.com/documento-auditoria"</span> <span class="token parameter variable">--title</span> <span class="token string">"Balanço Auditado 2026"</span>
+</code></pre><h3 id="passo-3-vinculacao-de-evidencias-verbatim" class="scroll-mt-24 group flex items-center justify-between">Passo 3: Vinculação de Evidências Verbatim <a href="#passo-3-vinculacao-de-evidencias-verbatim" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para afirmações críticas de valores, datas, nomes e cláusulas, anexe a comprovação literal:</p>
+<pre><code class="language-bash">python scripts/sources.py quote <span class="token number">1</span> <span class="token parameter variable">--text</span> <span class="token string">"Texto exato copiado da página"</span> <span class="token parameter variable">--from</span> /tmp/pagina_extraida.txt
+</code></pre><h3 id="passo-4-portao-de-validacao-e-renderizacao-automatica" class="scroll-mt-24 group flex items-center justify-between">Passo 4: Portão de Validação e Renderização Automática <a href="#passo-4-portao-de-validacao-e-renderizacao-automatica" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O relatório só é enviado para a equipe ou diretoria após ser aprovado pelo validador:</p>
+<pre><code class="language-bash">python scripts/sources.py verify relatorio_rascunho.md <span class="token parameter variable">--strict</span> --min-coverage <span class="token number">0.6</span> <span class="token parameter variable">--evidence</span>
+python scripts/sources.py render --replace-in relatorio_rascunho.md
+</code></pre><p>O comando <code>render</code> reescreve a seção <code>## Sources:</code> ao final do documento com as URLs e as evidências literais formatadas, sem margem para erro de digitação humana ou alucinação algorítmica.</p>
+<hr>
+<h2 id="governanca-nao-e-burocracia-e-o-diferencial-competitivo-da-ia-corporativa" class="scroll-mt-24 group flex items-center justify-between">Governança Não é Burocracia: É o Diferencial Competitivo da IA Corporativa <a href="#governanca-nao-e-burocracia-e-o-diferencial-competitivo-da-ia-corporativa" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>No mercado de inteligência artificial de 2026, assistentes de texto que geram respostas bonitas e criativas são commodities baratas. Qualquer profissional júnior consegue abrir uma aba de navegador e pedir um resumo genérico.</p>
+<p>A verdadeira vantagem competitiva de uma empresa não está na criatividade do robô, mas na <strong>confiabilidade matemática da sua esteira operacional</strong>. </p>
+<p>Quando uma organização implementa o Hermes Agent em sua infraestrutura soberana (VPS própria, sob seu controle, conectado aos seus canais e com guardrails determinísticos como o Grounded Citations), ela deixa para trás a fase do brinquedo tecnológico e entra na era da automação corporativa de alto rendimento.</p>
+<p>Decisões de negócios exigem dados em que você confiaria a chave da sua empresa. Com citações grounded e fact-checking auditável, a Inteligência Agêntica entrega exatamente isso: assertividade sem concessões.</p>
+<hr>
+<p><em>Quer dominar a instalação, orquestração e blindagem de agentes autônomos na infraestrutura real da sua empresa, do zero à operação 24/7 sem risco de alucinações? Conheça a formação completa na comunidade <a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a>.</em></p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/grounded-citations-fact-checking-hermes.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Microsoft Teams Meeting Pipeline: Como Agentes de IA Ingerem Reuniões, Transcrevem Áudio e Criam Tarefas sem 'Bots Fantasmas']]></title>
+            <link>https://inteligenciaagentica.com.br/blog/teams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/teams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph</guid>
+            <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[O Microsoft Teams Meeting Pipeline no Hermes Agent revoluciona a governança corporativa: ingere eventos do Microsoft 365 via Graph Webhooks, prioriza transcrições com fallback para áudio e STT via ffmpeg, extrai planos de ação determinísticos e despacha atas sem nenhum bot intrusivo na chamada.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Microsoft Teams Meeting Pipeline</strong> do Hermes Agent é uma esteira de automação corporativa que ingere eventos de reuniões diretamente do ecossistema Microsoft 365 através da API do Microsoft Graph. Diferente de softwares SaaS de transcrição comuns (como Otter.ai, Read.ai ou Fireflies) que forçam a entrada de um &quot;bot fantasma&quot; visível na sala de videoconferência — constrangendo participantes e gerando riscos de conformidade jurídica —, o Hermes Agent opera de forma invisível e soberana no nível de infraestrutura (backend). Ele detecta o término da chamada via webhooks (<code>msgraph_webhook</code>), adota uma estratégia inteligente de ingestão <em>transcript-first</em> (reaproveitando transcrições nativas do Teams ou baixando a gravação de áudio com processamento via <code>ffmpeg</code> + Speech-to-Text caso necessário), extrai decisões e itens de ação determinísticos (quem faz o quê até quando) e distribui automaticamente a ata consolidada em múltiplos canais: Microsoft Teams, Linear, Notion e sistemas ERP legados, com renovação automática de assinaturas contra o limite de 72 horas do Microsoft Graph.</p>
+</blockquote>
+<hr>
+<h2 id="o-problema-real-o-andquotburaco-negro-das-reunioesandquot-e-o-fiasco-dos-bots-fantasmas" class="scroll-mt-24 group flex items-center justify-between">O Problema Real: O &quot;Buraco Negro das Reuniões&quot; e o Fiasco dos Bots Fantasmas <a href="#o-problema-real-o-andquotburaco-negro-das-reunioesandquot-e-o-fiasco-dos-bots-fantasmas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para empresários, diretores e gestores seniores (especialmente na faixa de 40 a 55+ anos), a rotina executiva é implacável: são consumidas entre 15 e 30 horas por semana em reuniões de alinhamento com clientes, conselhos de administração, comitês de fornecedores e equipes de operação.</p>
+<p>Nesses encontros, dezenas de compromissos vitais são firmados verbalmente:</p>
+<ul>
+<li><em>&quot;Eu envio a proposta revisada com os 8% de desconto até quinta-feira às 14h&quot;;</em></li>
+<li><em>&quot;A equipe de engenharia precisa isolar a falha no gateway de pagamentos até amanhã de manhã&quot;;</em></li>
+<li><em>&quot;O financeiro deve validar a certidão negativa antes de assinar o aditivo contratual&quot;.</em></li>
+</ul>
+<p>O que acontece logo após o encerramento da chamada?<br><strong>Nada.</strong> As pessoas pulam imediatamente para a próxima reunião de vídeo. As notas rápidas tomadas em blocos de papel se perdem, as gravações de 1 hora no OneDrive nunca mais são assistidas por ninguém da equipe, e a responsabilidade dilui-se no vácuo operacional. Dias depois, durante cobranças em reuniões de acompanhamento, ninguém lembra quem assumiu a responsabilidade original.</p>
+<pre><code>       O FLUXO CONVENCIONAL FALHO DE REUNIÕES CORPORATIVAS
+       
+ ┌─────────────┐       ┌─────────────────┐       ┌─────────────────┐
+ │ Reunião no  │ ────► │ Acordos e Prazos│ ────► │   O <span class="token string">"BURACO     │
+ │ Teams (1h)  │       │ Verbais Soltos  │       │     NEGRO"</span>      │
+ └─────────────┘       └─────────────────┘       └────────┬────────┘
+                                                          │
+          Sem ata formal, sem cobrança, tarefas perdidas │
+                                                          ▼
+                                                 ┌─────────────────┐
+                                                 │ Cobrança Tardia │
+                                                 │ e Prejuízo Real │
+                                                 └─────────────────┘
+</code></pre><h3 id="o-desastre-dos-andquotbots-convidadosandquot-ghost-bots" class="scroll-mt-24 group flex items-center justify-between">O Desastre dos &quot;Bots Convidados&quot; (Ghost Bots) <a href="#o-desastre-dos-andquotbots-convidadosandquot-ghost-bots" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Na tentativa de estancar essa sangria de produtividade, muitas empresas começaram a testar ferramentas de terceiros baseadas em nuvem americana (Fireflies, Otter, Read.ai). Contudo, a experiência no dia a dia corporativo rapidamente se torna um pesadelo:</p>
+<ol>
+<li><strong>Constrangimento Institucional:</strong> Um perfil robótico entra na sala com nomes como <em>&quot;Otter AI Notetaker&quot;</em> ou <em>&quot;Fireflies.ai Cláudio&quot;</em>. Clientes estratégicos, advogados e executivos externos desconfiam imediatamente da espionagem algorítmica e sentem-se desconfortáveis para debater números confidenciais de margem ou estratégias contratuais;</li>
+<li><strong>Insegurança Jurídica e Risco LGPD:</strong> Os arquivos de áudio brutos e as discussões estratégicas são enviados para servidores de terceiros no exterior, violando acordos de confidencialidade (NDAs), governança de TI e regulamentos de proteção de dados;</li>
+<li><strong>Resumos Prolixos e Inúteis:</strong> Essas plataformas geram textos genéricos de 4 páginas em linguagem prolixa, mas não conseguem emitir uma tabela de responsabilidade direta conectada ao gerenciador de tarefas ou ao ERP da organização.</li>
+</ol>
+<p>O <strong>Hermes Agent</strong> elimina essa fricção ao adotar o <strong>Microsoft Teams Meeting Pipeline</strong>: uma arquitetura empresarial soberana em que o agente opera nos bastidores da sua própria infraestrutura em nuvem (VPS ou servidor corporativo).</p>
+<hr>
+<h2 id="comparativo-solucoes-convencionais-vs-microsoft-teams-meeting-pipeline" class="scroll-mt-24 group flex items-center justify-between">Comparativo: Soluções Convencionais vs. Microsoft Teams Meeting Pipeline <a href="#comparativo-solucoes-convencionais-vs-microsoft-teams-meeting-pipeline" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Critério de Avaliação</th>
+<th>Ferramentas de Prateleira (Otter / Read.ai)</th>
+<th>Bots Tradicionais de Chamada</th>
+<th>Hermes Teams Meeting Pipeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Presença na Sala</strong></td>
+<td>Convidado visível (&quot;Bot Fantasma&quot;)</td>
+<td>Entra como perfil de convidado</td>
+<td><strong>100% Invisível</strong> (Opera via backend Microsoft Graph)</td>
+</tr>
+<tr>
+<td><strong>Aceitação de Clientes</strong></td>
+<td>Ruim (gera desconfiança e atrito em NDAs)</td>
+<td>Ruim (exige autorização na sala)</td>
+<td><strong>Excelente</strong> (Zero impacto na experiência do cliente)</td>
+</tr>
+<tr>
+<td><strong>Ingestão dos Dados</strong></td>
+<td>Grava áudio do navegador em SaaS externo</td>
+<td>Grava áudio via bot de mídia SIP</td>
+<td><strong>Nativa:</strong> Transcrição oficial do Teams + Fallback STT</td>
+</tr>
+<tr>
+<td><strong>Privacidade &amp; LGPD</strong></td>
+<td>Dados transitam em servidores de terceiros</td>
+<td>Nuvem proprietária de fornecedor</td>
+<td><strong>Soberania Total:</strong> Processado na sua própria VPS/Bunker</td>
+</tr>
+<tr>
+<td><strong>Extração de Ações</strong></td>
+<td>Resumos em texto corrido genérico</td>
+<td>Transcrição bruta sem refinamento</td>
+<td><strong>Determinística:</strong> Dono, Prazo, Tarefa e Critério</td>
+</tr>
+<tr>
+<td><strong>Integração Downstream</strong></td>
+<td>E-mail ou exportação manual de PDF</td>
+<td>Webhook simples</td>
+<td><strong>Multi-Sink:</strong> Teams, Linear, Notion e ERP</td>
+</tr>
+<tr>
+<td><strong>Custo de Operação</strong></td>
+<td>Assinatura cara por usuário/mês ($20-$40/usuário)</td>
+<td>Planos fechados de telecom</td>
+<td><strong>Custo Zero de Licenciamento</strong> (Apenas tokens da VPS)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="arquitetura-do-pipeline-ingestao-inteligente-e-despacho-corporativo" class="scroll-mt-24 group flex items-center justify-between">Arquitetura do Pipeline: Ingestão Inteligente e Despacho Corporativo <a href="#arquitetura-do-pipeline-ingestao-inteligente-e-despacho-corporativo" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A esteira do Teams Meeting Pipeline foi desenhada para operar com eficiência militar. Em vez de ficar ouvindo o fluxo de áudio contínuo por horas (o que desperdiçaria recursos de computação e banda), o agente permanece em repouso absoluto até que a reunião termine.</p>
+<pre><code>                  ARQUITETURA TEAMS MEETING PIPELINE <span class="token punctuation">(</span>HERMES AGENT<span class="token punctuation">)</span>
+
+    ┌─────────────────────────────────────────────────────────────────┐
+    │                       MICROSOFT <span class="token number">365</span> TENANT                      │
+    │  <span class="token punctuation">[</span> Reunião Corporativa: communications/onlineMeetings <span class="token punctuation">]</span>          │
+    └────────────────────────────────┬────────────────────────────────┘
+                                     │ Evento de Término
+                                     ▼
+    ┌─────────────────────────────────────────────────────────────────┐
+    │           GATEWAY LISTENER <span class="token punctuation">(</span>msgraph_webhook :8646<span class="token punctuation">)</span>              │
+    │  - Validação de Client State <span class="token operator">&amp;</span> Assinatura Criptográfica          │
+    │  - Extração de Metadados: Meeting ID, Horário, Participantes    │
+    └────────────────────────────────┬────────────────────────────────┘
+                                     │
+                   ┌─────────────────┴─────────────────┐
+                   │                                   │
+                   ▼ <span class="token punctuation">(</span>Prioridade <span class="token number">1</span><span class="token punctuation">)</span>                    ▼ <span class="token punctuation">(</span>Fallback <span class="token number">2</span><span class="token punctuation">)</span>
+       ┌───────────────────────┐           ┌───────────────────────┐
+       │ Transcrição Nativa    │           │ Download da Gravação  │
+       │ Oficial Microsoft <span class="token number">365</span> │           │ Áudio/Vídeo + ffmpeg  │
+       │ <span class="token punctuation">(</span>Transcript-First<span class="token punctuation">)</span>    │           │ STT Local / Whisper   │
+       └───────────┬───────────┘           └───────────┬───────────┘
+                   │                                   │
+                   └─────────────────┬─────────────────┘
+                                     │ Texto Bruto Limpo
+                                     ▼
+    ┌─────────────────────────────────────────────────────────────────┐
+    │              MOTOR ANALÍTICO <span class="token punctuation">(</span>Hermes Core + Skills<span class="token punctuation">)</span>             │
+    │  - Triagem de Decisões Homologadas                             │
+    │  - meeting-action-items: Quem <span class="token punctuation">(</span>Owner<span class="token punctuation">)</span> / O Que / Até Quando      │
+    │  - document-to-action-items: Validação de Prazos e Riscos       │
+    └────────────────────────────────┬────────────────────────────────┘
+                                     │
+         ┌───────────────────────────┼───────────────────────────┐
+         ▼                           ▼                           ▼
+┌──────────────────┐       ┌──────────────────┐       ┌──────────────────┐
+│ Microsoft Teams  │       │  Linear / Jira   │       │ Notion / ERP DB  │
+│ Card no Canal da │       │ Abertura de      │       │ Registro Formal  │
+│ Reunião com Ata  │       │ Chamados Reais   │       │ da Governança    │
+└──────────────────┘       └──────────────────┘       └──────────────────┘
+</code></pre><h3 id="1-ingestao-sem-invasao-o-listener-msgraphwebhook" class="scroll-mt-24 group flex items-center justify-between">1. Ingestão sem Invasão: O Listener <code>msgraph_webhook</code> <a href="#1-ingestao-sem-invasao-o-listener-msgraphwebhook" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O ponto de entrada é um servidor leve integrado ao Hermes Gateway chamado <code>msgraph_webhook</code>, que roda por padrão na porta <code>8646</code>. </p>
+<p>O Azure Active Directory / Microsoft Entra ID envia uma notificação push via HTTPS quando o ciclo de vida da reunião é finalizado. O listener valida o token de estado compartilhado (<code>MSGRAPH_WEBHOOK_CLIENT_STATE</code>), certificando-se de que a mensagem partiu genuinamente do seu tenant corporativo da Microsoft.</p>
+<h3 id="2-a-estrategia-andquottranscript-first-com-fallback-resilienteandquot" class="scroll-mt-24 group flex items-center justify-between">2. A Estratégia &quot;Transcript-First com Fallback Resiliente&quot; <a href="#2-a-estrategia-andquottranscript-first-com-fallback-resilienteandquot" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Um dos maiores desafios de automação no mundo real é a heterogeneidade das salas:</p>
+<ul>
+<li>Em muitas reuniões, a transcrição automática com identificação de oradores (speaker diarization) do Microsoft Teams já vem ligada por padrão pelas políticas da empresa;</li>
+<li>Em outras ocasiões (ou quando convidados externos iniciam a chamada), a gravação de vídeo foi realizada, mas ninguém clicou no botão &quot;Transcrever&quot;.</li>
+</ul>
+<p>O Hermes Agent resolve essa ambiguidade com inteligência operacional:</p>
+<ol>
+<li><strong>Fase 1 (Transcript-First):</strong> O pipeline consulta a API do Microsoft Graph buscando os artefatos de texto da chamada. Se a transcrição vetorial existir, ele a consome imediatamente em milissegundos, com custo computacional mínimo;</li>
+<li><strong>Fase 2 (Fallback Resiliente de Gravação + STT):</strong> Se não houver transcrição textual, o pipeline não gera erro. Ele localiza a gravação mp4 da reunião no SharePoint/OneDrive associado, faz o download seguro via Graph API, extrai a trilha de áudio compactada via <code>ffmpeg</code> e aciona o motor de Speech-to-Text configurado (como Whisper ou a stack Omnivoice).</li>
+</ol>
+<p>Nenhuma reunião corporativa é perdida. O processo é 100% resiliente.</p>
+<hr>
+<h2 id="como-configurar-o-pipeline-no-seu-hermes-agent" class="scroll-mt-24 group flex items-center justify-between">Como Configurar o Pipeline no seu Hermes Agent <a href="#como-configurar-o-pipeline-no-seu-hermes-agent" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para colocar a esteira em produção em uma VPS Ubuntu ou servidor corporativo seguro, o procedimento segue passos claros e auditáveis.</p>
+<h3 id="passo-1-credenciais-do-aplicativo-no-microsoft-azure-app-registration" class="scroll-mt-24 group flex items-center justify-between">Passo 1: Credenciais do Aplicativo no Microsoft Azure (App Registration) <a href="#passo-1-credenciais-do-aplicativo-no-microsoft-azure-app-registration" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Crie um registro de aplicativo no portal do Microsoft Entra ID (antigo Azure AD) com permissões corporativas para reuniões (<code>OnlineMeetings.Read.All</code>, <code>OnlineMeetingTranscript.Read.All</code>). Em seguida, insira as credenciais no cofre seguro do seu agente em <code>~/.hermes/.env</code>:</p>
+<pre><code class="language-bash"><span class="token comment"># Credenciais do Microsoft Graph</span>
+<span class="token assign-left variable">MSGRAPH_TENANT_ID</span><span class="token operator">=</span><span class="token string">"72f988bf-86f1-41af-91ab-2d7cd011db47"</span>
+<span class="token assign-left variable">MSGRAPH_CLIENT_ID</span><span class="token operator">=</span><span class="token string">"5f48866c-1793-4a1d-8457-37bf7c832bb5"</span>
+<span class="token assign-left variable">MSGRAPH_CLIENT_SECRET</span><span class="token operator">=</span><span class="token string">"h8Q8Q~xxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span>
+
+<span class="token comment"># Configuração do Listener de Webhooks</span>
+<span class="token assign-left variable">MSGRAPH_WEBHOOK_ENABLED</span><span class="token operator">=</span>true
+<span class="token assign-left variable">MSGRAPH_WEBHOOK_PORT</span><span class="token operator">=</span><span class="token number">8646</span>
+<span class="token assign-left variable">MSGRAPH_WEBHOOK_CLIENT_STATE</span><span class="token operator">=</span><span class="token string">"hermes-secret-state-9823147-corp"</span>
+<span class="token assign-left variable">MSGRAPH_WEBHOOK_ACCEPTED_RESOURCES</span><span class="token operator">=</span><span class="token string">"communications/onlineMeetings"</span>
+</code></pre><h3 id="passo-2-habilitacao-do-plugin-teamspipeline" class="scroll-mt-24 group flex items-center justify-between">Passo 2: Habilitação do Plugin <code>teams_pipeline</code> <a href="#passo-2-habilitacao-do-plugin-teamspipeline" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O pipeline é empacotado como um componente nativo no catálogo de plugins do Hermes. Para ativá-lo via linha de comando:</p>
+<pre><code class="language-bash">hermes plugins <span class="token builtin class-name">enable</span> teams_pipeline
+</code></pre><p>Ou garanta que <code>teams_pipeline</code> esteja listado em <code>plugins.enabled</code> no seu arquivo <code>~/.hermes/config.yaml</code>:</p>
+<pre><code class="language-yaml"><span class="token key atrule">plugins</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enabled</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> teams_pipeline
+    <span class="token punctuation">-</span> disk<span class="token punctuation">-</span>cleanup
+</code></pre><h3 id="passo-3-validacao-da-infraestrutura-via-cli" class="scroll-mt-24 group flex items-center justify-between">Passo 3: Validação da Infraestrutura via CLI <a href="#passo-3-validacao-da-infraestrutura-via-cli" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Antes de ativar os fluxos automáticos, o Hermes oferece ferramentas de diagnóstico integradas para garantir que não existam portas bloqueadas ou falhas de autorização:</p>
+<pre><code class="language-bash"><span class="token comment"># 1. Validar configuração estrutural</span>
+hermes teams-pipeline validate
+
+<span class="token comment"># 2. Inspecionar a saúde das credenciais e tokens do Microsoft Graph</span>
+hermes teams-pipeline token-health
+
+<span class="token comment"># 3. Listar o histórico de reuniões ingeridas e jobs locais</span>
+hermes teams-pipeline list
+</code></pre><hr>
+<h2 id="o-calcanhar-de-aquiles-das-apis-microsoft-o-limite-de-72-horas" class="scroll-mt-24 group flex items-center justify-between">O Calcanhar de Aquiles das APIs Microsoft: O Limite de 72 Horas <a href="#o-calcanhar-de-aquiles-das-apis-microsoft-o-limite-de-72-horas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Muitos desenvolvedores e consultores inexperientes tentam criar integrações com o Microsoft Graph e veem suas automações falharem misteriosamente na segunda semana de operação.</p>
+<p>O motivo?<br><strong>A Microsoft impõe uma expiração máxima de 72 horas para qualquer assinatura de webhook (Graph Subscription).</strong><br>A Microsoft não renova essa assinatura por conta própria. Se um script ou rotina não enviar uma mensagem de renovação antes de vencer o prazo de 3 dias, a Microsoft simplesmente deleta o vínculo e o servidor para de receber notificações de reuniões.</p>
+<p>O Hermes Agent desenhou essa manutenção com perfeição técnica através do comando:</p>
+<pre><code class="language-bash">hermes teams-pipeline maintain-subscriptions
+</code></pre><h3 id="como-automatizar-a-renovacao-com-custo-zero-de-tokens-script-only-cron" class="scroll-mt-24 group flex items-center justify-between">Como Automatizar a Renovação com Custo Zero de Tokens (Script-Only Cron) <a href="#como-automatizar-a-renovacao-com-custo-zero-de-tokens-script-only-cron" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Você não precisa (e não deve) gastar tokens caros de LLM chamando um modelo de inteligência artificial a cada poucas horas só para renovar uma conexão de rede.</p>
+<p>O Hermes Agent possui suporte nativo a <strong>Cron Jobs no modo <code>--no-agent</code> (Script-Only)</strong>, que executam comandos de sistema sem chamar LLMs:</p>
+<pre><code class="language-bash"><span class="token comment"># 1. Cria o script de renovação no diretório seguro de scripts</span>
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> ~/.hermes/scripts
+<span class="token function">cat</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'EOF'<span class="token bash punctuation"> <span class="token operator">></span> ~/.hermes/scripts/maintain-teams-subscriptions.sh</span>
+#!/usr/bin/env bash
+exec hermes teams-pipeline maintain-subscriptions
+EOF</span>
+<span class="token function">chmod</span> +x ~/.hermes/scripts/maintain-teams-subscriptions.sh
+
+<span class="token comment"># 2. Registra o Cron Job nativo para rodar a cada 12 horas (margem de 6x contra o prazo de 72h)</span>
+hermes <span class="token function">cron</span> create <span class="token string">"0 */12 * * *"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--name</span> <span class="token string">"teams-pipeline-maintain-subscriptions"</span> <span class="token punctuation">\</span>
+  --no-agent <span class="token punctuation">\</span>
+  <span class="token parameter variable">--script</span> maintain-teams-subscriptions.sh <span class="token punctuation">\</span>
+  <span class="token parameter variable">--deliver</span> <span class="token builtin class-name">local</span>
+</code></pre><p>Dessa forma, o próprio motor do Hermes cuida da saúde dos webhooks duas vezes por dia em segundo plano, sem interrupção de serviço e consumindo zero tokens de IA.</p>
+<hr>
+<h2 id="o-formato-da-entrega-como-a-ata-executiva-e-estruturada" class="scroll-mt-24 group flex items-center justify-between">O Formato da Entrega: Como a Ata Executiva é Estruturada <a href="#o-formato-da-entrega-como-a-ata-executiva-e-estruturada" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando a reunião termina, o agente não envia um texto desordenado. Ele aplica a skill <code>meeting-action-items</code> para gerar uma saída limpa e diretamente acionável:</p>
+<pre><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 📋 Ata Executiva de Reunião — Alinhamento Operacional Q4</span>
+<span class="token blockquote punctuation">></span> <span class="token bold"><span class="token punctuation">**</span><span class="token content">Data:</span><span class="token punctuation">**</span></span> 08/11/2026 | <span class="token bold"><span class="token punctuation">**</span><span class="token content">Duração:</span><span class="token punctuation">**</span></span> 42 min | <span class="token bold"><span class="token punctuation">**</span><span class="token content">Participantes:</span><span class="token punctuation">**</span></span> Jean Schramm, Roberto Silva, Cláudia Mendes
+
+<span class="token title important"><span class="token punctuation">###</span> 🎯 1. Decisões Homologadas</span>
+<span class="token list punctuation">-</span> [x] Redução de 15% na verba de anúncios do canal Meta Ads para redirecionamento ao Google Performance Max a partir de 15/11;
+<span class="token list punctuation">-</span> [x] Aprovação do aditivo de contrato da fornecedora de servidores em nuvem com cláusula de suporte prioritário 24/7;
+<span class="token list punctuation">-</span> [x] O próximo comitê de diretoria foi antecipado para quarta-feira, 11/11, às 09h00.
+
+<span class="token hr punctuation">---</span>
+
+<span class="token title important"><span class="token punctuation">###</span> ⚡ 2. Matriz de Responsabilidade (Action Items)</span>
+<span class="token table"><span class="token table-header-row"><span class="token punctuation">|</span><span class="token table-header important"> Responsável (Owner) </span><span class="token punctuation">|</span><span class="token table-header important"> Tarefa / Entregável </span><span class="token punctuation">|</span><span class="token table-header important"> Prazo Limite </span><span class="token punctuation">|</span><span class="token table-header important"> Destino do Ticket </span><span class="token punctuation">|</span>
+</span><span class="token table-line"><span class="token punctuation">|</span><span class="token punctuation">---</span><span class="token punctuation">|</span><span class="token punctuation">---</span><span class="token punctuation">|</span><span class="token punctuation">---</span><span class="token punctuation">|</span><span class="token punctuation">---</span><span class="token punctuation">|</span>
+</span><span class="token table-data-rows"><span class="token punctuation">|</span><span class="token table-data"> <span class="token bold"><span class="token punctuation">**</span><span class="token content">Roberto Silva</span><span class="token punctuation">**</span></span> </span><span class="token punctuation">|</span><span class="token table-data"> Revisar planilha de orçamento Q4 e travar limites no ERP </span><span class="token punctuation">|</span><span class="token table-data"> 10/11 - 18h </span><span class="token punctuation">|</span><span class="token table-data"> Linear #ENG-412 </span><span class="token punctuation">|</span>
+<span class="token punctuation">|</span><span class="token table-data"> <span class="token bold"><span class="token punctuation">**</span><span class="token content">Cláudia Mendes</span><span class="token punctuation">**</span></span> </span><span class="token punctuation">|</span><span class="token table-data"> Coletar assinaturas digitais no aditivo contratual do fornecedor </span><span class="token punctuation">|</span><span class="token table-data"> 11/11 - 12h </span><span class="token punctuation">|</span><span class="token table-data"> Notion Jurídico </span><span class="token punctuation">|</span>
+<span class="token punctuation">|</span><span class="token table-data"> <span class="token bold"><span class="token punctuation">**</span><span class="token content">Jean Schramm</span><span class="token punctuation">**</span></span> </span><span class="token punctuation">|</span><span class="token table-data"> Homologar testes de contingência do Egress Proxy na VPS </span><span class="token punctuation">|</span><span class="token table-data"> 12/11 - 17h </span><span class="token punctuation">|</span><span class="token table-data"> Teams / Canal Infra </span><span class="token punctuation">|</span>
+</span></span>
+<span class="token hr punctuation">---</span>
+
+<span class="token title important"><span class="token punctuation">###</span> ⚠️ 3. Pontos de Atenção &amp; Bloqueios</span>
+<span class="token list punctuation">-</span> A equipe financeira alertou que o sistema de emissão de NF-e sofrerá manutenção no final de semana; nenhuma fatura deve ser fechada entre sexta e domingo.
+</code></pre><p>Essa ata é automaticamente postada no canal do Microsoft Teams onde a reunião ocorreu e cada item de ação vira um chamado formal no Linear ou Jira do responsável.</p>
+<hr>
+<h2 id="conclusao-inteligencia-agentica-a-servico-da-operacao-real" class="scroll-mt-24 group flex items-center justify-between">Conclusão: Inteligência Agêntica a Serviço da Operação Real <a href="#conclusao-inteligencia-agentica-a-servico-da-operacao-real" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Automatizar reuniões não é sobre colocar avatares com olhos esbugalhados na tela para fingir que a empresa é moderna. É sobre <strong>respeito ao tempo da diretoria, blindagem de responsabilidades e eliminação de retrabalho manual</strong>.</p>
+<p>Com o <strong>Microsoft Teams Meeting Pipeline</strong> no Hermes Agent:</p>
+<ul>
+<li>Nenhum cliente é constrangido com bots convidados na chamada;</li>
+<li>Os dados não vazam para nuvens estrangeiras desreguladas;</li>
+<li>Decisões viram tarefas no mesmo instante em que a chamada é encerrada;</li>
+<li>E a empresa opera com um secretário executivo de altíssimo nível trabalhando 24 horas por dia, 7 dias por semana, integrado ao padrão Microsoft 365.</li>
+</ul>
+<p>Quer dominar a instalação dessa e de dezenas de outras esteiras corporativas com agentes de IA em servidores reais?<br>Conheça a comunidade prática e o treinamento completo no ecossistema oficial:<br>👉 <strong><a href="https://inteligenciaagentica.com.br">https://inteligenciaagentica.com.br</a></strong></p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/teams-meeting-pipeline-microsoft-graph.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Document Extraction: Como Agentes de IA Auditam PDFs Escaneados, Contratos, Excel e SQLite sem Alucinação]]></title>

@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <!-- Google Consent Mode V2 Default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'granted',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', false);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M5JDK6W4');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18FQCREKV5"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-18FQCREKV5');
+  </script>
+
+
+  <!-- Cookie Consent Banner & Mode V2 Controller -->
+  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <script>
+    window.cookieconsentConfig = {
+      gtmId: 'GTM-M5JDK6W4',
+      autoLoadGtm: false
+    };
+  </script>
+  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microsoft Teams Meeting Pipeline: Como Agentes de IA Ingerem Reuniões, Transcrevem Áudio e Criam Tarefas sem 'Bots Fantasmas' | Inteligência Agêntica</title>
+  <meta name="description" content="O Microsoft Teams Meeting Pipeline no Hermes Agent revoluciona a governança corporativa: ingere eventos do Microsoft 365 via Graph Webhooks, prioriza transcrições com fallback para áudio e STT via ffmpeg, extrai planos de ação determinísticos e despacha atas sem nenhum bot intrusivo na chamada.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/blog/teams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/blog/teams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph">
+  <meta property="og:title" content="Microsoft Teams Meeting Pipeline: Como Agentes de IA Ingerem Reuniões, Transcrevem Áudio e Criam Tarefas sem 'Bots Fantasmas'">
+  <meta property="og:description" content="O Microsoft Teams Meeting Pipeline no Hermes Agent revoluciona a governança corporativa: ingere eventos do Microsoft 365 via Graph Webhooks, prioriza transcrições com fallback para áudio e STT via ffmpeg, extrai planos de ação determinísticos e despacha atas sem nenhum bot intrusivo na chamada.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/teams-meeting-pipeline-microsoft-graph.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://inteligenciaagentica.com.br/blog/teams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph">
+  <meta name="twitter:title" content="Microsoft Teams Meeting Pipeline: Como Agentes de IA Ingerem Reuniões, Transcrevem Áudio e Criam Tarefas sem 'Bots Fantasmas'">
+  <meta name="twitter:description" content="O Microsoft Teams Meeting Pipeline no Hermes Agent revoluciona a governança corporativa: ingere eventos do Microsoft 365 via Graph Webhooks, prioriza transcrições com fallback para áudio e STT via ffmpeg, extrai planos de ação determinísticos e despacha atas sem nenhum bot intrusivo na chamada.">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/teams-meeting-pipeline-microsoft-graph.jpg">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <!-- Prism Syntax Theme -->
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #07070A; color: #E0E0E6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    ::selection { background: rgba(192, 0, 255, 0.35); color: #fff; }
+    .glass { background: rgba(17, 17, 24, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); }
+    .glass-card { background: rgba(14, 14, 20, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+    .glass-card:hover { border-color: rgba(0, 229, 255, 0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); }
+    .gradient-text { background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text-gold { background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gold { background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%); color: #07070A; font-weight: 700; transition: all 0.2s ease; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(223, 186, 107, 0.35); }
+    .hero-glow { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.16; pointer-events: none; }
+    .top-bar { background: rgba(7, 7, 10, 0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .on-air-badge:hover {
+      transform: scale(1.05);
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    
+    /* Article typography styling */
+    .prose-custom { font-size: 1.05rem; line-height: 1.8; color: #D1D5DB; }
+    .prose-custom p { margin-bottom: 1.5rem; }
+    .prose-custom h1 { font-size: 2.25rem; font-weight: 900; color: #fff; margin-top: 2.5rem; margin-bottom: 1.25rem; line-height: 1.2; }
+    .prose-custom h2 { font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; }
+    .prose-custom h3 { font-size: 1.25rem; font-weight: 700; color: #00E5FF; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose-custom ul, .prose-custom ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    .prose-custom ul { list-style-type: disc; }
+    .prose-custom ol { list-style-type: decimal; }
+    .prose-custom li { margin-bottom: 0.5rem; }
+    .prose-custom strong { color: #fff; font-weight: 700; }
+    .prose-custom a { color: #00E5FF; text-decoration: underline; text-underline-offset: 3px; }
+    .prose-custom a:hover { color: #F0D48A; }
+    .prose-custom blockquote { border-left: 4px solid #00E5FF; background: rgba(0, 229, 255, 0.05); padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 0.75rem 0.75rem 0; color: #E5E7EB; }
+    .prose-custom blockquote p { margin-bottom: 0; }
+    .prose-custom code:not(pre code) { background: rgba(255, 255, 255, 0.08); color: #00E5FF; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+    .prose-custom pre { background: #0A0A0F !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.25rem; margin: 1.75rem 0; overflow-x: auto; }
+    .prose-custom pre code { color: #E0E0E6; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; }
+    .prose-custom table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+    .prose-custom th { background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .prose-custom td { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .prose-custom tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    .prose-custom hr { border-color: rgba(255, 255, 255, 0.08); margin: 2.5rem 0; }
+  </style>
+
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Microsoft Teams Meeting Pipeline: Como Agentes de IA Ingerem Reuniões, Transcrevem Áudio e Criam Tarefas sem 'Bots Fantasmas'","description":"O Microsoft Teams Meeting Pipeline no Hermes Agent revoluciona a governança corporativa: ingere eventos do Microsoft 365 via Graph Webhooks, prioriza transcrições com fallback para áudio e STT via ffmpeg, extrai planos de ação determinísticos e despacha atas sem nenhum bot intrusivo na chamada.","image":"https://inteligenciaagentica.com.br/static/images/teams-meeting-pipeline-microsoft-graph.jpg","datePublished":"2026-11-08","dateModified":"2026-11-08","author":{"@type":"Person","name":"Jean Pierre Schramm","url":"https://linkedin.com/in/jeanpierreschramm"},"publisher":{"@type":"Organization","name":"Inteligência Agêntica","url":"https://inteligenciaagentica.com.br","logo":{"@type":"ImageObject","url":"https://inteligenciaagentica.com.br/static/logos.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://inteligenciaagentica.com.br/blog/teams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph"},"keywords":"Microsoft Teams Meeting Pipeline, Hermes Agent Teams, Microsoft Graph Webhooks, Transcrição de reuniões corporativas IA, Atas automáticas de reunião, Automação Microsoft 365, Extração de compromissos e tarefas, IA para reuniões corporativas sem bot"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://inteligenciaagentica.com.br"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://inteligenciaagentica.com.br/blog"},{"@type":"ListItem","position":3,"name":"Microsoft Teams Meeting Pipeline: Como Agentes de IA Ingerem Reuniões, Transcrevem Áudio e Criam Tarefas sem 'Bots Fantasmas'","item":"https://inteligenciaagentica.com.br/blog/teams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph"}]}]</script>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5JDK6W4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- TOP NAVBAR -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-11 sm:h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="/" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Início</a>
+
+        <!-- Dropdown Soluções -->
+        <div class="relative group">
+          <button type="button" class="text-sm font-semibold text-gray-300 group-hover:text-white transition-colors flex items-center gap-1.5 py-2 focus:outline-none cursor-pointer">
+            <span>Soluções</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-ciano group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+          
+          <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 absolute top-full left-0 w-80 pt-2 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="glass rounded-2xl p-3 border border-white/10 bg-obsidian-card/95 backdrop-blur-2xl shadow-2xl shadow-black/80 space-y-1">
+              <!-- Item 1: CineMaker -->
+              <a href="/cinemaker" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-magenta/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-magenta/15 border border-magenta/30 flex items-center justify-center text-magenta flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="video" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-magenta-300 transition-colors">CineMaker</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Máquina de criar vídeos longos com IA em 1 clique sem assinatura no Flow.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: MediaFlowMZ -->
+              <a href="/mediaflowmz" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ciano/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ciano/15 border border-ciano/30 flex items-center justify-center text-ciano flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="radio" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ciano transition-colors">MediaFlowMZ</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Lives & IA</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Sua live no TikTok Shop e vídeos com IA rodando no automático.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: Comunidade Inteligência Agêntica -->
+              <a href="/#oferta" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ouro/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ouro/15 border border-ouro/30 flex items-center justify-center text-ouro flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="crown" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ouro-light transition-colors">Comunidade Agêntica</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ciano/20 text-ciano border border-ciano/30">Ecossistema</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">4 encontros semanais ao vivo, códigos prontos e bunker de agentes 24/7.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Cases</a>
+        <a href="/blog" class="text-sm font-bold text-ciano border-b-2 border-ciano pb-0.5 transition-colors">Blog</a>
+        <a href="/#oferta" class="btn-gold px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide">
+          Acessar Comunidade
+        </a>
+      </div>
+
+      <!-- Mobile Actions (visible on mobile, hidden on md+) -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="/ao-vivo" class="on-air-badge text-[10px] py-1 px-2.5" title="Encontros ao Vivo">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <button id="mobileMenuBtn" type="button" class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl focus:outline-none transition-colors border border-white/10" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-6 h-6 block menu-open-icon"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden menu-close-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-obsidian-card/95 backdrop-blur-2xl px-5 py-6 space-y-4 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-2">
+        <a href="/" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="home" class="w-4 h-4 text-gray-400"></i>
+            <span>Início</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <!-- Bloco Soluções Mobile -->
+        <div class="rounded-xl bg-white/[0.02] border border-white/5 p-2">
+          <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-ciano"></i>
+            <span>Soluções & Produtos</span>
+          </div>
+          <div class="space-y-1 mt-1">
+            <a href="/cinemaker" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-magenta-300 hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="video" class="w-4 h-4 text-magenta"></i>
+                <span>CineMaker (Vídeos IA)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+            </a>
+            <a href="/mediaflowmz" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="radio" class="w-4 h-4 text-ciano"></i>
+                <span>MediaFlowMZ (Lives TikTok)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Auto</span>
+            </a>
+            <a href="/#oferta" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ouro transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="crown" class="w-4 h-4 text-ouro"></i>
+                <span>Comunidade Inteligência Agêntica</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ciano/20 text-ciano border border-ciano/30">Membros</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-red-400 hover:text-red-300 bg-red-950/30 border border-red-800/40 hover:bg-red-950/50 transition-colors">
+          <span class="flex items-center gap-3">
+            <span class="on-air-dot"></span>
+            <span>Encontros ao Vivo</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded">Toda Quinta</span>
+        </a>
+
+        <a href="/cases" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+            <span>Cases de Uso</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/blog" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-ciano bg-white/5 border border-ciano/20 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="newspaper" class="w-4 h-4 text-ciano"></i>
+            <span>Blog & Artigos</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-ciano"></i>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <a href="/#oferta" class="mobile-nav-link w-full btn-gold py-3.5 px-5 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-ouro/20">
+          <span>Acessar Comunidade</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN BODY -->
+  <main class="pt-20 flex-grow">
+    
+  <div class="relative py-10 overflow-hidden">
+    <div class="hero-glow bg-magenta/40 -top-40 right-0 w-[500px] h-[500px] absolute"></div>
+    <div class="hero-glow bg-ciano/30 top-1/2 -left-40 w-[500px] h-[500px] absolute"></div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Início</a>
+        <span>&rsaquo;</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span>&rsaquo;</span>
+        <span class="text-ciano truncate max-w-[200px] sm:max-w-none">Microsoft Teams Meeting Pipeline: Como Agentes de IA Ingerem Reuniões, Transcrevem Áudio e Criam Tarefas sem 'Bots Fantasmas'</span>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="mb-10 text-center sm:text-left">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <a href="/tags/agentes-de-ia" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Agentes de IA</a><a href="/tags/microsoft-teams" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Microsoft Teams</a><a href="/tags/microsoft-365" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Microsoft 365</a><a href="/tags/automacao-corporativa" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Automação Corporativa</a><a href="/tags/hermes-agent" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Hermes Agent</a><a href="/tags/produtividade" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Produtividade</a><a href="/tags/governanca" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Governança</a>
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+          Microsoft Teams Meeting Pipeline: Como Agentes de IA Ingerem Reuniões, Transcrevem Áudio e Criam Tarefas sem 'Bots Fantasmas'
+        </h1>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/10 text-xs text-gray-400">
+          <div class="flex items-center gap-3">
+            <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-10 h-10 rounded-full border border-white/10">
+            <div>
+              <p class="font-bold text-white text-sm">Jean Pierre Schramm</p>
+              <p class="text-[11px] text-gray-400">Fundador da JePierre & Especialista em Agentes de IA</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-11-08</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 12 min de leitura</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      
+      <div class="mb-12 rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
+        <img src="https://inteligenciaagentica.com.br/static/images/teams-meeting-pipeline-microsoft-graph.jpg" alt="Microsoft Teams Meeting Pipeline: Como Agentes de IA Ingerem Reuniões, Transcrevem Áudio e Criam Tarefas sem 'Bots Fantasmas'" class="w-full h-auto max-h-[460px] object-cover">
+      </div>
+      
+
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
+      
+      <details class="mb-8 glass rounded-xl border border-white/10 overflow-hidden group">
+        <summary class="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white flex items-center justify-between cursor-pointer select-none transition-colors">
+          <span class="flex items-center gap-2 text-ouro">
+            <i data-lucide="list" class="w-4 h-4 text-ouro"></i>
+            <span>Tópicos do Artigo (17)</span>
+          </span>
+          <span class="text-[11px] text-gray-500 font-normal flex items-center gap-1 group-open:rotate-180 transition-transform duration-200">
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </span>
+        </summary>
+        <div class="px-5 pb-5 pt-2 border-t border-white/5">
+          <ul class="space-y-2 text-xs sm:text-sm">
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#o-problema-real-o-buraco-negro-das-reunioes-e-o-fiasco-dos-bots-fantasmas" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> O Problema Real: O "Buraco Negro das Reuniões" e o Fiasco dos Bots Fantasmas
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#o-desastre-dos-bots-convidados-ghost-bots" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> O Desastre dos "Bots Convidados" (Ghost Bots)
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#comparativo-solucoes-convencionais-vs-microsoft-teams-meeting-pipeline" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Comparativo: Soluções Convencionais vs. Microsoft Teams Meeting Pipeline
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#arquitetura-do-pipeline-ingestao-inteligente-e-despacho-corporativo" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Arquitetura do Pipeline: Ingestão Inteligente e Despacho Corporativo
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#1-ingestao-sem-invasao-o-listener-msgraphwebhook" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 1. Ingestão sem Invasão: O Listener msgraph_webhook
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#2-a-estrategia-transcript-first-com-fallback-resiliente" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 2. A Estratégia "Transcript-First com Fallback Resiliente"
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#como-configurar-o-pipeline-no-seu-hermes-agent" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Como Configurar o Pipeline no seu Hermes Agent
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#passo-1-credenciais-do-aplicativo-no-microsoft-azure-app-registration" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Passo 1: Credenciais do Aplicativo no Microsoft Azure (App Registration)
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#passo-2-habilitacao-do-plugin-teamspipeline" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Passo 2: Habilitação do Plugin teams_pipeline
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#passo-3-validacao-da-infraestrutura-via-cli" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Passo 3: Validação da Infraestrutura via CLI
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#o-calcanhar-de-aquiles-das-apis-microsoft-o-limite-de-72-horas" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> O Calcanhar de Aquiles das APIs Microsoft: O Limite de 72 Horas
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#como-automatizar-a-renovacao-com-custo-zero-de-tokens-script-only-cron" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Como Automatizar a Renovação com Custo Zero de Tokens (Script-Only Cron)
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#o-formato-da-entrega-como-a-ata-executiva-e-estruturada" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> O Formato da Entrega: Como a Ata Executiva é Estruturada
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#1-decisoes-homologadas" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 🎯 1. Decisões Homologadas
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#2-matriz-de-responsabilidade-action-items" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> ⚡ 2. Matriz de Responsabilidade (Action Items)
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#3-pontos-de-atencao-and-bloqueios" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> ⚠️ 3. Pontos de Atenção & Bloqueios
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#conclusao-inteligencia-agentica-a-servico-da-operacao-real" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Conclusão: Inteligência Agêntica a Serviço da Operação Real
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </details>
+      
+
+      <!-- Main Article Content -->
+      <div class="prose-custom">
+        <blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Microsoft Teams Meeting Pipeline</strong> do Hermes Agent é uma esteira de automação corporativa que ingere eventos de reuniões diretamente do ecossistema Microsoft 365 através da API do Microsoft Graph. Diferente de softwares SaaS de transcrição comuns (como Otter.ai, Read.ai ou Fireflies) que forçam a entrada de um &quot;bot fantasma&quot; visível na sala de videoconferência — constrangendo participantes e gerando riscos de conformidade jurídica —, o Hermes Agent opera de forma invisível e soberana no nível de infraestrutura (backend). Ele detecta o término da chamada via webhooks (<code>msgraph_webhook</code>), adota uma estratégia inteligente de ingestão <em>transcript-first</em> (reaproveitando transcrições nativas do Teams ou baixando a gravação de áudio com processamento via <code>ffmpeg</code> + Speech-to-Text caso necessário), extrai decisões e itens de ação determinísticos (quem faz o quê até quando) e distribui automaticamente a ata consolidada em múltiplos canais: Microsoft Teams, Linear, Notion e sistemas ERP legados, com renovação automática de assinaturas contra o limite de 72 horas do Microsoft Graph.</p>
+</blockquote>
+<hr>
+<h2 id="o-problema-real-o-andquotburaco-negro-das-reunioesandquot-e-o-fiasco-dos-bots-fantasmas" class="scroll-mt-24 group flex items-center justify-between">O Problema Real: O &quot;Buraco Negro das Reuniões&quot; e o Fiasco dos Bots Fantasmas <a href="#o-problema-real-o-andquotburaco-negro-das-reunioesandquot-e-o-fiasco-dos-bots-fantasmas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para empresários, diretores e gestores seniores (especialmente na faixa de 40 a 55+ anos), a rotina executiva é implacável: são consumidas entre 15 e 30 horas por semana em reuniões de alinhamento com clientes, conselhos de administração, comitês de fornecedores e equipes de operação.</p>
+<p>Nesses encontros, dezenas de compromissos vitais são firmados verbalmente:</p>
+<ul>
+<li><em>&quot;Eu envio a proposta revisada com os 8% de desconto até quinta-feira às 14h&quot;;</em></li>
+<li><em>&quot;A equipe de engenharia precisa isolar a falha no gateway de pagamentos até amanhã de manhã&quot;;</em></li>
+<li><em>&quot;O financeiro deve validar a certidão negativa antes de assinar o aditivo contratual&quot;.</em></li>
+</ul>
+<p>O que acontece logo após o encerramento da chamada?<br><strong>Nada.</strong> As pessoas pulam imediatamente para a próxima reunião de vídeo. As notas rápidas tomadas em blocos de papel se perdem, as gravações de 1 hora no OneDrive nunca mais são assistidas por ninguém da equipe, e a responsabilidade dilui-se no vácuo operacional. Dias depois, durante cobranças em reuniões de acompanhamento, ninguém lembra quem assumiu a responsabilidade original.</p>
+<pre><code>       O FLUXO CONVENCIONAL FALHO DE REUNIÕES CORPORATIVAS
+       
+ ┌─────────────┐       ┌─────────────────┐       ┌─────────────────┐
+ │ Reunião no  │ ────► │ Acordos e Prazos│ ────► │   O <span class="token string">"BURACO     │
+ │ Teams (1h)  │       │ Verbais Soltos  │       │     NEGRO"</span>      │
+ └─────────────┘       └─────────────────┘       └────────┬────────┘
+                                                          │
+          Sem ata formal, sem cobrança, tarefas perdidas │
+                                                          ▼
+                                                 ┌─────────────────┐
+                                                 │ Cobrança Tardia │
+                                                 │ e Prejuízo Real │
+                                                 └─────────────────┘
+</code></pre><h3 id="o-desastre-dos-andquotbots-convidadosandquot-ghost-bots" class="scroll-mt-24 group flex items-center justify-between">O Desastre dos &quot;Bots Convidados&quot; (Ghost Bots) <a href="#o-desastre-dos-andquotbots-convidadosandquot-ghost-bots" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Na tentativa de estancar essa sangria de produtividade, muitas empresas começaram a testar ferramentas de terceiros baseadas em nuvem americana (Fireflies, Otter, Read.ai). Contudo, a experiência no dia a dia corporativo rapidamente se torna um pesadelo:</p>
+<ol>
+<li><strong>Constrangimento Institucional:</strong> Um perfil robótico entra na sala com nomes como <em>&quot;Otter AI Notetaker&quot;</em> ou <em>&quot;Fireflies.ai Cláudio&quot;</em>. Clientes estratégicos, advogados e executivos externos desconfiam imediatamente da espionagem algorítmica e sentem-se desconfortáveis para debater números confidenciais de margem ou estratégias contratuais;</li>
+<li><strong>Insegurança Jurídica e Risco LGPD:</strong> Os arquivos de áudio brutos e as discussões estratégicas são enviados para servidores de terceiros no exterior, violando acordos de confidencialidade (NDAs), governança de TI e regulamentos de proteção de dados;</li>
+<li><strong>Resumos Prolixos e Inúteis:</strong> Essas plataformas geram textos genéricos de 4 páginas em linguagem prolixa, mas não conseguem emitir uma tabela de responsabilidade direta conectada ao gerenciador de tarefas ou ao ERP da organização.</li>
+</ol>
+<p>O <strong>Hermes Agent</strong> elimina essa fricção ao adotar o <strong>Microsoft Teams Meeting Pipeline</strong>: uma arquitetura empresarial soberana em que o agente opera nos bastidores da sua própria infraestrutura em nuvem (VPS ou servidor corporativo).</p>
+<hr>
+<h2 id="comparativo-solucoes-convencionais-vs-microsoft-teams-meeting-pipeline" class="scroll-mt-24 group flex items-center justify-between">Comparativo: Soluções Convencionais vs. Microsoft Teams Meeting Pipeline <a href="#comparativo-solucoes-convencionais-vs-microsoft-teams-meeting-pipeline" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Critério de Avaliação</th>
+<th>Ferramentas de Prateleira (Otter / Read.ai)</th>
+<th>Bots Tradicionais de Chamada</th>
+<th>Hermes Teams Meeting Pipeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Presença na Sala</strong></td>
+<td>Convidado visível (&quot;Bot Fantasma&quot;)</td>
+<td>Entra como perfil de convidado</td>
+<td><strong>100% Invisível</strong> (Opera via backend Microsoft Graph)</td>
+</tr>
+<tr>
+<td><strong>Aceitação de Clientes</strong></td>
+<td>Ruim (gera desconfiança e atrito em NDAs)</td>
+<td>Ruim (exige autorização na sala)</td>
+<td><strong>Excelente</strong> (Zero impacto na experiência do cliente)</td>
+</tr>
+<tr>
+<td><strong>Ingestão dos Dados</strong></td>
+<td>Grava áudio do navegador em SaaS externo</td>
+<td>Grava áudio via bot de mídia SIP</td>
+<td><strong>Nativa:</strong> Transcrição oficial do Teams + Fallback STT</td>
+</tr>
+<tr>
+<td><strong>Privacidade &amp; LGPD</strong></td>
+<td>Dados transitam em servidores de terceiros</td>
+<td>Nuvem proprietária de fornecedor</td>
+<td><strong>Soberania Total:</strong> Processado na sua própria VPS/Bunker</td>
+</tr>
+<tr>
+<td><strong>Extração de Ações</strong></td>
+<td>Resumos em texto corrido genérico</td>
+<td>Transcrição bruta sem refinamento</td>
+<td><strong>Determinística:</strong> Dono, Prazo, Tarefa e Critério</td>
+</tr>
+<tr>
+<td><strong>Integração Downstream</strong></td>
+<td>E-mail ou exportação manual de PDF</td>
+<td>Webhook simples</td>
+<td><strong>Multi-Sink:</strong> Teams, Linear, Notion e ERP</td>
+</tr>
+<tr>
+<td><strong>Custo de Operação</strong></td>
+<td>Assinatura cara por usuário/mês ($20-$40/usuário)</td>
+<td>Planos fechados de telecom</td>
+<td><strong>Custo Zero de Licenciamento</strong> (Apenas tokens da VPS)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="arquitetura-do-pipeline-ingestao-inteligente-e-despacho-corporativo" class="scroll-mt-24 group flex items-center justify-between">Arquitetura do Pipeline: Ingestão Inteligente e Despacho Corporativo <a href="#arquitetura-do-pipeline-ingestao-inteligente-e-despacho-corporativo" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A esteira do Teams Meeting Pipeline foi desenhada para operar com eficiência militar. Em vez de ficar ouvindo o fluxo de áudio contínuo por horas (o que desperdiçaria recursos de computação e banda), o agente permanece em repouso absoluto até que a reunião termine.</p>
+<pre><code>                  ARQUITETURA TEAMS MEETING PIPELINE <span class="token punctuation">(</span>HERMES AGENT<span class="token punctuation">)</span>
+
+    ┌─────────────────────────────────────────────────────────────────┐
+    │                       MICROSOFT <span class="token number">365</span> TENANT                      │
+    │  <span class="token punctuation">[</span> Reunião Corporativa: communications/onlineMeetings <span class="token punctuation">]</span>          │
+    └────────────────────────────────┬────────────────────────────────┘
+                                     │ Evento de Término
+                                     ▼
+    ┌─────────────────────────────────────────────────────────────────┐
+    │           GATEWAY LISTENER <span class="token punctuation">(</span>msgraph_webhook :8646<span class="token punctuation">)</span>              │
+    │  - Validação de Client State <span class="token operator">&amp;</span> Assinatura Criptográfica          │
+    │  - Extração de Metadados: Meeting ID, Horário, Participantes    │
+    └────────────────────────────────┬────────────────────────────────┘
+                                     │
+                   ┌─────────────────┴─────────────────┐
+                   │                                   │
+                   ▼ <span class="token punctuation">(</span>Prioridade <span class="token number">1</span><span class="token punctuation">)</span>                    ▼ <span class="token punctuation">(</span>Fallback <span class="token number">2</span><span class="token punctuation">)</span>
+       ┌───────────────────────┐           ┌───────────────────────┐
+       │ Transcrição Nativa    │           │ Download da Gravação  │
+       │ Oficial Microsoft <span class="token number">365</span> │           │ Áudio/Vídeo + ffmpeg  │
+       │ <span class="token punctuation">(</span>Transcript-First<span class="token punctuation">)</span>    │           │ STT Local / Whisper   │
+       └───────────┬───────────┘           └───────────┬───────────┘
+                   │                                   │
+                   └─────────────────┬─────────────────┘
+                                     │ Texto Bruto Limpo
+                                     ▼
+    ┌─────────────────────────────────────────────────────────────────┐
+    │              MOTOR ANALÍTICO <span class="token punctuation">(</span>Hermes Core + Skills<span class="token punctuation">)</span>             │
+    │  - Triagem de Decisões Homologadas                             │
+    │  - meeting-action-items: Quem <span class="token punctuation">(</span>Owner<span class="token punctuation">)</span> / O Que / Até Quando      │
+    │  - document-to-action-items: Validação de Prazos e Riscos       │
+    └────────────────────────────────┬────────────────────────────────┘
+                                     │
+         ┌───────────────────────────┼───────────────────────────┐
+         ▼                           ▼                           ▼
+┌──────────────────┐       ┌──────────────────┐       ┌──────────────────┐
+│ Microsoft Teams  │       │  Linear / Jira   │       │ Notion / ERP DB  │
+│ Card no Canal da │       │ Abertura de      │       │ Registro Formal  │
+│ Reunião com Ata  │       │ Chamados Reais   │       │ da Governança    │
+└──────────────────┘       └──────────────────┘       └──────────────────┘
+</code></pre><h3 id="1-ingestao-sem-invasao-o-listener-msgraphwebhook" class="scroll-mt-24 group flex items-center justify-between">1. Ingestão sem Invasão: O Listener <code>msgraph_webhook</code> <a href="#1-ingestao-sem-invasao-o-listener-msgraphwebhook" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O ponto de entrada é um servidor leve integrado ao Hermes Gateway chamado <code>msgraph_webhook</code>, que roda por padrão na porta <code>8646</code>. </p>
+<p>O Azure Active Directory / Microsoft Entra ID envia uma notificação push via HTTPS quando o ciclo de vida da reunião é finalizado. O listener valida o token de estado compartilhado (<code>MSGRAPH_WEBHOOK_CLIENT_STATE</code>), certificando-se de que a mensagem partiu genuinamente do seu tenant corporativo da Microsoft.</p>
+<h3 id="2-a-estrategia-andquottranscript-first-com-fallback-resilienteandquot" class="scroll-mt-24 group flex items-center justify-between">2. A Estratégia &quot;Transcript-First com Fallback Resiliente&quot; <a href="#2-a-estrategia-andquottranscript-first-com-fallback-resilienteandquot" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Um dos maiores desafios de automação no mundo real é a heterogeneidade das salas:</p>
+<ul>
+<li>Em muitas reuniões, a transcrição automática com identificação de oradores (speaker diarization) do Microsoft Teams já vem ligada por padrão pelas políticas da empresa;</li>
+<li>Em outras ocasiões (ou quando convidados externos iniciam a chamada), a gravação de vídeo foi realizada, mas ninguém clicou no botão &quot;Transcrever&quot;.</li>
+</ul>
+<p>O Hermes Agent resolve essa ambiguidade com inteligência operacional:</p>
+<ol>
+<li><strong>Fase 1 (Transcript-First):</strong> O pipeline consulta a API do Microsoft Graph buscando os artefatos de texto da chamada. Se a transcrição vetorial existir, ele a consome imediatamente em milissegundos, com custo computacional mínimo;</li>
+<li><strong>Fase 2 (Fallback Resiliente de Gravação + STT):</strong> Se não houver transcrição textual, o pipeline não gera erro. Ele localiza a gravação mp4 da reunião no SharePoint/OneDrive associado, faz o download seguro via Graph API, extrai a trilha de áudio compactada via <code>ffmpeg</code> e aciona o motor de Speech-to-Text configurado (como Whisper ou a stack Omnivoice).</li>
+</ol>
+<p>Nenhuma reunião corporativa é perdida. O processo é 100% resiliente.</p>
+<hr>
+<h2 id="como-configurar-o-pipeline-no-seu-hermes-agent" class="scroll-mt-24 group flex items-center justify-between">Como Configurar o Pipeline no seu Hermes Agent <a href="#como-configurar-o-pipeline-no-seu-hermes-agent" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para colocar a esteira em produção em uma VPS Ubuntu ou servidor corporativo seguro, o procedimento segue passos claros e auditáveis.</p>
+<h3 id="passo-1-credenciais-do-aplicativo-no-microsoft-azure-app-registration" class="scroll-mt-24 group flex items-center justify-between">Passo 1: Credenciais do Aplicativo no Microsoft Azure (App Registration) <a href="#passo-1-credenciais-do-aplicativo-no-microsoft-azure-app-registration" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Crie um registro de aplicativo no portal do Microsoft Entra ID (antigo Azure AD) com permissões corporativas para reuniões (<code>OnlineMeetings.Read.All</code>, <code>OnlineMeetingTranscript.Read.All</code>). Em seguida, insira as credenciais no cofre seguro do seu agente em <code>~/.hermes/.env</code>:</p>
+<pre><code class="language-bash"><span class="token comment"># Credenciais do Microsoft Graph</span>
+<span class="token assign-left variable">MSGRAPH_TENANT_ID</span><span class="token operator">=</span><span class="token string">"72f988bf-86f1-41af-91ab-2d7cd011db47"</span>
+<span class="token assign-left variable">MSGRAPH_CLIENT_ID</span><span class="token operator">=</span><span class="token string">"5f48866c-1793-4a1d-8457-37bf7c832bb5"</span>
+<span class="token assign-left variable">MSGRAPH_CLIENT_SECRET</span><span class="token operator">=</span><span class="token string">"h8Q8Q~xxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span>
+
+<span class="token comment"># Configuração do Listener de Webhooks</span>
+<span class="token assign-left variable">MSGRAPH_WEBHOOK_ENABLED</span><span class="token operator">=</span>true
+<span class="token assign-left variable">MSGRAPH_WEBHOOK_PORT</span><span class="token operator">=</span><span class="token number">8646</span>
+<span class="token assign-left variable">MSGRAPH_WEBHOOK_CLIENT_STATE</span><span class="token operator">=</span><span class="token string">"hermes-secret-state-9823147-corp"</span>
+<span class="token assign-left variable">MSGRAPH_WEBHOOK_ACCEPTED_RESOURCES</span><span class="token operator">=</span><span class="token string">"communications/onlineMeetings"</span>
+</code></pre><h3 id="passo-2-habilitacao-do-plugin-teamspipeline" class="scroll-mt-24 group flex items-center justify-between">Passo 2: Habilitação do Plugin <code>teams_pipeline</code> <a href="#passo-2-habilitacao-do-plugin-teamspipeline" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O pipeline é empacotado como um componente nativo no catálogo de plugins do Hermes. Para ativá-lo via linha de comando:</p>
+<pre><code class="language-bash">hermes plugins <span class="token builtin class-name">enable</span> teams_pipeline
+</code></pre><p>Ou garanta que <code>teams_pipeline</code> esteja listado em <code>plugins.enabled</code> no seu arquivo <code>~/.hermes/config.yaml</code>:</p>
+<pre><code class="language-yaml"><span class="token key atrule">plugins</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enabled</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> teams_pipeline
+    <span class="token punctuation">-</span> disk<span class="token punctuation">-</span>cleanup
+</code></pre><h3 id="passo-3-validacao-da-infraestrutura-via-cli" class="scroll-mt-24 group flex items-center justify-between">Passo 3: Validação da Infraestrutura via CLI <a href="#passo-3-validacao-da-infraestrutura-via-cli" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Antes de ativar os fluxos automáticos, o Hermes oferece ferramentas de diagnóstico integradas para garantir que não existam portas bloqueadas ou falhas de autorização:</p>
+<pre><code class="language-bash"><span class="token comment"># 1. Validar configuração estrutural</span>
+hermes teams-pipeline validate
+
+<span class="token comment"># 2. Inspecionar a saúde das credenciais e tokens do Microsoft Graph</span>
+hermes teams-pipeline token-health
+
+<span class="token comment"># 3. Listar o histórico de reuniões ingeridas e jobs locais</span>
+hermes teams-pipeline list
+</code></pre><hr>
+<h2 id="o-calcanhar-de-aquiles-das-apis-microsoft-o-limite-de-72-horas" class="scroll-mt-24 group flex items-center justify-between">O Calcanhar de Aquiles das APIs Microsoft: O Limite de 72 Horas <a href="#o-calcanhar-de-aquiles-das-apis-microsoft-o-limite-de-72-horas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Muitos desenvolvedores e consultores inexperientes tentam criar integrações com o Microsoft Graph e veem suas automações falharem misteriosamente na segunda semana de operação.</p>
+<p>O motivo?<br><strong>A Microsoft impõe uma expiração máxima de 72 horas para qualquer assinatura de webhook (Graph Subscription).</strong><br>A Microsoft não renova essa assinatura por conta própria. Se um script ou rotina não enviar uma mensagem de renovação antes de vencer o prazo de 3 dias, a Microsoft simplesmente deleta o vínculo e o servidor para de receber notificações de reuniões.</p>
+<p>O Hermes Agent desenhou essa manutenção com perfeição técnica através do comando:</p>
+<pre><code class="language-bash">hermes teams-pipeline maintain-subscriptions
+</code></pre><h3 id="como-automatizar-a-renovacao-com-custo-zero-de-tokens-script-only-cron" class="scroll-mt-24 group flex items-center justify-between">Como Automatizar a Renovação com Custo Zero de Tokens (Script-Only Cron) <a href="#como-automatizar-a-renovacao-com-custo-zero-de-tokens-script-only-cron" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Você não precisa (e não deve) gastar tokens caros de LLM chamando um modelo de inteligência artificial a cada poucas horas só para renovar uma conexão de rede.</p>
+<p>O Hermes Agent possui suporte nativo a <strong>Cron Jobs no modo <code>--no-agent</code> (Script-Only)</strong>, que executam comandos de sistema sem chamar LLMs:</p>
+<pre><code class="language-bash"><span class="token comment"># 1. Cria o script de renovação no diretório seguro de scripts</span>
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> ~/.hermes/scripts
+<span class="token function">cat</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'EOF'<span class="token bash punctuation"> <span class="token operator">></span> ~/.hermes/scripts/maintain-teams-subscriptions.sh</span>
+#!/usr/bin/env bash
+exec hermes teams-pipeline maintain-subscriptions
+EOF</span>
+<span class="token function">chmod</span> +x ~/.hermes/scripts/maintain-teams-subscriptions.sh
+
+<span class="token comment"># 2. Registra o Cron Job nativo para rodar a cada 12 horas (margem de 6x contra o prazo de 72h)</span>
+hermes <span class="token function">cron</span> create <span class="token string">"0 */12 * * *"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--name</span> <span class="token string">"teams-pipeline-maintain-subscriptions"</span> <span class="token punctuation">\</span>
+  --no-agent <span class="token punctuation">\</span>
+  <span class="token parameter variable">--script</span> maintain-teams-subscriptions.sh <span class="token punctuation">\</span>
+  <span class="token parameter variable">--deliver</span> <span class="token builtin class-name">local</span>
+</code></pre><p>Dessa forma, o próprio motor do Hermes cuida da saúde dos webhooks duas vezes por dia em segundo plano, sem interrupção de serviço e consumindo zero tokens de IA.</p>
+<hr>
+<h2 id="o-formato-da-entrega-como-a-ata-executiva-e-estruturada" class="scroll-mt-24 group flex items-center justify-between">O Formato da Entrega: Como a Ata Executiva é Estruturada <a href="#o-formato-da-entrega-como-a-ata-executiva-e-estruturada" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando a reunião termina, o agente não envia um texto desordenado. Ele aplica a skill <code>meeting-action-items</code> para gerar uma saída limpa e diretamente acionável:</p>
+<pre><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 📋 Ata Executiva de Reunião — Alinhamento Operacional Q4</span>
+<span class="token blockquote punctuation">></span> <span class="token bold"><span class="token punctuation">**</span><span class="token content">Data:</span><span class="token punctuation">**</span></span> 08/11/2026 | <span class="token bold"><span class="token punctuation">**</span><span class="token content">Duração:</span><span class="token punctuation">**</span></span> 42 min | <span class="token bold"><span class="token punctuation">**</span><span class="token content">Participantes:</span><span class="token punctuation">**</span></span> Jean Schramm, Roberto Silva, Cláudia Mendes
+
+<span class="token title important"><span class="token punctuation">###</span> 🎯 1. Decisões Homologadas</span>
+<span class="token list punctuation">-</span> [x] Redução de 15% na verba de anúncios do canal Meta Ads para redirecionamento ao Google Performance Max a partir de 15/11;
+<span class="token list punctuation">-</span> [x] Aprovação do aditivo de contrato da fornecedora de servidores em nuvem com cláusula de suporte prioritário 24/7;
+<span class="token list punctuation">-</span> [x] O próximo comitê de diretoria foi antecipado para quarta-feira, 11/11, às 09h00.
+
+<span class="token hr punctuation">---</span>
+
+<span class="token title important"><span class="token punctuation">###</span> ⚡ 2. Matriz de Responsabilidade (Action Items)</span>
+<span class="token table"><span class="token table-header-row"><span class="token punctuation">|</span><span class="token table-header important"> Responsável (Owner) </span><span class="token punctuation">|</span><span class="token table-header important"> Tarefa / Entregável </span><span class="token punctuation">|</span><span class="token table-header important"> Prazo Limite </span><span class="token punctuation">|</span><span class="token table-header important"> Destino do Ticket </span><span class="token punctuation">|</span>
+</span><span class="token table-line"><span class="token punctuation">|</span><span class="token punctuation">---</span><span class="token punctuation">|</span><span class="token punctuation">---</span><span class="token punctuation">|</span><span class="token punctuation">---</span><span class="token punctuation">|</span><span class="token punctuation">---</span><span class="token punctuation">|</span>
+</span><span class="token table-data-rows"><span class="token punctuation">|</span><span class="token table-data"> <span class="token bold"><span class="token punctuation">**</span><span class="token content">Roberto Silva</span><span class="token punctuation">**</span></span> </span><span class="token punctuation">|</span><span class="token table-data"> Revisar planilha de orçamento Q4 e travar limites no ERP </span><span class="token punctuation">|</span><span class="token table-data"> 10/11 - 18h </span><span class="token punctuation">|</span><span class="token table-data"> Linear #ENG-412 </span><span class="token punctuation">|</span>
+<span class="token punctuation">|</span><span class="token table-data"> <span class="token bold"><span class="token punctuation">**</span><span class="token content">Cláudia Mendes</span><span class="token punctuation">**</span></span> </span><span class="token punctuation">|</span><span class="token table-data"> Coletar assinaturas digitais no aditivo contratual do fornecedor </span><span class="token punctuation">|</span><span class="token table-data"> 11/11 - 12h </span><span class="token punctuation">|</span><span class="token table-data"> Notion Jurídico </span><span class="token punctuation">|</span>
+<span class="token punctuation">|</span><span class="token table-data"> <span class="token bold"><span class="token punctuation">**</span><span class="token content">Jean Schramm</span><span class="token punctuation">**</span></span> </span><span class="token punctuation">|</span><span class="token table-data"> Homologar testes de contingência do Egress Proxy na VPS </span><span class="token punctuation">|</span><span class="token table-data"> 12/11 - 17h </span><span class="token punctuation">|</span><span class="token table-data"> Teams / Canal Infra </span><span class="token punctuation">|</span>
+</span></span>
+<span class="token hr punctuation">---</span>
+
+<span class="token title important"><span class="token punctuation">###</span> ⚠️ 3. Pontos de Atenção &amp; Bloqueios</span>
+<span class="token list punctuation">-</span> A equipe financeira alertou que o sistema de emissão de NF-e sofrerá manutenção no final de semana; nenhuma fatura deve ser fechada entre sexta e domingo.
+</code></pre><p>Essa ata é automaticamente postada no canal do Microsoft Teams onde a reunião ocorreu e cada item de ação vira um chamado formal no Linear ou Jira do responsável.</p>
+<hr>
+<h2 id="conclusao-inteligencia-agentica-a-servico-da-operacao-real" class="scroll-mt-24 group flex items-center justify-between">Conclusão: Inteligência Agêntica a Serviço da Operação Real <a href="#conclusao-inteligencia-agentica-a-servico-da-operacao-real" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Automatizar reuniões não é sobre colocar avatares com olhos esbugalhados na tela para fingir que a empresa é moderna. É sobre <strong>respeito ao tempo da diretoria, blindagem de responsabilidades e eliminação de retrabalho manual</strong>.</p>
+<p>Com o <strong>Microsoft Teams Meeting Pipeline</strong> no Hermes Agent:</p>
+<ul>
+<li>Nenhum cliente é constrangido com bots convidados na chamada;</li>
+<li>Os dados não vazam para nuvens estrangeiras desreguladas;</li>
+<li>Decisões viram tarefas no mesmo instante em que a chamada é encerrada;</li>
+<li>E a empresa opera com um secretário executivo de altíssimo nível trabalhando 24 horas por dia, 7 dias por semana, integrado ao padrão Microsoft 365.</li>
+</ul>
+<p>Quer dominar a instalação dessa e de dezenas de outras esteiras corporativas com agentes de IA em servidores reais?<br>Conheça a comunidade prática e o treinamento completo no ecossistema oficial:<br>👉 <strong><a href="https://inteligenciaagentica.com.br">https://inteligenciaagentica.com.br</a></strong></p>
+
+      </div>
+
+      <!-- Social Share -->
+      <div class="mt-12 py-6 border-y border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Compartilhar este artigo:</span>
+        <div class="flex items-center gap-2">
+          <a href="https://api.whatsapp.com/send?text=Microsoft%20Teams%20Meeting%20Pipeline%3A%20Como%20Agentes%20de%20IA%20Ingerem%20Reuni%C3%B5es%2C%20Transcrevem%20%C3%81udio%20e%20Criam%20Tarefas%20sem%20'Bots%20Fantasmas'%20-%20https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fteams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fteams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Microsoft%20Teams%20Meeting%20Pipeline%3A%20Como%20Agentes%20de%20IA%20Ingerem%20Reuni%C3%B5es%2C%20Transcrevem%20%C3%81udio%20e%20Criam%20Tarefas%20sem%20'Bots%20Fantasmas'&url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fteams-meeting-pipeline-transcricao-atas-automacao-microsoft-graph" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-white/5 text-gray-200 hover:bg-white/10 border border-white/10 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="twitter" class="w-4 h-4"></i> X / Twitter
+          </a>
+        </div>
+      </div>
+
+      <!-- Author Bio Box -->
+      <div class="mt-10 glass rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 border border-white/10">
+        <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-16 h-16 rounded-full border-2 border-ouro">
+        <div class="text-center sm:text-left">
+          <h4 class="text-base font-bold text-white mb-1">Escrito por Jean Pierre Schramm</h4>
+          <p class="text-xs text-gray-400 leading-relaxed mb-3">
+            Especialista em automações autônomas, arquitetura de VPS com Docker Swarm e ecossistemas agênticos com Hermes OS.
+          </p>
+          <div class="flex items-center justify-center sm:justify-start gap-3 text-xs text-ciano">
+            <a href="https://github.com/gigantsc" target="_blank" class="hover:underline">GitHub</a> &bull;
+            <a href="https://linkedin.com/in/jeanpierreschramm" target="_blank" class="hover:underline">LinkedIn</a> &bull;
+            <a href="https://x.com/jepierresolucoes" target="_blank" class="hover:underline">X</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Article Community Banner -->
+      <div class="mt-12 p-8 rounded-2xl glass border border-ouro/30 bg-gradient-to-r from-magenta/10 via-ciano/5 to-ouro/10 text-center">
+        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+          Comunidade Inteligência Agêntica
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Aprenda a aplicar tudo isso na prática</h3>
+        <p class="text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6">
+          Tenha acesso a 4 mentorias ao vivo por mês, biblioteca completa de skills e templates prontos para rodar no seu servidor.
+        </p>
+        <a href="/#oferta" class="btn-gold px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
+          Garantir Vaga na Comunidade <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Related Posts -->
+      
+      <div class="mt-16">
+        <h3 class="text-lg font-bold text-white mb-6">Artigos Relacionados</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+            <a href="/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Hermes Agent</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Guia Definitivo do Hermes Agent: As 30 Respostas Essenciais para Dominar seus Funcionários Digitais</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.</p>
+            </a>
+          
+            <a href="/blog/grounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Agentes de IA</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O ecossistema Hermes Agent estabelece um novo patamar de segurança corporativa com o pipeline de Grounded Citations: um livro-razão mecânico de fontes (ledger.json) e validação textual estrita (verbatim matching) que impedem que agentes de IA inventem dados, datas ou números em relatórios executivos e auditorias de mercado.</p>
+            </a>
+          
+        </div>
+      </div>
+      
+
+    </article>
+  </div>
+  
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/mediaflowmz" class="text-ciano font-semibold hover:text-white transition-colors">⚡ MediaFlowMZ (Lives TikTok)</a></li>
+            <li><a href="/cinemaker" class="text-magenta-300 hover:text-white transition-colors">🎬 CineMaker (Vídeos IA)</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <div class="flex items-center gap-3 text-[11px] text-gray-500">
+          <button type="button" class="cookie-consent-banner-open hover:text-ciano transition-colors bg-transparent border-0 p-0 text-inherit cursor-pointer">Preferências de Cookies</button>
+          <span>&bull;</span>
+          <span class="text-[10px]">Ecossistema Hermes OS &bull; Powered by Nous Research</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Mobile Menu Controller
+    (() => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!mobileBtn || !mobileMenu) return;
+
+      const openIcon = mobileBtn.querySelector('.menu-open-icon');
+      const closeIcon = mobileBtn.querySelector('.menu-close-icon');
+
+      function toggleMenu(forceOpen) {
+        const isCurrentlyOpen = !mobileMenu.classList.contains('hidden');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isCurrentlyOpen;
+
+        if (shouldOpen) {
+          mobileMenu.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+          if (openIcon) openIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+    })();
+
+    // DataLayer CTA Tracking
+    window.dataLayer = window.dataLayer || [];
+    document.querySelectorAll('a[href*="#oferta"], a[href="/#oferta"]').forEach(el => {
+      el.addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'cta_click',
+          event_category: 'CTA',
+          event_action: 'Click Offer Anchor',
+          event_label: el.textContent.trim().substring(0, 50) || 'CTA Oferta'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
