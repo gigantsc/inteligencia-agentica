@@ -19,6 +19,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Multiplexing Gateway: Como Rodar Toda a Sua Equipe de Agentes de IA em Uma Única VPS com Isolamento Total de Dados](https://inteligenciaagentica.com.br/blog/multiplexing-gateway-uma-unica-vps-para-toda-a-equipe-de-agentes-ia)
+- **Data de Publicação:** 2026-11-11
+- **Tags:** Agentes de IA, VPS, Infraestrutura, Hermes Agent, Segurança, Automação Corporativa
+- **Resumo:** Descubra como o Multiplexing Gateway do Hermes Agent permite operar múltiplos agentes departamentais (Financeiro, Comercial, Jurídico e SAC) em um único processo de servidor, reduzindo custos de VPS e blindando segredos corporativos sem vazamentos.
+- **URL:** https://inteligenciaagentica.com.br/blog/multiplexing-gateway-uma-unica-vps-para-toda-a-equipe-de-agentes-ia
+
 ### [Grounded Citations e Fact-Checking Auditável: Como Agentes de IA Eliminam Alucinações em Decisões Empresariais com Provas Literais](https://inteligenciaagentica.com.br/blog/grounded-citations-fact-checking-auditoria-anti-alucinacao-agentes-ia)
 - **Data de Publicação:** 2026-11-10
 - **Tags:** Agentes de IA, Hermes Agent, Segurança Corporativa, Governança de IA, Auditoria, Anti-Alucinação, Negócios
