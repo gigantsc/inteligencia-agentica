@@ -19,6 +19,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Curator: Como Prevenir o Skill Bloat e Governar Habilidades de IA em Empresas com Higienização Autônoma](https://inteligenciaagentica.com.br/blog/curator-governanca-habilidades-prevencao-skill-bloat-agentes-ia)
+- **Data de Publicação:** 2026-11-12
+- **Tags:** Agentes de IA, Governança, Hermes Agent, Automação, Engenharia de Software, Redução de Custos
+- **Resumo:** Entenda como o Curator do Hermes Agent atua como um gerente invisível de qualidade, realizando auditoria de telemetria, ciclo de vida determinístico (active, stale e archived), consolidação semântica e rollback de segurança para impedir a dívida técnica agêntica em empresas.
+- **URL:** https://inteligenciaagentica.com.br/blog/curator-governanca-habilidades-prevencao-skill-bloat-agentes-ia
+
 ### [Multiplexing Gateway: Como Rodar Toda a Sua Equipe de Agentes de IA em Uma Única VPS com Isolamento Total de Dados](https://inteligenciaagentica.com.br/blog/multiplexing-gateway-uma-unica-vps-para-toda-a-equipe-de-agentes-ia)
 - **Data de Publicação:** 2026-11-11
 - **Tags:** Agentes de IA, VPS, Infraestrutura, Hermes Agent, Segurança, Automação Corporativa

@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <!-- Google Consent Mode V2 Default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'granted',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', false);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M5JDK6W4');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18FQCREKV5"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-18FQCREKV5');
+  </script>
+
+
+  <!-- Cookie Consent Banner & Mode V2 Controller -->
+  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <script>
+    window.cookieconsentConfig = {
+      gtmId: 'GTM-M5JDK6W4',
+      autoLoadGtm: false
+    };
+  </script>
+  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curator: Como Prevenir o Skill Bloat e Governar Habilidades de IA em Empresas com Higienização Autônoma | Inteligência Agêntica</title>
+  <meta name="description" content="Entenda como o Curator do Hermes Agent atua como um gerente invisível de qualidade, realizando auditoria de telemetria, ciclo de vida determinístico (active, stale e archived), consolidação semântica e rollback de segurança para impedir a dívida técnica agêntica em empresas.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/blog/curator-governanca-habilidades-prevencao-skill-bloat-agentes-ia">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/blog/curator-governanca-habilidades-prevencao-skill-bloat-agentes-ia">
+  <meta property="og:title" content="Curator: Como Prevenir o Skill Bloat e Governar Habilidades de IA em Empresas com Higienização Autônoma">
+  <meta property="og:description" content="Entenda como o Curator do Hermes Agent atua como um gerente invisível de qualidade, realizando auditoria de telemetria, ciclo de vida determinístico (active, stale e archived), consolidação semântica e rollback de segurança para impedir a dívida técnica agêntica em empresas.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/curator-governanca-habilidades-hermes.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://inteligenciaagentica.com.br/blog/curator-governanca-habilidades-prevencao-skill-bloat-agentes-ia">
+  <meta name="twitter:title" content="Curator: Como Prevenir o Skill Bloat e Governar Habilidades de IA em Empresas com Higienização Autônoma">
+  <meta name="twitter:description" content="Entenda como o Curator do Hermes Agent atua como um gerente invisível de qualidade, realizando auditoria de telemetria, ciclo de vida determinístico (active, stale e archived), consolidação semântica e rollback de segurança para impedir a dívida técnica agêntica em empresas.">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/curator-governanca-habilidades-hermes.jpg">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <!-- Prism Syntax Theme -->
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #07070A; color: #E0E0E6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    ::selection { background: rgba(192, 0, 255, 0.35); color: #fff; }
+    .glass { background: rgba(17, 17, 24, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); }
+    .glass-card { background: rgba(14, 14, 20, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+    .glass-card:hover { border-color: rgba(0, 229, 255, 0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); }
+    .gradient-text { background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text-gold { background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gold { background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%); color: #07070A; font-weight: 700; transition: all 0.2s ease; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(223, 186, 107, 0.35); }
+    .hero-glow { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.16; pointer-events: none; }
+    .top-bar { background: rgba(7, 7, 10, 0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .on-air-badge:hover {
+      transform: scale(1.05);
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    
+    /* Article typography styling */
+    .prose-custom { font-size: 1.05rem; line-height: 1.8; color: #D1D5DB; }
+    .prose-custom p { margin-bottom: 1.5rem; }
+    .prose-custom h1 { font-size: 2.25rem; font-weight: 900; color: #fff; margin-top: 2.5rem; margin-bottom: 1.25rem; line-height: 1.2; }
+    .prose-custom h2 { font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; }
+    .prose-custom h3 { font-size: 1.25rem; font-weight: 700; color: #00E5FF; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose-custom ul, .prose-custom ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    .prose-custom ul { list-style-type: disc; }
+    .prose-custom ol { list-style-type: decimal; }
+    .prose-custom li { margin-bottom: 0.5rem; }
+    .prose-custom strong { color: #fff; font-weight: 700; }
+    .prose-custom a { color: #00E5FF; text-decoration: underline; text-underline-offset: 3px; }
+    .prose-custom a:hover { color: #F0D48A; }
+    .prose-custom blockquote { border-left: 4px solid #00E5FF; background: rgba(0, 229, 255, 0.05); padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 0.75rem 0.75rem 0; color: #E5E7EB; }
+    .prose-custom blockquote p { margin-bottom: 0; }
+    .prose-custom code:not(pre code) { background: rgba(255, 255, 255, 0.08); color: #00E5FF; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+    .prose-custom pre { background: #0A0A0F !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.25rem; margin: 1.75rem 0; overflow-x: auto; }
+    .prose-custom pre code { color: #E0E0E6; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; }
+    .prose-custom table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+    .prose-custom th { background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .prose-custom td { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .prose-custom tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    .prose-custom hr { border-color: rgba(255, 255, 255, 0.08); margin: 2.5rem 0; }
+  </style>
+
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Curator: Como Prevenir o Skill Bloat e Governar Habilidades de IA em Empresas com Higienização Autônoma","description":"Entenda como o Curator do Hermes Agent atua como um gerente invisível de qualidade, realizando auditoria de telemetria, ciclo de vida determinístico (active, stale e archived), consolidação semântica e rollback de segurança para impedir a dívida técnica agêntica em empresas.","image":"https://inteligenciaagentica.com.br/static/images/curator-governanca-habilidades-hermes.jpg","datePublished":"2026-11-12","dateModified":"2026-11-12","author":{"@type":"Person","name":"Jean Pierre Schramm","url":"https://linkedin.com/in/jeanpierreschramm"},"publisher":{"@type":"Organization","name":"Inteligência Agêntica","url":"https://inteligenciaagentica.com.br","logo":{"@type":"ImageObject","url":"https://inteligenciaagentica.com.br/static/logos.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://inteligenciaagentica.com.br/blog/curator-governanca-habilidades-prevencao-skill-bloat-agentes-ia"},"keywords":"curator hermes agent, skill bloat, governança de agentes ia, manutenção de habilidades ia, auto-aperfeiçoamento de agentes, automação empresarial"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://inteligenciaagentica.com.br"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://inteligenciaagentica.com.br/blog"},{"@type":"ListItem","position":3,"name":"Curator: Como Prevenir o Skill Bloat e Governar Habilidades de IA em Empresas com Higienização Autônoma","item":"https://inteligenciaagentica.com.br/blog/curator-governanca-habilidades-prevencao-skill-bloat-agentes-ia"}]}]</script>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5JDK6W4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- TOP NAVBAR -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-11 sm:h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="/" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Início</a>
+
+        <!-- Dropdown Soluções -->
+        <div class="relative group">
+          <button type="button" class="text-sm font-semibold text-gray-300 group-hover:text-white transition-colors flex items-center gap-1.5 py-2 focus:outline-none cursor-pointer">
+            <span>Soluções</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-ciano group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+          
+          <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 absolute top-full left-0 w-80 pt-2 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="glass rounded-2xl p-3 border border-white/10 bg-obsidian-card/95 backdrop-blur-2xl shadow-2xl shadow-black/80 space-y-1">
+              <!-- Item 1: CineMaker -->
+              <a href="/cinemaker" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-magenta/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-magenta/15 border border-magenta/30 flex items-center justify-center text-magenta flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="video" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-magenta-300 transition-colors">CineMaker</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Máquina de criar vídeos longos com IA em 1 clique sem assinatura no Flow.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: MediaFlowMZ -->
+              <a href="/mediaflowmz" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ciano/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ciano/15 border border-ciano/30 flex items-center justify-center text-ciano flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="radio" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ciano transition-colors">MediaFlowMZ</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Lives & IA</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Sua live no TikTok Shop e vídeos com IA rodando no automático.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: Comunidade Inteligência Agêntica -->
+              <a href="/#oferta" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ouro/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ouro/15 border border-ouro/30 flex items-center justify-center text-ouro flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="crown" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ouro-light transition-colors">Comunidade Agêntica</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ciano/20 text-ciano border border-ciano/30">Ecossistema</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">4 encontros semanais ao vivo, códigos prontos e bunker de agentes 24/7.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Cases</a>
+        <a href="/blog" class="text-sm font-bold text-ciano border-b-2 border-ciano pb-0.5 transition-colors">Blog</a>
+        <a href="/#oferta" class="btn-gold px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide">
+          Acessar Comunidade
+        </a>
+      </div>
+
+      <!-- Mobile Actions (visible on mobile, hidden on md+) -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="/ao-vivo" class="on-air-badge text-[10px] py-1 px-2.5" title="Encontros ao Vivo">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <button id="mobileMenuBtn" type="button" class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl focus:outline-none transition-colors border border-white/10" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-6 h-6 block menu-open-icon"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden menu-close-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-obsidian-card/95 backdrop-blur-2xl px-5 py-6 space-y-4 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-2">
+        <a href="/" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="home" class="w-4 h-4 text-gray-400"></i>
+            <span>Início</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <!-- Bloco Soluções Mobile -->
+        <div class="rounded-xl bg-white/[0.02] border border-white/5 p-2">
+          <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-ciano"></i>
+            <span>Soluções & Produtos</span>
+          </div>
+          <div class="space-y-1 mt-1">
+            <a href="/cinemaker" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-magenta-300 hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="video" class="w-4 h-4 text-magenta"></i>
+                <span>CineMaker (Vídeos IA)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+            </a>
+            <a href="/mediaflowmz" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="radio" class="w-4 h-4 text-ciano"></i>
+                <span>MediaFlowMZ (Lives TikTok)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Auto</span>
+            </a>
+            <a href="/#oferta" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ouro transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="crown" class="w-4 h-4 text-ouro"></i>
+                <span>Comunidade Inteligência Agêntica</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ciano/20 text-ciano border border-ciano/30">Membros</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-red-400 hover:text-red-300 bg-red-950/30 border border-red-800/40 hover:bg-red-950/50 transition-colors">
+          <span class="flex items-center gap-3">
+            <span class="on-air-dot"></span>
+            <span>Encontros ao Vivo</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded">Toda Quinta</span>
+        </a>
+
+        <a href="/cases" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+            <span>Cases de Uso</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/blog" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-ciano bg-white/5 border border-ciano/20 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="newspaper" class="w-4 h-4 text-ciano"></i>
+            <span>Blog & Artigos</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-ciano"></i>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <a href="/#oferta" class="mobile-nav-link w-full btn-gold py-3.5 px-5 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-ouro/20">
+          <span>Acessar Comunidade</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN BODY -->
+  <main class="pt-20 flex-grow">
+    
+  <div class="relative py-10 overflow-hidden">
+    <div class="hero-glow bg-magenta/40 -top-40 right-0 w-[500px] h-[500px] absolute"></div>
+    <div class="hero-glow bg-ciano/30 top-1/2 -left-40 w-[500px] h-[500px] absolute"></div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Início</a>
+        <span>&rsaquo;</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span>&rsaquo;</span>
+        <span class="text-ciano truncate max-w-[200px] sm:max-w-none">Curator: Como Prevenir o Skill Bloat e Governar Habilidades de IA em Empresas com Higienização Autônoma</span>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="mb-10 text-center sm:text-left">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <a href="/tags/agentes-de-ia" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Agentes de IA</a><a href="/tags/governanca" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Governança</a><a href="/tags/hermes-agent" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Hermes Agent</a><a href="/tags/automacao" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Automação</a><a href="/tags/engenharia-de-software" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Engenharia de Software</a><a href="/tags/reducao-de-custos" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Redução de Custos</a>
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+          Curator: Como Prevenir o Skill Bloat e Governar Habilidades de IA em Empresas com Higienização Autônoma
+        </h1>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/10 text-xs text-gray-400">
+          <div class="flex items-center gap-3">
+            <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-10 h-10 rounded-full border border-white/10">
+            <div>
+              <p class="font-bold text-white text-sm">Jean Pierre Schramm</p>
+              <p class="text-[11px] text-gray-400">Fundador da JePierre & Especialista em Agentes de IA</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-11-12</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 15 min de leitura</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      
+      <div class="mb-12 rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
+        <img src="https://inteligenciaagentica.com.br/static/images/curator-governanca-habilidades-hermes.jpg" alt="Curator: Como Prevenir o Skill Bloat e Governar Habilidades de IA em Empresas com Higienização Autônoma" class="w-full h-auto max-h-[460px] object-cover">
+      </div>
+      
+
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
+      
+      <details class="mb-8 glass rounded-xl border border-white/10 overflow-hidden group">
+        <summary class="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white flex items-center justify-between cursor-pointer select-none transition-colors">
+          <span class="flex items-center gap-2 text-ouro">
+            <i data-lucide="list" class="w-4 h-4 text-ouro"></i>
+            <span>Tópicos do Artigo (23)</span>
+          </span>
+          <span class="text-[11px] text-gray-500 font-normal flex items-center gap-1 group-open:rotate-180 transition-transform duration-200">
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </span>
+        </summary>
+        <div class="px-5 pb-5 pt-2 border-t border-white/5">
+          <ul class="space-y-2 text-xs sm:text-sm">
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#a-armadilha-do-sucesso-agentico-o-que-acontece-quando-a-ia-aprende-rapido-demais" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> A Armadilha do Sucesso Agêntico: O Que Acontece Quando a IA Aprende Rápido Demais?
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#comparativo-biblioteca-desgovernada-vs-governanca-autonoma-com-curator" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Comparativo: Biblioteca Desgovernada vs. Governança Autônoma com Curator
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#como-o-curator-opera-por-baixo-do-capo-a-arquitetura-de-dois-estagios" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Como o Curator Opera por Baixo do Capô: A Arquitetura de Dois Estágios
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#os-3-mecanismos-de-blindagem-empresarial-do-curator" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Os 3 Mecanismos de Blindagem Empresarial do Curator
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#1-imunidade-absoluta-a-cron-jobs-cron-immunity" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 1. Imunidade Absoluta a Cron Jobs (*Cron Immunity*)
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#2-piso-de-carencia-inicial-grace-floor" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 2. Piso de Carência Inicial (*Grace Floor*)
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#3-travamento-corporativo-inviolavel-corporate-pinning" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 3. Travamento Corporativo Inviolável (*Corporate Pinning*)
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#telemetria-de-uso-como-o-hermes-monitora-o-valor-real-de-cada-habilidade" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Telemetria de Uso: Como o Hermes Monitora o Valor Real de Cada Habilidade
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#consolidacao-inteligente-por-llm-como-fundir-duplicatas-em-habilidades-guarda-chuva-umbrellas" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Consolidação Inteligente por LLM: Como Fundir Duplicatas em Habilidades Guarda-Chuva (*Umbrellas*)
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#o-cinto-de-seguranca-snapshots-automaticos-e-rollback-instantaneo" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> O Cinto de Segurança: Snapshots Automáticos e Rollback Instantâneo
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#caso-real-de-aplicacao-como-uma-distribuidora-com-80-fornecedores-evitou-o-colapso-da-sua-ia" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Caso Real de Aplicação: Como Uma Distribuidora com 80+ Fornecedores Evitou o Colapso da Sua IA
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#o-cenario-inicial" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> O Cenário Inicial
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#o-problema-do-skill-bloat" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> O Problema do Skill Bloat
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#a-intervencao-com-hermes-curator" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> A Intervenção com Hermes Curator
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#o-resultado-financeiro-e-operacional" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> O Resultado Financeiro e Operacional
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#guia-pratico-do-gestor-comandos-essenciais-do-hermes-curator" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Guia Prático do Gestor: Comandos Essenciais do hermes curator
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#1-diagnosticar-a-saude-da-biblioteca" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 1. Diagnosticar a Saúde da Biblioteca
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#2-simular-a-limpeza-sem-riscos-dry-run" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 2. Simular a Limpeza sem Riscos (*Dry-Run*)
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#3-travar-regras-de-negocio-criticas-pin" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 3. Travar Regras de Negócio Críticas (*Pin*)
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#4-forcar-uma-rodada-de-consolidacao-semantica" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 4. Forçar uma Rodada de Consolidação Semântica
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#5-recuperar-uma-habilidade-arquivada" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 5. Recuperar uma Habilidade Arquivada
+                </a>
+              </li>
+            
+              <li class="ml-4 text-gray-400">
+                <a href="#6-desfazer-instantaneamente-uma-curadoria-indesejada" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> 6. Desfazer Instantaneamente uma Curadoria Indesejada
+                </a>
+              </li>
+            
+              <li class="font-semibold text-gray-200">
+                <a href="#conclusao-inteligencia-agentica-madura-exige-governanca-continua" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
+                  <span class="text-ciano/60">&rsaquo;</span> Conclusão: Inteligência Agêntica Madura Exige Governança Contínua
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </details>
+      
+
+      <!-- Main Article Content -->
+      <div class="prose-custom">
+        <blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Curator</strong> do <strong>Hermes Agent (Nous Research)</strong> é o subsistema nativo de governança, auditoria e higienização contínua de habilidades (<em>skills</em>) criadas pelo próprio agente de IA em ambientes de produção. Enquanto agentes autônomos convencionais acumulam &quot;dívida técnica agêntica&quot; (<em>Skill Bloat</em>) — gerando centenas de instruções duplicadas, conflitantes e obsoletas que poluem o catálogo e encarecem o consumo de tokens —, o Curator opera silenciosamente em períodos de ociosidade (<code>min_idle_hours: 2</code>). Ele aplica um ciclo de vida determinístico de três estados baseados em telemetria real de uso (<code>active</code> → <code>stale</code> aos 14 dias → <code>archived</code> aos 30 dias em <code>~/.hermes/skills/.archive/</code>), oferece imunidade automática para rotinas de Cron Jobs, aplica carência inicial (<em>grace floor</em>) para novas rotinas e executa consolidação semântica de procedimentos via modelos auxiliares, tudo resguardado por <em>snapshots</em> automáticos em <code>tar.gz</code> e rollback instantâneo (<code>hermes curator rollback</code>).</p>
+</blockquote>
+<hr>
+<h2 id="a-armadilha-do-sucesso-agentico-o-que-acontece-quando-a-ia-aprende-rapido-demais" class="scroll-mt-24 group flex items-center justify-between">A Armadilha do Sucesso Agêntico: O Que Acontece Quando a IA Aprende Rápido Demais? <a href="#a-armadilha-do-sucesso-agentico-o-que-acontece-quando-a-ia-aprende-rapido-demais" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando empresários e diretores de tecnologia maduros (na faixa dos 40 aos 55 anos) descobrem a capacidade de auto-aperfeiçoamento do Hermes Agent — onde o agente resolve um problema novo em tempo de execução e codifica a solução definitiva como uma habilidade persistente via <code>skill_manage</code> —, o entusiasmo inicial é imediato:</p>
+<ul>
+<li><em>&quot;Finalmente temos um colaborador digital que não comete o mesmo erro duas vezes.&quot;</em></li>
+<li><em>&quot;Toda exceção de conciliação bancária ou extração de nota fiscal vira um procedimento padrão corporativo documentado.&quot;</em></li>
+</ul>
+<p>No entanto, em operações corporativas reais, o entusiasmo inicial costuma esbarrar em uma barreira invisível após 90 a 180 dias de execução contínua: o fenômeno da <strong>Dívida Técnica Agêntica</strong>, amplamente conhecido nos laboratórios de pesquisa como <strong>Skill Bloat</strong>.</p>
+<p>Imagine um agente alocado no setor de suprimentos de uma empresa. Ao lidar com variações pontuais nos portais de 40 fornecedores diferentes, o agente começa a gerar dezenas de pequenas habilidades isoladas:</p>
+<ol>
+<li><code>extrair-tabela-fornecedor-a-v1</code></li>
+<li><code>extrair-tabela-fornecedor-a-novo-layout</code></li>
+<li><code>contornar-timeout-portal-compras-beta</code></li>
+<li><code>procedimento-temporario-feriado-novembro</code></li>
+<li><code>ajuste-parse-pdf-danfe-versao-antiga</code></li>
+</ol>
+<p>Ao final de quatro meses, o diretório <code>~/.hermes/skills/</code> passa a abrigar mais de 120 arquivos de habilidades. Quando uma nova mensagem entra no sistema, o catálogo completo precisa ser lido ou indexado. O resultado operacional é desastroso:</p>
+<ul>
+<li><strong>Explosão no Custo de Tokens:</strong> O prompt do sistema infla com resumos de centenas de habilidades que não são usadas há meses, encarecendo cada interação em 40% a 70%;</li>
+<li><strong>Alucinações por Conflito Semântico:</strong> Duas habilidades com títulos ou regras parecidas disputam a atenção do modelo, levando o agente a seguir procedimentos de exceção superados;</li>
+<li><strong>Lentidão Operacional:</strong> O tempo de raciocínio (<em>time-to-first-token</em>) cresce à medida que o modelo precisa filtrar regras irrelevantes;</li>
+<li><strong>Paralisia por Medo de Limpeza:</strong> O gestor de TI não tem coragem de apagar arquivos manualmente pelo terminal com medo de quebrar um robô que roda silenciosamente de madrugada.</li>
+</ul>
+<p>No software corporativo tradicional, as empresas contratam arquitetos e <em>tech leads</em> seniores para conduzir refatorações periódicas. Mas quem refatora a biblioteca de habilidades de uma inteligência artificial autônoma?</p>
+<p>No ecossistema do <strong>Hermes Agent</strong>, a resposta de engenharia definitiva é o <strong>Curator (<code>hermes curator</code>)</strong>.</p>
+<hr>
+<h2 id="comparativo-biblioteca-desgovernada-vs-governanca-autonoma-com-curator" class="scroll-mt-24 group flex items-center justify-between">Comparativo: Biblioteca Desgovernada vs. Governança Autônoma com Curator <a href="#comparativo-biblioteca-desgovernada-vs-governanca-autonoma-com-curator" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para compreender a diferença entre gerenciar habilidades manualmente e adotar uma esteira de curadoria contínua, observe a tabela comparativa:</p>
+<table>
+<thead>
+<tr>
+<th>Dimensão Operacional</th>
+<th>Gestão Tradicional / Sem Governança</th>
+<th>Governança Contínua com Hermes Curator</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Controle de Ciclo de Vida</strong></td>
+<td>Manual (acumula arquivos indefinidamente até o colapso)</td>
+<td><strong>Determinístico e Automático</strong> (<code>active</code> → <code>stale</code> → <code>archived</code>)</td>
+</tr>
+<tr>
+<td><strong>Gatilho de Execução</strong></td>
+<td>Depende de lembrete humano ou intervenção de emergência</td>
+<td><strong>Sensor de Ociosidade</strong> (<code>interval_hours: 168</code>, <code>min_idle_hours: 2</code>)</td>
+</tr>
+<tr>
+<td><strong>Risco de Perda de Dados</strong></td>
+<td>Alto (comandos <code>rm -rf</code> manuais acidentalmente apagam rotinas)</td>
+<td><strong>Zero Deleção</strong> (arquivamento reversível em <code>~/.hermes/skills/.archive/</code>)</td>
+</tr>
+<tr>
+<td><strong>Proteção de Automações 24/7</strong></td>
+<td>Inexistente (limpeza cega quebra rotinas noturnas)</td>
+<td><strong>Cron Immunity</strong> (habilidades em jobs ativos/pausados nunca são arquivadas)</td>
+</tr>
+<tr>
+<td><strong>Carência para Novas Rotinas</strong></td>
+<td>Nenhuma (regras recém-criadas sem uso imediato são descartadas)</td>
+<td><strong>Grace Floor</strong> (carência mínima de 14 dias para habilidades com <code>use_count == 0</code>)</td>
+</tr>
+<tr>
+<td><strong>Refatoração Semântica</strong></td>
+<td>Nenhuma ou exige semanas de trabalho de engenheiro de IA</td>
+<td><strong>LLM Consolidation Pass</strong> (agrupa duplicatas em habilidades guarda-chuva)</td>
+</tr>
+<tr>
+<td><strong>Auditoria e Rastreabilidade</strong></td>
+<td>Histórico opaco no terminal</td>
+<td><strong>Ledger de Auditoria</strong> e sidecar estruturado <code>.usage.json</code></td>
+</tr>
+<tr>
+<td><strong>Segurança e Contingência</strong></td>
+<td>Sem backup antes de edições</td>
+<td><strong>Snapshots <code>tar.gz</code> automáticos</strong> com rollback granular em 1 clique</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="como-o-curator-opera-por-baixo-do-capo-a-arquitetura-de-dois-estagios" class="scroll-mt-24 group flex items-center justify-between">Como o Curator Opera por Baixo do Capô: A Arquitetura de Dois Estágios <a href="#como-o-curator-opera-por-baixo-do-capo-a-arquitetura-de-dois-estagios" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Diferente de tarefas convencionais agendadas que disparam em horários rígidos e podem disputar recursos com uma consulta prioritária do diretor da empresa, o Curator é disparado por uma <strong>verificação inteligente de inatividade</strong> no início das sessões da CLI, durante a manutenção periódica do Gateway (<code>hermes serve</code>) e no painel administrativo Web.</p>
+<p>O sistema só entra em ação se duas condições simultâneas forem satisfeitas:</p>
+<ol>
+<li>O tempo mínimo desde a última curadoria expirou (<code>curator.interval_hours</code>, padrão de 7 dias / 168 horas);</li>
+<li>A máquina e o perfil do agente estão ociosos há pelo menos o tempo configurado (<code>curator.min_idle_hours</code>, padrão de 2 horas).</li>
+</ol>
+<p>Quando essas condições se confirmam, o Hermes forka uma instância em segundo plano do <code>AIAgent</code>, operando em um cache de contexto isolado, sem tocar na conversa ativa do operador e sem consumir memória da sessão corrente.</p>
+<pre><code>       <span class="token punctuation">[</span> VERIFICAÇÃO DE OCIOSIDADE <span class="token operator">&amp;</span> INTERVALO <span class="token punctuation">]</span>
+       <span class="token punctuation">(</span>Inatividade <span class="token operator">>=</span> <span class="token number">2</span> horas E Última Execução <span class="token operator">>=</span> <span class="token number">7</span> dias<span class="token punctuation">)</span>
+                           │
+                           ▼
+     ┌─────────────────────────────────────────────────────────────┐
+     │                DISPARO DO FORK DO CURATOR                   │
+     │      <span class="token punctuation">(</span>Processo em Background com Cache de Contexto Próprio<span class="token punctuation">)</span> │
+     └─────────────────────────────┬───────────────────────────────┘
+                                   │
+                   FASE <span class="token number">1</span>: TRANSIÇÃO DETERMINÍSTICA
+                <span class="token punctuation">(</span>Baseada em Telemetria Real sem LLM<span class="token punctuation">)</span>
+                                   │
+                                   ▼
+     ┌─────────────────────────────────────────────────────────────┐
+     │              LEITURA DO SIDECAR: .usage.json                │
+     │   • use_count    • view_count    • last_used_at             │
+     │   • patch_count  • pinned: <span class="token boolean">true</span>  • cron_referenced: <span class="token boolean">true</span>    │
+     └─────────────────────────────┬───────────────────────────────┘
+                                   │
+       ┌───────────────────────────┼───────────────────────────┐
+       │                           │                           │
+       ▼                           ▼                           ▼
+ ┌───────────────┐           ┌───────────────┐           ┌───────────────┐
+ │ REGRA: PINNED │           │ CRON IMMUNITY │           │  GRACE FLOOR  │
+ │ Marcada com   │           │ Usada em Jobs │           │ use_count <span class="token operator">==</span> <span class="token number">0</span>│
+ │ <span class="token string">'curator pin'</span> │           │ de Automação  │           │ Idade <span class="token operator">&lt;</span> <span class="token number">14</span> d. │
+ └───────┬───────┘           └───────┬───────┘           └───────┬───────┘
+         │                           │                           │
+         └───────────────────────────┼───────────────────────────┘
+                                     │
+                    <span class="token punctuation">[</span> ISENTAS DE QUALQUER TRANSIÇÃO <span class="token punctuation">]</span>
+                                     │
+                                     ▼
+        ┌────────────────────────────────────────────────────────┐
+        │              AVALIAÇÃO DE INATIVIDADE REAL             │
+        │                                                        │
+        │  • Inativa há <span class="token operator">>=</span> <span class="token number">14</span> dias ──► Marcação: <span class="token string">'stale'</span>         │
+        │  • Inativa há <span class="token operator">>=</span> <span class="token number">30</span> dias ──► Move para .archive/       │
+        │                             <span class="token punctuation">(</span>NUNCA DELETA NO DISCO<span class="token punctuation">)</span>    │
+        └────────────────────────────┬───────────────────────────┘
+                                     │
+                   FASE <span class="token number">2</span>: CONSOLIDAÇÃO VIA LLM AUXILIAR
+                       <span class="token punctuation">(</span>curator.consolidate: <span class="token boolean">true</span><span class="token punctuation">)</span>
+                                     │
+                                     ▼
+        ┌────────────────────────────────────────────────────────┐
+        │              SNAPSHOT DE SEGURANÇA IMEDIATO            │
+        │      Gera: ~/.hermes/skills/.curator_backups/          │
+        │            <span class="token operator">&lt;</span>utc-iso<span class="token operator">></span>/skills.tar.gz                     │
+        └────────────────────────────┬───────────────────────────┘
+                                     │
+                                     ▼
+        ┌────────────────────────────────────────────────────────┐
+        │            AUDITORIA SEMÂNTICA POR LLM AUXILIAR        │
+        │                                                        │
+        │  <span class="token number">1</span>. Lê habilidades ativas via skill_view               │
+        │  <span class="token number">2</span>. Detecta sobreposição funcional de procedimentos    │
+        │  <span class="token number">3</span>. Funde arquivos em Habilidade Guarda-Chuva <span class="token punctuation">(</span>Umbrella<span class="token punctuation">)</span>│
+        │  <span class="token number">4</span>. Atualiza paths de templates, scripts e referências │
+        │  <span class="token number">5</span>. Registra mapa <span class="token string">'old-name -> new-name'</span> no log        │
+        └────────────────────────────┬───────────────────────────┘
+                                     │
+                                     ▼
+        ┌────────────────────────────────────────────────────────┐
+        │               RELATÓRIO EXECUTIVO FINAL                │
+        │    Salvo em ~/.hermes/logs/curator/AAAAMMDD-HHMMSS/    │
+        │    • REPORT.md <span class="token punctuation">(</span>Resumo Humano<span class="token punctuation">)</span> e run.json <span class="token punctuation">(</span>Auditoria<span class="token punctuation">)</span>  │
+        └────────────────────────────────────────────────────────┘
+</code></pre><hr>
+<h2 id="os-3-mecanismos-de-blindagem-empresarial-do-curator" class="scroll-mt-24 group flex items-center justify-between">Os 3 Mecanismos de Blindagem Empresarial do Curator <a href="#os-3-mecanismos-de-blindagem-empresarial-do-curator" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para empresários que não toleram instabilidade em processos fabris, fiscais ou comerciais, o maior receio ao adotar um sistema de auto-limpeza de IA é a remoção indevida de regras vitais. </p>
+<p>O Hermes Agent desenhou três barreiras de proteção invioláveis que tornam impossível a quebra acidental de fluxos de trabalho corporativos:</p>
+<h3 id="1-imunidade-absoluta-a-cron-jobs-cron-immunity" class="scroll-mt-24 group flex items-center justify-between">1. Imunidade Absoluta a Cron Jobs (<em>Cron Immunity</em>) <a href="#1-imunidade-absoluta-a-cron-jobs-cron-immunity" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Se a sua empresa configurou um robô para rodar todo dia 1º do mês para consolidar as comissões da equipe de vendas ou a apuração de impostos, essa habilidade passará 29 dias consecutivos com zero execuções.</p>
+<p>Em sistemas ingênuos, ela seria classificada como abandonada e removida. No Hermes Agent, o Curator realiza uma checagem cruzada contra todas as tarefas agendadas registradas no banco de cron jobs. <strong>Qualquer habilidade referenciada por um cron job ativo ou pausado recebe imunidade automática e perpétua contra arquivamento.</strong></p>
+<h3 id="2-piso-de-carencia-inicial-grace-floor" class="scroll-mt-24 group flex items-center justify-between">2. Piso de Carência Inicial (<em>Grace Floor</em>) <a href="#2-piso-de-carencia-inicial-grace-floor" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Quando um desenvolvedor ou o próprio agente codifica uma nova habilidade para tratar uma situação rara (por exemplo, contingência de falha no gateway de pagamento da Stone ou Cielo), ela nasce com <code>use_count: 0</code>.</p>
+<p>O Curator entende que zero usos imediatos reflete ausência de ocorrência do problema, e não descarte da solução. Toda nova habilidade criada recebe uma carência obrigatória de no mínimo 14 dias antes de se qualificar para qualquer transição de estado.</p>
+<h3 id="3-travamento-corporativo-inviolavel-corporate-pinning" class="scroll-mt-24 group flex items-center justify-between">3. Travamento Corporativo Inviolável (<em>Corporate Pinning</em>) <a href="#3-travamento-corporativo-inviolavel-corporate-pinning" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Existem manuais de conduta e regras fiscais que nenhum modelo generativo tem o direito de alterar, resumir ou arquivar.</p>
+<p>Com um único comando administrativo, o gestor de TI fixa a habilidade permanentemente:</p>
+<pre><code class="language-bash">hermes curator pin emissao-nfse-prefeitura-sp
+</code></pre><p>Uma vez fixada (<em>pinned</em>), a habilidade se torna imune às limpezas automáticas do Curator e <strong>bloqueia qualquer tentativa do próprio agente de reescrevê-la ou deletá-la via <code>skill_manage</code></strong>. O pin só pode ser removido manualmente por um operador humano através de <code>hermes curator unpin</code>.</p>
+<hr>
+<h2 id="telemetria-de-uso-como-o-hermes-monitora-o-valor-real-de-cada-habilidade" class="scroll-mt-24 group flex items-center justify-between">Telemetria de Uso: Como o Hermes Monitora o Valor Real de Cada Habilidade <a href="#telemetria-de-uso-como-o-hermes-monitora-o-valor-real-de-cada-habilidade" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A governança do Curator não se baseia em palpites. Cada perfil do Hermes Agent mantém um livro-razão de telemetria em <code>~/.hermes/skills/.usage.json</code>.</p>
+<p>Esse arquivo funciona como um relógio de ponto para cada pedaço de código ou documentação interna:</p>
+<pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"conciliacao-extrato-itau"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"use_count"</span><span class="token operator">:</span> <span class="token number">84</span><span class="token punctuation">,</span>
+    <span class="token property">"view_count"</span><span class="token operator">:</span> <span class="token number">142</span><span class="token punctuation">,</span>
+    <span class="token property">"last_used_at"</span><span class="token operator">:</span> <span class="token string">"2026-11-10T14:32:10Z"</span><span class="token punctuation">,</span>
+    <span class="token property">"last_viewed_at"</span><span class="token operator">:</span> <span class="token string">"2026-11-10T14:30:00Z"</span><span class="token punctuation">,</span>
+    <span class="token property">"patch_count"</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+    <span class="token property">"last_patched_at"</span><span class="token operator">:</span> <span class="token string">"2026-10-15T09:12:00Z"</span><span class="token punctuation">,</span>
+    <span class="token property">"created_at"</span><span class="token operator">:</span> <span class="token string">"2026-06-01T08:00:00Z"</span><span class="token punctuation">,</span>
+    <span class="token property">"state"</span><span class="token operator">:</span> <span class="token string">"active"</span><span class="token punctuation">,</span>
+    <span class="token property">"pinned"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"archived_at"</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"layout-fornecedor-antigo-descontinuado"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"use_count"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    <span class="token property">"view_count"</span><span class="token operator">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+    <span class="token property">"last_used_at"</span><span class="token operator">:</span> <span class="token string">"2026-08-12T11:20:00Z"</span><span class="token punctuation">,</span>
+    <span class="token property">"last_viewed_at"</span><span class="token operator">:</span> <span class="token string">"2026-08-12T11:19:00Z"</span><span class="token punctuation">,</span>
+    <span class="token property">"patch_count"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token property">"last_patched_at"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+    <span class="token property">"created_at"</span><span class="token operator">:</span> <span class="token string">"2026-08-01T10:00:00Z"</span><span class="token punctuation">,</span>
+    <span class="token property">"state"</span><span class="token operator">:</span> <span class="token string">"archived"</span><span class="token punctuation">,</span>
+    <span class="token property">"pinned"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">"archived_at"</span><span class="token operator">:</span> <span class="token string">"2026-09-15T02:00:00Z"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li><strong><code>view_count</code>:</strong> Quantas vezes o agente consultou os detalhes do procedimento através de <code>skill_view</code>;</li>
+<li><strong><code>use_count</code>:</strong> Quantas vezes as instruções da habilidade foram efetivamente carregadas no contexto de raciocínio para execução de uma tarefa;</li>
+<li><strong><code>patch_count</code>:</strong> Quantas vezes a habilidade precisou ser corrigida ou aprimorada via <code>skill_manage patch</code>;</li>
+<li><strong><code>state</code>:</strong> Indica o estado atual no ciclo de vida (<code>active</code>, <code>stale</code> ou <code>archived</code>).</li>
+</ul>
+<p>Habilidades padrão distribuídas com o código do Hermes (built-ins) e habilidades baixadas de repositórios oficiais comunitários (<em>Hub skills</em>) são isoladas desse rastreamento para garantir que a instalação original permaneça intacta.</p>
+<hr>
+<h2 id="consolidacao-inteligente-por-llm-como-fundir-duplicatas-em-habilidades-guarda-chuva-umbrellas" class="scroll-mt-24 group flex items-center justify-between">Consolidação Inteligente por LLM: Como Fundir Duplicatas em Habilidades Guarda-Chuva (<em>Umbrellas</em>) <a href="#consolidacao-inteligente-por-llm-como-fundir-duplicatas-em-habilidades-guarda-chuva-umbrellas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O arquivamento determinístico resolve o problema de habilidades mortas. Mas o que fazer quando o agente criou cinco habilidades ligeiramente diferentes para tarefas correlatas?</p>
+<p>É aqui que entra o segundo estágio opcional do Curator: a <strong>Consolidação Semântica via LLM (<code>curator.consolidate: true</code>)</strong>.</p>
+<p>Quando essa funcionalidade é ativada no <code>config.yaml</code>, o Curator utiliza um modelo de linguagem auxiliar de altíssima velocidade e baixo custo (como Gemini Flash, Claude Haiku ou DeepSeek Chat roteado pelo slot <code>auxiliary.curator</code>) para realizar uma auditoria semântica da biblioteca:</p>
+<ol>
+<li><strong>Leitura Completa do Acervo:</strong> O modelo analisa o escopo de todas as habilidades criadas por agentes no diretório;</li>
+<li><strong>Detecção de Sobreposições:</strong> Identifica que <code>emitir-boleto-bradesco</code>, <code>emitir-boleto-itau</code> e <code>emitir-boleto-santander</code> possuem 80% da lógica e dos esquemas em comum;</li>
+<li><strong>Construção da Habilidade Guarda-Chuva (<em>Umbrella Skill</em>):</strong> O Curator cria uma nova habilidade unificada e coesa (<code>faturamento-boletos-bancarios</code>), organizando os scripts de cada banco dentro da pasta de referências estruturadas (<code>references/</code>);</li>
+<li><strong>Reescreve Vínculos e Dependências:</strong> Se algum Cron Job ou fluxo dependia do nome antigo, o Curator atualiza os apontamentos automaticamente;</li>
+<li><strong>Gera o Mapa de Renomeação:</strong> Ao concluir, o Curator exibe um mapa explícito com todas as alterações realizadas (<code>old-name → new-name</code>), arquivando os fragmentos redundantes em <code>.archive/</code>.</li>
+</ol>
+<h3 id="o-cinto-de-seguranca-snapshots-automaticos-e-rollback-instantaneo" class="scroll-mt-24 group flex items-center justify-between">O Cinto de Segurança: Snapshots Automáticos e Rollback Instantâneo <a href="#o-cinto-de-seguranca-snapshots-automaticos-e-rollback-instantaneo" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>A maior objeção de qualquer diretor de operações ao ouvir falar em &quot;um modelo de IA refatorando nossos arquivos em segundo plano&quot; é o risco de perda ou corrupção de procedimentos.</p>
+<p>Para mitigar 100% desse risco, o Hermes adota uma política de salvaguarda inspirada em bancos de dados de missão crítica:</p>
+<p>Antes de alterar uma única linha de texto em uma consolidação, o Curator compacta toda a biblioteca de habilidades ativas em um arquivo <code>.tar.gz</code> localizado em:<br><code>~/.hermes/skills/.curator_backups/&lt;timestamp-iso&gt;/skills.tar.gz</code>.</p>
+<p>Se a consolidação realizada pelo modelo não agradar ou omitir uma nuance operacional, o administrador desfaz toda a operação com um único comando no terminal:</p>
+<pre><code class="language-bash">hermes curator rollback <span class="token parameter variable">-y</span>
+</code></pre><p>O rollback não apenas restaura cada arquivo exatamente como estava antes do início da curadoria, mas cria um snapshot reversível do estado anterior (<em>pre-rollback</em>), permitindo navegar no tempo entre diferentes versões da biblioteca de conhecimento da empresa.</p>
+<hr>
+<h2 id="caso-real-de-aplicacao-como-uma-distribuidora-com-80-fornecedores-evitou-o-colapso-da-sua-ia" class="scroll-mt-24 group flex items-center justify-between">Caso Real de Aplicação: Como Uma Distribuidora com 80+ Fornecedores Evitou o Colapso da Sua IA <a href="#caso-real-de-aplicacao-como-uma-distribuidora-com-80-fornecedores-evitou-o-colapso-da-sua-ia" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para ilustrar o impacto prático do Curator em um negócio tradicional, acompanhe o caso de uma importadora e distribuidora de ferramentas e ferragens no interior de São Paulo, faturando R$ 38 milhões anuais.</p>
+<h3 id="o-cenario-inicial" class="scroll-mt-24 group flex items-center justify-between">O Cenário Inicial <a href="#o-cenario-inicial" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>A distribuidora implementou um agente autônomo no Hermes Agent rodando em uma VPS Hostinger para consultar preços, prazos de entrega e estoque em portais B2B de 85 fornecedores diferentes. O agente operava com autonomia de auto-aperfeiçoamento (<code>skill_manage</code>), criando scripts de raspagem para cada fornecedor com peculiaridades de login, cookies e paginação.</p>
+<h3 id="o-problema-do-skill-bloat" class="scroll-mt-24 group flex items-center justify-between">O Problema do Skill Bloat <a href="#o-problema-do-skill-bloat" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Após 5 meses de operação ininterrupta:</p>
+<ul>
+<li>O agente havia acumulado <strong>148 arquivos de habilidades</strong> em <code>~/.hermes/skills/</code>;</li>
+<li>Vários fornecedores haviam mudado seus portais, fazendo com que o agente criasse arquivos novos (<code>layout-2026</code>, <code>versao-nova</code>, <code>portal-v2</code>) sem remover os antigos;</li>
+<li>Cada mensagem de cotação enviada pela equipe de vendas no WhatsApp fazia o agente gastar mais de 45.000 tokens apenas para carregar e avaliar quais habilidades poderiam ser relevantes;</li>
+<li>A fatura mensal de tokens da empresa saltou de <strong>R$ 220 para mais de R$ 1.800/mês</strong>, e o tempo de resposta passou de 15 segundos para mais de 1 minuto e meio.</li>
+</ul>
+<h3 id="a-intervencao-com-hermes-curator" class="scroll-mt-24 group flex items-center justify-between">A Intervenção com Hermes Curator <a href="#a-intervencao-com-hermes-curator" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>A equipe configurou a esteira do Curator no <code>config.yaml</code>:</p>
+<pre><code class="language-yaml"><span class="token key atrule">curator</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">interval_hours</span><span class="token punctuation">:</span> <span class="token number">72</span>           <span class="token comment"># Auditoria a cada 3 dias</span>
+  <span class="token key atrule">min_idle_hours</span><span class="token punctuation">:</span> <span class="token number">2</span>            <span class="token comment"># Apenas quando o escritório estiver fechado (madrugada)</span>
+  <span class="token key atrule">stale_after_days</span><span class="token punctuation">:</span> <span class="token number">14</span>         <span class="token comment"># 14 dias sem consulta = stale</span>
+  <span class="token key atrule">archive_after_days</span><span class="token punctuation">:</span> <span class="token number">21</span>       <span class="token comment"># 21 dias sem consulta = arquivamento seguro</span>
+  <span class="token key atrule">consolidate</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>            <span class="token comment"># Habilita consolidação semântica por LLM</span>
+<span class="token key atrule">auxiliary</span><span class="token punctuation">:</span>
+  <span class="token key atrule">curator</span><span class="token punctuation">:</span>
+    <span class="token key atrule">provider</span><span class="token punctuation">:</span> openrouter
+    <span class="token key atrule">model</span><span class="token punctuation">:</span> google/gemini<span class="token punctuation">-</span>2.5<span class="token punctuation">-</span>flash
+</code></pre><p>E travaram os 5 fornecedores estratégicos que representam 60% do faturamento da empresa:</p>
+<pre><code class="language-bash">hermes curator pin portal-bosch-distribuicao
+hermes curator pin portal-makita-atacado
+hermes curator pin portal-gedore-brasil
+hermes curator pin portal-vonder-ferramentas
+hermes curator pin portal-tramontina-pro
+</code></pre><h3 id="o-resultado-financeiro-e-operacional" class="scroll-mt-24 group flex items-center justify-between">O Resultado Financeiro e Operacional <a href="#o-resultado-financeiro-e-operacional" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Na primeira madrugada de execução:</p>
+<ol>
+<li>O Curator identificou <strong>62 habilidades</strong> de fornecedores pontuais ou descontinuados que não recebiam consultas há mais de 40 dias e as moveu silenciosamente para <code>.archive/</code>;</li>
+<li>Identificou <strong>34 habilidades fragmentadas</strong> de fornecedores com layouts quase idênticos e as consolidou em 4 habilidades guarda-chuva estruturadas com arquivos de apoio;</li>
+<li>O catálogo ativo de habilidades da distribuidora caiu de <strong>148 para apenas 26 habilidades limpas, atualizadas e funcionais</strong>;</li>
+<li>O consumo de tokens por turno caiu <strong>68% de forma imediata</strong>, fazendo a fatura de IA retornar para a faixa dos R$ 350 mensais;</li>
+<li>O tempo de resposta para a equipe de vendas despencou de 90 segundos para <strong>12 segundos cravados</strong>.</li>
+</ol>
+<p>Tudo isso ocorreu de forma 100% autônoma, sem um único minuto de interrupção no atendimento e sem que nenhum dado histórico fosse perdido.</p>
+<hr>
+<h2 id="guia-pratico-do-gestor-comandos-essenciais-do-hermes-curator" class="scroll-mt-24 group flex items-center justify-between">Guia Prático do Gestor: Comandos Essenciais do <code>hermes curator</code> <a href="#guia-pratico-do-gestor-comandos-essenciais-do-hermes-curator" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para gestores e profissionais de automação que operam o Hermes Agent em servidores de produção, estes são os comandos fundamentais do dia a dia:</p>
+<h3 id="1-diagnosticar-a-saude-da-biblioteca" class="scroll-mt-24 group flex items-center justify-between">1. Diagnosticar a Saúde da Biblioteca <a href="#1-diagnosticar-a-saude-da-biblioteca" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Exibe a data da última execução, quantidade total de habilidades ativas, obsoletas e arquivadas, além da lista de regras protegidas (<em>pinned</em>):</p>
+<pre><code class="language-bash">hermes curator status
+</code></pre><h3 id="2-simular-a-limpeza-sem-riscos-dry-run" class="scroll-mt-24 group flex items-center justify-between">2. Simular a Limpeza sem Riscos (<em>Dry-Run</em>) <a href="#2-simular-a-limpeza-sem-riscos-dry-run" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Permite ao gestor visualizar exatamente quais arquivos seriam marcados como obsoletos ou movidos para o arquivo morto, sem alterar nada no disco:</p>
+<pre><code class="language-bash">hermes curator run --dry-run
+</code></pre><h3 id="3-travar-regras-de-negocio-criticas-pin" class="scroll-mt-24 group flex items-center justify-between">3. Travar Regras de Negócio Críticas (<em>Pin</em>) <a href="#3-travar-regras-de-negocio-criticas-pin" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Protege uma habilidade corporativa contra qualquer arquivamento automático ou edição acidental por parte da IA:</p>
+<pre><code class="language-bash">hermes curator pin regras-conciliacao-fiscal
+</code></pre><h3 id="4-forcar-uma-rodada-de-consolidacao-semantica" class="scroll-mt-24 group flex items-center justify-between">4. Forçar uma Rodada de Consolidação Semântica <a href="#4-forcar-uma-rodada-de-consolidacao-semantica" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Executa imediatamente a auditoria completa com agrupamento inteligente de rotinas duplicadas:</p>
+<pre><code class="language-bash">hermes curator run <span class="token parameter variable">--consolidate</span>
+</code></pre><h3 id="5-recuperar-uma-habilidade-arquivada" class="scroll-mt-24 group flex items-center justify-between">5. Recuperar uma Habilidade Arquivada <a href="#5-recuperar-uma-habilidade-arquivada" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Caso uma habilidade antiga arquivada volte a ser necessária em um projeto especial:</p>
+<pre><code class="language-bash">hermes curator restore raspador-fornecedor-antigo
+</code></pre><h3 id="6-desfazer-instantaneamente-uma-curadoria-indesejada" class="scroll-mt-24 group flex items-center justify-between">6. Desfazer Instantaneamente uma Curadoria Indesejada <a href="#6-desfazer-instantaneamente-uma-curadoria-indesejada" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Restaura todo o diretório de habilidades a partir do snapshot compactado gerado antes da última consolidação:</p>
+<pre><code class="language-bash">hermes curator rollback <span class="token parameter variable">-y</span>
+</code></pre><hr>
+<h2 id="conclusao-inteligencia-agentica-madura-exige-governanca-continua" class="scroll-mt-24 group flex items-center justify-between">Conclusão: Inteligência Agêntica Madura Exige Governança Contínua <a href="#conclusao-inteligencia-agentica-madura-exige-governanca-continua" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A diferença entre um projeto de IA amador — que funciona bem na primeira semana e se degrada até quebrar no terceiro mês — e uma infraestrutura corporativa de classe mundial está na presença de <strong>sistemas de governança autônoma</strong>.</p>
+<p>O aprendizado contínuo sem higienização gera caos e desperdício financeiro. Ao integrar o <strong>Curator</strong> na sua arquitetura operacional, você garante que sua equipe de agentes autônomos permaneça afiada, enxuta e confiável por anos a fio, com custos previsíveis de infraestrutura e zero risco de perda de conhecimento empresarial.</p>
+<p>Se você é gestor, empresário ou líder de tecnologia e deseja aprender a construir e orquestrar ecossistemas completos de agentes de IA na sua empresa — da contratação da VPS até a governança de memórias, gateways e segurança —, conheça a formação executiva da <a href="https://inteligenciaagentica.com.br">Comunidade Inteligência Agêntica</a>.</p>
+
+      </div>
+
+      <!-- Social Share -->
+      <div class="mt-12 py-6 border-y border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Compartilhar este artigo:</span>
+        <div class="flex items-center gap-2">
+          <a href="https://api.whatsapp.com/send?text=Curator%3A%20Como%20Prevenir%20o%20Skill%20Bloat%20e%20Governar%20Habilidades%20de%20IA%20em%20Empresas%20com%20Higieniza%C3%A7%C3%A3o%20Aut%C3%B4noma%20-%20https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fcurator-governanca-habilidades-prevencao-skill-bloat-agentes-ia" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fcurator-governanca-habilidades-prevencao-skill-bloat-agentes-ia" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Curator%3A%20Como%20Prevenir%20o%20Skill%20Bloat%20e%20Governar%20Habilidades%20de%20IA%20em%20Empresas%20com%20Higieniza%C3%A7%C3%A3o%20Aut%C3%B4noma&url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fcurator-governanca-habilidades-prevencao-skill-bloat-agentes-ia" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-white/5 text-gray-200 hover:bg-white/10 border border-white/10 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="twitter" class="w-4 h-4"></i> X / Twitter
+          </a>
+        </div>
+      </div>
+
+      <!-- Author Bio Box -->
+      <div class="mt-10 glass rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 border border-white/10">
+        <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-16 h-16 rounded-full border-2 border-ouro">
+        <div class="text-center sm:text-left">
+          <h4 class="text-base font-bold text-white mb-1">Escrito por Jean Pierre Schramm</h4>
+          <p class="text-xs text-gray-400 leading-relaxed mb-3">
+            Especialista em automações autônomas, arquitetura de VPS com Docker Swarm e ecossistemas agênticos com Hermes OS.
+          </p>
+          <div class="flex items-center justify-center sm:justify-start gap-3 text-xs text-ciano">
+            <a href="https://github.com/gigantsc" target="_blank" class="hover:underline">GitHub</a> &bull;
+            <a href="https://linkedin.com/in/jeanpierreschramm" target="_blank" class="hover:underline">LinkedIn</a> &bull;
+            <a href="https://x.com/jepierresolucoes" target="_blank" class="hover:underline">X</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Article Community Banner -->
+      <div class="mt-12 p-8 rounded-2xl glass border border-ouro/30 bg-gradient-to-r from-magenta/10 via-ciano/5 to-ouro/10 text-center">
+        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+          Comunidade Inteligência Agêntica
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Aprenda a aplicar tudo isso na prática</h3>
+        <p class="text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6">
+          Tenha acesso a 4 mentorias ao vivo por mês, biblioteca completa de skills e templates prontos para rodar no seu servidor.
+        </p>
+        <a href="/#oferta" class="btn-gold px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
+          Garantir Vaga na Comunidade <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Related Posts -->
+      
+      <div class="mt-16">
+        <h3 class="text-lg font-bold text-white mb-6">Artigos Relacionados</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+            <a href="/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Hermes Agent</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Guia Definitivo do Hermes Agent: As 30 Respostas Essenciais para Dominar seus Funcionários Digitais</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.</p>
+            </a>
+          
+            <a href="/blog/multiplexing-gateway-uma-unica-vps-para-toda-a-equipe-de-agentes-ia" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Agentes de IA</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Multiplexing Gateway: Como Rodar Toda a Sua Equipe de Agentes de IA em Uma Única VPS com Isolamento Total de Dados</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">Descubra como o Multiplexing Gateway do Hermes Agent permite operar múltiplos agentes departamentais (Financeiro, Comercial, Jurídico e SAC) em um único processo de servidor, reduzindo custos de VPS e blindando segredos corporativos sem vazamentos.</p>
+            </a>
+          
+        </div>
+      </div>
+      
+
+    </article>
+  </div>
+  
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/mediaflowmz" class="text-ciano font-semibold hover:text-white transition-colors">⚡ MediaFlowMZ (Lives TikTok)</a></li>
+            <li><a href="/cinemaker" class="text-magenta-300 hover:text-white transition-colors">🎬 CineMaker (Vídeos IA)</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <div class="flex items-center gap-3 text-[11px] text-gray-500">
+          <button type="button" class="cookie-consent-banner-open hover:text-ciano transition-colors bg-transparent border-0 p-0 text-inherit cursor-pointer">Preferências de Cookies</button>
+          <span>&bull;</span>
+          <span class="text-[10px]">Ecossistema Hermes OS &bull; Powered by Nous Research</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Mobile Menu Controller
+    (() => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!mobileBtn || !mobileMenu) return;
+
+      const openIcon = mobileBtn.querySelector('.menu-open-icon');
+      const closeIcon = mobileBtn.querySelector('.menu-close-icon');
+
+      function toggleMenu(forceOpen) {
+        const isCurrentlyOpen = !mobileMenu.classList.contains('hidden');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isCurrentlyOpen;
+
+        if (shouldOpen) {
+          mobileMenu.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+          if (openIcon) openIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+    })();
+
+    // DataLayer CTA Tracking
+    window.dataLayer = window.dataLayer || [];
+    document.querySelectorAll('a[href*="#oferta"], a[href="/#oferta"]').forEach(el => {
+      el.addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'cta_click',
+          event_category: 'CTA',
+          event_action: 'Click Offer Anchor',
+          event_label: el.textContent.trim().substring(0, 50) || 'CTA Oferta'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
