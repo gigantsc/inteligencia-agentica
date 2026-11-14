@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <!-- Google Consent Mode V2 Default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'granted',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', false);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M5JDK6W4');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18FQCREKV5"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-18FQCREKV5');
+  </script>
+
+
+  <!-- Cookie Consent Banner & Mode V2 Controller -->
+  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <script>
+    window.cookieconsentConfig = {
+      gtmId: 'GTM-M5JDK6W4',
+      autoLoadGtm: false
+    };
+  </script>
+  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group Chats Autônomos no Hermes Agent: Como Montar um Comitê de IA sem Loops Infinitos e sem Babá | Inteligência Agêntica</title>
+  <meta name="description" content="O Hermes Agent v0.23.0 transformou Group Chats em salas operadas diretamente pelo Gateway: múltiplos robôs debatem problemas operacionais 24/7 com auto-roteamento (Lead Bot ou auxiliary.group_router), blindagem anti-loop (bot_loop_guard) e intervenção humana cirúrgica com @user.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/blog/group-chats-autonomos-salas-multi-bot-hermes-agent">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/blog/group-chats-autonomos-salas-multi-bot-hermes-agent">
+  <meta property="og:title" content="Group Chats Autônomos no Hermes Agent: Como Montar um Comitê de IA sem Loops Infinitos e sem Babá">
+  <meta property="og:description" content="O Hermes Agent v0.23.0 transformou Group Chats em salas operadas diretamente pelo Gateway: múltiplos robôs debatem problemas operacionais 24/7 com auto-roteamento (Lead Bot ou auxiliary.group_router), blindagem anti-loop (bot_loop_guard) e intervenção humana cirúrgica com @user.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/group-chats-autonomos-salas-multi-bot-hermes.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://inteligenciaagentica.com.br/blog/group-chats-autonomos-salas-multi-bot-hermes-agent">
+  <meta name="twitter:title" content="Group Chats Autônomos no Hermes Agent: Como Montar um Comitê de IA sem Loops Infinitos e sem Babá">
+  <meta name="twitter:description" content="O Hermes Agent v0.23.0 transformou Group Chats em salas operadas diretamente pelo Gateway: múltiplos robôs debatem problemas operacionais 24/7 com auto-roteamento (Lead Bot ou auxiliary.group_router), blindagem anti-loop (bot_loop_guard) e intervenção humana cirúrgica com @user.">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/group-chats-autonomos-salas-multi-bot-hermes.jpg">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <!-- Prism Syntax Theme -->
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #07070A; color: #E0E0E6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    ::selection { background: rgba(192, 0, 255, 0.35); color: #fff; }
+    .glass { background: rgba(17, 17, 24, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); }
+    .glass-card { background: rgba(14, 14, 20, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+    .glass-card:hover { border-color: rgba(0, 229, 255, 0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); }
+    .gradient-text { background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text-gold { background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gold { background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%); color: #07070A; font-weight: 700; transition: all 0.2s ease; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(223, 186, 107, 0.35); }
+    .hero-glow { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.16; pointer-events: none; }
+    .top-bar { background: rgba(7, 7, 10, 0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .on-air-badge:hover {
+      transform: scale(1.05);
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    
+    /* Article typography styling */
+    .prose-custom { font-size: 1.05rem; line-height: 1.8; color: #D1D5DB; }
+    .prose-custom p { margin-bottom: 1.5rem; }
+    .prose-custom h1 { font-size: 2.25rem; font-weight: 900; color: #fff; margin-top: 2.5rem; margin-bottom: 1.25rem; line-height: 1.2; }
+    .prose-custom h2 { font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; }
+    .prose-custom h3 { font-size: 1.25rem; font-weight: 700; color: #00E5FF; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose-custom ul, .prose-custom ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    .prose-custom ul { list-style-type: disc; }
+    .prose-custom ol { list-style-type: decimal; }
+    .prose-custom li { margin-bottom: 0.5rem; }
+    .prose-custom strong { color: #fff; font-weight: 700; }
+    .prose-custom a { color: #00E5FF; text-decoration: underline; text-underline-offset: 3px; }
+    .prose-custom a:hover { color: #F0D48A; }
+    .prose-custom blockquote { border-left: 4px solid #00E5FF; background: rgba(0, 229, 255, 0.05); padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 0.75rem 0.75rem 0; color: #E5E7EB; }
+    .prose-custom blockquote p { margin-bottom: 0; }
+    .prose-custom code:not(pre code) { background: rgba(255, 255, 255, 0.08); color: #00E5FF; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+    .prose-custom pre { background: #0A0A0F !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.25rem; margin: 1.75rem 0; overflow-x: auto; }
+    .prose-custom pre code { color: #E0E0E6; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; }
+    .prose-custom table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+    .prose-custom th { background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .prose-custom td { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .prose-custom tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    .prose-custom hr { border-color: rgba(255, 255, 255, 0.08); margin: 2.5rem 0; }
+  </style>
+
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Group Chats Autônomos no Hermes Agent: Como Montar um Comitê de IA sem Loops Infinitos e sem Babá","description":"O Hermes Agent v0.23.0 transformou Group Chats em salas operadas diretamente pelo Gateway: múltiplos robôs debatem problemas operacionais 24/7 com auto-roteamento (Lead Bot ou auxiliary.group_router), blindagem anti-loop (bot_loop_guard) e intervenção humana cirúrgica com @user.","image":"https://inteligenciaagentica.com.br/static/images/group-chats-autonomos-salas-multi-bot-hermes.jpg","datePublished":"2026-11-14","dateModified":"2026-11-14","author":{"@type":"Person","name":"Jean Pierre Schramm","url":"https://linkedin.com/in/jeanpierreschramm"},"publisher":{"@type":"Organization","name":"Inteligência Agêntica","url":"https://inteligenciaagentica.com.br","logo":{"@type":"ImageObject","url":"https://inteligenciaagentica.com.br/static/logos.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://inteligenciaagentica.com.br/blog/group-chats-autonomos-salas-multi-bot-hermes-agent"},"keywords":"group chats hermes agent, salas multi-bot ia, comitê de agentes autônomos, bot loop guard, lead bot roteamento ia, multi-agente empresarial"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://inteligenciaagentica.com.br"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://inteligenciaagentica.com.br/blog"},{"@type":"ListItem","position":3,"name":"Group Chats Autônomos no Hermes Agent: Como Montar um Comitê de IA sem Loops Infinitos e sem Babá","item":"https://inteligenciaagentica.com.br/blog/group-chats-autonomos-salas-multi-bot-hermes-agent"}]}]</script>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5JDK6W4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- TOP NAVBAR -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-11 sm:h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="/" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Início</a>
+
+        <!-- Dropdown Soluções -->
+        <div class="relative group">
+          <button type="button" class="text-sm font-semibold text-gray-300 group-hover:text-white transition-colors flex items-center gap-1.5 py-2 focus:outline-none cursor-pointer">
+            <span>Soluções</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-ciano group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+          
+          <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 absolute top-full left-0 w-80 pt-2 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="glass rounded-2xl p-3 border border-white/10 bg-obsidian-card/95 backdrop-blur-2xl shadow-2xl shadow-black/80 space-y-1">
+              <!-- Item 1: CineMaker -->
+              <a href="/cinemaker" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-magenta/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-magenta/15 border border-magenta/30 flex items-center justify-center text-magenta flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="video" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-magenta-300 transition-colors">CineMaker</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Máquina de criar vídeos longos com IA em 1 clique sem assinatura no Flow.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: MediaFlowMZ -->
+              <a href="/mediaflowmz" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ciano/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ciano/15 border border-ciano/30 flex items-center justify-center text-ciano flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="radio" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ciano transition-colors">MediaFlowMZ</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Lives & IA</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Sua live no TikTok Shop e vídeos com IA rodando no automático.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: Comunidade Inteligência Agêntica -->
+              <a href="/#oferta" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ouro/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ouro/15 border border-ouro/30 flex items-center justify-center text-ouro flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="crown" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ouro-light transition-colors">Comunidade Agêntica</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ciano/20 text-ciano border border-ciano/30">Ecossistema</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">4 encontros semanais ao vivo, códigos prontos e bunker de agentes 24/7.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Cases</a>
+        <a href="/blog" class="text-sm font-bold text-ciano border-b-2 border-ciano pb-0.5 transition-colors">Blog</a>
+        <a href="/#oferta" class="btn-gold px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide">
+          Acessar Comunidade
+        </a>
+      </div>
+
+      <!-- Mobile Actions (visible on mobile, hidden on md+) -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="/ao-vivo" class="on-air-badge text-[10px] py-1 px-2.5" title="Encontros ao Vivo">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <button id="mobileMenuBtn" type="button" class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl focus:outline-none transition-colors border border-white/10" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-6 h-6 block menu-open-icon"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden menu-close-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-obsidian-card/95 backdrop-blur-2xl px-5 py-6 space-y-4 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-2">
+        <a href="/" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="home" class="w-4 h-4 text-gray-400"></i>
+            <span>Início</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <!-- Bloco Soluções Mobile -->
+        <div class="rounded-xl bg-white/[0.02] border border-white/5 p-2">
+          <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-ciano"></i>
+            <span>Soluções & Produtos</span>
+          </div>
+          <div class="space-y-1 mt-1">
+            <a href="/cinemaker" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-magenta-300 hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="video" class="w-4 h-4 text-magenta"></i>
+                <span>CineMaker (Vídeos IA)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+            </a>
+            <a href="/mediaflowmz" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="radio" class="w-4 h-4 text-ciano"></i>
+                <span>MediaFlowMZ (Lives TikTok)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Auto</span>
+            </a>
+            <a href="/#oferta" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ouro transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="crown" class="w-4 h-4 text-ouro"></i>
+                <span>Comunidade Inteligência Agêntica</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ciano/20 text-ciano border border-ciano/30">Membros</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-red-400 hover:text-red-300 bg-red-950/30 border border-red-800/40 hover:bg-red-950/50 transition-colors">
+          <span class="flex items-center gap-3">
+            <span class="on-air-dot"></span>
+            <span>Encontros ao Vivo</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded">Toda Quinta</span>
+        </a>
+
+        <a href="/cases" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+            <span>Cases de Uso</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/blog" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-ciano bg-white/5 border border-ciano/20 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="newspaper" class="w-4 h-4 text-ciano"></i>
+            <span>Blog & Artigos</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-ciano"></i>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <a href="/#oferta" class="mobile-nav-link w-full btn-gold py-3.5 px-5 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-ouro/20">
+          <span>Acessar Comunidade</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN BODY -->
+  <main class="pt-20 flex-grow">
+    
+  <div class="relative py-10 overflow-hidden">
+    <div class="hero-glow bg-magenta/40 -top-40 right-0 w-[500px] h-[500px] absolute"></div>
+    <div class="hero-glow bg-ciano/30 top-1/2 -left-40 w-[500px] h-[500px] absolute"></div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Início</a>
+        <span>&rsaquo;</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span>&rsaquo;</span>
+        <span class="text-ciano truncate max-w-[200px] sm:max-w-none">Group Chats Autônomos no Hermes Agent: Como Montar um Comitê de IA sem Loops Infinitos e sem Babá</span>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="mb-10 text-center sm:text-left">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <a href="/tags/agentes-de-ia" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Agentes de IA</a><a href="/tags/multi-agente" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Multi-Agente</a><a href="/tags/group-chats" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Group Chats</a><a href="/tags/hermes-agent" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Hermes Agent</a><a href="/tags/automacao" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Automação</a><a href="/tags/negocios" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Negócios</a><a href="/tags/governanca" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Governança</a>
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+          Group Chats Autônomos no Hermes Agent: Como Montar um Comitê de IA sem Loops Infinitos e sem Babá
+        </h1>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/10 text-xs text-gray-400">
+          <div class="flex items-center gap-3">
+            <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-10 h-10 rounded-full border border-white/10">
+            <div>
+              <p class="font-bold text-white text-sm">Jean Pierre Schramm</p>
+              <p class="text-[11px] text-gray-400">Fundador da JePierre & Especialista em Agentes de IA</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-11-14</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 10 min de leitura</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      
+      <div class="mb-12 rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
+        <img src="https://inteligenciaagentica.com.br/static/images/group-chats-autonomos-salas-multi-bot-hermes.jpg" alt="Group Chats Autônomos no Hermes Agent: Como Montar um Comitê de IA sem Loops Infinitos e sem Babá" class="w-full h-auto max-h-[460px] object-cover">
+      </div>
+      
+
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
+      
+
+      <!-- Main Article Content -->
+      <div class="prose-custom">
+        <blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong> No Hermes Agent v0.23.0, as salas de chat em grupo (<strong>Group Chats</strong>) deixaram de depender de janelas de desktop abertas e passaram a ser governadas diretamente pelo processo do <strong>Gateway</strong> da VPS.[1][2] Isso permite que comitês de 2 a 6 agentes especializados deliberem de forma autônoma 24/7, utilizando auto-roteamento inteligente (<strong>Lead Bot</strong> ou <strong>auxiliary.group_router</strong>), com proteção estrita contra explosão de custos por loops infinitos via <strong>bot_loop_guard</strong> (<code>max_hops: 4</code>) e escalonamento determinístico para o gestor humano através de citações <code>@user</code>.[1][2]</p>
+</blockquote>
+<hr>
+<h2 id="o-pesadelo-das-arquiteturas-multi-agente-tradicionais" class="scroll-mt-24 group flex items-center justify-between">O Pesadelo das Arquiteturas Multi-Agente Tradicionais <a href="#o-pesadelo-das-arquiteturas-multi-agente-tradicionais" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Se você é empresário ou gestor de operações, já deve ter sido seduzido pela promessa dos &quot;swarms&quot; e equipes de agentes autônomos. A ideia de ter um agente financeiro, um especialista em tráfego pago, um analista de infraestrutura e um redator trabalhando juntos em uma mesma mesa parece o ápice da eficiência.[1][2]</p>
+<p>Porém, quem tentou colocar isso em prática com frameworks baseados em código (como CrewAI, AutoGen ou scripts Python customizados) invariavelmente esbarrou em três armadilhas operacionais graves:</p>
+<ol>
+<li><strong>O Risco do Loop Infinito (Queima Descontrolada de API):</strong> Dois agentes começam a responder educadamente um ao outro (&quot;Obrigado pela informação&quot;, &quot;De nada, fique à vontade para perguntar mais&quot;), gerando dezenas de chamadas recursivas que esgotam saldos de API em minutos.[2]</li>
+<li><strong>A Dependência da Janela Aberta:</strong> A execução só funciona enquanto o desenvolvedor mantém o terminal ou o navegador aberto no próprio notebook. Se a conexão cair ou a máquina hibernar, a deliberação morre pela metade.[1][2]</li>
+<li><strong>A Necessidade de Babá Humana (Pombo-Correio Digital):</strong> Sem um mecanismo nativo de roteamento, o gestor precisa ficar copiando o texto gerado pelo robô A para colar na janela do robô B, anulando qualquer ganho real de tempo.[2][3]</li>
+</ol>
+<p>O <strong>Hermes Agent v0.23.0 (&quot;The Hearth Release&quot;)</strong> reescreveu essa dinâmica do zero ao transformar os Group Chats em uma funcionalidade de infraestrutura de primeira classe.[1][2]</p>
+<hr>
+<h2 id="a-nova-arquitetura-de-group-chats-no-hermes-agent-v0230" class="scroll-mt-24 group flex items-center justify-between">A Nova Arquitetura de Group Chats no Hermes Agent v0.23.0 <a href="#a-nova-arquitetura-de-group-chats-no-hermes-agent-v0230" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Na arquitetura anterior, conversas em grupo eram orquestradas pela camada visual do aplicativo Desktop.[1][2] Se o operador fechasse o app, a sala pausava.[1][2] </p>
+<p>A partir da versão v0.23.0, o <strong>Gateway central</strong> assume a custódia das salas de grupo.[1][4] Isso significa que a deliberação dos agentes ocorre no nível do servidor (na sua VPS na nuvem), de maneira contínua, desacoplada e resiliente.[1][2]</p>
+<pre><code>+---------------------------------------------------------------------------------+
+<span class="token operator">|</span>               HERMES AGENT v0.23.0 — GATEWAY GROUP CHAT ENGINE                  <span class="token operator">|</span>
++---------------------------------------------------------------------------------+
+<span class="token operator">|</span>                                                                                 <span class="token operator">|</span>
+<span class="token operator">|</span>   Entrada: Mensagem <span class="token keyword">do</span> Gestor, Disparo de Webhook ou Rotina Cron               <span class="token operator">|</span>
+<span class="token operator">|</span>                                     │                                           <span class="token operator">|</span>
+<span class="token operator">|</span>                                     ▼                                           <span class="token operator">|</span>
+<span class="token operator">|</span>                     ┌───────────────────────────────┐                           <span class="token operator">|</span>
+<span class="token operator">|</span>                     │     MECANISMO DE ENTRADA      │                           <span class="token operator">|</span>
+<span class="token operator">|</span>                     │   Alguém foi citado com @?    │                           <span class="token operator">|</span>
+<span class="token operator">|</span>                     └───────┬───────────────┬───────┘                           <span class="token operator">|</span>
+<span class="token operator">|</span>                            SIM             NÃO                                  <span class="token operator">|</span>
+<span class="token operator">|</span>                             │               │                                   <span class="token operator">|</span>
+<span class="token operator">|</span>                             │               ▼                                   <span class="token operator">|</span>
+<span class="token operator">|</span>                             │    ┌─────────────────────┐                        <span class="token operator">|</span>
+<span class="token operator">|</span>                             │    │    AUTO-ROTEAMENTO  │                        <span class="token operator">|</span>
+<span class="token operator">|</span>                             │    │ <span class="token number">1</span>. Everyone         │                        <span class="token operator">|</span>
+<span class="token operator">|</span>                             │    │ <span class="token number">2</span>. Lead Bot         │                        <span class="token operator">|</span>
+<span class="token operator">|</span>                             │    │ <span class="token number">3</span>. group_router     │                        <span class="token operator">|</span>
+<span class="token operator">|</span>                             │    └──────────┬──────────┘                        <span class="token operator">|</span>
+<span class="token operator">|</span>                             │               │ <span class="token punctuation">(</span>Assigned to Bot<span class="token punctuation">)</span>                 <span class="token operator">|</span>
+<span class="token operator">|</span>                             ▼               ▼                                   <span class="token operator">|</span>
+<span class="token operator">|</span>   ┌─────────────────────────────────────────────────────────────────────────┐   <span class="token operator">|</span>
+<span class="token operator">|</span>   │                       RODADAS DE DELIBERAÇÃO                            │   <span class="token operator">|</span>
+<span class="token operator">|</span>   │               <span class="token punctuation">(</span>Até <span class="token number">3</span> rodadas seriais <span class="token operator">|</span> Máximo <span class="token number">10</span> msgs<span class="token punctuation">)</span>                  │   <span class="token operator">|</span>
+<span class="token operator">|</span>   │                                                                         │   <span class="token operator">|</span>
+<span class="token operator">|</span>   │   <span class="token punctuation">[</span>Bot Líder<span class="token punctuation">]</span> ──<span class="token punctuation">(</span>message_agent<span class="token punctuation">)</span>──► <span class="token punctuation">[</span>Bot Especialista<span class="token punctuation">]</span>                  │   <span class="token operator">|</span>
+<span class="token operator">|</span>   │        ▲                                    │                           <span class="token operator">|</span>
+<span class="token operator">|</span>   │        │     BLINDAGEM: bot_loop_guard      │ <span class="token punctuation">(</span>expects_reply: <span class="token boolean">false</span><span class="token punctuation">)</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>   │        └──────────── <span class="token punctuation">(</span>max_hops: <span class="token number">4</span><span class="token punctuation">)</span> ─────────┘                           <span class="token operator">|</span>
+<span class="token operator">|</span>   │                                                                         │   <span class="token operator">|</span>
+<span class="token operator">|</span>   │   Decisão Crítica ou Bloqueio Operacional:                              │   <span class="token operator">|</span>
+<span class="token operator">|</span>   │   └─► Agente emite: <span class="token string">"@user preciso de aprovação para deploy"</span>            │   <span class="token operator">|</span>
+<span class="token operator">|</span>   │         └─► Gateway ativa badge <span class="token punctuation">[</span>NEEDS YOU<span class="token punctuation">]</span> e pausa o comitê            │   <span class="token operator">|</span>
+<span class="token operator">|</span>   └─────────────────────────────────────────────────────────────────────────┘   <span class="token operator">|</span>
+<span class="token operator">|</span>                                     │                                           <span class="token operator">|</span>
+<span class="token operator">|</span>                                     ▼                                           <span class="token operator">|</span>
+<span class="token operator">|</span>   Persistência: state.db na VPS <span class="token operator">|</span> Sincronizado via Tailscale / Webapp / CLI     <span class="token operator">|</span>
++---------------------------------------------------------------------------------+
+</code></pre><h3 id="caracteristicas-centrais-da-infraestrutura" class="scroll-mt-24 group flex items-center justify-between">Características Centrais da Infraestrutura: <a href="#caracteristicas-centrais-da-infraestrutura" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ul>
+<li><strong>Sobrevivência a Desconexões:</strong> Você pode iniciar um debate entre agentes no seu celular (Telegram ou Webapp), fechar o navegador e, ao reabrir horas depois, todo o histórico, deliberações e conclusões estarão perfeitamente registrados no banco de dados SQLite (<code>state.db</code>).[1][2]</li>
+<li><strong>Sessões Isoladas por Membro:</strong> Cada robô na sala mantém sua própria sessão interna oculta (<code>Group: &lt;sala&gt; · &lt;tópico&gt;</code>), acumulando contexto individualmente sem poluir as memórias principais de outros departamentos.[2]</li>
+<li><strong>Teto Rígido de Rodadas:</strong> Por padrão, cada envio dispara até <strong>três rodadas seriais</strong> de interação.[2] Se os robôs ficarem em silêncio antes da terceira rodada, o comitê encerra o ciclo automaticamente para poupar tokens.[2]</li>
+</ul>
+<hr>
+<h2 id="quem-responde-quando-ninguem-e-citado-auto-roteamento-inteligente" class="scroll-mt-24 group flex items-center justify-between">Quem Responde Quando Ninguém é Citado? (Auto-Roteamento Inteligente) <a href="#quem-responde-quando-ninguem-e-citado-auto-roteamento-inteligente" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Em uma sala de reunião com 4 especialistas humanos, quando o diretor faz uma pergunta aberta, alguém precisa tomar a palavra ou mediar a discussão. Nos Group Chats do Hermes v0.23.0, você define exatamente como a sala deve se comportar quando uma mensagem não contém menções nominais:[1][2]</p>
+<table>
+<thead>
+<tr>
+<th>Modo de Resposta</th>
+<th>Como Funciona</th>
+<th>Melhor Caso de Uso Empresarial</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Everyone (Todos)</strong></td>
+<td>Todos os membros da sala analisam a mensagem e respondem em sequência.[2]</td>
+<td>Brainstorming de campanhas, diagnósticos de incidentes graves e revisões multidisciplinares.[2]</td>
+</tr>
+<tr>
+<td><strong>Lead Bot (Bot Coordenador)</strong></td>
+<td>Um agente específico é eleito líder da sala. Ele recebe a demanda, processa e delega aos colegas via <code>@menção</code>.[2]</td>
+<td>Gestão de operações, onde um &quot;Gerente de Projetos&quot; recebe a demanda do cliente e aciona os técnicos.[2]</td>
+</tr>
+<tr>
+<td><strong>Pick who answers automatically</strong></td>
+<td>O sistema executa uma chamada rápida de modelo para eleger o melhor respondente, exibindo <code>Assigned to [Bot]</code>.[1][2]</td>
+<td>Salas de atendimento e suporte misto, onde a dúvida pode ser financeira, jurídica ou técnica.[2]</td>
+</tr>
+</tbody></table>
+<h3 id="o-segredo-do-auxiliarygrouprouter-eficiencia-sem-custo-alto" class="scroll-mt-24 group flex items-center justify-between">O Segredo do <code>auxiliary.group_router</code>: Eficiência sem Custo Alto <a href="#o-segredo-do-auxiliarygrouprouter-eficiencia-sem-custo-alto" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para evitar que o auto-roteamento gaste tokens caros de modelos de fronteira (como Claude 3.5 Sonnet ou GPT-4o), o Hermes Agent v0.23.0 introduziu a chave <code>auxiliary.group_router</code>.[1][2] </p>
+<p>Essa rotina faz uma única chamada relâmpago, sem ferramentas, avaliando apenas o objetivo da sala, as descrições dos perfis dos agentes e as últimas mensagens.[2] Você pode apontar esse roteador para um modelo extremamente barato e rápido (como DeepSeek V3, Flash ou modelos locais no Ollama), reservando os modelos pesados apenas para a execução do trabalho.[2]</p>
+<hr>
+<h2 id="blindagem-contra-loops-infinitos-o-botloopguard" class="scroll-mt-24 group flex items-center justify-between">Blindagem contra Loops Infinitos: O <code>bot_loop_guard</code> <a href="#blindagem-contra-loops-infinitos-o-botloopguard" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O maior medo de qualquer gestor que implementa agentes é acordar com uma fatura de nuvem multiplicada porque dois robôs entraram em um ciclo de respostas infinitas.[2]</p>
+<p>O Hermes v0.23.0 implementa o <strong><code>bot_loop_guard</code></strong> nativo no Gateway, operando sob regras matemáticas determinísticas:[2]</p>
+<ol>
+<li><strong>Mensagens Unilaterais por Padrão (<code>expects_reply: false</code>):</strong> Quando o Bot A envia uma mensagem para o Bot B e recebe uma resposta, a réplica de encerramento do Bot A é enviada como aviso informativo (<code>[no reply needed]</code>). O Bot B é impedido pelo runtime de responder novamente no mesmo turno.[2]</li>
+<li><strong>Teto de Saltos (<code>max_hops: 4</code>):</strong> O Gateway contabiliza quantos saltos agente-a-agente ocorreram desde a última interação humana.[2] Ao atingir o limite configurado (padrão de 4 saltos), novas chamadas de <code>message_agent</code> são categoricamente recusadas com erro de limite.[2]</li>
+<li><strong>Pausa de Segurança:</strong> Se a deliberação atingir o teto de 10 mensagens sem convergir para o silêncio, a sala entra em estado de pausa controlada (<code>Paused after N messages</code>), oferecendo botões explícitos para <strong>Continue</strong> ou <strong>Stop</strong>.[2]</li>
+</ol>
+<pre><code class="language-yaml"><span class="token comment"># Trecho de configuração no config.yaml do Gateway</span>
+<span class="token key atrule">gateway</span><span class="token punctuation">:</span>
+  <span class="token key atrule">bot_loop_guard</span><span class="token punctuation">:</span>
+    <span class="token key atrule">max_hops</span><span class="token punctuation">:</span> <span class="token number">4</span>                       <span class="token comment"># Máximo de mensagens entre robôs por ciclo</span>
+    <span class="token key atrule">bot_replies_expect_reply</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>   <span class="token comment"># Impede que respostas a bots gerem tréplicas</span>
+</code></pre><hr>
+<h2 id="escalonamento-humano-a-citacao-user-e-o-badge-andquotneeds-youandquot" class="scroll-mt-24 group flex items-center justify-between">Escalonamento Humano: A Citação <code>@user</code> e o Badge &quot;Needs You&quot; <a href="#escalonamento-humano-a-citacao-user-e-o-badge-andquotneeds-youandquot" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Autonomia não significa perda de controle. Em processos corporativos sérios, agentes não devem ter permissão irrestrita para tomar decisões que envolvam desembolso financeiro, exclusão de dados ou envio de contratos.[2]</p>
+<p>No Hermes v0.23.0, qualquer agente dentro da sala de grupo pode escalar uma dúvida ou solicitar aprovação invocando a tag especial <strong><code>@user</code></strong>.[2]</p>
+<p>Quando isso ocorre:</p>
+<ul>
+<li>O agente interrompe o fluxo autônomo da sala.[2]</li>
+<li>A linha da sala no menu exibe um badge luminoso <strong>&quot;Needs You&quot;</strong> (Precisa de Você).[2]</li>
+<li>Se a solicitação envolver um comando de terminal perigoso ou chamada de API sensível, um cartão de aprovação com opções de 1 clique (<code>Allow once</code>, <code>Allow session</code>, <code>Deny</code>) é renderizado imediatamente na conversa.[2]</li>
+<li>Assim que o gestor responde ou autoriza, a sala retoma as atividades normais.[2]</li>
+</ul>
+<hr>
+<h2 id="como-estruturar-na-pratica-no-desktop-e-em-servidores-headless-vps" class="scroll-mt-24 group flex items-center justify-between">Como Estruturar na Prática: No Desktop e em Servidores Headless (VPS) <a href="#como-estruturar-na-pratica-no-desktop-e-em-servidores-headless-vps" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<h3 id="1-criando-um-comite-no-hermes-desktop" class="scroll-mt-24 group flex items-center justify-between">1. Criando um Comitê no Hermes Desktop <a href="#1-criando-um-comite-no-hermes-desktop" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ol>
+<li>No menu lateral, acesse a aba <strong>Bots</strong> e crie os perfis necessários (ex: <code>@diretor-operacoes</code>, <code>@analista-bi</code>, <code>@devsecops</code>).[2]</li>
+<li>Clique no menu de criação de grupo (<strong>New Group Chat</strong>), defina um nome, imagem de capa e selecione os participantes (de 2 a 6 agentes).[2]</li>
+<li>Nas configurações da sala (<strong>Group settings</strong>), selecione a política de auto-roteamento: escolha um <strong>Lead Bot</strong> para triagem ou ative o <strong>Auto-Router</strong>.[2]</li>
+</ol>
+<h3 id="2-ativando-group-chats-e-bot-to-bot-em-vps-linux-headless-sem-interface-grafica" class="scroll-mt-24 group flex items-center justify-between">2. Ativando Group Chats e Bot-to-Bot em VPS Linux Headless (Sem Interface Gráfica) <a href="#2-ativando-group-chats-e-bot-to-bot-em-vps-linux-headless-sem-interface-grafica" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para servidores na nuvem que rodam exclusivamente via terminal ou gateways de mensageria (Telegram/WhatsApp), o protocolo nativo de mensagens entre bots (<code>message_agent</code>) pode ser habilitado com dois comandos simples:[2]</p>
+<p>Primeiro, garanta que a sessão canônica de cada bot exista:[2]</p>
+<pre><code class="language-bash"><span class="token comment"># Cria o chat persistente canônico para o bot</span>
+hermes <span class="token parameter variable">-p</span> analista-bi chat <span class="token parameter variable">-c</span> <span class="token string">"Bot Chat"</span> --create-if-missing
+</code></pre><p>Em seguida, garanta que o perfil carregue o marcador do gerenciador no arquivo <code>~/.hermes/profiles/analista-bi/profile.yaml</code>:[2]</p>
+<pre><code class="language-yaml"><span class="token comment"># Marcador para habilitação de ferramentas inter-agente headless</span>
+<span class="token key atrule">ui_meta</span><span class="token punctuation">:</span>
+  <span class="token key atrule">hermes-bots</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre><p>A partir desse momento, os robôs passam a enxergar as ferramentas de comitê e colaboração direta mesmo através de comandos no terminal ou alertas agendados de cron jobs.[2]</p>
+<hr>
+<h2 id="comparativo-frameworks-frageis-de-codigo-vs-group-chats-hermes-v0230" class="scroll-mt-24 group flex items-center justify-between">Comparativo: Frameworks Frágeis de Código vs. Group Chats Hermes v0.23.0 <a href="#comparativo-frameworks-frageis-de-codigo-vs-group-chats-hermes-v0230" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Requisito Operacional</th>
+<th>Frameworks Baseados em Código (CrewAI / LangGraph)</th>
+<th>Group Chats Nativos (Hermes Agent v0.23.0)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Ambiente de Execução</strong></td>
+<td>Depende de scripts customizados, ambientes virtuais e APIs instáveis.</td>
+<td>Nativo do Gateway Daemon rodando 24/7 na VPS Linux.[1][2]</td>
+</tr>
+<tr>
+<td><strong>Prevenção de Loops</strong></td>
+<td>Exige lógica complexa escrita à mão pelo desenvolvedor.</td>
+<td>Nativa via <code>bot_loop_guard</code> determinístico e saltos limitados (<code>max_hops: 4</code>).[2]</td>
+</tr>
+<tr>
+<td><strong>Persistência de Memória</strong></td>
+<td>Frágil; reinicializações costumam apagar o contexto da conversa.</td>
+<td>Base de dados SQLite (<code>state.db</code>) com compressão automática de histórico.[1][2]</td>
+</tr>
+<tr>
+<td><strong>Roteamento de Mensagens</strong></td>
+<td>Fixo por código rígido ou dependente de prompts caros a cada turno.</td>
+<td>Flexível: Todos, Lead Bot ou modelo auxiliar econômico (<code>auxiliary.group_router</code>).[1][2]</td>
+</tr>
+<tr>
+<td><strong>Intervenção Humana</strong></td>
+<td>Difícil de plugar sem construir interfaces web completas.</td>
+<td>Pronta de fábrica com <code>@user</code>, badge &quot;Needs You&quot; e aprovação em 1 clique.[2]</td>
+</tr>
+<tr>
+<td><strong>Acesso Multiplataforma</strong></td>
+<td>Limitado ao terminal do desenvolvedor ou frontends manuais.</td>
+<td>Sincronizado entre Desktop, Webapp, Telegram, WhatsApp e Discord.[1][2][4]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="conclusao-e-proximos-passos-para-sua-operacao" class="scroll-mt-24 group flex items-center justify-between">Conclusão e Próximos Passos para sua Operação <a href="#conclusao-e-proximos-passos-para-sua-operacao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A inteligência agêntica atinge sua maturidade corporativa quando você para de brincar de chatbot individual e passa a gerenciar um <strong>comitê digital coordenado</strong>.[2] </p>
+<p>Com as novidades do Hermes Agent v0.23.0, pequenas e médias empresas ganham o poder de estruturar mesas de decisão autônomas — onde especialistas de IA revisam relatórios, monitoram servidores e planejam ações com regras claras de governança, custo previsível e segurança operacional.[1][2]</p>
+<p>Quer aprender a instalar, blindar e orquestrar sua própria equipe de agentes em servidores dedicados 24/7, sem alucinações e com controle absoluto de custos? Conheça a formação completa no portal oficial <strong><a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a></strong>.</p>
+<hr>
+<h2 id="fontes" class="scroll-mt-24 group flex items-center justify-between">Fontes <a href="#fontes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.0">Hermes Agent v0.23.0 — The Hearth Release</a><br>[2] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/bot-mode">Bot Mode e Group Chats — Documentação Oficial do Hermes Agent</a><br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/profiles">Profiles, Agents and Bots — Documentação Oficial do Hermes Agent</a><br>[4] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/multi-profile-gateways">Running Many Gateways at Once — Documentação Oficial do Hermes Agent</a></p>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.0">https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.0</a> — Hermes Agent v0.23.0 — The Hearth Release<br>[2] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/bot-mode">https://hermes-agent.nousresearch.com/docs/user-guide/bot-mode</a> — Bot Mode e Group Chats — Documentação Oficial do Hermes Agent<br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/profiles">https://hermes-agent.nousresearch.com/docs/user-guide/profiles</a> — Profiles, Agents and Bots — Documentação Oficial do Hermes Agent<br>[4] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/multi-profile-gateways">https://hermes-agent.nousresearch.com/docs/user-guide/multi-profile-gateways</a> — Running Many Gateways at Once — Documentação Oficial do Hermes Agent</p>
+
+      </div>
+
+      <!-- Social Share -->
+      <div class="mt-12 py-6 border-y border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Compartilhar este artigo:</span>
+        <div class="flex items-center gap-2">
+          <a href="https://api.whatsapp.com/send?text=Group%20Chats%20Aut%C3%B4nomos%20no%20Hermes%20Agent%3A%20Como%20Montar%20um%20Comit%C3%AA%20de%20IA%20sem%20Loops%20Infinitos%20e%20sem%20Bab%C3%A1%20-%20https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fgroup-chats-autonomos-salas-multi-bot-hermes-agent" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fgroup-chats-autonomos-salas-multi-bot-hermes-agent" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Group%20Chats%20Aut%C3%B4nomos%20no%20Hermes%20Agent%3A%20Como%20Montar%20um%20Comit%C3%AA%20de%20IA%20sem%20Loops%20Infinitos%20e%20sem%20Bab%C3%A1&url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Fgroup-chats-autonomos-salas-multi-bot-hermes-agent" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-white/5 text-gray-200 hover:bg-white/10 border border-white/10 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="twitter" class="w-4 h-4"></i> X / Twitter
+          </a>
+        </div>
+      </div>
+
+      <!-- Author Bio Box -->
+      <div class="mt-10 glass rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 border border-white/10">
+        <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-16 h-16 rounded-full border-2 border-ouro">
+        <div class="text-center sm:text-left">
+          <h4 class="text-base font-bold text-white mb-1">Escrito por Jean Pierre Schramm</h4>
+          <p class="text-xs text-gray-400 leading-relaxed mb-3">
+            Especialista em automações autônomas, arquitetura de VPS com Docker Swarm e ecossistemas agênticos com Hermes OS.
+          </p>
+          <div class="flex items-center justify-center sm:justify-start gap-3 text-xs text-ciano">
+            <a href="https://github.com/gigantsc" target="_blank" class="hover:underline">GitHub</a> &bull;
+            <a href="https://linkedin.com/in/jeanpierreschramm" target="_blank" class="hover:underline">LinkedIn</a> &bull;
+            <a href="https://x.com/jepierresolucoes" target="_blank" class="hover:underline">X</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Article Community Banner -->
+      <div class="mt-12 p-8 rounded-2xl glass border border-ouro/30 bg-gradient-to-r from-magenta/10 via-ciano/5 to-ouro/10 text-center">
+        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+          Comunidade Inteligência Agêntica
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Aprenda a aplicar tudo isso na prática</h3>
+        <p class="text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6">
+          Tenha acesso a 4 mentorias ao vivo por mês, biblioteca completa de skills e templates prontos para rodar no seu servidor.
+        </p>
+        <a href="/#oferta" class="btn-gold px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
+          Garantir Vaga na Comunidade <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Related Posts -->
+      
+      <div class="mt-16">
+        <h3 class="text-lg font-bold text-white mb-6">Artigos Relacionados</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+            <a href="/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Hermes Agent</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Guia Definitivo do Hermes Agent: As 30 Respostas Essenciais para Dominar seus Funcionários Digitais</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.</p>
+            </a>
+          
+            <a href="/blog/curator-governanca-habilidades-prevencao-skill-bloat-agentes-ia" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Agentes de IA</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Curator: Como Prevenir o Skill Bloat e Governar Habilidades de IA em Empresas com Higienização Autônoma</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">Entenda como o Curator do Hermes Agent atua como um gerente invisível de qualidade, realizando auditoria de telemetria, ciclo de vida determinístico (active, stale e archived), consolidação semântica e rollback de segurança para impedir a dívida técnica agêntica em empresas.</p>
+            </a>
+          
+        </div>
+      </div>
+      
+
+    </article>
+  </div>
+  
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/mediaflowmz" class="text-ciano font-semibold hover:text-white transition-colors">⚡ MediaFlowMZ (Lives TikTok)</a></li>
+            <li><a href="/cinemaker" class="text-magenta-300 hover:text-white transition-colors">🎬 CineMaker (Vídeos IA)</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <div class="flex items-center gap-3 text-[11px] text-gray-500">
+          <button type="button" class="cookie-consent-banner-open hover:text-ciano transition-colors bg-transparent border-0 p-0 text-inherit cursor-pointer">Preferências de Cookies</button>
+          <span>&bull;</span>
+          <span class="text-[10px]">Ecossistema Hermes OS &bull; Powered by Nous Research</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Mobile Menu Controller
+    (() => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!mobileBtn || !mobileMenu) return;
+
+      const openIcon = mobileBtn.querySelector('.menu-open-icon');
+      const closeIcon = mobileBtn.querySelector('.menu-close-icon');
+
+      function toggleMenu(forceOpen) {
+        const isCurrentlyOpen = !mobileMenu.classList.contains('hidden');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isCurrentlyOpen;
+
+        if (shouldOpen) {
+          mobileMenu.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+          if (openIcon) openIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+    })();
+
+    // DataLayer CTA Tracking
+    window.dataLayer = window.dataLayer || [];
+    document.querySelectorAll('a[href*="#oferta"], a[href="/#oferta"]').forEach(el => {
+      el.addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'cta_click',
+          event_category: 'CTA',
+          event_action: 'Click Offer Anchor',
+          event_label: el.textContent.trim().substring(0, 50) || 'CTA Oferta'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
