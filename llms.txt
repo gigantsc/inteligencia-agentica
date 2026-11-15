@@ -19,6 +19,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Git Worktrees no Hermes Agent: Paralelismo Multi-Agente sem Conflitos de Código](https://inteligenciaagentica.com.br/blog/git-worktrees-paralelismo-multi-agente-hermes)
+- **Data de Publicação:** 2026-11-15
+- **Tags:** Agentes de IA, Git Worktrees, Multi-Agente, Desenvolvimento, Hermes OS, DevOps
+- **Resumo:** Descubra como os Git Worktrees nativos no Hermes Agent viabilizam equipes de agentes autônomos codificando simultaneamente no mesmo repositório, sem poluição de branches, colisões de git lock ou necessidade de clonagem repetitiva.
+- **URL:** https://inteligenciaagentica.com.br/blog/git-worktrees-paralelismo-multi-agente-hermes
+
 ### [Group Chats Autônomos no Hermes Agent: Como Montar um Comitê de IA sem Loops Infinitos e sem Babá](https://inteligenciaagentica.com.br/blog/group-chats-autonomos-salas-multi-bot-hermes-agent)
 - **Data de Publicação:** 2026-11-14
 - **Tags:** Agentes de IA, Multi-Agente, Group Chats, Hermes Agent, Automação, Negócios, Governança
