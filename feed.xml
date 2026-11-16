@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Sun, 15 Nov 2026 11:09:14 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 16 Nov 2026 18:45:42 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,270 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Code Execution no Hermes Agent: Como Executar Workflows de 50 Passos em 1 Único Turno com Custo Quase Zero]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/code-execution-chamada-programatica-ferramentas-hermes-agent</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/code-execution-chamada-programatica-ferramentas-hermes-agent</guid>
+            <pubDate>Mon, 16 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Descubra como o execute_code e a chamada programática de ferramentas eliminam a explosão de contexto em agentes de IA, colapsando loops complexos em scripts Python locais com economia de até 95% de tokens.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Code Execution</strong> (chamada programática de ferramentas via ferramenta <code>execute_code</code>) é a capacidade de um agente autônomo escrever e executar scripts Python em tempo real na própria máquina ou VPS para orquestrar múltiplas ferramentas (<code>web_search</code>, <code>read_file</code>, <code>patch</code>, <code>terminal</code>) de forma programática. Ao contrário do padrão convencional ReAct — no qual cada ação gera uma resposta textual bruta de 20KB a 50KB que é reinjetada na janela de contexto do LLM a cada turno —, o <code>execute_code</code> roda loops, condicionais e filtros localmente em milissegundos via socket RPC interno. Somente o resultado final consolidado pelo comando <code>print()</code> é devolvido ao modelo de IA. Essa arquitetura reduz em até <strong>95% o consumo de tokens</strong>, encurta o tempo de execução de 4 minutos para 8 segundos e impede que o agente se perca em alucinações por excesso de ruído no histórico da conversa.</p>
+</blockquote>
+<hr>
+<h2 id="o-paradoxo-do-loop-react-quando-a-autonomia-custa-caro-demais" class="scroll-mt-24 group flex items-center justify-between">O Paradoxo do Loop ReAct: Quando a Autonomia Custa Caro Demais <a href="#o-paradoxo-do-loop-react-quando-a-autonomia-custa-caro-demais" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Nos últimos dois anos, a imensa maioria dos frameworks de agentes autônomos (como LangChain, AutoGen, CrewAI e assistentes tradicionais) adotou o consagrado padrão <strong>ReAct (Reasoning + Acting)</strong>. O funcionamento teórico parece elegante:</p>
+<ol>
+<li>O usuário faz uma pergunta ou passa uma tarefa complexa;</li>
+<li>O modelo de linguagem raciocina e decide chamar uma ferramenta (ex: buscar arquivos);</li>
+<li>O sistema executa a ferramenta e devolve o texto bruto gerado;</li>
+<li>O modelo lê a resposta, raciocina novamente e decide chamar outra ferramenta (ex: ler o primeiro arquivo);</li>
+<li>O ciclo se repete até a tarefa ser considerada concluída.</li>
+</ol>
+<p>Para tarefas triviais de 2 ou 3 passos, esse método funciona. Porém, quando você coloca um agente para rodar em uma operação corporativa real — como auditar 30 contratos em PDF, investigar 15 páginas de concorrentes para montar um relatório de inteligência de mercado ou refatorar 25 arquivos de código legado —, o padrão ReAct tradicional colapsa por três motivos fatais:</p>
+<ol>
+<li><strong>Explosão Exponencial de Contexto:</strong> Cada chamada de ferramenta traz retornos volumosos (JSONs imensos, dumps de logs, árvores de diretórios). Ao final de 20 turnos, o histórico acumulado ultrapassa 80.000 tokens. A cada novo turno, você paga para enviar esses 80.000 tokens novamente para a API do modelo.</li>
+<li><strong>Latência Insuportável:</strong> Cada turno exige uma requisição HTTP completa aos servidores de inferência (OpenRouter, Anthropic, Google). Vinte chamadas sequenciais com 6 a 12 segundos por turno totalizam entre 2 e 4 minutos de espera ociosa.</li>
+<li><strong>Degradação Cognitiva (Context Rot):</strong> Quanto mais dados intermediários inúteis (como tags HTML, metadados irrelevantes ou erros de parsing) poluem a janela de contexto, maior é a probabilidade de o modelo &quot;alucinar&quot;, ignorar instruções originais do sistema ou esquecer a restrição que o usuário colocou no primeiro parágrafo.</li>
+</ol>
+<pre><code>PADRÃO TRADICIONAL <span class="token punctuation">(</span>ReAct Sequencial — Alto Custo e Lentidão<span class="token punctuation">)</span>:
+<span class="token punctuation">[</span>Usuário<span class="token punctuation">]</span> ──► <span class="token punctuation">[</span>LLM: Turno <span class="token number">1</span><span class="token punctuation">]</span> ──► Tool <span class="token number">1</span> <span class="token punctuation">(</span>Search<span class="token punctuation">)</span> ──► Retorno 40KB
+                     ▲                                      │
+                     └──────── Reinjeta 40KB no Contexto ───┘
+              <span class="token punctuation">[</span>LLM: Turno <span class="token number">2</span><span class="token punctuation">]</span> ──► Tool <span class="token number">2</span> <span class="token punctuation">(</span>Read Doc <span class="token number">1</span><span class="token punctuation">)</span> ──► Retorno 30KB
+                     ▲                                      │
+                     └──────── Reinjeta 70KB acumulados ────┘
+              <span class="token punctuation">[</span>LLM: Turno <span class="token number">3</span><span class="token punctuation">]</span> ──► Tool <span class="token number">3</span> <span class="token punctuation">(</span>Read Doc <span class="token number">2</span><span class="token punctuation">)</span> ──► Retorno 25KB
+                     ▲                                      │
+                     └──────── Reinjeta 95KB acumulados ────┘
+              <span class="token punctuation">..</span>. <span class="token punctuation">(</span>Repete por <span class="token number">30</span> turnos <span class="token operator">=</span> Custo de Tokens Astronômico<span class="token punctuation">)</span>
+
+PADRÃO HERMES AGENT <span class="token punctuation">(</span>Programmatic Tool Calling via execute_code<span class="token punctuation">)</span>:
+<span class="token punctuation">[</span>Usuário<span class="token punctuation">]</span> ──► <span class="token punctuation">[</span>LLM: Turno Único<span class="token punctuation">]</span>
+                     │
+                     ▼ <span class="token punctuation">(</span>Gera script Python com loop e filtro<span class="token punctuation">)</span>
+              <span class="token punctuation">[</span>Processo Python / Kernel Local<span class="token punctuation">]</span>
+                     │
+                     ├─► RPC Socket ─► web_search<span class="token punctuation">(</span><span class="token punctuation">)</span> ──► Filtra em RAM
+                     ├─► RPC Socket ─► read_file<span class="token punctuation">(</span><span class="token punctuation">)</span>   ──► Processa em RAM
+                     ├─► RPC Socket ─► patch<span class="token punctuation">(</span><span class="token punctuation">)</span>       ──► Aplica em RAM
+                     │
+                     ▼ <span class="token punctuation">(</span>Somente a saída print<span class="token punctuation">(</span><span class="token punctuation">)</span> retorna<span class="token punctuation">)</span>
+              <span class="token punctuation">[</span>LLM recebe apenas o resumo executivo de <span class="token number">300</span> palavras<span class="token punctuation">]</span>
+              <span class="token punctuation">(</span>Resultado: <span class="token number">1</span> Único Turno <span class="token operator">|</span> <span class="token number">95</span>% Menos Tokens <span class="token operator">|</span> Execução em Segundos<span class="token punctuation">)</span>
+</code></pre><p>No ecossistema <strong>Hermes Agent</strong>, desenvolvido pela Nous Research, essa fragilidade foi solucionada com a implementação nativa de <strong>Chamada Programática de Ferramentas</strong> através da ferramenta <code>execute_code</code>.</p>
+<hr>
+<h2 id="como-funciona-o-executecode-o-canal-rpc-interno" class="scroll-mt-24 group flex items-center justify-between">Como Funciona o <code>execute_code</code>: O Canal RPC Interno <a href="#como-funciona-o-executecode-o-canal-rpc-interno" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Em vez de devolver o controle ao modelo a cada leitura de linha ou chamada de API, o Hermes Agent permite que o modelo gere um script Python completo contendo lógica procedural: laços de repetição (<code>for</code>), verificações condicionais (<code>if/else</code>), estruturas de dados em memória (<code>dict</code>, <code>list</code>) e tratamento de exceções (<code>try/except</code>).</p>
+<p>Dentro desse script, o agente importa ferramentas do sistema exatamente como se fossem bibliotecas locais:</p>
+<pre><code class="language-python"><span class="token keyword">from</span> hermes_tools <span class="token keyword">import</span> web_search<span class="token punctuation">,</span> web_extract<span class="token punctuation">,</span> read_file<span class="token punctuation">,</span> write_file<span class="token punctuation">,</span> search_files<span class="token punctuation">,</span> patch<span class="token punctuation">,</span> terminal
+</code></pre><p>Quando o script é disparado, o Hermes executa o código em um subprocesso dedicado na VPS corporativa e estabelece uma ponte de comunicação de altíssima velocidade:</p>
+<ul>
+<li>No <strong>Linux e macOS</strong>, a comunicação utiliza um <strong>Unix Domain Socket</strong> de latência quase zero;</li>
+<li>No <strong>Windows</strong>, onde sockets Unix apresentam variações de compatibilidade, o Hermes automaticamente aciona um socket TCP de loopback local (<code>127.0.0.1</code>), garantindo integridade idêntica.</li>
+</ul>
+<h3 id="o-que-acontece-passo-a-passo-no-sistema" class="scroll-mt-24 group flex items-center justify-between">O Que Acontece Passo a Passo no Sistema <a href="#o-que-acontece-passo-a-passo-no-sistema" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ol>
+<li>O agente decide consolidar o workflow e invoca <code>execute_code(code=...)</code>.</li>
+<li>O Hermes cria um diretório temporário de isolamento e gera o módulo de stub <code>hermes_tools.py</code>.</li>
+<li>O listener de RPC escuta os pedidos de ferramentas vindos do script.</li>
+<li>Quando o script Python executa <code>search_files(&quot;*.conf&quot;)</code>, o pedido é serializado em JSON, viaja pelo socket local, é executado pelo núcleo do Hermes com as permissões da sessão e retorna o resultado em memória para a variável do Python.</li>
+<li>O script itera sobre os 50 arquivos encontrados, faz filtros regex, seleciona apenas as 3 linhas relevantes de cada um e monta um dicionário final.</li>
+<li>A função <code>print(json.dumps(resumo_final))</code> envia para o <code>stdout</code> estritamente o que importa.</li>
+<li><strong>O contexto do LLM recebe unicamente o texto impresso no <code>print()</code>.</strong> As centenas de kilobytes de arquivos lidos e descartados nunca chegaram a entrar na fatura de tokens da sua empresa.</li>
+</ol>
+<hr>
+<h2 id="comparativo-direto-react-convencional-vs-programmatic-tool-calling" class="scroll-mt-24 group flex items-center justify-between">Comparativo Direto: ReAct Convencional vs. Programmatic Tool Calling <a href="#comparativo-direto-react-convencional-vs-programmatic-tool-calling" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A tabela abaixo sintetiza o impacto financeiro e operacional de executar um fluxo típico de pesquisa e consolidação de dados em uma operação real:</p>
+<table>
+<thead>
+<tr>
+<th>Dimensão de Análise</th>
+<th>Padrão ReAct Tradicional (LangChain / CrewAI)</th>
+<th>Programmatic Tool Calling (<code>execute_code</code>)</th>
+<th>Impacto no Negócio</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Turnos de LLM</strong></td>
+<td>20 a 50 requisições sequenciais</td>
+<td>1 único turno consolidado</td>
+<td>Redução de até 98% nas chamadas de rede</td>
+</tr>
+<tr>
+<td><strong>Consumo Total de Tokens</strong></td>
+<td>80.000 a 150.000 tokens acumulados</td>
+<td>2.500 a 6.000 tokens totais</td>
+<td>Economia direta de até 95% na fatura de API</td>
+</tr>
+<tr>
+<td><strong>Tempo de Resposta (Latência)</strong></td>
+<td>120 a 300 segundos</td>
+<td>5 a 15 segundos</td>
+<td>Respostas instantâneas para o usuário final</td>
+</tr>
+<tr>
+<td><strong>Poluição de Janela de Contexto</strong></td>
+<td>Altíssima (HTML, logs e JSONs brutos)</td>
+<td>Zero (apenas o resultado do <code>print()</code>)</td>
+<td>Máxima precisão e retenção das regras de negócio</td>
+</tr>
+<tr>
+<td><strong>Tratamento de Exceções</strong></td>
+<td>Depende de nova reinterpretação do LLM</td>
+<td>Tratado diretamente no código (<code>try/except</code>)</td>
+<td>Estabilidade determinística e menos falhas</td>
+</tr>
+<tr>
+<td><strong>Governança de Custos</strong></td>
+<td>Difícil de prever (loops podem se prolongar)</td>
+<td>Travamento rígido por limite de chamadas locais</td>
+<td>Previsibilidade orçamentária para a gestão</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="stateful-session-kernel-a-memoria-ram-viva-entre-turnos" class="scroll-mt-24 group flex items-center justify-between">Stateful Session Kernel: A Memória RAM Viva entre Turnos <a href="#stateful-session-kernel-a-memoria-ram-viva-entre-turnos" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Uma das inovações mais poderosas do Hermes Agent é o <strong>Session Kernel Persistente</strong>. </p>
+<p>Em ferramentas convencionais de execução de código (como Code Interpreters de chatbots de navegador), cada execução ocorre em um ambiente descartável que destrói todas as variáveis assim que o script encerra. Se o agente carregar uma planilha de 50.000 linhas no Turno 1, ele é obrigado a recarregar o arquivo do zero no Turno 2 caso o usuário faça uma pergunta complementar.</p>
+<p>No Hermes Agent, o <code>execute_code</code> em backend local mantém um <strong>kernel Python persistente por sessão</strong>:</p>
+<ul>
+<li>Bibliotecas importadas (<code>import pandas as pd</code>, <code>import sqlite3</code>) permanecem prontas para uso;</li>
+<li>Variáveis, tabelas e estruturas carregadas em memória persistem entre mensagens consecutivas do usuário;</li>
+<li>O agente pode carregar um extrato bancário de 100MB na memória RAM da VPS no primeiro comando e, em seguida, passar os próximos 30 minutos respondendo a dúvidas pontuais do diretor financeiro em frações de segundo, sem reprocessar o arquivo original e sem reenviar o documento pela rede.</li>
+</ul>
+<pre><code>ARQUITETURA DO <span class="token environment constant">SESSION</span> KERNEL NO HERMES:
+
+<span class="token punctuation">[</span>Sessão <span class="token keyword">do</span> Usuário <span class="token punctuation">(</span>CLI / Telegram / Desktop<span class="token punctuation">)</span><span class="token punctuation">]</span>
+                     │
+         Turno <span class="token number">1</span>: <span class="token string">"Carregue a base de clientes e filtre inadimplentes"</span>
+                     ▼
+         <span class="token punctuation">[</span>execute_code<span class="token punctuation">]</span> ──► Inicializa Kernel Python <span class="token punctuation">(</span>PID <span class="token number">4082</span><span class="token punctuation">)</span>
+                             │
+                             ├─► <span class="token function">import</span> pandas as pd
+                             ├─► <span class="token function">df</span> <span class="token operator">=</span> pd.read_csv<span class="token punctuation">(</span><span class="token string">'clientes.csv'</span><span class="token punctuation">)</span>  <span class="token operator">&lt;</span>── <span class="token punctuation">(</span>120MB na RAM<span class="token punctuation">)</span>
+                             └─► df_inadimplentes <span class="token operator">=</span> df<span class="token punctuation">[</span>df<span class="token punctuation">[</span><span class="token string">'status'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'atraso'</span><span class="token punctuation">]</span>
+                             │
+         ◄───────────────────┴── print<span class="token punctuation">(</span><span class="token string">"Encontrados 48 clientes em atraso."</span><span class="token punctuation">)</span>
+
+         Turno <span class="token number">2</span>: <span class="token string">"Qual o total de dívida desses clientes?"</span>
+                     ▼
+         <span class="token punctuation">[</span>execute_code<span class="token punctuation">]</span> ──► Reutiliza Kernel Ativo <span class="token punctuation">(</span>PID <span class="token number">4082</span><span class="token punctuation">)</span>
+                             │
+                             ├─► total <span class="token operator">=</span> df_inadimplentes<span class="token punctuation">[</span><span class="token string">'valor'</span><span class="token punctuation">]</span>.sum<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token operator">&lt;</span>── <span class="token punctuation">(</span>Sem re-leitura<span class="token operator">!</span><span class="token punctuation">)</span>
+                             └─► print<span class="token punctuation">(</span>f<span class="token string">"Total: R$ {total:,.2f}"</span><span class="token punctuation">)</span>
+                             │
+         ◄───────────────────┴── print<span class="token punctuation">(</span><span class="token string">"R$ 145.890,00"</span><span class="token punctuation">)</span>
+</code></pre><p>Se o ambiente precisar ser limpo ou caso novas variáveis de sistema sejam adicionadas, o agente simplesmente passa a flag <code>reset: true</code>, reiniciando o interpretador com estado completamente novo.</p>
+<hr>
+<h2 id="modos-de-execucao-project-vs-strict" class="scroll-mt-24 group flex items-center justify-between">Modos de Execução: <code>project</code> vs. <code>strict</code> <a href="#modos-de-execucao-project-vs-strict" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para atender tanto a flexibilidade operacional de pequenas equipes quanto as exigências de conformidade e segurança da informação de ambientes corporativos, o Hermes permite alternar o modo de execução no arquivo de configuração <code>~/.hermes/config.yaml</code>:</p>
+<pre><code class="language-yaml"><span class="token comment"># ~/.hermes/config.yaml</span>
+<span class="token key atrule">code_execution</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mode</span><span class="token punctuation">:</span> project        <span class="token comment"># "project" (padrão) ou "strict"</span>
+  <span class="token key atrule">timeout</span><span class="token punctuation">:</span> <span class="token number">300</span>         <span class="token comment"># Tempo limite máximo por script em segundos (padrão: 300)</span>
+  <span class="token key atrule">max_tool_calls</span><span class="token punctuation">:</span> <span class="token number">50</span>   <span class="token comment"># Teto máximo de chamadas RPC por script</span>
+</code></pre><h3 id="1-modo-project-pragmatismo-e-integracao-operacional" class="scroll-mt-24 group flex items-center justify-between">1. Modo <code>project</code> (Pragmatismo e Integração Operacional) <a href="#1-modo-project-pragmatismo-e-integracao-operacional" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ul>
+<li><strong>Como opera:</strong> O script é executado no diretório de trabalho atual da sessão (o mesmo utilizado pelo <code>terminal</code>), aproveitando o ambiente virtual ativo (<code>VIRTUAL_ENV</code> ou <code>CONDA_PREFIX</code>).</li>
+<li><strong>Vantagem:</strong> O agente tem acesso imediato a todas as dependências instaladas no projeto da empresa (<code>pip install -r requirements.txt</code>), módulos locais desenvolvidos internamente e arquivos de dados no diretório corrente.</li>
+<li><strong>Indicação:</strong> Ideal para fábricas de software agênticas, rotinas de desenvolvimento e automações internas da VPS.</li>
+</ul>
+<h3 id="2-modo-strict-quarentena-e-isolamento-de-diretorio" class="scroll-mt-24 group flex items-center justify-between">2. Modo <code>strict</code> (Quarentena e Isolamento de Diretório) <a href="#2-modo-strict-quarentena-e-isolamento-de-diretorio" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ul>
+<li><strong>Como opera:</strong> O script é executado em um diretório temporário totalmente isolado da árvore do projeto, utilizando estritamente o interpretador Python do próprio Hermes (<code>sys.executable</code>).</li>
+<li><strong>Vantagem:</strong> Impede que scripts de leitura acessem inadvertidamente arquivos sensíveis fora do escopo através de caminhos relativos mal calibrados, garantindo máxima reprodutibilidade.</li>
+<li><strong>Indicação:</strong> Ideal para agentes que processam tarefas públicas, assistentes expostos ao atendimento externo de clientes ou triagens de dados não confiáveis.</li>
+</ul>
+<hr>
+<h2 id="governanca-corporativa-e-blindagem-de-seguranca" class="scroll-mt-24 group flex items-center justify-between">Governança Corporativa e Blindagem de Segurança <a href="#governanca-corporativa-e-blindagem-de-seguranca" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Executar código gerado por inteligência artificial em servidores de produção é um tema que exige rigor absoluto de governança. O Hermes Agent implementa salvaguardas que operam independentemente do modo escolhido:</p>
+<h3 id="1-higienizacao-ativa-de-variaveis-de-ambiente-environment-scrubbing" class="scroll-mt-24 group flex items-center justify-between">1. Higienização Ativa de Variáveis de Ambiente (Environment Scrubbing) <a href="#1-higienizacao-ativa-de-variaveis-de-ambiente-environment-scrubbing" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Por padrão, o subprocesso onde o Python é executado tem suas variáveis de ambiente completamente limpas. Chaves de API mestras (OpenAI, Anthropic, OpenRouter), senhas de banco de dados e tokens de acesso são <strong>removidos do ambiente do subprocesso</strong>. Um script malicioso ou código alucinado não tem como ler <code>os.environ[&quot;OPENAI_API_KEY&quot;]</code> para vazar dados. Somente as variáveis operacionais estritas (<code>HERMES_HOME</code>, <code>HERMES_PROFILE</code>, <code>HERMES_CONFIG</code>, <code>HERMES_ENV</code>) são repassadas. Caso um script específico precise de uma variável autorizada, o administrador deve declará-la expressamente na lista <code>terminal.env_passthrough</code> no <code>config.yaml</code>.</p>
+<h3 id="2-guardrails-rigidos-de-hardware-e-recursos" class="scroll-mt-24 group flex items-center justify-between">2. Guardrails Rígidos de Hardware e Recursos <a href="#2-guardrails-rigidos-de-hardware-e-recursos" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ul>
+<li><strong>Timeout Automático de 300 Segundos:</strong> Se um script entrar em loop infinito matemático ou aguardar resposta de uma conexão travada, o Hermes envia um sinal <code>SIGTERM</code> e, após 5 segundos, elimina o processo com <code>SIGKILL</code>.</li>
+<li><strong>Teto de Captura de Stdout (50 KB):</strong> Se o script acidentalmente imprimir um arquivo binário de 10 megabytes, o Hermes trunca a exibição no terminal para evitar colapso de memória, salva o dump completo no disco local (<code>~/.hermes/cache/exec/</code>) e devolve apenas o caminho para leitura paginada segura via <code>read_file</code>.</li>
+<li><strong>Teto de 50 Chamadas de Ferramentas por Execução:</strong> Impede que um loop desenfreado sobrecarregue APIs externas ou o disco da máquina. Ao atingir 50 invocações de RPC, o canal é bloqueado e o erro é reportado com clareza.</li>
+</ul>
+<hr>
+<h2 id="3-exemplos-reais-de-automacao-com-executecode" class="scroll-mt-24 group flex items-center justify-between">3 Exemplos Reais de Automação com <code>execute_code</code> <a href="#3-exemplos-reais-de-automacao-com-executecode" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<h3 id="caso-1-varredura-de-configuracoes-e-auditoria-de-seguranca" class="scroll-mt-24 group flex items-center justify-between">Caso 1: Varredura de Configurações e Auditoria de Segurança <a href="#caso-1-varredura-de-configuracoes-e-auditoria-de-seguranca" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Em vez de ler arquivo por arquivo em dezenas de turnos, o agente executa uma varredura completa em milissegundos:</p>
+<pre><code class="language-python"><span class="token keyword">from</span> hermes_tools <span class="token keyword">import</span> search_files<span class="token punctuation">,</span> read_file
+<span class="token keyword">import</span> json
+
+<span class="token comment"># Localiza todos os arquivos de configuração do ecossistema</span>
+matches <span class="token operator">=</span> search_files<span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">,</span> path<span class="token operator">=</span><span class="token string">"/etc/app"</span><span class="token punctuation">,</span> file_glob<span class="token operator">=</span><span class="token string">"*.yaml"</span><span class="token punctuation">,</span> limit<span class="token operator">=</span><span class="token number">25</span><span class="token punctuation">)</span>
+findings <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> <span class="token keyword">match</span> <span class="token keyword">in</span> matches<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"matches"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    content <span class="token operator">=</span> read_file<span class="token punctuation">(</span><span class="token keyword">match</span><span class="token punctuation">[</span><span class="token string">"path"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    lines <span class="token operator">=</span> content<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"content"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> idx<span class="token punctuation">,</span> line <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>lines<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token string">"password:"</span> <span class="token keyword">in</span> line<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token keyword">not</span> line<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>endswith<span class="token punctuation">(</span><span class="token string">"''"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            findings<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">{</span>
+                <span class="token string">"file"</span><span class="token punctuation">:</span> <span class="token keyword">match</span><span class="token punctuation">[</span><span class="token string">"path"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token string">"line"</span><span class="token punctuation">:</span> idx<span class="token punctuation">,</span>
+                <span class="token string">"alert"</span><span class="token punctuation">:</span> <span class="token string">"Possível credencial em texto puro detectada"</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>findings<span class="token punctuation">,</span> indent<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre><h3 id="caso-2-pesquisa-de-mercado-com-deduplicacao-e-resumo-em-1-turno" class="scroll-mt-24 group flex items-center justify-between">Caso 2: Pesquisa de Mercado com Deduplicação e Resumo em 1 Turno <a href="#caso-2-pesquisa-de-mercado-com-deduplicacao-e-resumo-em-1-turno" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O agente pesquisa notícias sobre um tema, baixa o conteúdo de 5 páginas concorrentes, remove ruídos de layout e entrega o briefing consolidado:</p>
+<pre><code class="language-python"><span class="token keyword">from</span> hermes_tools <span class="token keyword">import</span> web_search<span class="token punctuation">,</span> web_extract
+<span class="token keyword">import</span> json
+
+search_res <span class="token operator">=</span> web_search<span class="token punctuation">(</span><span class="token string">"novas regulamentações tributárias automação 2026"</span><span class="token punctuation">,</span> limit<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
+briefings <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> item <span class="token keyword">in</span> search_res<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"web"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    doc <span class="token operator">=</span> web_extract<span class="token punctuation">(</span><span class="token punctuation">[</span>item<span class="token punctuation">[</span><span class="token string">"url"</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    results <span class="token operator">=</span> doc<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"results"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> results <span class="token keyword">and</span> results<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"content"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        texto_limpo <span class="token operator">=</span> results<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">600</span><span class="token punctuation">]</span>
+        briefings<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token string">"titulo"</span><span class="token punctuation">:</span> item<span class="token punctuation">[</span><span class="token string">"title"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">"link"</span><span class="token punctuation">:</span> item<span class="token punctuation">[</span><span class="token string">"url"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">"destaque"</span><span class="token punctuation">:</span> texto_limpo
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>briefings<span class="token punctuation">,</span> indent<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> ensure_ascii<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre><h3 id="caso-3-refatoracao-em-massa-de-legado-com-verificacao-de-erros" class="scroll-mt-24 group flex items-center justify-between">Caso 3: Refatoração em Massa de Legado com Verificação de Erros <a href="#caso-3-refatoracao-em-massa-de-legado-com-verificacao-de-erros" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>O agente corrige chamadas de bibliotecas depreciadas em 30 arquivos de backend em uma única passada atômica:</p>
+<pre><code class="language-python"><span class="token keyword">from</span> hermes_tools <span class="token keyword">import</span> search_files<span class="token punctuation">,</span> patch
+
+files <span class="token operator">=</span> search_files<span class="token punctuation">(</span><span class="token string">"db_query_v1"</span><span class="token punctuation">,</span> path<span class="token operator">=</span><span class="token string">"src/"</span><span class="token punctuation">,</span> file_glob<span class="token operator">=</span><span class="token string">"*.py"</span><span class="token punctuation">)</span>
+total_modificados <span class="token operator">=</span> <span class="token number">0</span>
+
+<span class="token keyword">for</span> file_info <span class="token keyword">in</span> files<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"matches"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    res <span class="token operator">=</span> patch<span class="token punctuation">(</span>
+        path<span class="token operator">=</span>file_info<span class="token punctuation">[</span><span class="token string">"path"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        old_string<span class="token operator">=</span><span class="token string">"db_query_v1("</span><span class="token punctuation">,</span>
+        new_string<span class="token operator">=</span><span class="token string">"db_query_v2("</span><span class="token punctuation">,</span>
+        replace_all<span class="token operator">=</span><span class="token boolean">True</span>
+    <span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token string">"error"</span> <span class="token keyword">not</span> <span class="token keyword">in</span> <span class="token builtin">str</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        total_modificados <span class="token operator">+=</span> <span class="token number">1</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Refatoração concluída com sucesso em </span><span class="token interpolation"><span class="token punctuation">{</span>total_modificados<span class="token punctuation">}</span></span><span class="token string"> arquivos."</span></span><span class="token punctuation">)</span>
+</code></pre><hr>
+<h2 id="onde-esse-conhecimento-se-conecta-na-grade-do-curso" class="scroll-mt-24 group flex items-center justify-between">Onde Esse Conhecimento se Conecta na Grade do Curso <a href="#onde-esse-conhecimento-se-conecta-na-grade-do-curso" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>No curso <strong>Inteligência Agêntica</strong>, ensinamos nossos alunos a construir infraestruturas profissionais para empresas reais. O <code>execute_code</code> é a espinha dorsal de agentes que precisam entregar produtividade de alta escala sem onerar o orçamento mensal:</p>
+<ul>
+<li><strong>Módulo 3.5 — As Ferramentas:</strong> Compreensão aprofundada da anatomia do agente, demonstrando a diferença prática entre ferramentas atômicas isoladas e o canal RPC de execução programática;</li>
+<li><strong>Módulo 3.6 — Aprendizado Autônomo:</strong> Como o agente utiliza laços de tentativa, teste e refatoração em memória para solucionar bugs complexos antes de apresentar a resposta final;</li>
+<li><strong>Módulo 5.2 — Criando a Primeira Automação (O Radar do Mercado):</strong> Configuração de rotinas que varrem portais, consolidam dados e enviam relatórios diários via Telegram operando em apenas um turno de API;</li>
+<li><strong>Módulo 14.1 — A Fábrica de Software Agêntica (Hermes + Orca):</strong> Orquestração de subagentes que realizam refatorações em massa em múltiplos repositórios com garantia de custo mínimo e sem estouro de contexto;</li>
+<li><strong>Guia G.7 — Guia de Comandos Hermes:</strong> Referência completa sobre as diretrizes de configuração do <code>config.yaml</code>, liberação de variáveis de ambiente com <code>env_passthrough</code> e uso do parâmetro <code>reset: true</code>.</li>
+</ul>
+<hr>
+<h2 id="conclusao-eficiencia-tecnica-transforma-custo-em-vantagem-competitiva" class="scroll-mt-24 group flex items-center justify-between">Conclusão: Eficiência Técnica Transforma Custo em Vantagem Competitiva <a href="#conclusao-eficiencia-tecnica-transforma-custo-em-vantagem-competitiva" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para quem utiliza agentes de IA apenas como brinquedo conversacional, gastar 50 turnos de LLM para ler três arquivos é uma ineficiência tolerável. Mas para empresários, gestores de tecnologia e analistas de infraestrutura que dependem de agentes rodando 24 horas por dia, 7 dias por semana em servidores VPS, essa diferença é o divisor de águas entre uma operação viável e um projeto inviabilizado pela fatura de tokens.</p>
+<p>A chamada programática de ferramentas com <code>execute_code</code> transforma o agente de IA de um mero gerador de texto em um <strong>verdadeiro orquestrador de engenharia de software</strong>. Ao transferir o processamento bruto de dados para onde ele deve estar — no processador local da sua VPS —, você conquista velocidade em tempo real, precisão matemática e governança absoluta de custos.</p>
+<p>Se você deseja dominar a instalação, configuração e automação de agentes corporativos resilientes com o ecossistema Hermes Agent, venha conhecer nossa formação completa na comunidade <a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a>.</p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/code-execution-chamada-programatica-hermes.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Git Worktrees no Hermes Agent: Paralelismo Multi-Agente sem Conflitos de Código]]></title>
