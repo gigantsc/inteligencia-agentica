@@ -19,11 +19,35 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Script-Only Cron Jobs e hermes send: Watchdogs de Infraestrutura e Alertas de Custo Zero com Hermes Agent](https://inteligenciaagentica.com.br/blog/script-only-cron-jobs-hermes-send-watchdogs-custo-zero)
+- **Data de Publicação:** 2026-11-17
+- **Tags:** Cron Jobs, DevOps, Hermes Agent, Infraestrutura, Automação, VPS, Telegram
+- **Resumo:** Aprenda a orquestrar rotinas de monitoramento 24/7 na VPS usando cron jobs sem LLM (no-agent mode) e o utilitário hermes send. Telemetria de hardware, alertas de banco de dados e pipelines com zero consumo de tokens e entrega direta no Telegram, Discord e WhatsApp.
+- **URL:** https://inteligenciaagentica.com.br/blog/script-only-cron-jobs-hermes-send-watchdogs-custo-zero
+
+### [7 Tendências de IA Agêntica em 2026: Da Experimentação à Produção em Escala nas Empresas](https://inteligenciaagentica.com.br/blog/7-tendencias-ia-agentica-2026-producao-empresas)
+- **Data de Publicação:** 2026-11-16
+- **Tags:** IA Agêntica, Tendências 2026, Multi-Agente, MCP, A2A, FinOps, Governança
+- **Resumo:** Análise das 7 tendências técnicas que definem a IA agêntica em produção em 2026: orquestração multi-agente, protocolos MCP e A2A, memória de longo prazo, FinOps para agentes e governança.
+- **URL:** https://inteligenciaagentica.com.br/blog/7-tendencias-ia-agentica-2026-producao-empresas
+
 ### [Code Execution no Hermes Agent: Como Executar Workflows de 50 Passos em 1 Único Turno com Custo Quase Zero](https://inteligenciaagentica.com.br/blog/code-execution-chamada-programatica-ferramentas-hermes-agent)
 - **Data de Publicação:** 2026-11-16
 - **Tags:** Code Execution, Hermes Agent, Automação, Economia de Tokens, Engenharia de Prompt, Negócios
 - **Resumo:** Descubra como o execute_code e a chamada programática de ferramentas eliminam a explosão de contexto em agentes de IA, colapsando loops complexos em scripts Python locais com economia de até 95% de tokens.
 - **URL:** https://inteligenciaagentica.com.br/blog/code-execution-chamada-programatica-ferramentas-hermes-agent
+
+### [Hermes Agent vs. Codex: Como Orquestrar o Coding Agent da OpenAI Sem Perder Memória, Privacidade ou Controle](https://inteligenciaagentica.com.br/blog/hermes-agent-vs-codex-orquestracao-codigo)
+- **Data de Publicação:** 2026-11-16
+- **Tags:** Hermes Agent, OpenAI Codex, Multi-Agente, Fábrica de Software, Coding Agents, Privacidade, Negócios
+- **Resumo:** Entenda por que o Hermes Agent não compete apenas com o OpenAI Codex — ele atua como a camada persistente acima dele, delegando código via skill nativa, migrando seu setup com um comando e mantendo zero telemetria por padrão.
+- **URL:** https://inteligenciaagentica.com.br/blog/hermes-agent-vs-codex-orquestracao-codigo
+
+### [Hype Cycle de IA Agêntica 2026 (Gartner): O Que Separa o Hype da Adoção Real nas Empresas](https://inteligenciaagentica.com.br/blog/hype-cycle-gartner-2026-ia-agentica-empresas)
+- **Data de Publicação:** 2026-11-16
+- **Tags:** Gartner, Hype Cycle, IA Agêntica, Governança, ADLC, FinOps, Estratégia
+- **Resumo:** Análise do Gartner Hype Cycle for Agentic AI 2026: apenas 17% das empresas já implantaram agentes, mas mais de 60% planejam adotar em 2 anos. Entenda o papel de ADLC, Context Graphs, AX, FinOps e Governança.
+- **URL:** https://inteligenciaagentica.com.br/blog/hype-cycle-gartner-2026-ia-agentica-empresas
 
 ### [Git Worktrees no Hermes Agent: Paralelismo Multi-Agente sem Conflitos de Código](https://inteligenciaagentica.com.br/blog/git-worktrees-paralelismo-multi-agente-hermes)
 - **Data de Publicação:** 2026-11-15
