@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Tue, 17 Nov 2026 11:11:30 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 18 Nov 2026 19:17:44 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,257 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Autonomia Proativa: Como /loop e /heartbeat Eliminam a Babá de IA no Hermes Agent]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/autonomia-proativa-loops-recorrentes-heartbeats-hermes</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/autonomia-proativa-loops-recorrentes-heartbeats-hermes</guid>
+            <pubDate>Wed, 18 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Veja como /loop (laços recorrentes com auto-backoff exponencial) e /heartbeat (batimento cardíaco de sessão) trabalham dentro de uma mesma conversa para monitorar deployments, acompanhar filas e manter vigilância autônoma — zero 새as de "keep going", prompt cache preservado em cada turno.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O Hermes Agent oferece dois comandos internos para autonomia dentro da conversa: <strong><code>/loop</code></strong> executa um prompt recorrentemente em intervalos fixos ou com backoff exponencial auto-paceado; <strong><code>/heartbeat</code></strong> mantém uma instrução vigilante enquanto o session está ocioso. Ambos são turnos de usuário injetados no histórico, <strong>preservam o prompt cache</strong> e não consomem token extra quando nada muda.</p>
+</blockquote>
+<hr>
+<h2 id="o-problema-andquotkeep-goingandquot-nao-escala" class="scroll-mt-24 group flex items-center justify-between">O Problema: &quot;Keep Going&quot; Não Escala <a href="#o-problema-andquotkeep-goingandquot-nao-escala" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando um gestor ou desenvolvedor delega uma tarefa complexa ao Hermes — auditar 80 pull requests, acompanhar um deploy de 40 minutos ou monitorar uma fila de mensagens — o padrão convencional exige intervenção humana a cada turno: <em>&quot;e aí, terminou?&quot;</em>, <em>&quot;continue&quot;</em>, <em>&quot;parece que travou&quot;</em>. Isso funciona para uma pergunta. Não escala para automação operacional real.</p>
+<p>A inteligência agêntica de produção exige que o agente <strong>continue sozinho</strong>, <strong>perceba mudanças de estado</strong> e <strong>informe apenas quando há algo relevante a comunicar</strong>. É isso que <code>/loop</code> e <code>/heartbeat</code> resolvem — dentro da mesma conversa, sem criar sessões paralelas, sem custo extra de tokens em silêncio.[1][2]</p>
+<hr>
+<h2 id="loop-lacos-recorrentes-com-deteccao-de-mudanca" class="scroll-mt-24 group flex items-center justify-between">/loop: Laços Recorrentes com Detecção de Mudança <a href="#loop-lacos-recorrentes-com-deteccao-de-mudanca" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O <code>/loop</code> é o comando de <strong>vigilância orientada a.timer</strong> dentro de uma sessão Hermes. Ele agenda um prompt para reexecutar em intervalos regulares, com duas modalidades de cadência.[1]</p>
+<h3 id="modo-fixo" class="scroll-mt-24 group flex items-center justify-between">Modo Fixo <a href="#modo-fixo" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code>/loop 5m check the deploy status and <span class="token function">ping</span> me the moment it finishes
+</code></pre><p>O agente recebe o wakeup a cada 5 minutos (ou no intervalo definido: 30s, 2h, 1d). A cada tick, Hermes lê o estado atual — resultado de CI, conteúdo de fila, resposta de API — e decide se há algo novo a reportar. Se nada mudou, mantém silêncio. Se mudou, envia o resultado para o chat.[1]</p>
+<h3 id="modo-auto-paceado-self-paced" class="scroll-mt-24 group flex items-center justify-between">Modo Auto-Paceado (Self-Paced) <a href="#modo-auto-paceado-self-paced" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code>/loop poll GitHub Actions job <span class="token comment">#42 and tell me when it completes</span>
+</code></pre><p>Quando você omite o intervalo, o Hermes <strong>define a cadência sozinho</strong>: começa no piso (1 minuto), dobra a cada wakeup se a resposta não mudou (2m → 4m → 8m → 15m), e reseta instantaneamente para o piso no momento em que detecta uma diferença. Isso elimina o custo de polling agressivo em sistemas que mudam raramente.[1]</p>
+<pre><code>↻ Loop <span class="token builtin class-name">set</span> <span class="token punctuation">(</span>every 5m<span class="token punctuation">)</span>: check the deploy status<span class="token punctuation">..</span>.
+↻ Loop active · <span class="token number">2</span> runs · next 00:04:12
+</code></pre><h3 id="limites-configuraveis" class="scroll-mt-24 group flex items-center justify-between">Limites Configuráveis <a href="#limites-configuraveis" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Em <code>config.yaml</code>, você pode ajustar os pisos e tetos:</p>
+<pre><code class="language-yaml"><span class="token key atrule">loops</span><span class="token punctuation">:</span>
+  <span class="token key atrule">min_interval_seconds</span><span class="token punctuation">:</span> <span class="token number">30</span>      <span class="token comment"># piso mínimo (impede spam)</span>
+  <span class="token key atrule">max_ticks</span><span class="token punctuation">:</span> <span class="token number">100</span>               <span class="token comment"># backstop de segurança (0 = ilimitado)</span>
+  <span class="token key atrule">self_paced_floor_seconds</span><span class="token punctuation">:</span> <span class="token number">60</span> <span class="token comment"># cadência inicial do auto-pace</span>
+  <span class="token key atrule">self_paced_ceiling_seconds</span><span class="token punctuation">:</span> <span class="token number">900</span>  <span class="token comment"># máximo backoff (15 min)</span>
+</code></pre><h3 id="diferenca-crucial-loop-vs-goal" class="scroll-mt-24 group flex items-center justify-between">Diferença Crucial: /loop vs /goal <a href="#diferenca-crucial-loop-vs-goal" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>/loop</code></th>
+<th><code>/goal</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Gatilho</strong></td>
+<td>Timer (intervalo fixo ou auto-pace)</td>
+<td>Julgamento do judge após cada turno</td>
+</tr>
+<tr>
+<td><strong>Vive em</strong></td>
+<td>Sua sessão atual</td>
+<td>Sua sessão atual</td>
+</tr>
+<tr>
+<td><strong>Termina quando</strong></td>
+<td>Condição de stop / limite de ticks / você</td>
+<td>Meta atingida / orçamento / você</td>
+</tr>
+<tr>
+<td><strong>Melhor para</strong></td>
+<td>Polling, monitoramento, re-execuções periódicas</td>
+<td>Iteração até resultado definido</td>
+</tr>
+</tbody></table>
+<p>Se a tarefa tem definição de &quot;pronto&quot; — <em>&quot;corrigir todos os testes&quot;</em> — use <code>/goal</code>. Se a tarefa é monitorar algo que muda por conta própria — <em>&quot;avise quando o deploy terminar&quot;</em> — use <code>/loop</code>.[1][3]</p>
+<hr>
+<h2 id="heartbeat-a-sentinela-do-idle" class="scroll-mt-24 group flex items-center justify-between">/heartbeat: A Sentinela do Idle <a href="#heartbeat-a-sentinela-do-idle" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O <code>/heartbeat</code> é o comando de <strong>vigilância passiva enquanto a sessão está ociosa</strong>. Diferente do <code>/loop</code>, que agenda re-execuções ativas, o heartbeat é uma instrução que o agente verifica <strong>somente quando ninguém mais está digitando</strong>.[2]</p>
+<h3 id="uso-tipico" class="scroll-mt-24 group flex items-center justify-between">Uso Típico <a href="#uso-tipico" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code>/heartbeat every 10m Check the deployment and report meaningful changes
+</code></pre><p>O agente mantém essa instrução em memória e, a cada 10 minutos de ociosidade, executa a verificação. Não interrompe trabalho ativo — se você está no meio de uma sessão, o heartbeat espera. Se a sessão está aberta no Telegram enquanto você está off-line, o heartbeat continua disparando e enviando replies para o chat.[2]</p>
+<pre><code>/hb every 10m Check <span class="token keyword">for</span> error spikes <span class="token keyword">in</span> the last hour
+/heartbeat status   → mostra intervalo e próximo tick
+/heartbeat pause    → suspende sem perder
+/heartbeat resume   → retoma <span class="token punctuation">(</span>reancora o timer<span class="token punctuation">)</span>
+/heartbeat <span class="token function">clear</span>    → remove definitivamente
+</code></pre><h3 id="heartbeat-vs-cron-qual-usar" class="scroll-mt-24 group flex items-center justify-between">Heartbeat vs Cron: Qual Usar? <a href="#heartbeat-vs-cron-qual-usar" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>/heartbeat</code></th>
+<th><code>hermes cron</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Executa em</strong></td>
+<td>Esta conversa — contexto completo</td>
+<td>Sessão isolada por tick</td>
+</tr>
+<tr>
+<td><strong>Sobrevive a reinício</strong></td>
+<td>Sim (SessionDB mantém)</td>
+<td>Sim (scheduler durável)</td>
+</tr>
+<tr>
+<td><strong>Quantos por sessão</strong></td>
+<td>Um</td>
+<td>Ilimitados</td>
+</tr>
+<tr>
+<td><strong>Melhor para</strong></td>
+<td><em>&quot;Fique de olho em X enquanto trabalhamos aqui&quot;</em></td>
+<td>Tarefas auto-contidas, relatórios, watchdogs</td>
+</tr>
+</tbody></table>
+<p>A regra prática: se a verificação precisa do contexto da conversa atual, use <code>/heartbeat</code>. Se é um trabalho auto-contido que deve rodar de verdade mesmo quando ninguém está logado, use cron.[2][3]</p>
+<hr>
+<h2 id="arquitetura-tecnica-por-que-e-seguro-e-barato" class="scroll-mt-24 group flex items-center justify-between">Arquitetura Técnica: Por Que É Seguro e Barato <a href="#arquitetura-tecnica-por-que-e-seguro-e-barato" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<h3 id="cada-wakeup-e-um-turno-de-usuario" class="scroll-mt-24 group flex items-center justify-between">Cada Wakeup É Um Turno de Usuário <a href="#cada-wakeup-e-um-turno-de-usuario" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Internamente, <code>/loop</code> e <code>/heartbeat</code> injetam uma mensagem com role <code>user</code> no histórico da sessão — <strong>exatamente como se você tivesse digitado</strong>. Isso significa:</p>
+<ul>
+<li>O prompt cache se mantém intacto (a sequência de prefixação do sistema não é modificada).</li>
+<li>O agente vê o estado atual como se você tivesse acabado de perguntar.</li>
+<li>Não há mutação de system prompt, não há toolset swap, não há efeitos colaterais no cache de contexto.[1][2]</li>
+</ul>
+<h3 id="missed-ticks-coalescem" class="scroll-mt-24 group flex items-center justify-between">Missed Ticks Coalescem <a href="#missed-ticks-coalescem" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Se a sessão estava ocupada (ou o processo não estava rodando) durante vários intervalos, <strong>você recebe apenas um wakeup</strong>, não uma fila de alertas acumulados. O timer se reancora a cada disparo. Isso previne a fadiga de notificações.[2]</p>
+<h3 id="user-messages-win" class="scroll-mt-24 group flex items-center justify-between">User Messages Win <a href="#user-messages-win" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Uma mensagem que o usuário digita <strong>sempre tem prioridade</strong> sobre o heartbeat em espera. A mensagem entra na fila, é processada primeiro, e o heartbeat espera o próximo ciclo de ociosidade.[2]</p>
+<h3 id="gateway-recovery" class="scroll-mt-24 group flex items-center justify-between">Gateway Recovery <a href="#gateway-recovery" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Se o gateway cai e volta, heartbeats ativos são restaurados com a sessão persistente e o thread routing atual. Sessões pausadas ou limpas não são restauradas — a recuperação é limpa.[2]</p>
+<hr>
+<h2 id="casos-de-uso-corporativos-reais" class="scroll-mt-24 group flex items-center justify-between">Casos de Uso Corporativos Reais <a href="#casos-de-uso-corporativos-reais" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<h3 id="1-acompanhamento-de-deploy-de-40-minutos" class="scroll-mt-24 group flex items-center justify-between">1. Acompanhamento de Deploy de 40 Minutos <a href="#1-acompanhamento-de-deploy-de-40-minutos" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code>/goal Deploy our API to staging and run smoke tests
+
+/loop 2m poll https://ci.company.com/job/api-deploy/status
+</code></pre><p>O <code>/goal</code> executa o deploy real. O <code>/loop</code> monitora o pipeline de CI em paralelo — a cada tick, pergunta ao sistema se o job terminou. Quando detecta &quot;success&quot;, envia um resumo no chat. Zero polling manual, zero LLM por tick do loop.[1]</p>
+<h3 id="2-monitoramento-de-fila-de-mensagens-telegramwhatsapp" class="scroll-mt-24 group flex items-center justify-between">2. Monitoramento de Fila de Mensagens (Telegram/WhatsApp) <a href="#2-monitoramento-de-fila-de-mensagens-telegramwhatsapp" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code>/heartbeat every 15m Scan the support inbox <span class="token keyword">for</span> urgent tickets and escalate to @manager
+</code></pre><p>Enquanto o agente trabalha em outras demandas na mesma sessão, o heartbeat verifica a caixa de entrada a cada 15 minutos. Só envia mensagem quando encontra tickets classificados como urgentes.[2]</p>
+<h3 id="3-polling-de-status-durante-sessao-de-trabalho" class="scroll-mt-24 group flex items-center justify-between">3. Polling de Status Durante Sessão de Trabalho <a href="#3-polling-de-status-durante-sessao-de-trabalho" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code>/loop poll the queue depth endpoint and <span class="token function">ping</span> me <span class="token keyword">if</span> it exceeds <span class="token number">500</span>
+</code></pre><p>Enviado enquanto você está trabalhando com o agente em outra tarefa. Quando a fila bate em 500, o loop notifica — sem que você precise lembrar de perguntar.[1]</p>
+<h3 id="4-retry-automatico-com-backoff-exponencial" class="scroll-mt-24 group flex items-center justify-between">4. Retry Automático com Backoff Exponencial <a href="#4-retry-automatico-com-backoff-exponencial" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code>/loop Check <span class="token keyword">if</span> the ML model endpoint is responding with <span class="token number">200</span>
+</code></pre><p>O agente detecta que o endpoint está fora (503). Na primeira verificação ele já reportou. Nos ticks seguintes, o auto-pace faz o loop esperar mais tempo (1m → 2m → 4m) até o endpoint voltar, sem custo de polling agressivo.[1]</p>
+<hr>
+<h2 id="diagrama-de-arquitetura-loop-vs-heartbeat-vs-cron" class="scroll-mt-24 group flex items-center justify-between">Diagrama de Arquitetura: Loop vs Heartbeat vs Cron <a href="#diagrama-de-arquitetura-loop-vs-heartbeat-vs-cron" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                  HERMES <span class="token environment constant">SESSION</span> <span class="token punctuation">(</span>ativa<span class="token punctuation">)</span>                  │
+│                                                         │
+│  ┌──────────┐    ┌──────────────┐    ┌──────────────┐ │
+│  │  /goal   │    │    /loop      │    │ /heartbeat   │ │
+│  │ Ralph    │    │ Timer-driven  │    │ Idle-sentry  │ │
+│  │ Loop     │    │ Wakeup       │    │ Wakeup       │ │
+│  └────┬─────┘    └──────┬───────┘    └──────┬───────┘ │
+│       │                 │                    │         │
+│       │  judge verdict  │  interval timer    │ idle    │
+│       │  after turn     │  <span class="token punctuation">(</span>fixed or         │ timer   │
+│       │                 │  self-paced<span class="token punctuation">)</span>       │         │
+│       ▼                 ▼                    ▼         │
+│  ┌────────────────────────────────────────────────────┐ │
+│  │  Same conversation context • Same session store   │ │
+│  │  User messages always win over pending wakeups   │ │
+│  └────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────┘
+              │                         │
+              ▼                         ▼
+     ┌──────────────────┐    ┌──────────────────────────┐
+     │   hermes <span class="token function">cron</span>    │    │ External Systems          │
+     │ Separate session │    │ Deploy / CI / Queue       │
+     │ per fire         │    │ Webhook / API              │
+     │ Survives restart │    │                            │
+     └──────────────────┘    └────────────────────────────┘
+</code></pre><hr>
+<h2 id="comparativo-autonomia-em-tres-camadas" class="scroll-mt-24 group flex items-center justify-between">Comparativo: Autonomia em Três Camadas <a href="#comparativo-autonomia-em-tres-camadas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th><code>/loop</code></th>
+<th><code>/heartbeat</code></th>
+<th><code>hermes cron</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Contexto da conversa</td>
+<td>✅ Sim</td>
+<td>✅ Sim</td>
+<td>❌ Não (sessão isolada)</td>
+</tr>
+<tr>
+<td>Executa em ociosidade</td>
+<td>❌ Não (turno ativo)</td>
+<td>✅ Sim</td>
+<td>✅ Sim</td>
+</tr>
+<tr>
+<td>Cadência fixa</td>
+<td>✅ 30s–24h</td>
+<td>✅ 60s–24h</td>
+<td>✅ cron expression</td>
+</tr>
+<tr>
+<td>Auto-backoff</td>
+<td>✅ Sim</td>
+<td>❌ Não</td>
+<td>❌ Não</td>
+</tr>
+<tr>
+<td>Limite de ticks</td>
+<td>✅ configurável</td>
+<td>❌ N/A</td>
+<td>✅ repeat count</td>
+</tr>
+<tr>
+<td>Intersecção com <code>/goal</code></td>
+<td>✅ Conflito (goal vence)</td>
+<td>✅ Coexiste</td>
+<td>✅ Paralelo</td>
+</tr>
+<tr>
+<td>Sobrevive a reinício</td>
+<td>✅ SessionDB</td>
+<td>✅ SessionDB</td>
+<td>✅ Scheduler durável</td>
+</tr>
+<tr>
+<td>Melhores para</td>
+<td>Polling, monitoramento ativo</td>
+<td>Verificações passivas</td>
+<td>Tarefas auto-contidas</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="exemplo-pratico-monitoramento-de-deploy-completo" class="scroll-mt-24 group flex items-center justify-between">Exemplo Prático: Monitoramento de Deploy Completo <a href="#exemplo-pratico-monitoramento-de-deploy-completo" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<pre><code class="language-bash"><span class="token comment"># Sessão 1: Deployment com /goal</span>
+/goal Deploy <span class="token function">service</span> X to production and run smoke tests
+
+<span class="token comment"># Sessão 2: Monitoramento complementar com /loop</span>
+/loop 2m check https://ci.company.com/api/v1/jobs/deploy-x/status
+
+<span class="token comment"># Sessão 3: Sentinela de ociosidade com /heartbeat</span>
+/heartbeat every 30m Verify all prod services <span class="token builtin class-name">return</span> HTTP <span class="token number">200</span>
+</code></pre><p>Resultado:</p>
+<ul>
+<li>O <code>/goal</code> executa o trabalho pesado de deploy — iterando, corrigindo, validando.</li>
+<li>O <code>/loop</code> poll CI a cada 2 minutos — quando detecta &quot;success&quot;, notifica.</li>
+<li>O <code>/heartbeat</code> verifica saúde geral a cada 30 minutos em background — silêncio quando tudo bem, alerta quando algo quebra.</li>
+</ul>
+<p><strong>Três camadas de autonomia, uma sessão, zero babá humana.</strong>[1][2]</p>
+<hr>
+<h2 id="conclusao" class="scroll-mt-24 group flex items-center justify-between">Conclusão <a href="#conclusao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Autonomia real não é &quot;ligar e ir embora&quot;. É construir um sistema onde o agente sabe quando agir, quando esperar e quando parar. <code>/loop</code> e <code>/heartbeat</code> fornecem as duas metades dessa equação: <strong>proatividade orientada a.timer</strong> (<code>/loop</code>) e <strong>vigilância em ociosidade</strong> (<code>/heartbeat</code>). Juntos, cobrem a lacuna entre o comando único e o cron job — mantendo o agente vivo e útil dentro da conversa, pronto para reportar o que importa no momento certo.</p>
+<p>Junte-se à comunidade <strong>Inteligência Agêntica</strong> para acessar templates prontos, cron jobs de exemplo e discussões práticas sobre automação corporativa com agentes autônomos:<br>👉 <a href="https://inteligenciaagentica.com.br">inteligenciaagentica.com.br</a></p>
+<hr>
+<h2 id="fontes" class="scroll-mt-24 group flex items-center justify-between">Fontes <a href="#fontes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/loops">Recurring Loops — Hermes Agent Docs</a><br>[2] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/heartbeat">Session Heartbeats — Hermes Agent Docs</a><br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/cron">Cron Jobs &amp; Scheduled Tasks — Hermes Agent Docs</a></p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/autonomia-proativa-loops-recorrentes-heartbeats-hermes.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Script-Only Cron Jobs e hermes send: Watchdogs de Infraestrutura e Alertas de Custo Zero com Hermes Agent]]></title>
