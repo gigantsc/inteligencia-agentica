@@ -395,7 +395,7 @@
 
           <div class="flex items-center gap-4 text-xs">
             <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-11-18</span>
-            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 9 min de leitura</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 10 min de leitura</span>
           </div>
         </div>
       </header>
@@ -409,177 +409,16 @@
 
       <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
       
-      <details class="mb-8 glass rounded-xl border border-white/10 overflow-hidden group">
-        <summary class="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white flex items-center justify-between cursor-pointer select-none transition-colors">
-          <span class="flex items-center gap-2 text-ouro">
-            <i data-lucide="list" class="w-4 h-4 text-ouro"></i>
-            <span>Tópicos do Artigo (24)</span>
-          </span>
-          <span class="text-[11px] text-gray-500 font-normal flex items-center gap-1 group-open:rotate-180 transition-transform duration-200">
-            <i data-lucide="chevron-down" class="w-4 h-4"></i>
-          </span>
-        </summary>
-        <div class="px-5 pb-5 pt-2 border-t border-white/5">
-          <ul class="space-y-2 text-xs sm:text-sm">
-            
-              <li class="font-semibold text-gray-200">
-                <a href="#o-problema-keep-going-nao-escala" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> O Problema: "Keep Going" Não Escala
-                </a>
-              </li>
-            
-              <li class="font-semibold text-gray-200">
-                <a href="#loop-lacos-recorrentes-com-deteccao-de-mudanca" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> /loop: Laços Recorrentes com Detecção de Mudança
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#modo-fixo" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Modo Fixo
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#modo-auto-paceado-self-paced" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Modo Auto-Paceado (Self-Paced)
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#limites-configuraveis" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Limites Configuráveis
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#diferenca-crucial-loop-vs-goal" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Diferença Crucial: /loop vs /goal
-                </a>
-              </li>
-            
-              <li class="font-semibold text-gray-200">
-                <a href="#heartbeat-a-sentinela-do-idle" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> /heartbeat: A Sentinela do Idle
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#uso-tipico" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Uso Típico
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#heartbeat-vs-cron-qual-usar" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Heartbeat vs Cron: Qual Usar?
-                </a>
-              </li>
-            
-              <li class="font-semibold text-gray-200">
-                <a href="#arquitetura-tecnica-por-que-e-seguro-e-barato" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Arquitetura Técnica: Por Que É Seguro e Barato
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#cada-wakeup-e-um-turno-de-usuario" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Cada Wakeup É Um Turno de Usuário
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#missed-ticks-coalescem" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Missed Ticks Coalescem
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#user-messages-win" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> User Messages Win
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#gateway-recovery" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Gateway Recovery
-                </a>
-              </li>
-            
-              <li class="font-semibold text-gray-200">
-                <a href="#casos-de-uso-corporativos-reais" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Casos de Uso Corporativos Reais
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#1-acompanhamento-de-deploy-de-40-minutos" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> 1. Acompanhamento de Deploy de 40 Minutos
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#2-monitoramento-de-fila-de-mensagens-telegramwhatsapp" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> 2. Monitoramento de Fila de Mensagens (Telegram/WhatsApp)
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#3-polling-de-status-durante-sessao-de-trabalho" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> 3. Polling de Status Durante Sessão de Trabalho
-                </a>
-              </li>
-            
-              <li class="ml-4 text-gray-400">
-                <a href="#4-retry-automatico-com-backoff-exponencial" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> 4. Retry Automático com Backoff Exponencial
-                </a>
-              </li>
-            
-              <li class="font-semibold text-gray-200">
-                <a href="#diagrama-de-arquitetura-loop-vs-heartbeat-vs-cron" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Diagrama de Arquitetura: Loop vs Heartbeat vs Cron
-                </a>
-              </li>
-            
-              <li class="font-semibold text-gray-200">
-                <a href="#comparativo-autonomia-em-tres-camadas" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Comparativo: Autonomia em Três Camadas
-                </a>
-              </li>
-            
-              <li class="font-semibold text-gray-200">
-                <a href="#exemplo-pratico-monitoramento-de-deploy-completo" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Exemplo Prático: Monitoramento de Deploy Completo
-                </a>
-              </li>
-            
-              <li class="font-semibold text-gray-200">
-                <a href="#conclusao" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Conclusão
-                </a>
-              </li>
-            
-              <li class="font-semibold text-gray-200">
-                <a href="#fontes" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Fontes
-                </a>
-              </li>
-            
-          </ul>
-        </div>
-      </details>
-      
 
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O Hermes Agent oferece dois comandos internos para autonomia dentro da conversa: <strong><code>/loop</code></strong> executa um prompt recorrentemente em intervalos fixos ou com backoff exponencial auto-paceado; <strong><code>/heartbeat</code></strong> mantém uma instrução vigilante enquanto o session está ocioso. Ambos são turnos de usuário injetados no histórico, <strong>preservam o prompt cache</strong> e não consomem token extra quando nada muda.</p>
+<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O Hermes Agent oferece dois comandos internos para autonomia dentro da conversa: <strong><code>/loop</code></strong> repete um prompt em intervalos definidos ou numa cadência auto-paceada com backoff; <strong><code>/heartbeat</code></strong> executa uma instrução recorrente quando a sessão está ociosa. Cada wakeup é um turno real do agente, portanto pode consumir tokens; a cadência auto-paceada reduz chamadas repetidas quando a resposta não muda. Os wakeups preservam a estrutura da conversa e o prompt cache.[1][2]</p>
 </blockquote>
 <hr>
 <h2 id="o-problema-andquotkeep-goingandquot-nao-escala" class="scroll-mt-24 group flex items-center justify-between">O Problema: &quot;Keep Going&quot; Não Escala <a href="#o-problema-andquotkeep-goingandquot-nao-escala" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
 <p>Quando um gestor ou desenvolvedor delega uma tarefa complexa ao Hermes — auditar 80 pull requests, acompanhar um deploy de 40 minutos ou monitorar uma fila de mensagens — o padrão convencional exige intervenção humana a cada turno: <em>&quot;e aí, terminou?&quot;</em>, <em>&quot;continue&quot;</em>, <em>&quot;parece que travou&quot;</em>. Isso funciona para uma pergunta. Não escala para automação operacional real.</p>
-<p>A inteligência agêntica de produção exige que o agente <strong>continue sozinho</strong>, <strong>perceba mudanças de estado</strong> e <strong>informe apenas quando há algo relevante a comunicar</strong>. É isso que <code>/loop</code> e <code>/heartbeat</code> resolvem — dentro da mesma conversa, sem criar sessões paralelas, sem custo extra de tokens em silêncio.[1][2]</p>
+<p>A inteligência agêntica de produção exige que o agente <strong>continue sozinho</strong>, <strong>perceba mudanças de estado</strong> e <strong>informe quando há algo relevante</strong>. O <code>/loop</code> e o <code>/heartbeat</code> habilitam reexecuções dentro de uma sessão contextualizada. Como cada wakeup é um turno real do agente, escolha a frequência considerando custo e latência.[1][2]</p>
 <hr>
 <h2 id="loop-lacos-recorrentes-com-deteccao-de-mudanca" class="scroll-mt-24 group flex items-center justify-between">/loop: Laços Recorrentes com Detecção de Mudança <a href="#loop-lacos-recorrentes-com-deteccao-de-mudanca" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
 <p>O <code>/loop</code> é o comando de <strong>vigilância orientada a.timer</strong> dentro de uma sessão Hermes. Ele agenda um prompt para reexecutar em intervalos regulares, com duas modalidades de cadência.[1]</p>
@@ -692,18 +531,21 @@
 <pre><code>/goal Deploy our API to staging and run smoke tests
 
 /loop 2m poll https://ci.company.com/job/api-deploy/status
-</code></pre><p>O <code>/goal</code> executa o deploy real. O <code>/loop</code> monitora o pipeline de CI em paralelo — a cada tick, pergunta ao sistema se o job terminou. Quando detecta &quot;success&quot;, envia um resumo no chat. Zero polling manual, zero LLM por tick do loop.[1]</p>
+</code></pre><p>O <code>/goal</code> executa o trabalho real. O <code>/loop</code> consulta o status do pipeline de CI no intervalo configurado; cada wakeup é um turno do agente e pode gerar custo, então ajuste a cadência ao ritmo esperado do job. Quando o estado muda, o agente pode reportar o resultado.[1]</p>
 <h3 id="2-monitoramento-de-fila-de-mensagens-telegramwhatsapp" class="scroll-mt-24 group flex items-center justify-between">2. Monitoramento de Fila de Mensagens (Telegram/WhatsApp) <a href="#2-monitoramento-de-fila-de-mensagens-telegramwhatsapp" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
 <pre><code>/heartbeat every 15m Scan the support inbox <span class="token keyword">for</span> urgent tickets and escalate to @manager
 </code></pre><p>Enquanto o agente trabalha em outras demandas na mesma sessão, o heartbeat verifica a caixa de entrada a cada 15 minutos. Só envia mensagem quando encontra tickets classificados como urgentes.[2]</p>
 <h3 id="3-polling-de-status-durante-sessao-de-trabalho" class="scroll-mt-24 group flex items-center justify-between">3. Polling de Status Durante Sessão de Trabalho <a href="#3-polling-de-status-durante-sessao-de-trabalho" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
 <pre><code>/loop poll the queue depth endpoint and <span class="token function">ping</span> me <span class="token keyword">if</span> it exceeds <span class="token number">500</span>
-</code></pre><p>Enviado enquanto você está trabalhando com o agente em outra tarefa. Quando a fila bate em 500, o loop notifica — sem que você precise lembrar de perguntar.[1]</p>
+</code></pre><p>O <code>/loop</code> poll o CI com a cadência escolhida, e cada wakeup é um turno real do agente que pode consumir tokens; dimensione o intervalo considerando custo e frequência das mudanças.[1]</p>
 <h3 id="4-retry-automatico-com-backoff-exponencial" class="scroll-mt-24 group flex items-center justify-between">4. Retry Automático com Backoff Exponencial <a href="#4-retry-automatico-com-backoff-exponencial" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
 <pre><code>/loop Check <span class="token keyword">if</span> the ML model endpoint is responding with <span class="token number">200</span>
-</code></pre><p>O agente detecta que o endpoint está fora (503). Na primeira verificação ele já reportou. Nos ticks seguintes, o auto-pace faz o loop esperar mais tempo (1m → 2m → 4m) até o endpoint voltar, sem custo de polling agressivo.[1]</p>
+</code></pre><p>Cada wakeup do <code>/loop</code> é um turno real do agente, não um polling sem LLM. A cadência auto-paceada reduz a frequência quando as respostas não mudam, mas não elimina o custo dos turnos executados.[1]</p>
 <hr>
 <h2 id="diagrama-de-arquitetura-loop-vs-heartbeat-vs-cron" class="scroll-mt-24 group flex items-center justify-between">Diagrama de Arquitetura: Loop vs Heartbeat vs Cron <a href="#diagrama-de-arquitetura-loop-vs-heartbeat-vs-cron" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<blockquote>
+<p><strong>Observação:</strong> Sessões do <code>/loop</code> e <code>/heartbeat</code> funcionam com a janela do Hermes aberta ou pelo gateway enquanto esse processo estiver ativo; jobs de cron são duráveis e independentes da sessão interativa.[2][3]</p>
+</blockquote>
 <pre><code>┌─────────────────────────────────────────────────────────┐
 │                  HERMES <span class="token environment constant">SESSION</span> <span class="token punctuation">(</span>ativa<span class="token punctuation">)</span>                  │
 │                                                         │
@@ -749,15 +591,15 @@
 </tr>
 <tr>
 <td>Executa em ociosidade</td>
-<td>❌ Não (turno ativo)</td>
+<td>✅ Wakeup no próximo poll idle</td>
 <td>✅ Sim</td>
 <td>✅ Sim</td>
 </tr>
 <tr>
 <td>Cadência fixa</td>
-<td>✅ 30s–24h</td>
-<td>✅ 60s–24h</td>
-<td>✅ cron expression</td>
+<td>✅ Intervalo configurável</td>
+<td>✅ Intervalo configurável</td>
+<td>✅ Expressão cron</td>
 </tr>
 <tr>
 <td>Auto-backoff</td>
@@ -792,21 +634,11 @@
 </tbody></table>
 <hr>
 <h2 id="exemplo-pratico-monitoramento-de-deploy-completo" class="scroll-mt-24 group flex items-center justify-between">Exemplo Prático: Monitoramento de Deploy Completo <a href="#exemplo-pratico-monitoramento-de-deploy-completo" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
-<pre><code class="language-bash"><span class="token comment"># Sessão 1: Deployment com /goal</span>
+<pre><code class="language-bash"><span class="token comment"># Exemplo de combinações na mesma sessão</span>
 /goal Deploy <span class="token function">service</span> X to production and run smoke tests
-
-<span class="token comment"># Sessão 2: Monitoramento complementar com /loop</span>
 /loop 2m check https://ci.company.com/api/v1/jobs/deploy-x/status
-
-<span class="token comment"># Sessão 3: Sentinela de ociosidade com /heartbeat</span>
 /heartbeat every 30m Verify all prod services <span class="token builtin class-name">return</span> HTTP <span class="token number">200</span>
-</code></pre><p>Resultado:</p>
-<ul>
-<li>O <code>/goal</code> executa o trabalho pesado de deploy — iterando, corrigindo, validando.</li>
-<li>O <code>/loop</code> poll CI a cada 2 minutos — quando detecta &quot;success&quot;, notifica.</li>
-<li>O <code>/heartbeat</code> verifica saúde geral a cada 30 minutos em background — silêncio quando tudo bem, alerta quando algo quebra.</li>
-</ul>
-<p><strong>Três camadas de autonomia, uma sessão, zero babá humana.</strong>[1][2]</p>
+</code></pre><p>Durante uma sessão com um <code>/goal</code> ativo, wakeups de <code>/loop</code> ficam deferidos até o goal terminar, pausar ou aguardar; cron jobs rodam em sessões próprias. Isso significa que loops e heartbeats não formam vários agentes executando paralelamente dentro da mesma sessão.[1][2][3]</p>
 <hr>
 <h2 id="conclusao" class="scroll-mt-24 group flex items-center justify-between">Conclusão <a href="#conclusao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
 <p>Autonomia real não é &quot;ligar e ir embora&quot;. É construir um sistema onde o agente sabe quando agir, quando esperar e quando parar. <code>/loop</code> e <code>/heartbeat</code> fornecem as duas metades dessa equação: <strong>proatividade orientada a.timer</strong> (<code>/loop</code>) e <strong>vigilância em ociosidade</strong> (<code>/heartbeat</code>). Juntos, cobrem a lacuna entre o comando único e o cron job — mantendo o agente vivo e útil dentro da conversa, pronto para reportar o que importa no momento certo.</p>
@@ -814,6 +646,8 @@
 <hr>
 <h2 id="fontes" class="scroll-mt-24 group flex items-center justify-between">Fontes <a href="#fontes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
 <p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/loops">Recurring Loops — Hermes Agent Docs</a><br>[2] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/heartbeat">Session Heartbeats — Hermes Agent Docs</a><br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/cron">Cron Jobs &amp; Scheduled Tasks — Hermes Agent Docs</a></p>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/loops">https://hermes-agent.nousresearch.com/docs/user-guide/features/loops</a><br>[2] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/heartbeat">https://hermes-agent.nousresearch.com/docs/user-guide/features/heartbeat</a><br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/cron">https://hermes-agent.nousresearch.com/docs/user-guide/features/cron</a></p>
 
       </div>
 

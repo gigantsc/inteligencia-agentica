@@ -11,7 +11,7 @@ draft: false
 ---
 
 > **Resposta Rápida (Answer-First / GEO):**
-> O Hermes Agent oferece dois comandos internos para autonomia dentro da conversa: **`/loop`** executa um prompt recorrentemente em intervalos fixos ou com backoff exponencial auto-paceado; **`/heartbeat`** mantém uma instrução vigilante enquanto o session está ocioso. Ambos são turnos de usuário injetados no histórico, **preservam o prompt cache** e não consomem token extra quando nada muda.
+> O Hermes Agent oferece dois comandos internos para autonomia dentro da conversa: **`/loop`** repete um prompt em intervalos definidos ou numa cadência auto-paceada com backoff; **`/heartbeat`** executa uma instrução recorrente quando a sessão está ociosa. Cada wakeup é um turno real do agente, portanto pode consumir tokens; a cadência auto-paceada reduz chamadas repetidas quando a resposta não muda. Os wakeups preservam a estrutura da conversa e o prompt cache.[1][2]
 
 ---
 
@@ -19,7 +19,7 @@ draft: false
 
 Quando um gestor ou desenvolvedor delega uma tarefa complexa ao Hermes — auditar 80 pull requests, acompanhar um deploy de 40 minutos ou monitorar uma fila de mensagens — o padrão convencional exige intervenção humana a cada turno: *"e aí, terminou?"*, *"continue"*, *"parece que travou"*. Isso funciona para uma pergunta. Não escala para automação operacional real.
 
-A inteligência agêntica de produção exige que o agente **continue sozinho**, **perceba mudanças de estado** e **informe apenas quando há algo relevante a comunicar**. É isso que `/loop` e `/heartbeat` resolvem — dentro da mesma conversa, sem criar sessões paralelas, sem custo extra de tokens em silêncio.[1][2]
+A inteligência agêntica de produção exige que o agente **continue sozinho**, **perceba mudanças de estado** e **informe quando há algo relevante**. O `/loop` e o `/heartbeat` habilitam reexecuções dentro de uma sessão contextualizada. Como cada wakeup é um turno real do agente, escolha a frequência considerando custo e latência.[1][2]
 
 ---
 
@@ -140,7 +140,7 @@ Se o gateway cai e volta, heartbeats ativos são restaurados com a sessão persi
 /loop 2m poll https://ci.company.com/job/api-deploy/status
 ```
 
-O `/goal` executa o deploy real. O `/loop` monitora o pipeline de CI em paralelo — a cada tick, pergunta ao sistema se o job terminou. Quando detecta "success", envia um resumo no chat. Zero polling manual, zero LLM por tick do loop.[1]
+O `/goal` executa o trabalho real. O `/loop` consulta o status do pipeline de CI no intervalo configurado; cada wakeup é um turno do agente e pode gerar custo, então ajuste a cadência ao ritmo esperado do job. Quando o estado muda, o agente pode reportar o resultado.[1]
 
 ### 2. Monitoramento de Fila de Mensagens (Telegram/WhatsApp)
 
@@ -156,7 +156,7 @@ Enquanto o agente trabalha em outras demandas na mesma sessão, o heartbeat veri
 /loop poll the queue depth endpoint and ping me if it exceeds 500
 ```
 
-Enviado enquanto você está trabalhando com o agente em outra tarefa. Quando a fila bate em 500, o loop notifica — sem que você precise lembrar de perguntar.[1]
+O `/loop` poll o CI com a cadência escolhida, e cada wakeup é um turno real do agente que pode consumir tokens; dimensione o intervalo considerando custo e frequência das mudanças.[1]
 
 ### 4. Retry Automático com Backoff Exponencial
 
@@ -164,11 +164,13 @@ Enviado enquanto você está trabalhando com o agente em outra tarefa. Quando a 
 /loop Check if the ML model endpoint is responding with 200
 ```
 
-O agente detecta que o endpoint está fora (503). Na primeira verificação ele já reportou. Nos ticks seguintes, o auto-pace faz o loop esperar mais tempo (1m → 2m → 4m) até o endpoint voltar, sem custo de polling agressivo.[1]
+Cada wakeup do `/loop` é um turno real do agente, não um polling sem LLM. A cadência auto-paceada reduz a frequência quando as respostas não mudam, mas não elimina o custo dos turnos executados.[1]
 
 ---
 
 ## Diagrama de Arquitetura: Loop vs Heartbeat vs Cron
+
+> **Observação:** Sessões do `/loop` e `/heartbeat` funcionam com a janela do Hermes aberta ou pelo gateway enquanto esse processo estiver ativo; jobs de cron são duráveis e independentes da sessão interativa.[2][3]
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -206,8 +208,8 @@ O agente detecta que o endpoint está fora (503). Na primeira verificação ele 
 | Característica | `/loop` | `/heartbeat` | `hermes cron` |
 |---|---|---|---|
 | Contexto da conversa | ✅ Sim | ✅ Sim | ❌ Não (sessão isolada) |
-| Executa em ociosidade | ❌ Não (turno ativo) | ✅ Sim | ✅ Sim |
-| Cadência fixa | ✅ 30s–24h | ✅ 60s–24h | ✅ cron expression |
+| Executa em ociosidade | ✅ Wakeup no próximo poll idle | ✅ Sim | ✅ Sim |
+| Cadência fixa | ✅ Intervalo configurável | ✅ Intervalo configurável | ✅ Expressão cron |
 | Auto-backoff | ✅ Sim | ❌ Não | ❌ Não |
 | Limite de ticks | ✅ configurável | ❌ N/A | ✅ repeat count |
 | Intersecção com `/goal` | ✅ Conflito (goal vence) | ✅ Coexiste | ✅ Paralelo |
@@ -219,22 +221,13 @@ O agente detecta que o endpoint está fora (503). Na primeira verificação ele 
 ## Exemplo Prático: Monitoramento de Deploy Completo
 
 ```bash
-# Sessão 1: Deployment com /goal
+# Exemplo de combinações na mesma sessão
 /goal Deploy service X to production and run smoke tests
-
-# Sessão 2: Monitoramento complementar com /loop
 /loop 2m check https://ci.company.com/api/v1/jobs/deploy-x/status
-
-# Sessão 3: Sentinela de ociosidade com /heartbeat
 /heartbeat every 30m Verify all prod services return HTTP 200
 ```
 
-Resultado:
-- O `/goal` executa o trabalho pesado de deploy — iterando, corrigindo, validando.
-- O `/loop` poll CI a cada 2 minutos — quando detecta "success", notifica.
-- O `/heartbeat` verifica saúde geral a cada 30 minutos em background — silêncio quando tudo bem, alerta quando algo quebra.
-
-**Três camadas de autonomia, uma sessão, zero babá humana.**[1][2]
+Durante uma sessão com um `/goal` ativo, wakeups de `/loop` ficam deferidos até o goal terminar, pausar ou aguardar; cron jobs rodam em sessões próprias. Isso significa que loops e heartbeats não formam vários agentes executando paralelamente dentro da mesma sessão.[1][2][3]
 
 ---
 
@@ -252,3 +245,9 @@ Junte-se à comunidade **Inteligência Agêntica** para acessar templates pronto
 [1] [Recurring Loops — Hermes Agent Docs](https://hermes-agent.nousresearch.com/docs/user-guide/features/loops)  
 [2] [Session Heartbeats — Hermes Agent Docs](https://hermes-agent.nousresearch.com/docs/user-guide/features/heartbeat)  
 [3] [Cron Jobs & Scheduled Tasks — Hermes Agent Docs](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron)
+
+## Sources
+
+[1] https://hermes-agent.nousresearch.com/docs/user-guide/features/loops
+[2] https://hermes-agent.nousresearch.com/docs/user-guide/features/heartbeat
+[3] https://hermes-agent.nousresearch.com/docs/user-guide/features/cron
