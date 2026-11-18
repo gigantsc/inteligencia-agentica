@@ -82,6 +82,54 @@ TARGETS = {
         "title2": "30 Respostas Essenciais",
         "subtitle": "Arquitetura, memória, modelos econômicos e operação 24/7",
     },
+    "loops-heartbeat": {
+        "file": "autonomia-proativa-loops-recorrentes-heartbeats-hermes.jpg",
+        "prompt": ESTILO_BASE + (
+            "A classical marble bust of Hermes in profile, illuminated in cyan on the left "
+            "and gold on the right, surrounded by concentric luminous orbital rings and a "
+            "glowing golden pulse wave representing continuous autonomous heartbeat and self-paced loops."
+        ),
+        "kicker": "INTELIGÊNCIA AGÊNTICA  •  AUTONOMIA 24/7",
+        "title1": "Autonomia Proativa:",
+        "title2": "/loop e /heartbeat no Hermes",
+        "subtitle": "Vigilância contínua sem intervenção humana e com cache preservado",
+    },
+    "script-cron": {
+        "file": "script-only-cron-jobs-hermes-send-custo-zero.jpg",
+        "prompt": ESTILO_BASE + (
+            "A classical marble bust of Hermes wearing a winged helmet, standing sentinel "
+            "before a glowing golden astronomical clockwork astrolabe and cyan fiber-optic "
+            "telemetry conduits, symbolizing zero-cost deterministic watchdogs."
+        ),
+        "kicker": "INTELIGÊNCIA AGÊNTICA  •  CUSTO ZERO",
+        "title1": "Script-Only Cron Jobs:",
+        "title2": "Watchdogs com hermes send",
+        "subtitle": "Alertas de infraestrutura 24/7 no Telegram e WhatsApp sem gastar tokens",
+    },
+    "code-execution": {
+        "file": "code-execution-chamada-programatica-hermes.jpg",
+        "prompt": ESTILO_BASE + (
+            "A classical marble bust of Hermes channeling a concentrated beam of cyan and "
+            "golden light into a translucent crystalline Python execution core, compressing "
+            "dozens of glowing holographic data threads into a single luminous stream."
+        ),
+        "kicker": "INTELIGÊNCIA AGÊNTICA  •  PERFORMANCE",
+        "title1": "Code Execution no Hermes:",
+        "title2": "50 Passos em 1 Único Turno",
+        "subtitle": "Chamada programática via RPC com até 95% menos tokens",
+    },
+    "git-worktrees": {
+        "file": "git-worktrees-paralelismo-multi-agente-hermes.jpg",
+        "prompt": ESTILO_BASE + (
+            "A central classical marble bust of Hermes connected by branching golden and cyan "
+            "fiber-optic roots to three parallel glowing crystalline obelisks, representing "
+            "isolated Git worktree branches operating without collision."
+        ),
+        "kicker": "INTELIGÊNCIA AGÊNTICA  •  MULTI-AGENTE",
+        "title1": "Git Worktrees no Hermes:",
+        "title2": "Paralelismo Sem Conflitos",
+        "subtitle": "Árvores isoladas para subagentes e limpeza automática na VPS",
+    },
 }
 
 
