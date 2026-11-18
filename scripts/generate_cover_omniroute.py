@@ -69,6 +69,19 @@ TARGETS = {
         "title2": "Separando Hype de Adoção Real",
         "subtitle": "17% em produção, +60% planejando adotar em 2 anos",
     },
+    "faq-30": {
+        "file": "guia-completo-faq-hermes-agent-funcionarios-digitais.jpg",
+        "prompt": ESTILO_BASE + (
+            "A majestic classical marble bust of Hermes with winged helmet at the center, "
+            "surrounded by four floating luminous holographic stone tablets representing "
+            "knowledge and architecture, connected by fine cyan and gold neural filaments "
+            "in a grand obsidian sanctuary."
+        ),
+        "kicker": "INTELIGÊNCIA AGÊNTICA  •  GUIA DEFINITIVO",
+        "title1": "Guia do Hermes Agent:",
+        "title2": "30 Respostas Essenciais",
+        "subtitle": "Arquitetura, memória, modelos econômicos e operação 24/7",
+    },
 }
 
 
