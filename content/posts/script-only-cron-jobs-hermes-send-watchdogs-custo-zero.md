@@ -6,7 +6,7 @@ summary: "Aprenda a orquestrar rotinas de monitoramento 24/7 na VPS usando cron 
 tags: ["Cron Jobs", "DevOps", "Hermes Agent", "Infraestrutura", "Automação", "VPS", "Telegram"]
 keywords: ["Script-Only Cron Jobs", "hermes send", "no-agent mode Hermes", "Watchdog de infraestrutura IA", "Monitoramento VPS Telegram", "Alertas custo zero Hermes", "Cron jobs sem LLM"]
 author: "Jean Pierre Schramm"
-image: "https://inteligenciaagentica.com.br/static/images/script-only-cron-jobs-hermes-send-custo-zero.jpg"
+image: "https://inteligenciaagentica.com.br/static/images/script-only-cron-jobs-hermes-send-custo-zero-v2.jpg"
 draft: false
 ---
 

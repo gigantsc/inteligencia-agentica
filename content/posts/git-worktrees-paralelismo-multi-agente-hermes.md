@@ -6,7 +6,7 @@ summary: "Descubra como os Git Worktrees nativos no Hermes Agent viabilizam equi
 tags: ["Agentes de IA", "Git Worktrees", "Multi-Agente", "Desenvolvimento", "Hermes OS", "DevOps"]
 keywords: ["git worktrees", "hermes agent", "multi-agente", "paralelismo de agentes", "automação de software", "ia agêntica"]
 author: "Jean Pierre Schramm"
-image: "https://inteligenciaagentica.com.br/static/images/git-worktrees-paralelismo-multi-agente-hermes.jpg"
+image: "https://inteligenciaagentica.com.br/static/images/git-worktrees-paralelismo-multi-agente-hermes-v2.jpg"
 draft: false
 ---
 

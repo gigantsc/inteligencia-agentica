@@ -6,7 +6,7 @@ summary: "Descubra como o execute_code e a chamada programática de ferramentas 
 tags: ["Code Execution", "Hermes Agent", "Automação", "Economia de Tokens", "Engenharia de Prompt", "Negócios"]
 keywords: ["execute_code", "programmatic tool calling", "hermes agent", "economia de tokens", "ia agentica empresas", "chamada de ferramentas python", "react loop otimizacao"]
 author: "Jean Pierre Schramm"
-image: "https://inteligenciaagentica.com.br/static/images/code-execution-chamada-programatica-hermes.jpg"
+image: "https://inteligenciaagentica.com.br/static/images/code-execution-chamada-programatica-hermes-v2.jpg"
 draft: false
 ---
 

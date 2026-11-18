@@ -6,7 +6,7 @@ summary: "O manual definitivo que todo empresário, profissional autônomo e ope
 tags: ["Hermes Agent", "Agentes de IA", "Guia Definitivo", "Hermes OS", "Automação", "Negócios", "Produtividade"]
 keywords: ["Guia Hermes Agent", "FAQ Hermes Agent", "Como usar Hermes Agent", "Funcionários digitais IA", "SOUL.md AGENTS.md Hermes", "Hermes Agent VPS Telegram", "Curso Inteligência Agêntica"]
 author: "Jean Pierre Schramm"
-image: "https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais.jpg"
+image: "https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais-v2.jpg"
 featured: true
 draft: false
 ---

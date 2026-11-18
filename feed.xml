@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Wed, 18 Nov 2026 21:28:08 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 18 Nov 2026 21:54:18 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -216,7 +216,7 @@
 <p>👉 <strong>Acompanhe nossos encontros ao vivo semanais e transforme a sua empresa com funcionários digitais de verdade.</strong></p>
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
-            <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais.jpg" length="0" type="image/jpg"/>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais-v2.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Autonomia Proativa: Como /loop e /heartbeat Eliminam a Babá de IA no Hermes Agent]]></title>
@@ -462,7 +462,7 @@
 <p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/loops">https://hermes-agent.nousresearch.com/docs/user-guide/features/loops</a><br>[2] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/heartbeat">https://hermes-agent.nousresearch.com/docs/user-guide/features/heartbeat</a><br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/cron">https://hermes-agent.nousresearch.com/docs/user-guide/features/cron</a></p>
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
-            <enclosure url="https://inteligenciaagentica.com.br/static/images/autonomia-proativa-loops-recorrentes-heartbeats-hermes.jpg" length="0" type="image/jpg"/>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/autonomia-proativa-loops-recorrentes-heartbeats-hermes-v2.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Script-Only Cron Jobs e hermes send: Watchdogs de Infraestrutura e Alertas de Custo Zero com Hermes Agent]]></title>
@@ -782,7 +782,7 @@ hermes send <span class="token parameter variable">--to</span> telegram <span cl
 <p>[1] <a href="https://hermes-agent.nousresearch.com/docs/guides/cron-script-only">https://hermes-agent.nousresearch.com/docs/guides/cron-script-only</a><br>[2] <a href="https://hermes-agent.nousresearch.com/docs/guides/pipe-script-output">https://hermes-agent.nousresearch.com/docs/guides/pipe-script-output</a><br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/cron">https://hermes-agent.nousresearch.com/docs/user-guide/features/cron</a></p>
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
-            <enclosure url="https://inteligenciaagentica.com.br/static/images/script-only-cron-jobs-hermes-send-custo-zero.jpg" length="0" type="image/jpg"/>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/script-only-cron-jobs-hermes-send-custo-zero-v2.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[7 Tendências de IA Agêntica em 2026: Da Experimentação à Produção em Escala nas Empresas]]></title>
@@ -1140,7 +1140,7 @@ total_modificados <span class="token operator">=</span> <span class="token numbe
 <p>Se você deseja dominar a instalação, configuração e automação de agentes corporativos resilientes com o ecossistema Hermes Agent, venha conhecer nossa formação completa na comunidade <a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a>.</p>
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
-            <enclosure url="https://inteligenciaagentica.com.br/static/images/code-execution-chamada-programatica-hermes.jpg" length="0" type="image/jpg"/>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/code-execution-chamada-programatica-hermes-v2.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Hermes Agent vs. Codex: Como Orquestrar o Coding Agent da OpenAI Sem Perder Memória, Privacidade ou Controle]]></title>
@@ -1608,7 +1608,7 @@ hermes worktree restore tarefa-api-financeira <span class="token parameter varia
 </blockquote>
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
-            <enclosure url="https://inteligenciaagentica.com.br/static/images/git-worktrees-paralelismo-multi-agente-hermes.jpg" length="0" type="image/jpg"/>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/git-worktrees-paralelismo-multi-agente-hermes-v2.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Group Chats Autônomos no Hermes Agent: Como Montar um Comitê de IA sem Loops Infinitos e sem Babá]]></title>

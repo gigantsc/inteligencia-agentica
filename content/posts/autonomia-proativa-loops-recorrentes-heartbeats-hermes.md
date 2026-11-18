@@ -6,7 +6,7 @@ summary: "Veja como /loop (laços recorrentes com auto-backoff exponencial) e /h
 tags: ["Agentes de IA", "Hermes Agent", "Autonomia", "Automação", "VPS", "Cron Jobs"]
 keywords: ["/loop hermes agent", "/heartbeat hermes agent", "recurring loops agent", "session heartbeat autonomia", "auto-backoff hermes", "proactive monitoring agents"]
 author: "Jean Pierre Schramm"
-image: "https://inteligenciaagentica.com.br/static/images/autonomia-proativa-loops-recorrentes-heartbeats-hermes.jpg"
+image: "https://inteligenciaagentica.com.br/static/images/autonomia-proativa-loops-recorrentes-heartbeats-hermes-v2.jpg"
 draft: false
 ---
 
