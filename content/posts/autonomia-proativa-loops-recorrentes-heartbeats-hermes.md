@@ -2,7 +2,7 @@
 title: "Autonomia Proativa: Como /loop e /heartbeat Eliminam a Babá de IA no Hermes Agent"
 date: "2026-11-18"
 lastmod: "2026-11-18"
-summary: "Veja como /loop (laços recorrentes com auto-backoff exponencial) e /heartbeat (batimento cardíaco de sessão) trabalham dentro de uma mesma conversa para monitorar deployments, acompanhar filas e manter vigilância autônoma — zero 새as de \"keep going\", prompt cache preservado em cada turno."
+summary: "Veja como /loop (laços recorrentes com auto-backoff exponencial) e /heartbeat (batimento cardíaco de sessão) trabalham dentro de uma mesma conversa para monitorar deployments, acompanhar filas e manter vigilância autônoma — sem pedir \"keep going\" a cada turno e com o prompt cache preservado."
 tags: ["Agentes de IA", "Hermes Agent", "Autonomia", "Automação", "VPS", "Cron Jobs"]
 keywords: ["/loop hermes agent", "/heartbeat hermes agent", "recurring loops agent", "session heartbeat autonomia", "auto-backoff hermes", "proactive monitoring agents"]
 author: "Jean Pierre Schramm"
