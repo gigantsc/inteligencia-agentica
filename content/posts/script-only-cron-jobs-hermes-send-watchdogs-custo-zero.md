@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/script-only-cron-jobs-
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > Os **Script-Only Cron Jobs** (executados em modo `no_agent=True` ou flag `--no-agent`) e o comando utilitário **`hermes send`** compõem a camada de automação determinística e custo zero do ecossistema **Hermes Agent**.[1][2] Em vez de acionar um modelo de linguagem (LLM) a cada minuto ou hora para verificar tarefas previsíveis — como consumo de RAM, espaço em disco, status de containers Docker ou métricas financeiras via API —, o agendador nativo executa scripts locais em Bash ou Python e encaminha o `stdout` diretamente para mais de 21 canais de mensageria (Telegram, WhatsApp, Discord, Slack, Signal).[1][2][3] Essa arquitetura elimina o consumo de tokens de API, opera sob o princípio *silent when empty* (silêncio absoluto quando não há falhas) e dispensa que o gateway ou o agente estejam carregados na memória RAM para disparar notificações corporativas imediatas.[1][2]
 
 ---

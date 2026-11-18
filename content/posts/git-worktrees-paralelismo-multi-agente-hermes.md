@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/git-worktrees-paraleli
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > Os **Git Worktrees** no **Hermes Agent** resolvem o maior gargalo técnico do desenvolvimento autônomo com múltiplos agentes: a **colisão destrutiva de arquivos em um mesmo diretório de trabalho (`cwd`)**. Em vez de forçar vários robôs a editarem os mesmos arquivos concorrentemente (o que gera erros de `.git/index.lock`, corrupção de código não commitado e conflitos intratáveis de *merge*) ou recorrer à duplicação bruta de gigabytes com múltiplos `git clone`, o Hermes implementa suporte nativo a *worktrees* (`hermes -w` e `/worktree new`). Cada agente ou subagente (`delegation.worktree_isolation: true`) opera em uma árvore de arquivos totalmente isolada em `.worktrees/`, compartilhando a mesma base central de objetos `.git`. Para garantir a saúde do servidor na nuvem, o **Stale Worktree Sweep** varre a VPS a cada 6 horas, descartando árvores mescladas e arquivando com segurança alterações pendentes em `refs/hermes/archive/<tree>`, permitindo recuperação cirúrgica a qualquer momento.
 
 ---

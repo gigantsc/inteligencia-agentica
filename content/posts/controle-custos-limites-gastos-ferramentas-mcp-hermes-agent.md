@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/mcp-model-context-prot
 draft: true
 ---
 
-> **Resposta Rápida (Answer-First / GEO):** No Hermes Agent, um servidor MCP pode declarar o custo de cada ferramenta e um limite de gastos por conversa. Antes de uma chamada que exceda esse limite, o Hermes pede autorização — inclusive no modo YOLO; em uma execução sem aprovador, como um cron, a chamada é recusada.[1][2] O limite não é teto financeiro consolidado de todas as conversas ou de todos os servidores.[2][3]
+> **Em resumo:** No Hermes Agent, um servidor MCP pode declarar o custo de cada ferramenta e um limite de gastos por conversa. Antes de uma chamada que exceda esse limite, o Hermes pede autorização — inclusive no modo YOLO; em uma execução sem aprovador, como um cron, a chamada é recusada.[1][2] O limite não é teto financeiro consolidado de todas as conversas ou de todos os servidores.[2][3]
 
 ## O risco financeiro escondido nas integrações
 
@@ -95,8 +95,6 @@ Essa distinção é importante para gestores: `spend_limit` reduz a chance de um
 ## MCP com previsibilidade, sem falsa sensação de teto total
 
 O controle de custos por ferramenta é uma evolução útil na integração de agentes com serviços pagos: o operador pode ver valores, definir um limite por conversa e manter uma confirmação antes de ultrapassá-lo.[1][2] A segurança depende, porém, de valores configurados com cuidado e da compreensão do escopo: outras conversas, custos não declarados e consumo de tokens não passam a fazer parte desse limite por mágica.[2]
-
-Na grade do curso, essa descoberta complementa o tema pendente **Integração com Servidores MCP**, que já prevê conectar agentes a bancos de dados, CRMs e APIs corporativas. Pode ser abordada junto da aula 3.5 (ferramentas) e dos Cron Jobs do Módulo 10 para discutir controle humano em operações pagas.
 
 Para acompanhar aplicações reais e novas práticas de inteligência agêntica, participe da comunidade **Inteligência Agêntica**: https://inteligenciaagentica.com.br
 

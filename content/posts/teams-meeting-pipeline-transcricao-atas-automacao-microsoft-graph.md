@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/teams-meeting-pipeline
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O **Microsoft Teams Meeting Pipeline** do Hermes Agent é uma esteira de automação corporativa que ingere eventos de reuniões diretamente do ecossistema Microsoft 365 através da API do Microsoft Graph. Diferente de softwares SaaS de transcrição comuns (como Otter.ai, Read.ai ou Fireflies) que forçam a entrada de um "bot fantasma" visível na sala de videoconferência — constrangendo participantes e gerando riscos de conformidade jurídica —, o Hermes Agent opera de forma invisível e soberana no nível de infraestrutura (backend). Ele detecta o término da chamada via webhooks (`msgraph_webhook`), adota uma estratégia inteligente de ingestão *transcript-first* (reaproveitando transcrições nativas do Teams ou baixando a gravação de áudio com processamento via `ffmpeg` + Speech-to-Text caso necessário), extrai decisões e itens de ação determinísticos (quem faz o quê até quando) e distribui automaticamente a ata consolidada em múltiplos canais: Microsoft Teams, Linear, Notion e sistemas ERP legados, com renovação automática de assinaturas contra o limite de 72 horas do Microsoft Graph.
 
 ---

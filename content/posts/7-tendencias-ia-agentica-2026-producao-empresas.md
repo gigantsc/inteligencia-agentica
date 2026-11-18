@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/7-tendencias-ia-agenti
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > Em 2026, a IA agêntica deixa de ser protótipo de laboratório para virar infraestrutura de produção, com projeções de mercado saltando de **US$ 7,8 bilhões para mais de US$ 52 bilhões até 2030** e **40% das aplicações corporativas** incorporando agentes até o fim de 2026 (contra menos de 5% em 2025). Segundo análise técnica publicada por Vinod Chugani no MachineLearningMastery.com, escalar agentes exige sete pilares arquiteturais: orquestração multi-agente, padronização via protocolos **MCP** e **A2A**, redesenho de fluxos de trabalho, governança como diferencial competitivo, *Human-in-the-Loop* estratégico, **FinOps para agentes** (roteamento entre modelos de fronteira e modelos menores) e a ascensão de empresas *agent-native*.
 
 ---
@@ -99,15 +99,6 @@ A resposta arquitetural de 2026 combina **roteamento heterogêneo de modelos** e
 O ecossistema se divide em três camadas: *hyperscalers* (infraestrutura), gigantes de software tradicionais tentando acoplar agentes e uma nova onda de **startups agent-native** que já nascem com agentes como interface principal, sem dívida de código legado.
 
 Ao mesmo tempo, analistas alertam para o **"agent washing"** (fornecedores rebatizando automações antigas como se fossem agentes): estimativas apontam que apenas cerca de **130 de milhares de fornecedores** que se dizem "de agentes de IA" constroem sistemas genuinamente agênticos, e o Gartner projeta que **mais de 40% dos projetos de IA agêntica podem ser cancelados até o fim de 2027** por falta de clareza de ROI e arquitetura.
-
----
-
-## Como Isso se Conecta na Grade do Curso
-
-No curso **Inteligência Agêntica**, esses conceitos aparecem de forma aplicada em módulos estruturais:
-
-- **Módulo 11 (Aula 11.1 — Introdução: Tipos de Memória):** Aprofunda os três tipos de memória de longo prazo essenciais para agentes que aprendem com o uso (**episódica, semântica e procedural**).
-- **Módulo 13 (Aulas 13.1 e 13.2 — Fábrica de Swarm):** Implementação prática de orquestração multi-agente com especialistas coordenados e controle de custos entre modelos (FinOps).
 
 ---
 

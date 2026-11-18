@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/hype-cycle-gartner-202
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > Segundo o relatório **2026 Gartner Hype Cycle for Agentic AI** (publicado por Rajesh Kandaswamy em 15/04/2026), a IA agêntica atingiu o **Pico das Expectativas Infladas (*Peak of Inflated Expectations*)**. Dados da pesquisa *2026 Gartner CIO and Technology Executive Survey* mostram que apenas **17% das organizações** já implantaram agentes de IA até agora, mas **mais de 60% esperam fazê-lo nos próximos dois anos**. O estudo revela que o sucesso em produção não depende só da inteligência dos modelos, mas da maturidade de novas disciplinas como **ADLC** (*Agent Development Life Cycle*), **Context Graphs**, **AX** (*Agent Experience*), **FinOps para IA Agêntica** e **Governança/Segurança**.
 
 ---
@@ -52,15 +52,6 @@ De acordo com as recomendações do Gartner para líderes de TI e negócios:
 - Considerar governança, segurança e FinOps no cronograma desde o primeiro projeto;
 - Definir expectativas realistas sobre o grau de autonomia adequado para cada processo;
 - Priorizar investimentos em infraestrutura sustentável e escalável, não em demonstrações isoladas.
-
----
-
-## Onde Esse Conhecimento se Conecta na Grade do Curso
-
-No curso **Inteligência Agêntica**, esses dados de mercado e disciplinas emergentes fortalecem diretamente a base estratégica e os próximos aprofundamentos:
-
-- **Módulo 1 (Aulas 1.1 — O que é a Inteligência Agêntica e 1.2 — Para que é o curso):** Contexto executivo com dados verificados para separar hype de adoção real em empresas.
-- **Temas Candidatos de Evolução:** Base estruturada para futuras aulas dedicadas a **ADLC** (ciclo de vida de agentes), **governança corporativa** e **FinOps para agentes**.
 
 ---
 

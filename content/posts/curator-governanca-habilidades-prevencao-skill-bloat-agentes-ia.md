@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/curator-governanca-hab
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O **Curator** do **Hermes Agent (Nous Research)** é o subsistema nativo de governança, auditoria e higienização contínua de habilidades (*skills*) criadas pelo próprio agente de IA em ambientes de produção. Enquanto agentes autônomos convencionais acumulam "dívida técnica agêntica" (*Skill Bloat*) — gerando centenas de instruções duplicadas, conflitantes e obsoletas que poluem o catálogo e encarecem o consumo de tokens —, o Curator opera silenciosamente em períodos de ociosidade (`min_idle_hours: 2`). Ele aplica um ciclo de vida determinístico de três estados baseados em telemetria real de uso (`active` → `stale` aos 14 dias → `archived` aos 30 dias em `~/.hermes/skills/.archive/`), oferece imunidade automática para rotinas de Cron Jobs, aplica carência inicial (*grace floor*) para novas rotinas e executa consolidação semântica de procedimentos via modelos auxiliares, tudo resguardado por *snapshots* automáticos em `tar.gz` e rollback instantâneo (`hermes curator rollback`).
 
 ---

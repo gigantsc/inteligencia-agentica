@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/group-chats-autonomos-
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):** No Hermes Agent v0.23.0, as salas de chat em grupo (**Group Chats**) deixaram de depender de janelas de desktop abertas e passaram a ser governadas diretamente pelo processo do **Gateway** da VPS.[1][2] Isso permite que comitês de 2 a 6 agentes especializados deliberem de forma autônoma 24/7, utilizando auto-roteamento inteligente (**Lead Bot** ou **auxiliary.group_router**), com proteção estrita contra explosão de custos por loops infinitos via **bot_loop_guard** (`max_hops: 4`) e escalonamento determinístico para o gestor humano através de citações `@user`.[1][2]
+> **Em resumo:** No Hermes Agent v0.23.0, as salas de chat em grupo (**Group Chats**) deixaram de depender de janelas de desktop abertas e passaram a ser governadas diretamente pelo processo do **Gateway** da VPS.[1][2] Isso permite que comitês de 2 a 6 agentes especializados deliberem de forma autônoma 24/7, utilizando auto-roteamento inteligente (**Lead Bot** ou **auxiliary.group_router**), com proteção estrita contra explosão de custos por loops infinitos via **bot_loop_guard** (`max_hops: 4`) e escalonamento determinístico para o gestor humano através de citações `@user`.[1][2]
 
 ---
 

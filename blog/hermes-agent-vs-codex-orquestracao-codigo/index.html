@@ -413,7 +413,7 @@
         <summary class="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white flex items-center justify-between cursor-pointer select-none transition-colors">
           <span class="flex items-center gap-2 text-ouro">
             <i data-lucide="list" class="w-4 h-4 text-ouro"></i>
-            <span>Tópicos do Artigo (8)</span>
+            <span>Tópicos do Artigo (7)</span>
           </span>
           <span class="text-[11px] text-gray-500 font-normal flex items-center gap-1 group-open:rotate-180 transition-transform duration-200">
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
@@ -459,12 +459,6 @@
               </li>
             
               <li class="font-semibold text-gray-200">
-                <a href="#onde-esse-conhecimento-se-conecta-na-grade-do-curso" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Onde Esse Conhecimento se Conecta na Grade do Curso
-                </a>
-              </li>
-            
-              <li class="font-semibold text-gray-200">
                 <a href="#conclusao-orquestracao-acima-da-ferramenta" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
                   <span class="text-ciano/60">&rsaquo;</span> Conclusão: Orquestração Acima da Ferramenta
                 </a>
@@ -478,7 +472,7 @@
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Hermes Agent</strong> (Nous Research, licença MIT) e o <strong>OpenAI Codex</strong> não são ferramentas excludentes: enquanto o Codex é um agente especializado em inspecionar repositórios, editar código e abrir <em>pull requests</em>, o Hermes Agent atua como a <strong>camada persistente de orquestração</strong> acima dele. Por meio da <em>skill</em> nativa <code>codex</code>, o Hermes delega implementações e PRs diretamente para a Codex CLI, autentica-se com sua assinatura ChatGPT (<code>hermes model</code>) e importa automaticamente seu <code>AGENTS.md</code>, memórias, servidores MCP e <em>skills</em> com o comando <code>hermes migrate codex</code> — tudo isso operando em mais de 20 aplicativos de mensageria, com memória ativa por padrão e zero telemetria.</p>
+<p><strong>Em resumo:</strong><br>O <strong>Hermes Agent</strong> (Nous Research, licença MIT) e o <strong>OpenAI Codex</strong> não são ferramentas excludentes: enquanto o Codex é um agente especializado em inspecionar repositórios, editar código e abrir <em>pull requests</em>, o Hermes Agent atua como a <strong>camada persistente de orquestração</strong> acima dele. Por meio da <em>skill</em> nativa <code>codex</code>, o Hermes delega implementações e PRs diretamente para a Codex CLI, autentica-se com sua assinatura ChatGPT (<code>hermes model</code>) e importa automaticamente seu <code>AGENTS.md</code>, memórias, servidores MCP e <em>skills</em> com o comando <code>hermes migrate codex</code> — tudo isso operando em mais de 20 aplicativos de mensageria, com memória ativa por padrão e zero telemetria.</p>
 </blockquote>
 <hr>
 <h2 id="o-dilema-do-coding-agent-isolado" class="scroll-mt-24 group flex items-center justify-between">O Dilema do Coding Agent Isolado <a href="#o-dilema-do-coding-agent-isolado" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
@@ -577,13 +571,6 @@
 <li><strong>Conecte seu modelo e mantenha o Codex como executor:</strong> Rode <code>hermes model</code> para escolher entre modelos locais, Nous Portal, qualquer API compatível com OpenAI ou sua assinatura ChatGPT/Codex.</li>
 </ol>
 <hr>
-<h2 id="onde-esse-conhecimento-se-conecta-na-grade-do-curso" class="scroll-mt-24 group flex items-center justify-between">Onde Esse Conhecimento se Conecta na Grade do Curso <a href="#onde-esse-conhecimento-se-conecta-na-grade-do-curso" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
-<p>No curso <strong>Inteligência Agêntica</strong>, esse modelo de arquitetura reforça diretamente dois pilares práticos da nossa formação:</p>
-<ul>
-<li><strong>Módulo 3 (Aulas 3.4 — As habilidades e 3.7 — Multi-agente):</strong> Exemplo concreto de como um agente generalista mantém contexto e memória de longo prazo enquanto delega tarefas especializadas de código via <em>skill</em> para um subagente externo.</li>
-<li><strong>Módulo 14 (Aula 14.1 — Da Demanda ao Código: Orquestrando o Orca com Kanban Nativo):</strong> Complemento direto para a nossa Fábrica de Software Agêntica, mostrando que o Hermes pode orquestrar não apenas o Orca ADE, mas também a OpenAI Codex CLI dentro da mesma esteira de entrega.</li>
-</ul>
-<hr>
 <h2 id="conclusao-orquestracao-acima-da-ferramenta" class="scroll-mt-24 group flex items-center justify-between">Conclusão: Orquestração Acima da Ferramenta <a href="#conclusao-orquestracao-acima-da-ferramenta" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
 <p>Tratar o Hermes Agent e o OpenAI Codex como rivais é perder o ponto principal da engenharia agêntica moderna. O Codex brilha editando arquivos e abrindo <em>pull requests</em> dentro de um repositório; o Hermes brilha sendo o <strong>sistema nervoso central</strong> que lembra do seu negócio, responde no seu WhatsApp ou Telegram, roda rotinas agendadas na VPS com o notebook fechado e troca de modelo com <code>/model</code> sem perder o fio da meada.</p>
 <p>Unir os dois significa ter o melhor executor de código subordinado a um orquestrador soberano, auditável e sem telemetria.</p>
@@ -657,7 +644,7 @@
             <a href="/blog/autonomia-proativa-loops-recorrentes-heartbeats-hermes" class="glass-card rounded-xl p-5 border border-white/5 block group">
               <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Agentes de IA</span>
               <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Autonomia Proativa: Como /loop e /heartbeat Eliminam a Babá de IA no Hermes Agent</h4>
-              <p class="text-xs text-gray-400 line-clamp-2">Veja como /loop (laços recorrentes com auto-backoff exponencial) e /heartbeat (batimento cardíaco de sessão) trabalham dentro de uma mesma conversa para monitorar deployments, acompanhar filas e manter vigilância autônoma — zero 새as de "keep going", prompt cache preservado em cada turno.</p>
+              <p class="text-xs text-gray-400 line-clamp-2">Veja como /loop (laços recorrentes com auto-backoff exponencial) e /heartbeat (batimento cardíaco de sessão) trabalham dentro de uma mesma conversa para monitorar deployments, acompanhar filas e manter vigilância autônoma — sem pedir "keep going" a cada turno e com o prompt cache preservado.</p>
             </a>
           
         </div>

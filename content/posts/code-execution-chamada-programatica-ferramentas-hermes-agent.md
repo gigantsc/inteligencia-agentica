@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/code-execution-chamada
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O **Code Execution** (chamada programática de ferramentas via ferramenta `execute_code`) é a capacidade de um agente autônomo escrever e executar scripts Python em tempo real na própria máquina ou VPS para orquestrar múltiplas ferramentas (`web_search`, `read_file`, `patch`, `terminal`) de forma programática. Ao contrário do padrão convencional ReAct — no qual cada ação gera uma resposta textual bruta de 20KB a 50KB que é reinjetada na janela de contexto do LLM a cada turno —, o `execute_code` roda loops, condicionais e filtros localmente em milissegundos via socket RPC interno. Somente o resultado final consolidado pelo comando `print()` é devolvido ao modelo de IA. Essa arquitetura reduz em até **95% o consumo de tokens**, encurta o tempo de execução de 4 minutos para 8 segundos e impede que o agente se perca em alucinações por excesso de ruído no histórico da conversa.
 
 ---
@@ -252,18 +252,6 @@ for file_info in files.get("matches", []):
 
 print(f"Refatoração concluída com sucesso em {total_modificados} arquivos.")
 ```
-
----
-
-## Onde Esse Conhecimento se Conecta na Grade do Curso
-
-No curso **Inteligência Agêntica**, ensinamos nossos alunos a construir infraestruturas profissionais para empresas reais. O `execute_code` é a espinha dorsal de agentes que precisam entregar produtividade de alta escala sem onerar o orçamento mensal:
-
-- **Módulo 3.5 — As Ferramentas:** Compreensão aprofundada da anatomia do agente, demonstrando a diferença prática entre ferramentas atômicas isoladas e o canal RPC de execução programática;
-- **Módulo 3.6 — Aprendizado Autônomo:** Como o agente utiliza laços de tentativa, teste e refatoração em memória para solucionar bugs complexos antes de apresentar a resposta final;
-- **Módulo 5.2 — Criando a Primeira Automação (O Radar do Mercado):** Configuração de rotinas que varrem portais, consolidam dados e enviam relatórios diários via Telegram operando em apenas um turno de API;
-- **Módulo 14.1 — A Fábrica de Software Agêntica (Hermes + Orca):** Orquestração de subagentes que realizam refatorações em massa em múltiplos repositórios com garantia de custo mínimo e sem estouro de contexto;
-- **Guia G.7 — Guia de Comandos Hermes:** Referência completa sobre as diretrizes de configuração do `config.yaml`, liberação de variáveis de ambiente com `env_passthrough` e uso do parâmetro `reset: true`.
 
 ---
 

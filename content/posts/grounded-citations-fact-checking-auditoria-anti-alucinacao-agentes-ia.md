@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/grounded-citations-fac
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > A arquitetura de **Grounded Citations e Fact-Checking Auditável** do Hermes Agent é a solução definitiva de infraestrutura para eliminar alucinações em relatórios executivos, auditorias de mercado e análises contratuais. Enquanto chatbots convencionais (como ChatGPT ou Claude em navegadores) geram links mortos e inventam dados estatísticos com tom de certeza absoluta, o Hermes Agent desacopla a geração de texto da validação de fatos através de um **livro-razão mecânico independente (`ledger.json`)**. As fontes são registradas em tempo de extração real com identificadores imutáveis (`[1]`, `[2]`), as afirmações críticas são submetidas a testes de correspondência textual exata (*verbatim quote matching*) contra o documento original, e o relatório é submetido a um portão de qualidade (*gate* `--min-coverage`). Se um dado não possuir comprovação empírica literal, o agente bloqueia a publicação ou exige a etiqueta explícita `[unverified]`, garantindo a diretores e conselhos de administração um relatório estilo Perplexity corporativo 100% auditável.
 
 ---

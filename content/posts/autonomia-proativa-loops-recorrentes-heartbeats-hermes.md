@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/autonomia-proativa-loo
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**
+> **Em resumo:**
 > O Hermes Agent oferece dois comandos internos para autonomia dentro da conversa: **`/loop`** repete um prompt em intervalos definidos ou numa cadência auto-paceada com backoff; **`/heartbeat`** executa uma instrução recorrente quando a sessão está ociosa. Cada wakeup é um turno real do agente, portanto pode consumir tokens; a cadência auto-paceada reduz chamadas repetidas quando a resposta não muda. Os wakeups preservam a estrutura da conversa e o prompt cache.[1][2]
 
 ---

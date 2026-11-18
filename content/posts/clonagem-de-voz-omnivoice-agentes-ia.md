@@ -125,13 +125,8 @@ Para que a réplica de voz fique perfeita e passe em qualquer teste de audição
 
 ---
 
-## A Conexão com a Grade do Curso Inteligência Agêntica
+## Conclusão
 
-No curso **Inteligência Agêntica**, ensinamos a teoria fundamentada e a prática aplicada de ponta a ponta:
-
-- No **Módulo Extras — Aula E.1 (*Clonagem e Geração de Voz*)**, desmistificamos a física acústica e a mecânica dos modelos de voz modernos.
-- Na **Aula E.2 (*Instalando o Omnivoice para clonagem e geração de vozes*)**, os alunos acompanham o passo a passo exato de configuração da ferramenta, aprendendo a subir seu próprio motor de voz sem depender de planos externos abusivos.
-- Na **Aula E.3 (*Sistema de Transcrição*)** e no **Módulo 9 (*O Controle no Bolso - Gateway Telegram*)**, fechamos o circuito completo: o empresário comanda a empresa enviando áudios da rua e o agente devolve respostas inteligentes e personalizadas na mesma moeda.
 
 Se você deseja parar de perder tempo com tarefas repetitivas de comunicação e quer colocar a inteligência agêntica para trabalhar a favor do seu negócio, venha fazer parte da nossa comunidade executiva.
 

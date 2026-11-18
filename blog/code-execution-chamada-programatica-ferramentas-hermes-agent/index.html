@@ -395,7 +395,7 @@
 
           <div class="flex items-center gap-4 text-xs">
             <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-11-16</span>
-            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 13 min de leitura</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 12 min de leitura</span>
           </div>
         </div>
       </header>
@@ -413,7 +413,7 @@
         <summary class="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white flex items-center justify-between cursor-pointer select-none transition-colors">
           <span class="flex items-center gap-2 text-ouro">
             <i data-lucide="list" class="w-4 h-4 text-ouro"></i>
-            <span>Tópicos do Artigo (17)</span>
+            <span>Tópicos do Artigo (16)</span>
           </span>
           <span class="text-[11px] text-gray-500 font-normal flex items-center gap-1 group-open:rotate-180 transition-transform duration-200">
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
@@ -513,12 +513,6 @@
               </li>
             
               <li class="font-semibold text-gray-200">
-                <a href="#onde-esse-conhecimento-se-conecta-na-grade-do-curso" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
-                  <span class="text-ciano/60">&rsaquo;</span> Onde Esse Conhecimento se Conecta na Grade do Curso
-                </a>
-              </li>
-            
-              <li class="font-semibold text-gray-200">
                 <a href="#conclusao-eficiencia-tecnica-transforma-custo-em-vantagem-competitiva" class="hover:text-ciano transition-colors flex items-center gap-1.5 py-0.5">
                   <span class="text-ciano/60">&rsaquo;</span> Conclusão: Eficiência Técnica Transforma Custo em Vantagem Competitiva
                 </a>
@@ -532,7 +526,7 @@
       <!-- Main Article Content -->
       <div class="prose-custom">
         <blockquote>
-<p><strong>Resposta Rápida (Answer-First / GEO):</strong><br>O <strong>Code Execution</strong> (chamada programática de ferramentas via ferramenta <code>execute_code</code>) é a capacidade de um agente autônomo escrever e executar scripts Python em tempo real na própria máquina ou VPS para orquestrar múltiplas ferramentas (<code>web_search</code>, <code>read_file</code>, <code>patch</code>, <code>terminal</code>) de forma programática. Ao contrário do padrão convencional ReAct — no qual cada ação gera uma resposta textual bruta de 20KB a 50KB que é reinjetada na janela de contexto do LLM a cada turno —, o <code>execute_code</code> roda loops, condicionais e filtros localmente em milissegundos via socket RPC interno. Somente o resultado final consolidado pelo comando <code>print()</code> é devolvido ao modelo de IA. Essa arquitetura reduz em até <strong>95% o consumo de tokens</strong>, encurta o tempo de execução de 4 minutos para 8 segundos e impede que o agente se perca em alucinações por excesso de ruído no histórico da conversa.</p>
+<p><strong>Em resumo:</strong><br>O <strong>Code Execution</strong> (chamada programática de ferramentas via ferramenta <code>execute_code</code>) é a capacidade de um agente autônomo escrever e executar scripts Python em tempo real na própria máquina ou VPS para orquestrar múltiplas ferramentas (<code>web_search</code>, <code>read_file</code>, <code>patch</code>, <code>terminal</code>) de forma programática. Ao contrário do padrão convencional ReAct — no qual cada ação gera uma resposta textual bruta de 20KB a 50KB que é reinjetada na janela de contexto do LLM a cada turno —, o <code>execute_code</code> roda loops, condicionais e filtros localmente em milissegundos via socket RPC interno. Somente o resultado final consolidado pelo comando <code>print()</code> é devolvido ao modelo de IA. Essa arquitetura reduz em até <strong>95% o consumo de tokens</strong>, encurta o tempo de execução de 4 minutos para 8 segundos e impede que o agente se perca em alucinações por excesso de ruído no histórico da conversa.</p>
 </blockquote>
 <hr>
 <h2 id="o-paradoxo-do-loop-react-quando-a-autonomia-custa-caro-demais" class="scroll-mt-24 group flex items-center justify-between">O Paradoxo do Loop ReAct: Quando a Autonomia Custa Caro Demais <a href="#o-paradoxo-do-loop-react-quando-a-autonomia-custa-caro-demais" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
@@ -771,16 +765,6 @@ total_modificados <span class="token operator">=</span> <span class="token numbe
 
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Refatoração concluída com sucesso em </span><span class="token interpolation"><span class="token punctuation">{</span>total_modificados<span class="token punctuation">}</span></span><span class="token string"> arquivos."</span></span><span class="token punctuation">)</span>
 </code></pre><hr>
-<h2 id="onde-esse-conhecimento-se-conecta-na-grade-do-curso" class="scroll-mt-24 group flex items-center justify-between">Onde Esse Conhecimento se Conecta na Grade do Curso <a href="#onde-esse-conhecimento-se-conecta-na-grade-do-curso" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
-<p>No curso <strong>Inteligência Agêntica</strong>, ensinamos nossos alunos a construir infraestruturas profissionais para empresas reais. O <code>execute_code</code> é a espinha dorsal de agentes que precisam entregar produtividade de alta escala sem onerar o orçamento mensal:</p>
-<ul>
-<li><strong>Módulo 3.5 — As Ferramentas:</strong> Compreensão aprofundada da anatomia do agente, demonstrando a diferença prática entre ferramentas atômicas isoladas e o canal RPC de execução programática;</li>
-<li><strong>Módulo 3.6 — Aprendizado Autônomo:</strong> Como o agente utiliza laços de tentativa, teste e refatoração em memória para solucionar bugs complexos antes de apresentar a resposta final;</li>
-<li><strong>Módulo 5.2 — Criando a Primeira Automação (O Radar do Mercado):</strong> Configuração de rotinas que varrem portais, consolidam dados e enviam relatórios diários via Telegram operando em apenas um turno de API;</li>
-<li><strong>Módulo 14.1 — A Fábrica de Software Agêntica (Hermes + Orca):</strong> Orquestração de subagentes que realizam refatorações em massa em múltiplos repositórios com garantia de custo mínimo e sem estouro de contexto;</li>
-<li><strong>Guia G.7 — Guia de Comandos Hermes:</strong> Referência completa sobre as diretrizes de configuração do <code>config.yaml</code>, liberação de variáveis de ambiente com <code>env_passthrough</code> e uso do parâmetro <code>reset: true</code>.</li>
-</ul>
-<hr>
 <h2 id="conclusao-eficiencia-tecnica-transforma-custo-em-vantagem-competitiva" class="scroll-mt-24 group flex items-center justify-between">Conclusão: Eficiência Técnica Transforma Custo em Vantagem Competitiva <a href="#conclusao-eficiencia-tecnica-transforma-custo-em-vantagem-competitiva" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
 <p>Para quem utiliza agentes de IA apenas como brinquedo conversacional, gastar 50 turnos de LLM para ler três arquivos é uma ineficiência tolerável. Mas para empresários, gestores de tecnologia e analistas de infraestrutura que dependem de agentes rodando 24 horas por dia, 7 dias por semana em servidores VPS, essa diferença é o divisor de águas entre uma operação viável e um projeto inviabilizado pela fatura de tokens.</p>
 <p>A chamada programática de ferramentas com <code>execute_code</code> transforma o agente de IA de um mero gerador de texto em um <strong>verdadeiro orquestrador de engenharia de software</strong>. Ao transferir o processamento bruto de dados para onde ele deve estar — no processador local da sua VPS —, você conquista velocidade em tempo real, precisão matemática e governança absoluta de custos.</p>
@@ -849,7 +833,7 @@ total_modificados <span class="token operator">=</span> <span class="token numbe
             <a href="/blog/autonomia-proativa-loops-recorrentes-heartbeats-hermes" class="glass-card rounded-xl p-5 border border-white/5 block group">
               <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Agentes de IA</span>
               <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Autonomia Proativa: Como /loop e /heartbeat Eliminam a Babá de IA no Hermes Agent</h4>
-              <p class="text-xs text-gray-400 line-clamp-2">Veja como /loop (laços recorrentes com auto-backoff exponencial) e /heartbeat (batimento cardíaco de sessão) trabalham dentro de uma mesma conversa para monitorar deployments, acompanhar filas e manter vigilância autônoma — zero 새as de "keep going", prompt cache preservado em cada turno.</p>
+              <p class="text-xs text-gray-400 line-clamp-2">Veja como /loop (laços recorrentes com auto-backoff exponencial) e /heartbeat (batimento cardíaco de sessão) trabalham dentro de uma mesma conversa para monitorar deployments, acompanhar filas e manter vigilância autônoma — sem pedir "keep going" a cada turno e com o prompt cache preservado.</p>
             </a>
           
         </div>

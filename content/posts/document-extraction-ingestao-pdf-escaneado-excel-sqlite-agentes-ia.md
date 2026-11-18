@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/document-extraction-in
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > A extração documental (*Document Extraction*) em agentes autônomos resolve uma das falhas mais perigosas da inteligência artificial corporativa: a **leitura cega de documentos com páginas escaneadas** e o **bloqueio de bancos de dados em produção**. Enquanto chatbots comuns (ChatGPT ou Claude web) fingem ter lido contratos inteiros ao ignorar páginas que são imagens puras (gerando alucinações jurídicas críticas), o **Hermes Agent** implementa na ferramenta `read_file` uma esteira com três camadas de proteção: (1) conversão nativa via biblioteca padrão (*stdlib*) para arquivos Excel (`.xlsx`), Word (`.docx`) e bancos SQLite (`.sqlite`) abertos em modo estrito de somente leitura (`mode=ro&immutable=1`), prevenindo travamento de ERPs; (2) o mecanismo de defesa **Coverage Warning System**, que detecta lacunas de texto em PDFs escaneados e aponta exatamente as páginas não indexadas; e (3) a decisão autônoma entre **visão multimodal direcionada** (`pdftoppm + vision_analyze`) para poucas páginas ou **OCR estruturado em lote** (`ocr-and-documents`) para livros fiscais inteiros.
 
 ---

@@ -22,7 +22,7 @@
 ### [Autonomia Proativa: Como /loop e /heartbeat Eliminam a Babá de IA no Hermes Agent](https://inteligenciaagentica.com.br/blog/autonomia-proativa-loops-recorrentes-heartbeats-hermes)
 - **Data de Publicação:** 2026-11-18
 - **Tags:** Agentes de IA, Hermes Agent, Autonomia, Automação, VPS, Cron Jobs
-- **Resumo:** Veja como /loop (laços recorrentes com auto-backoff exponencial) e /heartbeat (batimento cardíaco de sessão) trabalham dentro de uma mesma conversa para monitorar deployments, acompanhar filas e manter vigilância autônoma — zero 새as de "keep going", prompt cache preservado em cada turno.
+- **Resumo:** Veja como /loop (laços recorrentes com auto-backoff exponencial) e /heartbeat (batimento cardíaco de sessão) trabalham dentro de uma mesma conversa para monitorar deployments, acompanhar filas e manter vigilância autônoma — sem pedir "keep going" a cada turno e com o prompt cache preservado.
 - **URL:** https://inteligenciaagentica.com.br/blog/autonomia-proativa-loops-recorrentes-heartbeats-hermes
 
 ### [Script-Only Cron Jobs e hermes send: Watchdogs de Infraestrutura e Alertas de Custo Zero com Hermes Agent](https://inteligenciaagentica.com.br/blog/script-only-cron-jobs-hermes-send-watchdogs-custo-zero)

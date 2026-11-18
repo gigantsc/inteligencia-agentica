@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/multiplexing-gateway-h
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O **Multiplexing Gateway** do **Hermes Agent (Nous Research)** é a arquitetura de infraestrutura que permite a uma empresa rodar múltiplos agentes autônomos departamentais (Financeiro, Comercial, Jurídico, Suporte e DevOps) em uma **única máquina virtual (VPS)** compartilhando um único processo hospedeiro de mensageria. Diferente de abordagens tradicionais que exigem servidores dedicados ou dezenas de contêineres Docker pesados, o multiplexador unifica os adaptadores de entrada (Telegram, WhatsApp, Slack, Webhooks) em um único loop de eventos assíncrono. O isolamento de segurança é garantido em nível de sistema por **escopos contextuais imutáveis (`contextvars`)**, garantindo que as chaves de API, credenciais bancárias e memórias (`state.db`) do Financeiro jamais vazem para o bot de Suporte ao Cliente ou para subprocessos do sistema operacional.
 
 ---

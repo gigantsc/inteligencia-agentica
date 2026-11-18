@@ -10,7 +10,7 @@ image: "https://inteligenciaagentica.com.br/static/images/hermes-agent-vs-codex-
 draft: false
 ---
 
-> **Resposta Rápida (Answer-First / GEO):**  
+> **Em resumo:**  
 > O **Hermes Agent** (Nous Research, licença MIT) e o **OpenAI Codex** não são ferramentas excludentes: enquanto o Codex é um agente especializado em inspecionar repositórios, editar código e abrir *pull requests*, o Hermes Agent atua como a **camada persistente de orquestração** acima dele. Por meio da *skill* nativa `codex`, o Hermes delega implementações e PRs diretamente para a Codex CLI, autentica-se com sua assinatura ChatGPT (`hermes model`) e importa automaticamente seu `AGENTS.md`, memórias, servidores MCP e *skills* com o comando `hermes migrate codex` — tudo isso operando em mais de 20 aplicativos de mensageria, com memória ativa por padrão e zero telemetria.
 
 ---
@@ -98,15 +98,6 @@ Você não precisa jogar fora as regras de projeto e ferramentas que já configu
    ```
    O comando instala o plugin oficial `agent-importers` (caso ainda não esteja presente), exibe uma prévia do que será trazido e **nunca lê arquivos de credenciais**. Seu `AGENTS.md` global e suas memórias do Codex viram entradas de memória no Hermes, acompanhados dos seus servidores MCP e *skills*. Para sincronizar alterações futuras, basta rodar `hermes import-agent --sync`.
 3. **Conecte seu modelo e mantenha o Codex como executor:** Rode `hermes model` para escolher entre modelos locais, Nous Portal, qualquer API compatível com OpenAI ou sua assinatura ChatGPT/Codex.
-
----
-
-## Onde Esse Conhecimento se Conecta na Grade do Curso
-
-No curso **Inteligência Agêntica**, esse modelo de arquitetura reforça diretamente dois pilares práticos da nossa formação:
-
-- **Módulo 3 (Aulas 3.4 — As habilidades e 3.7 — Multi-agente):** Exemplo concreto de como um agente generalista mantém contexto e memória de longo prazo enquanto delega tarefas especializadas de código via *skill* para um subagente externo.
-- **Módulo 14 (Aula 14.1 — Da Demanda ao Código: Orquestrando o Orca com Kanban Nativo):** Complemento direto para a nossa Fábrica de Software Agêntica, mostrando que o Hermes pode orquestrar não apenas o Orca ADE, mas também a OpenAI Codex CLI dentro da mesma esteira de entrega.
 
 ---
 
