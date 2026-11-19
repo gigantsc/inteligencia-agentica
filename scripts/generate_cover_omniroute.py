@@ -130,6 +130,19 @@ TARGETS = {
         "title2": "Paralelismo Sem Conflitos",
         "subtitle": "Árvores isoladas para subagentes e limpeza automática na VPS",
     },
+    "managed-scope": {
+        "file": "managed-scope-remote-config-governanca-hermes.jpg",
+        "prompt": ESTILO_BASE + (
+            "A classical marble bust of Hermes wearing a winged helmet at the apex of a dark "
+            "obsidian command hall, flanked by three glowing translucent golden and cyan "
+            "architectural seals and classical marble pillars linked by centralized holographic "
+            "governance conduits, symbolizing fleet-wide policy locks and standardized agent deployment."
+        ),
+        "kicker": "INTELIGÊNCIA AGÊNTICA  •  GOVERNANÇA",
+        "title1": "Managed Scope & Remote Config:",
+        "title2": "Padronize Agentes na Empresa",
+        "subtitle": "Trave políticas, distribua perfis via Git e controle frotas 24/7",
+    },
 }
 
 
