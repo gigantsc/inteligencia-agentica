@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@ruvector/mouse-swarm':
+        specifier: github:ruvnet/mouse-swarm
+        version: https://codeload.github.com/ruvnet/mouse-swarm/tar.gz/45f720a0e32d82754e671d4b3edecc6f86f1b2e2
     devDependencies:
       feed:
         specifier: ^6.0.0
@@ -28,6 +32,12 @@ importers:
         version: 1.6.9
 
 packages:
+
+  '@ruvector/mouse-swarm@https://codeload.github.com/ruvnet/mouse-swarm/tar.gz/45f720a0e32d82754e671d4b3edecc6f86f1b2e2':
+    resolution: {tarball: https://codeload.github.com/ruvnet/mouse-swarm/tar.gz/45f720a0e32d82754e671d4b3edecc6f86f1b2e2}
+    version: 0.1.0
+    engines: {node: '>=18'}
+    hasBin: true
 
   argparse@1.0.10:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
@@ -99,6 +109,8 @@ packages:
     hasBin: true
 
 snapshots:
+
+  '@ruvector/mouse-swarm@https://codeload.github.com/ruvnet/mouse-swarm/tar.gz/45f720a0e32d82754e671d4b3edecc6f86f1b2e2': {}
 
   argparse@1.0.10:
     dependencies:

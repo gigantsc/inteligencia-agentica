@@ -2689,7 +2689,26 @@ summary {
     .font-mono, .font-mono * {
       font-family: 'JetBrains Mono', monospace !important;
     }
+
+    /* Mouse Swarm Reveal — controles da montagem (posicionados fora do fluxo).
+       Nada aqui esconde conteúdo: a página segue visível mesmo sem o módulo. */
+    #swarmControls {
+      position: absolute; right: 0; bottom: -34px; z-index: 30;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+      padding: 5px 10px; border-radius: 999px;
+      background: rgba(10, 10, 10, 0.92); border: 1px solid var(--border);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+      font-size: 11px; color: var(--muted);
+    }
+    #swarmControls[hidden] { display: none !important; }
+    #swarmControls button:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+    @media (max-width: 1023px) {
+      /* Mobile: pílula flutuante acima do rodapé (livra toast de prova social e barra de CTA) */
+      #swarmControls:not([hidden]) { position: fixed; right: 12px; bottom: 150px; left: auto; }
+    }
   </style>
+  <!-- Mouse Swarm Reveal: pré-carrega o módulo do enxame de cursores -->
+  <link rel="modulepreload" href="/static/js/mouse-swarm.js">
 </head>
 <body class="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--orange)] selection:text-white antialiased overflow-x-clip">
   <!-- Google Tag Manager (noscript) -->
@@ -2875,7 +2894,16 @@ summary {
        LANDING PAGE PRINCIPAL: INTELIGÊNCIA AGÊNTICA — PLANO ANUAL
        ============================================================ -->
   <main class="flex-grow pt-16 sm:pt-20 landing-content">
-<section class="relative overflow-hidden"><div class="absolute inset-0 grid-lines opacity-[0.25]"></div><div class="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(255,77,0,0.22),transparent_70%)] pointer-events-none"></div><div class="relative mx-auto max-w-[1280px] px-5 lg:px-8 pt-6 pb-12 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-20"><div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-16 items-start"><div><div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--orange-soft)] border border-[rgba(255,77,0,0.25)] text-[11px] sm:text-[12px] tracking-[0.14em] font-bold text-orange-400 mb-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame h-3.5 w-3.5"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg> PARA DONOS E GESTORES QUE ESTÃO CANSADOS DE SEREM ESCRAVOS DA PRÓPRIA OPERAÇÃO</div><h1 class="text-[28px] sm:text-[38px] lg:text-[44px] xl:text-[48px] leading-[1.04] tracking-[-0.04em] font-[800] text-balance">Chega de Prompt. <br><span class="text-[var(--orange)]">Instale Funcionários de IA</span> que Trabalham 24h por Você Enquanto Você Dorme.</h1><p class="mt-3 text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.5] text-[var(--muted)] max-w-[58ch] text-balance">Na Comunidade <b class="text-[var(--text)] font-semibold">Inteligência Agêntica</b>, você não aprende a conversar com IA. Você aprende a construir, hospedar na nuvem e comandar <b class="text-[var(--text)] font-semibold">Agentes Autônomos</b> que fazem SEO, postam no Instagram, criam Landing Pages, editam vídeos e geram relatórios de lucro - sozinhos, no piloto automático.</p><div class="mt-5"><a href="#oferta" class="group relative flex w-full sm:w-auto sm:inline-flex items-center justify-center gap-3 px-8 h-[60px] rounded-[14px] bg-[var(--orange)] text-white font-bold text-[14px] sm:text-[15px] tracking-[-0.01em] overflow-hidden hover:brightness-110 transition"><span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>🔥 QUERO MEUS FUNCIONÁRIOS DE IA AGORA - 2º LOTE R$497/ANO</a><div class="mt-3 flex flex-wrap items-center gap-3 text-[12px] text-[var(--muted)]"><span class="inline-flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock h-3.5 w-3.5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Acesso imediato</span><span class="h-1 w-1 rounded-full bg-[var(--border-2)]"></span><span>4 encontros ao vivo/mês</span></div><div class="mt-4 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[var(--surface)] border border-[var(--border)] text-[11px]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer h-4 w-4 text-[var(--orange)]"><line x1="10" x2="14" y1="2" y2="2"></line><line x1="12" x2="15" y1="14" y2="11"></line><circle cx="12" cy="14" r="8"></circle></svg><span class="text-[var(--muted)]"><b class="text-[var(--text)]">2º lote prestes a virar.</b> 3º lote será R$597/ano</span></div></div><div class="mt-5 grid grid-cols-3 gap-3 max-w-[520px]"><div class="rounded-[12px] bg-[var(--surface)] border border-[var(--border)] px-4 py-3"><div class="text-[18px] font-bold tracking-tight">4x/mês</div><div class="text-[11px] text-[var(--muted)] tracking-wide uppercase">Ao vivo</div></div><div class="rounded-[12px] bg-[var(--surface)] border border-[var(--border)] px-4 py-3"><div class="text-[18px] font-bold tracking-tight">24/7</div><div class="text-[11px] text-[var(--muted)] tracking-wide uppercase">Na nuvem</div></div><div class="rounded-[12px] bg-[var(--surface)] border border-[var(--border)] px-4 py-3"><div class="text-[18px] font-bold tracking-tight">7 dias</div><div class="text-[11px] text-[var(--muted)] tracking-wide uppercase">Garantia</div></div></div></div><div class="relative lg:sticky lg:top-[96px]">
+<section class="relative overflow-hidden"><div class="absolute inset-0 grid-lines opacity-[0.25]"></div><div class="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(255,77,0,0.22),transparent_70%)] pointer-events-none"></div><div class="relative mx-auto max-w-[1280px] px-5 lg:px-8 pt-6 pb-12 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-20"><div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-16 items-start"><div><div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--orange-soft)] border border-[rgba(255,77,0,0.25)] text-[11px] sm:text-[12px] tracking-[0.14em] font-bold text-orange-400 mb-3" data-swarm-item data-swarm-order="1" data-swarm-role="Scout"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame h-3.5 w-3.5"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg> PARA DONOS E GESTORES QUE ESTÃO CANSADOS DE SEREM ESCRAVOS DA PRÓPRIA OPERAÇÃO</div><h1 class="text-[28px] sm:text-[38px] lg:text-[44px] xl:text-[48px] leading-[1.04] tracking-[-0.04em] font-[800] text-balance" data-swarm-item data-swarm-order="2" data-swarm-role="Copy">Chega de Prompt. <br><span class="text-[var(--orange)]">Instale Funcionários de IA</span> que Trabalham 24h por Você Enquanto Você Dorme.</h1><p class="mt-3 text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.5] text-[var(--muted)] max-w-[58ch] text-balance" data-swarm-item data-swarm-order="4" data-swarm-role="Copy">Na Comunidade <b class="text-[var(--text)] font-semibold">Inteligência Agêntica</b>, você não aprende a conversar com IA. Você aprende a construir, hospedar na nuvem e comandar <b class="text-[var(--text)] font-semibold">Agentes Autônomos</b> que fazem SEO, postam no Instagram, criam Landing Pages, editam vídeos e geram relatórios de lucro - sozinhos, no piloto automático.</p><div class="mt-5"><a href="#oferta" class="group relative flex w-full sm:w-auto sm:inline-flex items-center justify-center gap-3 px-8 h-[60px] rounded-[14px] bg-[var(--orange)] text-white font-bold text-[14px] sm:text-[15px] tracking-[-0.01em] overflow-hidden hover:brightness-110 transition" data-swarm-item data-swarm-order="5" data-swarm-role="Growth" data-swarm-effect="drag"><span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>🔥 QUERO MEUS FUNCIONÁRIOS DE IA AGORA - 2º LOTE R$497/ANO</a><div class="mt-3 flex flex-wrap items-center gap-3 text-[12px] text-[var(--muted)]" data-swarm-item data-swarm-order="6" data-swarm-group="proof" data-swarm-role="Ops"><span class="inline-flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock h-3.5 w-3.5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Acesso imediato</span><span class="h-1 w-1 rounded-full bg-[var(--border-2)]"></span><span>4 encontros ao vivo/mês</span></div><div class="mt-4 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[var(--surface)] border border-[var(--border)] text-[11px]" data-swarm-item data-swarm-order="7" data-swarm-group="proof"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer h-4 w-4 text-[var(--orange)]"><line x1="10" x2="14" y1="2" y2="2"></line><line x1="12" x2="15" y1="14" y2="11"></line><circle cx="12" cy="14" r="8"></circle></svg><span class="text-[var(--muted)]"><b class="text-[var(--text)]">2º lote prestes a virar.</b> 3º lote será R$597/ano</span></div></div><div class="mt-5 grid grid-cols-3 gap-3 max-w-[520px]"><div class="rounded-[12px] bg-[var(--surface)] border border-[var(--border)] px-4 py-3" data-swarm-item data-swarm-order="8" data-swarm-group="stats" data-swarm-role="Data"><div class="text-[18px] font-bold tracking-tight">4x/mês</div><div class="text-[11px] text-[var(--muted)] tracking-wide uppercase">Ao vivo</div></div><div class="rounded-[12px] bg-[var(--surface)] border border-[var(--border)] px-4 py-3" data-swarm-item data-swarm-order="9" data-swarm-group="stats"><div class="text-[18px] font-bold tracking-tight">24/7</div><div class="text-[11px] text-[var(--muted)] tracking-wide uppercase">Na nuvem</div></div><div class="rounded-[12px] bg-[var(--surface)] border border-[var(--border)] px-4 py-3" data-swarm-item data-swarm-order="10" data-swarm-group="stats"><div class="text-[18px] font-bold tracking-tight">7 dias</div><div class="text-[11px] text-[var(--muted)] tracking-wide uppercase">Garantia</div></div></div></div><div id="swarmControls" role="group" aria-label="Controles da animação de montagem da página" hidden>
+  <span class="inline-flex items-center gap-1.5" aria-hidden="true">
+    <span class="h-1.5 w-1.5 rounded-full bg-[var(--orange)] animate-pulse"></span>
+    <span id="swarmProgress">Montando a página com agentes…</span>
+  </span>
+  <span id="swarmStatus" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap"></span>
+  <button type="button" id="swarmPause" class="px-2.5 py-1 rounded-full bg-[var(--surface-2)] border border-[var(--border)] font-semibold text-[var(--muted)] hover:text-white hover:border-[var(--orange)] transition cursor-pointer">Pausar</button>
+  <button type="button" id="swarmSkip" class="px-2.5 py-1 rounded-full bg-[var(--surface-2)] border border-[var(--border)] font-semibold text-[var(--muted)] hover:text-white hover:border-[var(--orange)] transition cursor-pointer">Pular animação</button>
+  <button type="button" id="swarmReplay" class="px-2.5 py-1 rounded-full bg-[var(--surface-2)] border border-[var(--border)] font-semibold text-[var(--muted)] hover:text-white hover:border-[var(--orange)] transition cursor-pointer" hidden>Repetir animação</button>
+</div><div class="relative lg:sticky lg:top-[96px]" data-swarm-item data-swarm-order="3" data-swarm-role="Dev">
   <div class="absolute -inset-[1px] rounded-[20px] bg-gradient-to-b from-[var(--orange)]/40 to-transparent blur-[1px]"></div>
   <div class="relative rounded-[20px] overflow-hidden bg-[var(--surface)] border border-[var(--border-2)] shadow-[0_20px_80px_rgba(0,0,0,0.6)]">
     <!-- Window Header -->
@@ -3596,6 +3624,102 @@ summary {
         });
       });
     });
+  </script>
+  <!-- Mouse Swarm Reveal — enxame de cursores montando a Hero Section.
+       Script clássico (roda durante a análise do HTML) com import dinâmico do módulo.
+       Nenhum conteúdo é escondido por CSS: se algo falhar, a página segue normal. -->
+  <script>
+    (function () {
+      const track = (payload) => {
+        try { window.dataLayer = window.dataLayer || []; window.dataLayer.push(Object.assign({ event: 'swarm_reveal' }, payload)); } catch (e) {}
+      };
+      const elControls = document.getElementById('swarmControls');
+      const elProgress = document.getElementById('swarmProgress');
+      const elAnnounce = document.getElementById('swarmStatus');
+      const btnPause = document.getElementById('swarmPause');
+      const btnSkip = document.getElementById('swarmSkip');
+      const btnReplay = document.getElementById('swarmReplay');
+      // Demonstração/depuração: ?swarm=1 (ou #swarm) força a montagem mesmo com
+      // "movimento reduzido" ativo no sistema/navegador do visitante.
+      const force = location.search.indexOf('swarm=1') !== -1 || location.hash === '#swarm';
+      const reduced = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+      // Visitante pediu menos movimento: página normal, sem animação e sem controles.
+      if (!force && reduced()) return;
+
+      const setPhase = (phase) => {
+        if (!elControls) return;
+        elControls.hidden = phase === 'done' && !force;
+        if (btnPause) { btnPause.hidden = phase === 'done'; btnPause.textContent = phase === 'paused' ? 'Retomar' : 'Pausar'; }
+        if (btnSkip) btnSkip.hidden = phase === 'done';
+        if (btnReplay) btnReplay.hidden = phase !== 'done' || !force;
+      };
+
+      (async () => {
+        try {
+          if (force && reduced()) {
+            // Opt-in explícito do visitante: neutraliza apenas prefers-reduced-motion para o módulo.
+            const original = window.matchMedia.bind(window);
+            window.matchMedia = (query) => /prefers-reduced-motion/.test(String(query))
+              ? { matches: false, media: String(query), addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} }
+              : original(query);
+          }
+          const { createSwarmReveal } = await import('/static/js/mouse-swarm.js');
+          const narrow = window.matchMedia('(max-width: 767px)').matches;
+          const reveal = createSwarmReveal({
+            root: document,
+            selector: '[data-swarm-item]',
+            cursors: narrow ? 10 : 16,
+            interval: narrow ? 220 : 240,
+            colors: ['#ff4d00', '#ff9a5c', '#70c9f9', '#c9acff', '#8ee6ce'],
+            botEvery: 4,
+            cursorSize: 16,
+            cursorSpeed: 620,
+            labels: [],
+            selection: true,
+            typeText: false,
+            autoScroll: false,
+            onStep: ({ current, total }) => {
+              if (elProgress) elProgress.textContent = 'Montando a página com agentes… ' + current + '/' + total;
+            },
+            onComplete: ({ reason, total }) => {
+              const msg = reason === 'skipped' ? 'Montagem pulada — página liberada.'
+                : reason === 'reduced-motion' ? 'Página pronta (movimento reduzido).'
+                : 'Página montada pelos agentes.';
+              if (elProgress) elProgress.textContent = msg;
+              if (elAnnounce) elAnnounce.textContent = msg;
+              setPhase('done');
+              track({ swarm_action: reason, swarm_items: total });
+            },
+            onError: (error) => {
+              console.warn('[mouse-swarm] animação interrompida:', error);
+              setPhase('done');
+            }
+          });
+
+          if (btnPause) btnPause.addEventListener('click', () => {
+            const status = reveal.getState().status;
+            if (status === 'running') { reveal.pause(); setPhase('paused'); }
+            else if (status === 'paused') { reveal.resume(); setPhase('running'); }
+          });
+          if (btnSkip) btnSkip.addEventListener('click', () => reveal.skip());
+          if (btnReplay) btnReplay.addEventListener('click', () => {
+            setPhase('running');
+            if (elProgress) elProgress.textContent = 'Montando a página com agentes…';
+            track({ swarm_action: 'replay' });
+            reveal.replay();
+          });
+
+          setPhase('running');
+          reveal.start();
+          track({ swarm_action: 'start', swarm_items: reveal.getState().total });
+          window.__mouseSwarm = reveal;  // handle de inspeção (progresso/estado)
+        } catch (error) {
+          console.warn('[mouse-swarm] animação indisponível:', error);
+          if (elControls) elControls.hidden = true;
+        }
+      })();
+    })();
   </script>
 </body>
 </html>

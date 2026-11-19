@@ -25,5 +25,8 @@
     "marked-highlight": "^2.2.4",
     "prismjs": "^1.30.0",
     "slugify": "^1.6.9"
+  },
+  "dependencies": {
+    "@ruvector/mouse-swarm": "github:ruvnet/mouse-swarm"
   }
 }
