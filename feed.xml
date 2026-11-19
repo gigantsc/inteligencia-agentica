@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Thu, 19 Nov 2026 11:06:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 19 Nov 2026 13:32:12 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -367,7 +367,7 @@ Cannot <span class="token builtin class-name">set</span> <span class="token stri
 <p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/managed-scope">https://hermes-agent.nousresearch.com/docs/user-guide/managed-scope</a> — Hermes Agent Docs: Managed Scope<br>[2] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/remote-config">https://hermes-agent.nousresearch.com/docs/user-guide/remote-config</a> — Hermes Agent Docs: Remote Config<br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/profile-distributions">https://hermes-agent.nousresearch.com/docs/user-guide/profile-distributions</a> — Hermes Agent Docs: Profile Distributions</p>
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
-            <enclosure url="https://inteligenciaagentica.com.br/static/images/managed-scope-remote-config-governanca-hermes.jpg" length="0" type="image/jpg"/>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/managed-scope-remote-config-governanca-hermes-v2.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Autonomia Proativa: Como /loop e /heartbeat Eliminam a Babá de IA no Hermes Agent]]></title>

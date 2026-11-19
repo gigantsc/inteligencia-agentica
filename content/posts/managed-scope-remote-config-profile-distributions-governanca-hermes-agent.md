@@ -6,7 +6,7 @@ summary: "Aprenda a escalar agentes de IA para toda a empresa sem perder o contr
 tags: ["Agentes de IA", "Governança", "Hermes Agent", "DevOps", "Segurança", "Negócios"]
 keywords: ["Managed Scope Hermes Agent", "Remote Config agentes IA", "Profile Distributions Git", "padronização agentes corporativos", "governança IA empresas"]
 author: "Jean Pierre Schramm"
-image: "https://inteligenciaagentica.com.br/static/images/managed-scope-remote-config-governanca-hermes.jpg"
+image: "https://inteligenciaagentica.com.br/static/images/managed-scope-remote-config-governanca-hermes-v2.jpg"
 draft: false
 ---
 

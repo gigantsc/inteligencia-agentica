@@ -131,7 +131,7 @@ TARGETS = {
         "subtitle": "Árvores isoladas para subagentes e limpeza automática na VPS",
     },
     "managed-scope": {
-        "file": "managed-scope-remote-config-governanca-hermes.jpg",
+        "file": "managed-scope-remote-config-governanca-hermes-v2.jpg",
         "prompt": ESTILO_BASE + (
             "A classical marble bust of Hermes wearing a winged helmet at the apex of a dark "
             "obsidian command hall, flanked by three glowing translucent golden and cyan "
