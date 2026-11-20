@@ -144,7 +144,7 @@ TARGETS = {
         "subtitle": "Trave políticas, distribua perfis via Git e controle frotas 24/7",
     },
     "moa": {
-        "file": "mixture-of-agents-moa-conselho-modelos-hermes.jpg",
+        "file": "mixture-of-agents-moa-conselho-modelos-hermes-v2.jpg",
         "prompt": ESTILO_BASE + (
             "A council of three classical Greco-Roman white marble busts arranged in a dark obsidian "
             "sanctuary: two luminous advisor busts on the left and right bathed in electric cyan (#00E5FF) "

@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Fri, 20 Nov 2026 11:09:05 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 20 Nov 2026 20:40:29 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -412,7 +412,7 @@
 <p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/mixture-of-agents">https://hermes-agent.nousresearch.com/docs/user-guide/features/mixture-of-agents</a> — Mixture of Agents | Hermes Agent Docs<br>[2] <a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.3">https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.3</a> — Hermes Agent v0.23.3 Release Notes</p>
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
-            <enclosure url="https://inteligenciaagentica.com.br/static/images/mixture-of-agents-moa-conselho-modelos-hermes.jpg" length="0" type="image/jpg"/>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/mixture-of-agents-moa-conselho-modelos-hermes-v2.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Managed Scope, Remote Config e Profile Distributions: Como Padronizar e Blindar Agentes de IA na Empresa]]></title>

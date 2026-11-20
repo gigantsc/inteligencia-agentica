@@ -6,7 +6,7 @@ summary: "Aprenda a usar o Mixture of Agents (MoA) nativo do Hermes Agent para c
 tags: ["Hermes Agent", "Mixture of Agents", "MoA", "Agentes de IA", "Arquitetura", "Automação", "Custos de IA"]
 keywords: ["Mixture of Agents Hermes Agent", "MoA IA empresas", "conselho de modelos de IA", "HermesBench MoA", "prompt caching multi modelo", "hermes moa configure"]
 author: "Jean Pierre Schramm"
-image: "https://inteligenciaagentica.com.br/static/images/mixture-of-agents-moa-conselho-modelos-hermes.jpg"
+image: "https://inteligenciaagentica.com.br/static/images/mixture-of-agents-moa-conselho-modelos-hermes-v2.jpg"
 draft: false
 ---
 
