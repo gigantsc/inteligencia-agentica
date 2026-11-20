@@ -59,7 +59,7 @@ def build_proofs():
     while len(proofs) < TOTAL:
         name = NAMES[i % len(NAMES)]
         city = CITIES[(i * 5 + 3) % len(CITIES)]
-        action = ACTIONS[(i * 7) % len(ACTIONS)]
+        action = ACTIONS[(i * 3 + 1) % len(ACTIONS)]
         key = (name, city, action)
         if key not in seen:
             seen.add(key)
@@ -175,6 +175,11 @@ def main():
     for p in proofs:
         assert any(v in p["action"] for v in sales_verbs), "ação sem sentido de venda: %s" % p["action"]
     assert "pickNext" in html and "shuffled" in html, "sorteador ausente"
+    used_actions = {p["action"] for p in proofs}
+    assert len(used_actions) == len(ACTIONS), (
+        "só %d de %d ações foram usadas (multiplicador e módulo não são coprimos): %s"
+        % (len(used_actions), len(ACTIONS), sorted(used_actions))
+    )
 
     HTML_PATH.write_text(html, encoding="utf-8")
     print("mensagens instaladas: %d (nomes/cidades distintos: %d)" % (len(proofs), len(names)))
