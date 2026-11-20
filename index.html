@@ -35,14 +35,14 @@
   </script>
 
   <!-- Cookie Consent Banner & Mode V2 Controller -->
-  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <link rel="stylesheet" href="/static/cookieconsent-v3.css">
   <script>
     window.cookieconsentConfig = {
       gtmId: 'GTM-M5JDK6W4',
       autoLoadGtm: false
     };
   </script>
-  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+  <script defer src="/static/cookieconsent-v2.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inteligência Agêntica — Agentes de IA Autônomos Trabalhando 24h para sua Empresa</title>
@@ -2708,7 +2708,7 @@ summary {
     }
   </style>
   <!-- Mouse Swarm Reveal: pré-carrega o módulo do enxame de cursores -->
-  <link rel="modulepreload" href="/static/js/mouse-swarm.js">
+  <link rel="modulepreload" href="/static/js/mouse-swarm-v2.js">
 </head>
 <body class="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--orange)] selection:text-white antialiased overflow-x-clip">
   <!-- Google Tag Manager (noscript) -->
@@ -3505,7 +3505,7 @@ summary {
       });
     })();
 
-    // 6. Social Proof Toast Cycler
+    // 6. Social Proof Toast Cycler — SOCIAL PROOF V2: mensagens de venda em ordem aleatoria
     (() => {
       const toast = document.getElementById('socialProofToast');
       const toastInitial = document.getElementById('toastInitial');
@@ -3514,31 +3514,662 @@ summary {
       if (!toast || !toastName) return;
 
       const proofs = [
-        { name: "Marcos de Brusque", action: "garantiu o 2º lote", min: 1 },
-        { name: "Rafaela de Curitiba", action: "ativou o Hermes CMO", min: 2 },
-        { name: "Diego de Floripa", action: "hospedou na VPS em 1 clique", min: 3 },
-        { name: "Juliana de SP", action: "travou R$497/ano", min: 4 }
-      ];
-      let idx = 0;
+        {
+                "name": "Marcos de Itajaí",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 1
+        },
+        {
+                "name": "Rafaela de São José",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 2
+        },
+        {
+                "name": "Diego de São Paulo",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 3
+        },
+        {
+                "name": "Juliana de Belo Horizonte",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 4
+        },
+        {
+                "name": "Patrícia de Recife",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 5
+        },
+        {
+                "name": "Anderson de Vitória",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 6
+        },
+        {
+                "name": "Camila de Blumenau",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 7
+        },
+        {
+                "name": "Rodrigo de Jaraguá do Sul",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 8
+        },
+        {
+                "name": "Fernanda de Maringá",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 9
+        },
+        {
+                "name": "Leandro de Rio de Janeiro",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 10
+        },
+        {
+                "name": "Bruna de Brasília",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 11
+        },
+        {
+                "name": "Thiago de Porto Alegre",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 1
+        },
+        {
+                "name": "Vanessa de Campo Grande",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 2
+        },
+        {
+                "name": "Everton de Florianópolis",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 3
+        },
+        {
+                "name": "Aline de Palhoça",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 4
+        },
+        {
+                "name": "Gustavo de Campinas",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 5
+        },
+        {
+                "name": "Joice de Uberlândia",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 6
+        },
+        {
+                "name": "Marcelo de Fortaleza",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 7
+        },
+        {
+                "name": "Tatiane de Belém",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 8
+        },
+        {
+                "name": "Fábio de Joinville",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 9
+        },
+        {
+                "name": "Priscila de Chapecó",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 10
+        },
+        {
+                "name": "Sandro de Londrina",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 11
+        },
+        {
+                "name": "Cristiane de Niterói",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 1
+        },
+        {
+                "name": "Wagner de Salvador",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 2
+        },
+        {
+                "name": "Débora de Caxias do Sul",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 3
+        },
+        {
+                "name": "Adilson de Brusque",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 4
+        },
+        {
+                "name": "Simone de Balneário Camboriú",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 5
+        },
+        {
+                "name": "Rogério de Curitiba",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 6
+        },
+        {
+                "name": "Michele de Santos",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 7
+        },
+        {
+                "name": "Cléber de Goiânia",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 8
+        },
+        {
+                "name": "Larissa de Natal",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 9
+        },
+        {
+                "name": "Vitor de Manaus",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 10
+        },
+        {
+                "name": "Eliane de Itajaí",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 11
+        },
+        {
+                "name": "Jonas de São José",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 1
+        },
+        {
+                "name": "Késsia de São Paulo",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 2
+        },
+        {
+                "name": "Rafael de Belo Horizonte",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 3
+        },
+        {
+                "name": "Sabrina de Recife",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 4
+        },
+        {
+                "name": "Gilberto de Vitória",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 5
+        },
+        {
+                "name": "Mônica de Blumenau",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 6
+        },
+        {
+                "name": "Tiago de Jaraguá do Sul",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 7
+        },
+        {
+                "name": "Andréia de Maringá",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 8
+        },
+        {
+                "name": "Felipe de Rio de Janeiro",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 9
+        },
+        {
+                "name": "Carolina de Brasília",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 10
+        },
+        {
+                "name": "Renato de Porto Alegre",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 11
+        },
+        {
+                "name": "Marcos de Campo Grande",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 1
+        },
+        {
+                "name": "Rafaela de Florianópolis",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 2
+        },
+        {
+                "name": "Diego de Palhoça",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 3
+        },
+        {
+                "name": "Juliana de Campinas",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 4
+        },
+        {
+                "name": "Patrícia de Uberlândia",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 5
+        },
+        {
+                "name": "Anderson de Fortaleza",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 6
+        },
+        {
+                "name": "Camila de Belém",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 7
+        },
+        {
+                "name": "Rodrigo de Joinville",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 8
+        },
+        {
+                "name": "Fernanda de Chapecó",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 9
+        },
+        {
+                "name": "Leandro de Londrina",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 10
+        },
+        {
+                "name": "Bruna de Niterói",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 11
+        },
+        {
+                "name": "Thiago de Salvador",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 1
+        },
+        {
+                "name": "Vanessa de Caxias do Sul",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 2
+        },
+        {
+                "name": "Everton de Brusque",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 3
+        },
+        {
+                "name": "Aline de Balneário Camboriú",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 4
+        },
+        {
+                "name": "Gustavo de Curitiba",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 5
+        },
+        {
+                "name": "Joice de Santos",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 6
+        },
+        {
+                "name": "Marcelo de Goiânia",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 7
+        },
+        {
+                "name": "Tatiane de Natal",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 8
+        },
+        {
+                "name": "Fábio de Manaus",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 9
+        },
+        {
+                "name": "Priscila de Itajaí",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 10
+        },
+        {
+                "name": "Sandro de São José",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 11
+        },
+        {
+                "name": "Cristiane de São Paulo",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 1
+        },
+        {
+                "name": "Wagner de Belo Horizonte",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 2
+        },
+        {
+                "name": "Débora de Recife",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 3
+        },
+        {
+                "name": "Adilson de Vitória",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 4
+        },
+        {
+                "name": "Simone de Blumenau",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 5
+        },
+        {
+                "name": "Rogério de Jaraguá do Sul",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 6
+        },
+        {
+                "name": "Michele de Maringá",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 7
+        },
+        {
+                "name": "Cléber de Rio de Janeiro",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 8
+        },
+        {
+                "name": "Larissa de Brasília",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 9
+        },
+        {
+                "name": "Vitor de Porto Alegre",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 10
+        },
+        {
+                "name": "Eliane de Campo Grande",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 11
+        },
+        {
+                "name": "Jonas de Florianópolis",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 1
+        },
+        {
+                "name": "Késsia de Palhoça",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 2
+        },
+        {
+                "name": "Rafael de Campinas",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 3
+        },
+        {
+                "name": "Sabrina de Uberlândia",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 4
+        },
+        {
+                "name": "Gilberto de Fortaleza",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 5
+        },
+        {
+                "name": "Mônica de Belém",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 6
+        },
+        {
+                "name": "Tiago de Joinville",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 7
+        },
+        {
+                "name": "Andréia de Chapecó",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 8
+        },
+        {
+                "name": "Felipe de Londrina",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 9
+        },
+        {
+                "name": "Carolina de Niterói",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 10
+        },
+        {
+                "name": "Renato de Salvador",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 11
+        },
+        {
+                "name": "Marcos de Caxias do Sul",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 1
+        },
+        {
+                "name": "Rafaela de Brusque",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 2
+        },
+        {
+                "name": "Diego de Balneário Camboriú",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 3
+        },
+        {
+                "name": "Juliana de Curitiba",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 4
+        },
+        {
+                "name": "Patrícia de Santos",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 5
+        },
+        {
+                "name": "Anderson de Goiânia",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 6
+        },
+        {
+                "name": "Camila de Natal",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 7
+        },
+        {
+                "name": "Rodrigo de Manaus",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 8
+        },
+        {
+                "name": "Fernanda de Itajaí",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 9
+        },
+        {
+                "name": "Leandro de São José",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 10
+        },
+        {
+                "name": "Bruna de São Paulo",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 11
+        },
+        {
+                "name": "Thiago de Belo Horizonte",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 1
+        },
+        {
+                "name": "Vanessa de Recife",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 2
+        },
+        {
+                "name": "Everton de Vitória",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 3
+        },
+        {
+                "name": "Aline de Blumenau",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 4
+        },
+        {
+                "name": "Gustavo de Jaraguá do Sul",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 5
+        },
+        {
+                "name": "Joice de Maringá",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 6
+        },
+        {
+                "name": "Marcelo de Rio de Janeiro",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 7
+        },
+        {
+                "name": "Tatiane de Brasília",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 8
+        },
+        {
+                "name": "Fábio de Porto Alegre",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 9
+        },
+        {
+                "name": "Priscila de Campo Grande",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 10
+        },
+        {
+                "name": "Sandro de Florianópolis",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 11
+        },
+        {
+                "name": "Cristiane de Palhoça",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 1
+        },
+        {
+                "name": "Wagner de Campinas",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 2
+        },
+        {
+                "name": "Débora de Uberlândia",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 3
+        },
+        {
+                "name": "Adilson de Fortaleza",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 4
+        },
+        {
+                "name": "Simone de Belém",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 5
+        },
+        {
+                "name": "Rogério de Joinville",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 6
+        },
+        {
+                "name": "Michele de Chapecó",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 7
+        },
+        {
+                "name": "Cléber de Londrina",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 8
+        },
+        {
+                "name": "Larissa de Niterói",
+                "action": "comprou o curso Inteligência Agêntica",
+                "min": 9
+        },
+        {
+                "name": "Vitor de Salvador",
+                "action": "garantiu o acesso aos 7 agentes",
+                "min": 10
+        }
+];
 
-      // Start after 4 seconds to prevent initial content overlap
-      setTimeout(() => {
+      let queue = [];
+      let lastIndex = -1;
+      const shuffled = (n) => {
+        const a = Array.from({ length: n }, (_, i) => i);
+        for (let i = n - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const t = a[i]; a[i] = a[j]; a[j] = t;
+        }
+        return a;
+      };
+      // Sorteio em "saco": percorre todas as mensagens antes de repetir e nunca
+      // repete a mesma logo em seguida — ordem diferente a cada visita.
+      const pickNext = () => {
+        if (!queue.length) {
+          queue = shuffled(proofs.length);
+          if (queue.length > 1 && queue[0] === lastIndex) {
+            const t = queue[0]; queue[0] = queue[1]; queue[1] = t;
+          }
+        }
+        lastIndex = queue.shift();
+        return proofs[lastIndex];
+      };
+      const when = (min) => (min <= 0 ? 'agora mesmo' : (min === 1 ? 'há 1 min' : 'há ' + min + ' min'));
+      const render = (item) => {
+        if (toastInitial) toastInitial.textContent = item.name.charAt(0);
+        if (toastName) toastName.textContent = item.name;
+        if (toastAction) toastAction.textContent = item.action + ' ' + when(item.min);
+      };
+      const show = () => {
         toast.classList.remove('opacity-0', 'translate-y-3');
         toast.classList.add('opacity-100', 'translate-y-0');
+      };
+      const hide = () => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-3');
+      };
 
-        setInterval(() => {
-          toast.classList.remove('opacity-100', 'translate-y-0');
-          toast.classList.add('opacity-0', 'translate-y-3');
+      // Exposto para inspecao/teste em sessao de navegador.
+      window.__socialProof = { proofs: proofs, next: pickNext, render: render };
+
+      // Aparece depois de 4 s (para nao colidir com a Hero) e troca em intervalos variaveis.
+      setTimeout(() => {
+        render(pickNext());
+        show();
+        const step = () => {
+          hide();
           setTimeout(() => {
-            idx = (idx + 1) % proofs.length;
-            const item = proofs[idx];
-            if (toastInitial) toastInitial.textContent = item.name.charAt(0);
-            if (toastName) toastName.textContent = item.name;
-            if (toastAction) toastAction.textContent = item.action + " há " + item.min + " min";
-            toast.classList.remove('opacity-0', 'translate-y-3');
-            toast.classList.add('opacity-100', 'translate-y-0');
-          }, 400);
-        }, 4500);
+            const item = pickNext();
+            render({ name: item.name, action: item.action, min: item.min + Math.floor(Math.random() * 3) });
+            show();
+            setTimeout(step, 4200 + Math.floor(Math.random() * 2600));
+          }, 420);
+        };
+        setTimeout(step, 4500 + Math.floor(Math.random() * 2000));
       }, 4000);
     })();
 
@@ -3639,13 +4270,10 @@ summary {
       const btnPause = document.getElementById('swarmPause');
       const btnSkip = document.getElementById('swarmSkip');
       const btnReplay = document.getElementById('swarmReplay');
-      // Demonstração/depuração: ?swarm=1 (ou #swarm) força a montagem mesmo com
-      // "movimento reduzido" ativo no sistema/navegador do visitante.
+      // Demonstração/depuração: ?swarm=1 (ou #swarm) mantém os controles após a montagem.
+      // A preferência de movimento reduzido NÃO desativa a animação: o visitante
+      // solicitou explicitamente uma Hero montada por cursores ao abrir a página.
       const force = location.search.indexOf('swarm=1') !== -1 || location.hash === '#swarm';
-      const reduced = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-
-      // Visitante pediu menos movimento: página normal, sem animação e sem controles.
-      if (!force && reduced()) return;
 
       const setPhase = (phase) => {
         if (!elControls) return;
@@ -3657,14 +4285,7 @@ summary {
 
       (async () => {
         try {
-          if (force && reduced()) {
-            // Opt-in explícito do visitante: neutraliza apenas prefers-reduced-motion para o módulo.
-            const original = window.matchMedia.bind(window);
-            window.matchMedia = (query) => /prefers-reduced-motion/.test(String(query))
-              ? { matches: false, media: String(query), addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} }
-              : original(query);
-          }
-          const { createSwarmReveal } = await import('/static/js/mouse-swarm.js');
+          const { createSwarmReveal } = await import('/static/js/mouse-swarm-v2.js');
           const narrow = window.matchMedia('(max-width: 767px)').matches;
           const reveal = createSwarmReveal({
             root: document,
@@ -3679,6 +4300,7 @@ summary {
             selection: true,
             typeText: false,
             autoScroll: false,
+            forceMotion: true,
             onStep: ({ current, total }) => {
               if (elProgress) elProgress.textContent = 'Montando a página com agentes… ' + current + '/' + total;
             },
