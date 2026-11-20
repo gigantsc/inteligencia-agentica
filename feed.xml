@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Thu, 19 Nov 2026 13:32:12 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 20 Nov 2026 11:09:05 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,202 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais-v2.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Mixture of Agents (MoA) no Hermes Agent: Como Criar um Conselho de Modelos de IA para Decisões Críticas]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/mixture-of-agents-moa-conselho-modelos-hermes-agent</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/mixture-of-agents-moa-conselho-modelos-hermes-agent</guid>
+            <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Aprenda a usar o Mixture of Agents (MoA) nativo do Hermes Agent para combinar múltiplos modelos consultores com um agregador executivo, elevando a precisão em tarefas complexas sem quebrar o prompt caching nem multiplicar a fatura.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Em resumo:</strong><br>O <strong>Mixture of Agents (MoA)</strong> transforma o Hermes Agent em um provedor virtual (<code>moa</code>) onde modelos consultores (<em>reference models</em>) analisam o problema em paralelo e entregam suas recomendações para um modelo <strong>agregador</strong> (<em>acting model</em>), responsável por executar ferramentas e dar a resposta final.[1] No benchmark <em>HermesBench</em>, a combinação de <code>claude-opus-4.8</code> como agregador sobre uma referência <code>gpt-5.5</code> alcançou <strong>0,8202</strong>, superando em cerca de 6 pontos o melhor modelo isolado (<code>0,7607</code>).[1] Com cadência padrão <code>fanout: user_turn</code>, filtro de privacidade (<code>moa.privacy_filter</code>) e preservação integral do <em>prompt caching</em>, o MoA entrega qualidade de junta executiva com custo previsível.[1]</p>
+</blockquote>
+<hr>
+<h2 id="o-dilema-do-modelo-unico-em-decisoes-de-alto-impacto" class="scroll-mt-24 group flex items-center justify-between">O Dilema do Modelo Único em Decisões de Alto Impacto <a href="#o-dilema-do-modelo-unico-em-decisoes-de-alto-impacto" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Todo empresário ou gestor de operações que coloca agentes de IA em produção esbarra no mesmo teto: <strong>nenhum modelo isolado é imbatível em tudo</strong>. Um modelo pode ser excelente para estruturar arquitetura de software, outro para revisar cláusulas contratuais ou detectar riscos financeiros, e um terceiro para escrever código limpo.</p>
+<p>Quando a decisão é crítica — como planejar a migração de um banco de dados em produção, auditar uma planilha de margens ou revisar uma política de segurança — depender da opinião única de uma IA aumenta o risco de pontos cegos. A solução intuitiva seria abrir três abas diferentes e copiar respostas manualmente entre elas, mas isso destrói a produtividade e desconecta o raciocínio do ambiente de ferramentas do agente.</p>
+<p>O <strong>Hermes Agent</strong> resolve esse gargalo nativamente com o <strong>Mixture of Agents (MoA)</strong>, um provedor virtual integrado ao sistema de seleção de modelos.[1]</p>
+<hr>
+<h2 id="como-funciona-o-conselho-virtual-do-moa-no-hermes-agent" class="scroll-mt-24 group flex items-center justify-between">Como Funciona o Conselho Virtual do MoA no Hermes Agent <a href="#como-funciona-o-conselho-virtual-do-moa-no-hermes-agent" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Diferente de um <em>swarm</em> onde vários agentes independentes brigam pelo mesmo terminal, o MoA funciona como um <strong>conselho consultivo acoplado a um único diretor executivo</strong> dentro do mesmo loop de agente.[1]</p>
+<pre><code>FLUXO DE EXECUÇÃO — MIXTURE OF AGENTS <span class="token punctuation">(</span>MoA<span class="token punctuation">)</span> NO HERMES AGENT
+┌───────────────────────────────────────────────────────────────────────────┐
+│ <span class="token number">1</span>. PERGUNTA DO GESTOR / USUÁRIO                                           │
+└────────────────────────────────────┬──────────────────────────────────────┘
+                                     ▼
+┌───────────────────────────────────────────────────────────────────────────┐
+│ <span class="token number">2</span>. MODELOS DE REFERÊNCIA <span class="token punctuation">(</span>Advisors — sem esquemas de ferramentas<span class="token punctuation">)</span>         │
+│    • Ex: gpt-5.5 + deepseek-v4-pro                                        │
+│    • Recebem apenas o histórico conversacional limpo <span class="token punctuation">(</span>custo reduzido<span class="token punctuation">)</span>     │
+│    • Rodam 1x por turno por padrão <span class="token punctuation">(</span>fanout: user_turn<span class="token punctuation">)</span>                    │
+└────────────────────────────────────┬──────────────────────────────────────┘
+                                     ▼
+┌───────────────────────────────────────────────────────────────────────────┐
+│ <span class="token number">3</span>. FILTRO DE PRIVACIDADE <span class="token punctuation">(</span>Opcional: moa.privacy_filter<span class="token punctuation">)</span>                   │
+│    • Mascara e-mails, telefones formatados, API keys e JWTs               │
+└────────────────────────────────────┬──────────────────────────────────────┘
+                                     ▼
+┌───────────────────────────────────────────────────────────────────────────┐
+│ <span class="token number">4</span>. MODELO AGREGADOR <span class="token punctuation">(</span>Acting Model — com ferramentas <span class="token operator">&amp;</span> cache intacto<span class="token punctuation">)</span>      │
+│    • Ex: anthropic/claude-opus-4.8                                        │
+│    • Recebe o parecer dos consultores como bloco de orientação no final   │
+│    • Executa bash, arquivos, MCPs, /goal e responde ao usuário            │
+└───────────────────────────────────────────────────────────────────────────┘
+</code></pre><p>Na prática, o fluxo segue sete etapas determinísticas a cada chamada principal:[1]</p>
+<ol>
+<li>O Hermes resolve o <em>preset</em> MoA selecionado pelo nome.[1]</li>
+<li>Os <strong>modelos de referência</strong> rodam <strong>sem esquemas de ferramentas</strong> (<em>tool schemas</em>), recebendo apenas o texto da conversa, o que mantém essas chamadas baratas e evita rejeições de provedores mais rígidos.[1]</li>
+<li>As respostas dos consultores são anexadas como contexto privado ao final do prompt para o agregador.[1]</li>
+<li>O <strong>agregador</strong> é chamado com o catálogo normal de ferramentas do Hermes.[1]</li>
+<li>A resposta do agregador atua como a resposta oficial do agente na sessão.[1]</li>
+<li>Se o agregador precisar executar ferramentas (ler arquivos, consultar bancos, rodar scripts), o Hermes executa normalmente.[1]</li>
+<li>Em novas iterações, o ciclo se repete conforme a cadência <code>fanout</code> configurada.[1]</li>
+</ol>
+<hr>
+<h2 id="evidencia-empirica-6-pontos-no-hermesbench" class="scroll-mt-24 group flex items-center justify-between">Evidência Empírica: +6 Pontos no HermesBench <a href="#evidencia-empirica-6-pontos-no-hermesbench" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A combinação de perspectivas não gera apenas &quot;uma média&quot; das respostas — ela eleva o teto de capacidade do próprio modelo mais forte.[1] Nos testes do <em>HermesBench</em>, um preset MoA de dois modelos obteve ganho expressivo frente aos componentes individuais:[1]</p>
+<table>
+<thead>
+<tr>
+<th>Configuração Avaliada</th>
+<th>Pontuação no HermesBench</th>
+<th>Diferença vs. Melhor Modelo Único</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>MoA: <code>claude-opus-4.8</code> (Agregador) + <code>gpt-5.5</code> (Referência)</strong></td>
+<td><strong>0,8202</strong></td>
+<td><strong>+0,0595 (~6 pontos)</strong></td>
+</tr>
+<tr>
+<td><code>anthropic/claude-opus-4.8</code> isolado</td>
+<td>0,7607</td>
+<td>Linha de base</td>
+</tr>
+<tr>
+<td><code>openai/gpt-5.5</code> isolado</td>
+<td>0,7412</td>
+<td>-0,0195</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="moa-vs-modelo-unico-vs-multi-agente-swarm" class="scroll-mt-24 group flex items-center justify-between">MoA vs. Modelo Único vs. Multi-Agente (Swarm) <a href="#moa-vs-modelo-unico-vs-multi-agente-swarm" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para o gestor decidir quando ativar o MoA em vez de usar um único modelo ou uma equipe completa de bots, vale comparar os três desenhos:</p>
+<table>
+<thead>
+<tr>
+<th>Critério</th>
+<th>Modelo Único Padrão</th>
+<th>Mixture of Agents (MoA)</th>
+<th>Multi-Agente / Swarm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Estrutura</strong></td>
+<td>1 LLM executa tudo</td>
+<td>N consultores + 1 agregador executor</td>
+<td>Múltiplos agentes com sessões próprias</td>
+</tr>
+<tr>
+<td><strong>Acesso a Ferramentas</strong></td>
+<td>Sim (direto)</td>
+<td>Apenas o Agregador executa ferramentas[1]</td>
+<td>Cada agente tem seu escopo/worktree</td>
+</tr>
+<tr>
+<td><strong>Uso Ideal</strong></td>
+<td>Rotinas diárias e tarefas claras</td>
+<td>Decisões críticas, revisões, arquitetura e <code>/goal</code>[1]</td>
+<td>Projetos paralelos longos (front + back)</td>
+</tr>
+<tr>
+<td><strong>Prompt Caching</strong></td>
+<td>Preservado</td>
+<td><strong>100% preservado</strong> no prefixo principal[1]</td>
+<td>Independente por agente</td>
+</tr>
+<tr>
+<td><strong>Complexidade de Setup</strong></td>
+<td>Nenhuma</td>
+<td>Um bloco <code>moa:</code> no <code>config.yaml</code> ou <code>/moa</code>[1]</td>
+<td>Orquestração via Kanban/Delegation</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="controle-de-custos-cadencia-fanout-e-faturamento" class="scroll-mt-24 group flex items-center justify-between">Controle de Custos, Cadência (<code>fanout</code>) e Faturamento <a href="#controle-de-custos-cadencia-fanout-e-faturamento" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Um erro comum ao adotar arquiteturas multi-modelo é deixar o custo explodir em loops de ferramentas. O Hermes Agent protege o orçamento da operação com transparência total e três modos de cadência (<em>advisor cadence</em>):[1]</p>
+<ol>
+<li><strong>Quem paga a conta:</strong> O <strong>agregador</strong> é faturado por todo o loop de ferramentas, pois ele executa cada passo da tarefa.[1] Os modelos de referência apenas aconselham.[1] Quando o provedor do agregador difere do <code>model.provider</code> principal da sua assinatura, comandos como <code>hermes moa list</code> e <code>hermes moa configure</code> exibem um aviso explícito informando onde o faturamento cairá.[1]</li>
+<li><strong>Cadência <code>fanout</code>:</strong> Desde julho de 2026, o padrão é <code>user_turn</code> — a opção mais econômica para produção.[1]</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Modo <code>fanout</code></th>
+<th>Frequência dos Consultores</th>
+<th>Perfil de Custo e Uso</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>user_turn</code> <em>(padrão)</em></td>
+<td>Rodam <strong>1 vez por mensagem do usuário</strong>, planejando no início do turno[1]</td>
+<td><strong>Mais barato:</strong> custo dos consultores não multiplica com chamadas de ferramentas[1]</td>
+</tr>
+<tr>
+<td><code>every_n:3</code> <em>(ou qualquer N ≥ 2)</em></td>
+<td>Rodam na 1ª iteração e depois a cada <strong>N</strong> iterações de ferramentas[1]</td>
+<td><strong>Equilíbrio:</strong> revalida o plano em tarefas longas reutilizando orientação em cache[1]</td>
+</tr>
+<tr>
+<td><code>per_iteration</code></td>
+<td>Reavaliam a <strong>cada iteração de ferramenta</strong>[1]</td>
+<td><strong>Máximo frescor, maior custo:</strong> multiplica latência e gasto pelo nº de passos[1]</td>
+</tr>
+</tbody></table>
+<p>Além da cadência, cada slot (consultor ou agregador) aceita seu próprio <code>reasoning_effort</code> (<code>none</code>, <code>minimal</code>, <code>low</code>, <code>medium</code>, <code>high</code>, <code>xhigh</code>, <code>max</code>, <code>ultra</code>), permitindo, por exemplo, que um consultor faça triagem rápida em <code>low</code> enquanto outro analisa profundamente em <code>xhigh</code>.[1]</p>
+<hr>
+<h2 id="como-configurar-e-usar-na-pratica" class="scroll-mt-24 group flex items-center justify-between">Como Configurar e Usar na Prática <a href="#como-configurar-e-usar-na-pratica" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Por ser um provedor nativo (<code>moa</code>), seus <em>presets</em> aparecem automaticamente na CLI, no TUI, no Desktop App, no Web Dashboard e no gateway de mensageria.[1]</p>
+<h3 id="1-uso-rapido-one-shot-com-moa" class="scroll-mt-24 group flex items-center justify-between">1. Uso rápido (One-Shot) com <code>/moa</code> <a href="#1-uso-rapido-one-shot-com-moa" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Se você não quer trocar o modelo padrão da sessão, use o atalho <code>/moa</code> seguido da tarefa.[1] O Hermes executa aquele turno com o preset <code>default</code> e restaura seu modelo anterior logo em seguida:[1]</p>
+<pre><code class="language-text">/moa elabore um plano de contingência para migração do ERP sem janela de indisponibilidade
+</code></pre><h3 id="2-troca-de-modelo-para-a-sessao-ou-via-configyaml" class="scroll-mt-24 group flex items-center justify-between">2. Troca de modelo para a sessão ou via <code>config.yaml</code> <a href="#2-troca-de-modelo-para-a-sessao-ou-via-configyaml" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para fixar um preset na sessão atual, use o seletor normal:[1]</p>
+<pre><code class="language-text">/model default --provider moa
+/model revisao_executiva --provider moa
+</code></pre><p>Ou defina diretamente via terminal (<code>hermes moa configure revisao_executiva</code>) ou no <code>config.yaml</code> com filtros de privacidade ativos:[1]</p>
+<pre><code class="language-yaml"><span class="token key atrule">moa</span><span class="token punctuation">:</span>
+  <span class="token key atrule">default_preset</span><span class="token punctuation">:</span> revisao_executiva
+  <span class="token key atrule">privacy_filter</span><span class="token punctuation">:</span> display <span class="token comment"># ou 'full' para mascarar também no prompt do agregador</span>
+  <span class="token key atrule">presets</span><span class="token punctuation">:</span>
+    <span class="token key atrule">revisao_executiva</span><span class="token punctuation">:</span>
+      <span class="token key atrule">fanout</span><span class="token punctuation">:</span> every_n<span class="token punctuation">:</span><span class="token number">3</span>
+      <span class="token key atrule">reference_models</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">provider</span><span class="token punctuation">:</span> openai<span class="token punctuation">-</span>codex
+          <span class="token key atrule">model</span><span class="token punctuation">:</span> gpt<span class="token punctuation">-</span><span class="token number">5.5</span>
+          <span class="token key atrule">reasoning_effort</span><span class="token punctuation">:</span> high
+        <span class="token punctuation">-</span> <span class="token key atrule">provider</span><span class="token punctuation">:</span> openrouter
+          <span class="token key atrule">model</span><span class="token punctuation">:</span> deepseek/deepseek<span class="token punctuation">-</span>v4<span class="token punctuation">-</span>pro
+      <span class="token key atrule">aggregator</span><span class="token punctuation">:</span>
+        <span class="token key atrule">provider</span><span class="token punctuation">:</span> openrouter
+        <span class="token key atrule">model</span><span class="token punctuation">:</span> anthropic/claude<span class="token punctuation">-</span>opus<span class="token punctuation">-</span><span class="token number">4.8</span>
+        <span class="token key atrule">reasoning_effort</span><span class="token punctuation">:</span> high
+      <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre><p>Você também pode usar um preset MoA como entrada de contingência em <code>fallback_providers</code> (<code>provider: moa</code>) para que o conselho assuma automaticamente caso seu provedor primário falhe.[1] E vale notar que o Hermes Agent segue evoluindo rapidamente na gestão de cache: no release <strong>v0.23.3</strong> (19/11/2026), o sistema ganhou um controlador dedicado de ciclo de vida de <em>prompt cache</em> (<code>prompt_caching.cache_ttl: auto</code>) e suporte aos novos modelos GPT-6.2 Astra e Sol.[2]</p>
+<hr>
+<h2 id="seguranca-privacidade-e-cache-intacto" class="scroll-mt-24 group flex items-center justify-between">Segurança, Privacidade e Cache Intacto <a href="#seguranca-privacidade-e-cache-intacto" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Dois detalhes de engenharia tornam o MoA seguro para ambientes corporativos:</p>
+<ul>
+<li><strong>Privacy Filter (<code>moa.privacy_filter</code>):</strong> Pode mascarar e-mails, telefones formatados, prefixos de chaves de API, JWTs e strings de conexão de banco antes de exibir os blocos de referência na interface (<code>display</code>) ou até mesmo antes de injetá-los no agregador (<code>full</code>).[1]</li>
+<li><strong>Preservação do Prompt Caching:</strong> Como as orientações dos consultores são inseridas como uma mensagem final separada na cauda da conversa (<em>tail</em>), o prefixo histórico (prompt de sistema, ferramentas e mensagens anteriores) permanece idêntico byte a byte, evitando que o cache do agregador seja invalidado a cada turno.[1]</li>
+</ul>
+<hr>
+<p>Quer dominar a arquitetura de agentes autônomos em produção — da configuração de infraestrutura em VPS até orquestração avançada de múltiplos modelos e governança corporativa? Conheça a comunidade e o programa completo em <strong><a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a></strong>.</p>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/mixture-of-agents">https://hermes-agent.nousresearch.com/docs/user-guide/features/mixture-of-agents</a> — Mixture of Agents | Hermes Agent Docs<br>[2] <a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.3">https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.3</a> — Hermes Agent v0.23.3 Release Notes</p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/mixture-of-agents-moa-conselho-modelos-hermes.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Managed Scope, Remote Config e Profile Distributions: Como Padronizar e Blindar Agentes de IA na Empresa]]></title>

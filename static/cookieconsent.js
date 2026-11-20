@@ -77,14 +77,16 @@ function getBannerDom() {
   if (isPt()) {
     return `
       <div id="cookie-consent-banner" class="cookie-consent-banner" role="dialog" aria-modal="true" aria-label="Preferências de Cookies">
-        <h3>Este site utiliza cookies</h3>
-        <p>Utilizamos cookies para personalizar conteúdo e anúncios, fornecer recursos de mídia social e analisar o tráfego do site. Também compartilhamos informações sobre seu uso com nossos parceiros de mídia social, publicidade e análise de dados, em conformidade com as diretrizes da LGPD e Google Consent Mode V2.</p>
-        <div class="cookie-consent-options">
-          <label><input id="consent-necessary" type="checkbox" value="Necessary" checked disabled> Necessários</label>
-          <label><input id="consent-analytics" type="checkbox" value="Analytics" checked> Analíticos</label>
-          <label><input id="consent-marketing" type="checkbox" value="Marketing" checked> Marketing</label>
-          <label><input id="consent-preferences" type="checkbox" value="Preferences" checked> Preferências</label>
-          <label><input id="consent-partners" type="checkbox" value="Partners"> Parceiros</label>
+        <div class="cookie-consent-scroll">
+          <h3>Este site utiliza cookies</h3>
+          <p>Utilizamos cookies para personalizar conteúdo e anúncios, fornecer recursos de mídia social e analisar o tráfego do site. Também compartilhamos informações sobre seu uso com nossos parceiros de mídia social, publicidade e análise de dados, em conformidade com as diretrizes da LGPD e Google Consent Mode V2.</p>
+          <div class="cookie-consent-options">
+            <label><input id="consent-necessary" type="checkbox" value="Necessary" checked disabled> Necessários</label>
+            <label><input id="consent-analytics" type="checkbox" value="Analytics" checked> Analíticos</label>
+            <label><input id="consent-marketing" type="checkbox" value="Marketing" checked> Marketing</label>
+            <label><input id="consent-preferences" type="checkbox" value="Preferences" checked> Preferências</label>
+            <label><input id="consent-partners" type="checkbox" value="Partners"> Parceiros</label>
+          </div>
         </div>
         <div class="cookie-consent-buttons">
           <button id="cookie-consent-btn-reject-all" class="cookie-consent-button btn-grayscale" type="button">Rejeitar Todos</button>
@@ -97,14 +99,16 @@ function getBannerDom() {
 
   return `
     <div id="cookie-consent-banner" class="cookie-consent-banner" role="dialog" aria-modal="true" aria-label="Cookie Preferences">
-      <h3>This website uses cookies</h3>
-      <p>We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services.</p>
-      <div class="cookie-consent-options">
-        <label><input id="consent-necessary" type="checkbox" value="Necessary" checked disabled> Necessary</label>
-        <label><input id="consent-analytics" type="checkbox" value="Analytics" checked> Analytics</label>
-        <label><input id="consent-marketing" type="checkbox" value="Marketing" checked> Marketing</label>
-        <label><input id="consent-preferences" type="checkbox" value="Preferences" checked> Preferences</label>
-        <label><input id="consent-partners" type="checkbox" value="Partners"> Partners</label>
+      <div class="cookie-consent-scroll">
+        <h3>This website uses cookies</h3>
+        <p>We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners who may combine this with information you have provided or they have collected from your use of their services.</p>
+        <div class="cookie-consent-options">
+          <label><input id="consent-necessary" type="checkbox" value="Necessary" checked disabled> Necessary</label>
+          <label><input id="consent-analytics" type="checkbox" value="Analytics" checked> Analytics</label>
+          <label><input id="consent-marketing" type="checkbox" value="Marketing" checked> Marketing</label>
+          <label><input id="consent-preferences" type="checkbox" value="Preferences" checked> Preferences</label>
+          <label><input id="consent-partners" type="checkbox" value="Partners"> Partners</label>
+        </div>
       </div>
       <div class="cookie-consent-buttons">
         <button id="cookie-consent-btn-reject-all" class="cookie-consent-button btn-grayscale" type="button">Reject All</button>

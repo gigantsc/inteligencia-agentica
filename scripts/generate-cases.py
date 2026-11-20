@@ -148,14 +148,14 @@ html_content = f"""<!DOCTYPE html>
   </script>
 
   <!-- Cookie Consent Banner & Mode V2 Controller -->
-  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <link rel="stylesheet" href="/static/cookieconsent-v3.css">
   <script>
     window.cookieconsentConfig = {{
       gtmId: 'GTM-M5JDK6W4',
       autoLoadGtm: false
     }};
   </script>
-  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+  <script defer src="/static/cookieconsent-v2.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>326 Cases Reais de Agentes de IA em Produção — Inteligência Agêntica</title>

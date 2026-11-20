@@ -90,7 +90,7 @@ HEAD_CSS = """
 """
 
 HEAD_LINK = """  <!-- Mouse Swarm Reveal: pré-carrega o módulo do enxame de cursores -->
-  <link rel="modulepreload" href="/static/js/mouse-swarm.js">
+  <link rel="modulepreload" href="/static/js/mouse-swarm-v2.js">
 """
 
 # ------------------------------------------------- controles (fora dos alvos)
@@ -120,13 +120,10 @@ INIT_SCRIPT = """  <!-- Mouse Swarm Reveal — enxame de cursores montando a Her
       const btnPause = document.getElementById('swarmPause');
       const btnSkip = document.getElementById('swarmSkip');
       const btnReplay = document.getElementById('swarmReplay');
-      // Demonstração/depuração: ?swarm=1 (ou #swarm) força a montagem mesmo com
-      // "movimento reduzido" ativo no sistema/navegador do visitante.
+      // Demonstração/depuração: ?swarm=1 (ou #swarm) mantém os controles após a montagem.
+      // A preferência de movimento reduzido NÃO desativa a animação: o visitante
+      // solicitou explicitamente uma Hero montada por cursores ao abrir a página.
       const force = location.search.indexOf('swarm=1') !== -1 || location.hash === '#swarm';
-      const reduced = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-
-      // Visitante pediu menos movimento: página normal, sem animação e sem controles.
-      if (!force && reduced()) return;
 
       const setPhase = (phase) => {
         if (!elControls) return;
@@ -138,14 +135,7 @@ INIT_SCRIPT = """  <!-- Mouse Swarm Reveal — enxame de cursores montando a Her
 
       (async () => {
         try {
-          if (force && reduced()) {
-            // Opt-in explícito do visitante: neutraliza apenas prefers-reduced-motion para o módulo.
-            const original = window.matchMedia.bind(window);
-            window.matchMedia = (query) => /prefers-reduced-motion/.test(String(query))
-              ? { matches: false, media: String(query), addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} }
-              : original(query);
-          }
-          const { createSwarmReveal } = await import('/static/js/mouse-swarm.js');
+          const { createSwarmReveal } = await import('/static/js/mouse-swarm-v2.js');
           const narrow = window.matchMedia('(max-width: 767px)').matches;
           const reveal = createSwarmReveal({
             root: document,
@@ -160,6 +150,7 @@ INIT_SCRIPT = """  <!-- Mouse Swarm Reveal — enxame de cursores montando a Her
             selection: true,
             typeText: false,
             autoScroll: false,
+            forceMotion: true,
             onStep: ({ current, total }) => {
               if (elProgress) elProgress.textContent = 'Montando a página com agentes… ' + current + '/' + total;
             },
@@ -293,10 +284,11 @@ def verify(html):
     assert parser.controls_hidden is True, "os controles devem nascer ocultos"
     css_at = html.find("#swarmControls {")
     assert css_at != -1 and css_at < html.find("</head>"), "CSS dos controles deve ficar no <head>"
-    assert 'rel="modulepreload" href="/static/js/mouse-swarm.js"' in html, "faltou o modulepreload"
+    assert 'rel="modulepreload" href="/static/js/mouse-swarm-v2.js"' in html, "faltou o modulepreload do asset com URL nova"
+    assert "forceMotion: true" in html, "a Hero não pode sofrer skip pelo prefers-reduced-motion"
     assert "swarm=1" in html, "faltou o opt-in ?swarm=1"
     assert '<script type="module">' not in html, "inicializador deve ser script clássico"
-    assert "createSwarmReveal" in html and "mouse-swarm.js" in html
+    assert "createSwarmReveal" in html and "mouse-swarm-v2.js" in html
     for leak in ("text-balance data-swarm-item", "mb-3 data-swarm-item", "text-[11px] data-swarm-item"):
         assert leak not in html, "atributos injetados dentro de class: %s" % leak
     for name in ("swarmControls", "swarmPause", "swarmSkip", "swarmReplay", "swarmProgress", "swarmStatus"):

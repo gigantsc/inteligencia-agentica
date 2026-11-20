@@ -14,7 +14,7 @@ const css = `
 .ms-ghost{position:absolute;opacity:0;border:1px dashed #a1d8ff;background:#80baff18;border-radius:4px;box-shadow:0 0 14px #68b6ff33}.ms-ghost[data-active]{animation:ms-drag .55s ease-out both}
 @keyframes ms-drag{from{opacity:.1;transform:translate(-80px,-30px)}60%{opacity:.9}to{opacity:0;transform:translate(0,0)}}
 .ms-selection[data-active]{opacity:1}.ms-selection::before,.ms-selection::after{content:'';position:absolute;width:6px;height:6px;background:#b5e7ff;border:1px solid #3180b1}.ms-selection::before{left:-4px;top:-4px}.ms-selection::after{right:-4px;bottom:-4px}
-@media(prefers-reduced-motion:reduce){[data-ms-item]{transition:none!important}.ms-overlay{display:none!important}}
+@media(prefers-reduced-motion:reduce){[data-ms-item]{transition:none!important}}
 `;
 const arrow = '<svg viewBox="0 0 24 28" aria-hidden="true"><path d="M2 2 L2 21 L7 17 L11 25 L15 23 L11 15 L19 15 Z" fill="currentColor" stroke="#10151b" stroke-width="1.5"/></svg>';
 const bot = '<svg viewBox="0 0 24 26" aria-hidden="true"><path fill="#3dc7ff" stroke="#bdeeff" stroke-width=".7" d="M6 5h12v3h3v11h-3v4H6v-4H3V8h3z"/><path fill="#efffff" d="M7 9h3v3H7zm7 0h3v3h-3z"/><path stroke="#dafaff" d="M9 16h6M12 5V2M5 23h4m6 0h4"/></svg>';
@@ -24,7 +24,7 @@ export function createSwarmReveal({
   root = document, selector = '[data-swarm-item]', cursors = 20, interval = 280,
   typeText = true, typeWords = 3, colors = DEFAULT_COLORS, botEvery = 5,
   cursorSize = 15, cursorSpeed = 700, selection = true, labels = [],
-  autoScroll = false, onStep, onComplete, onError
+  autoScroll = false, forceMotion = false, onStep, onComplete, onError
 } = {}) {
   if (!root || typeof root.querySelectorAll !== 'function') throw new TypeError('root must support querySelectorAll');
   if (typeof selector !== 'string' || !selector) throw new TypeError('selector must be a non-empty string');
@@ -64,7 +64,7 @@ export function createSwarmReveal({
   if (items.some(el => OWNERS.has(el))) throw new Error('reveal targets are already owned by another instance');
   const snapshots = itemMeta.map(({el,delay,role,group,effect}) => ({el,delay,role,group,effect, text: el.hasAttribute('data-swarm-type') && el.children.length === 0 ? el.textContent : null, hadItem: el.hasAttribute('data-ms-item'), hidden: el.hasAttribute('data-ms-hidden'), inert: el.hasAttribute('inert')}));
   const motion = win.matchMedia?.('(prefers-reduced-motion: reduce)');
-  const isReduced = () => !!motion?.matches;
+  const isReduced = () => !forceMotion && !!motion?.matches;
   const owner = {};
   const style = doc.createElement('style'); style.textContent = css; doc.head.append(style);
   const overlay = doc.createElement('div'); overlay.className = 'ms-overlay'; overlay.setAttribute('aria-hidden','true');

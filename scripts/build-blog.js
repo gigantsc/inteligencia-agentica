@@ -150,14 +150,14 @@ function renderLayout({ title, description, url, ogImage, structuredData, body, 
   </script>${gtmSnippet}${gaSnippet}
 
   <!-- Cookie Consent Banner & Mode V2 Controller -->
-  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <link rel="stylesheet" href="/static/cookieconsent-v3.css">
   <script>
     window.cookieconsentConfig = {
       gtmId: '${gtmId}',
       autoLoadGtm: false
     };
   </script>
-  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+  <script defer src="/static/cookieconsent-v2.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title ? `${title} | Inteligência Agêntica` : siteConfig.title}</title>

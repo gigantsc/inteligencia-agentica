@@ -143,6 +143,19 @@ TARGETS = {
         "title2": "Padronize Agentes na Empresa",
         "subtitle": "Trave políticas, distribua perfis via Git e controle frotas 24/7",
     },
+    "moa": {
+        "file": "mixture-of-agents-moa-conselho-modelos-hermes.jpg",
+        "prompt": ESTILO_BASE + (
+            "A council of three classical Greco-Roman white marble busts arranged in a dark obsidian "
+            "sanctuary: two luminous advisor busts on the left and right bathed in electric cyan (#00E5FF) "
+            "rim light projecting neural light filaments into a central golden (#DFBA6B) Hermes bust "
+            "with a winged helmet and a glowing crystalline decision prism above, symbolizing Mixture of Agents."
+        ),
+        "kicker": "INTELIGÊNCIA AGÊNTICA  •  MIXTURE OF AGENTS",
+        "title1": "Mixture of Agents (MoA):",
+        "title2": "Conselho de IAs no Hermes",
+        "subtitle": "Múltiplas perspectivas, +6 pontos no HermesBench e cache intacto",
+    },
 }
 
 
