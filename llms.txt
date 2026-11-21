@@ -19,6 +19,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Context Files e Context References no Hermes Agent: Regras por Projeto, Zero Desperdício e Segurança](https://inteligenciaagentica.com.br/blog/context-files-context-references-hermes-agent)
+- **Data de Publicação:** 2026-11-21
+- **Tags:** Hermes Agent, Context Engineering, AGENTS.md, Produtividade, Segurança, Agentes de IA
+- **Resumo:** Aprenda a usar Context Files (.hermes.md, AGENTS.md e AGENTS.override.md) e Context References (@file, @folder, @diff, @url) no Hermes Agent para injetar contexto cirúrgico, preservar o prompt caching e bloquear vazamentos de credenciais.
+- **URL:** https://inteligenciaagentica.com.br/blog/context-files-context-references-hermes-agent
+
 ### [Mixture of Agents (MoA) no Hermes Agent: Como Criar um Conselho de Modelos de IA para Decisões Críticas](https://inteligenciaagentica.com.br/blog/mixture-of-agents-moa-conselho-modelos-hermes-agent)
 - **Data de Publicação:** 2026-11-20
 - **Tags:** Hermes Agent, Mixture of Agents, MoA, Agentes de IA, Arquitetura, Automação, Custos de IA

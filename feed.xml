@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Fri, 20 Nov 2026 20:40:29 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 21 Nov 2026 11:05:57 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,189 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais-v2.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Context Files e Context References no Hermes Agent: Regras por Projeto, Zero Desperdício e Segurança]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/context-files-context-references-hermes-agent</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/context-files-context-references-hermes-agent</guid>
+            <pubDate>Sat, 21 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Aprenda a usar Context Files (.hermes.md, AGENTS.md e AGENTS.override.md) e Context References (@file, @folder, @diff, @url) no Hermes Agent para injetar contexto cirúrgico, preservar o prompt caching e bloquear vazamentos de credenciais.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Em resumo:</strong> No <strong>Hermes Agent</strong>, os <strong>Context Files</strong> (<code>.hermes.md</code>, <code>AGENTS.md</code> e <code>AGENTS.override.md</code>) carregam automaticamente as regras de cada projeto com descoberta progressiva por subdiretório e varredura anti-<em>prompt injection</em>, enquanto as <strong>Context References</strong> (<code>@file</code>, <code>@folder</code>, <code>@diff</code>, <code>@staged</code>, <code>@git:N</code> e <code>@url</code>) injetam contexto cirúrgico direto na mensagem com trava automática para credenciais como <code>.env</code> e chaves SSH.[1][2]</p>
+</blockquote>
+<p>Quando uma empresa começa a operar agentes de IA em projetos reais — sistemas financeiros, lojas virtuais, automações de backoffice ou monorepos com múltiplas equipes — surgem três gargalos imediatos:</p>
+<ol>
+<li><strong>O agente esquece as regras específicas de cada projeto</strong> (ou mistura padrões do setor financeiro com os do marketing).</li>
+<li><strong>O custo de tokens dispara</strong> porque o operador cola arquivos inteiros no chat ou carrega instruções gigantescas no prompt inicial mesmo quando não são necessárias.</li>
+<li><strong>Risco silencioso de segurança:</strong> alguém anexa um diretório errado e expõe <code>.env</code>, chaves SSH ou aceita um arquivo malicioso com instruções ocultas (<em>prompt injection</em>).</li>
+</ol>
+<p>O Hermes Agent resolve esses três problemas de forma nativa combinando duas camadas complementares: <strong>Context Files</strong> (regras estruturais carregadas automaticamente) e <strong>Context References</strong> (anexos cirúrgicos sob demanda via <code>@</code>).[1][2]</p>
+<hr>
+<h2 id="1-context-files-como-o-hermes-entende-cada-projeto-sem-inflar-o-prompt" class="scroll-mt-24 group flex items-center justify-between">1. Context Files: Como o Hermes Entende Cada Projeto Sem Inflar o Prompt <a href="#1-context-files-como-o-hermes-entende-cada-projeto-sem-inflar-o-prompt" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Diferente de chatbots comuns em que você precisa repetir &quot;lembre que este projeto usa PostgreSQL e nunca altere migrações&quot;, o Hermes Agent descobre e carrega arquivos de contexto diretamente do diretório de trabalho.[1]</p>
+<h3 id="hierarquia-e-prioridade-de-carregamento" class="scroll-mt-24 group flex items-center justify-between">Hierarquia e Prioridade de Carregamento <a href="#hierarquia-e-prioridade-de-carregamento" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Apenas <strong>um</strong> tipo de arquivo de contexto de projeto é carregado por diretório (vence o primeiro encontrado nesta ordem), enquanto o <code>SOUL.md</code> permanece global e independente para toda a instância do Hermes em <code>$HERMES_HOME/SOUL.md</code>:[1]</p>
+<table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>Escopo e Função</th>
+<th>Descoberta</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SOUL.md</code></td>
+<td>Identidade, tom e estilo globais do agente</td>
+<td>Apenas <code>$HERMES_HOME/SOUL.md</code> (não busca no projeto) [1]</td>
+</tr>
+<tr>
+<td><code>.hermes.md</code> / <code>HERMES.md</code></td>
+<td>Instruções de projeto com maior prioridade</td>
+<td>Sobe até a raiz do repositório Git [1]</td>
+</tr>
+<tr>
+<td><code>AGENTS.override.md</code></td>
+<td>Sobrescrita pessoal/local (geralmente no <code>.gitignore</code>)</td>
+<td>CWD na inicialização + subdiretórios progressivos [1]</td>
+</tr>
+<tr>
+<td><code>AGENTS.md</code></td>
+<td>Convenções, arquitetura e restrições do projeto</td>
+<td>CWD na inicialização + subdiretórios progressivos [1]</td>
+</tr>
+<tr>
+<td><code>CLAUDE.md</code></td>
+<td>Compatibilidade nativa com projetos Claude Code</td>
+<td>CWD na inicialização + subdiretórios progressivos [1]</td>
+</tr>
+<tr>
+<td><code>.cursorrules</code> / <code>.cursor/rules/*.mdc</code></td>
+<td>Compatibilidade com regras do Cursor IDE</td>
+<td>Apenas diretório atual (CWD) [1]</td>
+</tr>
+</tbody></table>
+<p>Se existir um <code>AGENTS.override.md</code> ao lado de um <code>AGENTS.md</code>, o Hermes carrega o arquivo de sobrescrita <strong>no lugar</strong> do arquivo versionado no Git — recurso ideal para gestores e desenvolvedores manterem ajustes individuais sem sujar o repositório da equipe.[1]</p>
+<h3 id="cadeia-de-diretorios-e-descoberta-progressiva" class="scroll-mt-24 group flex items-center justify-between">Cadeia de Diretórios e Descoberta Progressiva <a href="#cadeia-de-diretorios-e-descoberta-progressiva" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Em empresas com monorepos (por exemplo, um único repositório contendo <code>/financeiro</code>, <code>/frontend</code> e <code>/backend</code>), carregar tudo no início desperdiça janela de contexto e quebra o reaproveitamento de cache.[1]</p>
+<pre><code>empresa-monorepo/ <span class="token punctuation">(</span>raiz Git<span class="token punctuation">)</span>
+├── AGENTS.md                 <span class="token operator">&lt;</span>-- Carregado na inicialização <span class="token punctuation">(</span>regras gerais da empresa<span class="token punctuation">)</span>
+├── financeiro/
+│   └── AGENTS.md             <span class="token operator">&lt;</span>-- Descoberto só quando o agente lê arquivos de /financeiro
+├── frontend/
+│   └── AGENTS.md             <span class="token operator">&lt;</span>-- Descoberto só quando o agente lê arquivos de /frontend
+└── backend/
+    └── AGENTS.md             <span class="token operator">&lt;</span>-- Descoberto só quando o agente lê arquivos de /backend
+</code></pre><p>O <code>SubdirectoryHintTracker</code> monitora os caminhos usados pelas ferramentas (<code>read_file</code>, <code>terminal</code>, <code>search_files</code>) e injeta o <code>AGENTS.md</code> do subdiretório <strong>exatamente no momento em que o agente entra naquela pasta</strong> — cada subdiretório é verificado no máximo uma vez por sessão, mantendo o prompt de sistema estável e o <strong>Prompt Caching</strong> intacto.[1]</p>
+<p>Vale destacar que a preservação do <em>prompt cache</em> é hoje uma das maiores alavancas de redução de custos no Hermes: a partir da versão <code>v0.23.3</code>, o framework passou a contar inclusive com um controlador dedicado de ciclo de vida do cache (<code>prompt_caching.cache_ttl</code> com padrão <code>auto</code>) e poda proativa de resultados antigos de ferramentas.[3]</p>
+<h3 id="protecao-nativa-contra-prompt-injection" class="scroll-mt-24 group flex items-center justify-between">Proteção Nativa Contra Prompt Injection <a href="#protecao-nativa-contra-prompt-injection" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Todo arquivo de contexto de projeto passa por um scanner de segurança antes de entrar no prompt, bloqueando padrões como:[1]</p>
+<ul>
+<li>Tentativas de sobrescrever instruções (<em>&quot;ignore previous instructions&quot;</em>, <em>&quot;system prompt override&quot;</em>);</li>
+<li>Comentários HTML ocultos (<code>&lt;!-- ignore instructions --&gt;</code>) e blocos invisíveis (<code>&lt;div style=&quot;display:none&quot;&gt;</code>);</li>
+<li>Caracteres Unicode invisíveis (<em>zero-width spaces</em>, <em>bidirectional overrides</em>);</li>
+<li>Comandos suspeitos de exfiltração (<code>curl ... $API_KEY</code>, <code>cat .env</code>).</li>
+</ul>
+<p>Se um repositório de terceiros tiver código malicioso escondido no <code>AGENTS.md</code>, o Hermes bloqueia o carregamento e exibe <code>[BLOCKED: AGENTS.md contained potential prompt injection ...]</code>.[1] Além disso, arquivos gigantes são truncados automaticamente (70% início, 20% fim, 10% marcador) com timeout padrão de leitura de 5 segundos (<code>context_file_read_timeout</code>) para não travar sessões em pastas sincronizadas na nuvem como OneDrive ou iCloud.[1]</p>
+<hr>
+<h2 id="2-context-references-injecao-cirurgica-na-hora-da-execucao" class="scroll-mt-24 group flex items-center justify-between">2. Context References (<code>@</code>): Injeção Cirúrgica na Hora da Execução <a href="#2-context-references-injecao-cirurgica-na-hora-da-execucao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Enquanto os <strong>Context Files</strong> definem as regras permanentes do projeto, as <strong>Context References</strong> permitem anexar evidências exatas na sua pergunta dentro da CLI interativa — basta digitar <code>@</code> para acionar o autocompletar.[2]</p>
+<h3 id="tabela-completa-de-referencias-suportadas" class="scroll-mt-24 group flex items-center justify-between">Tabela Completa de Referências Suportadas <a href="#tabela-completa-de-referencias-suportadas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Sintaxe</th>
+<th>O que injeta na mensagem</th>
+<th>Limites e Comportamento</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@file:caminho/arquivo.py</code></td>
+<td>Conteúdo completo do arquivo</td>
+<td>Rejeita binários; respeita limites de contexto [2]</td>
+</tr>
+<tr>
+<td><code>@file:caminho/arquivo.py:10-25</code></td>
+<td>Apenas as linhas 10 a 25 (inclusivo)</td>
+<td>Economia máxima de tokens em arquivos longos [2]</td>
+</tr>
+<tr>
+<td><code>@folder:caminho/pasta</code></td>
+<td>Árvore de diretórios com metadados</td>
+<td>Máximo de 200 entradas (excesso vira <code>- ...</code>) [2]</td>
+</tr>
+<tr>
+<td><code>@diff</code></td>
+<td>Alterações não preparadas (<code>git diff</code>)</td>
+<td>Ideal para revisão rápida antes do commit [2]</td>
+</tr>
+<tr>
+<td><code>@staged</code></td>
+<td>Alterações em stage (<code>git diff --staged</code>)</td>
+<td>Revisão final pré-deploy [2]</td>
+</tr>
+<tr>
+<td><code>@git:5</code></td>
+<td>Últimos N commits com seus patches</td>
+<td>Limitado entre 1 e 10 commits [2]</td>
+</tr>
+<tr>
+<td><code>@url:https://exemplo.com</code></td>
+<td>Conteúdo extraído da página web</td>
+<td>Comparação rápida de documentações/artigos [2]</td>
+</tr>
+</tbody></table>
+<h3 id="exemplos-praticos-no-dia-a-dia-da-operacao" class="scroll-mt-24 group flex items-center justify-between">Exemplos Práticos no Dia a Dia da Operação <a href="#exemplos-praticos-no-dia-a-dia-da-operacao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code class="language-text"># Auditoria cirúrgica sem gastar tokens com o arquivo inteiro
+Analise a lógica de cálculo de comissão em @file:src/faturamento.py:120-165
+
+# Revisão de segurança antes de subir para produção
+Revise @diff e aponte possíveis falhas de validação ou exposição de dados
+
+# Comparação de configurações sem copiar e colar
+Compare @file:config/producao.yaml e @file:config/homologacao.yaml
+
+# Mapeamento rápido de estrutura
+Explique a organização desta pasta: @folder:automacoes/financeiro
+</code></pre><p>Pontuações finais como vírgula, ponto ou interrogação após a referência são removidas automaticamente pelo parser do Hermes, permitindo escrever frases naturais como <code>Verifique @file:main.py, e também @file:tests.py.</code> sem quebrar o caminho.[2]</p>
+<h3 id="travas-de-seguranca-e-limites-de-janela" class="scroll-mt-24 group flex items-center justify-between">Travas de Segurança e Limites de Janela <a href="#travas-de-seguranca-e-limites-de-janela" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para impedir que um anexo acidental estoure o orçamento de tokens ou vaze segredos da VPS/estação de trabalho, o Hermes aplica três barreiras rígidas:[2]</p>
+<ol>
+<li><strong>Orçamento de contexto:</strong> acima de <strong>25%</strong> da janela do modelo, emite um aviso; acima de <strong>50%</strong>, recusa a expansão e mantém a mensagem original intacta.[2]</li>
+<li><strong>Proteção contra Path Traversal:</strong> qualquer referência que resolva fora do workspace permitido é bloqueada.[2]</li>
+<li><strong>Lista de bloqueio de credenciais:</strong> arquivos e diretórios sensíveis como <code>~/.ssh/</code>, <code>~/.aws/</code>, <code>~/.gnupg/</code>, <code>~/.kube/</code>, <code>~/.netrc</code>, <code>~/.pgpass</code> e <code>$HERMES_HOME/.env</code> são <strong>sempre bloqueados</strong> para <code>@file:</code> — mesmo que o operador tente anexá-los por engano.[2]</li>
+</ol>
+<blockquote>
+<p><strong>Nota de plataforma:</strong> As referências <code>@</code> são expandidas diretamente na CLI interativa; em canais de mensageria como Telegram ou WhatsApp, o gateway repassa o texto como está, e o agente utiliza suas ferramentas internas (<code>read_file</code>, <code>search_files</code>, <code>web_extract</code>) para buscar o conteúdo quando necessário.[2]</p>
+</blockquote>
+<hr>
+<h2 id="3-fluxo-recomendado-para-empresas-e-equipes" class="scroll-mt-24 group flex items-center justify-between">3. Fluxo Recomendado para Empresas e Equipes <a href="#3-fluxo-recomendado-para-empresas-e-equipes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para extrair o máximo de previsibilidade e menor custo por tarefa no Hermes Agent, combine os dois recursos em um fluxo simples:</p>
+<pre><code>+-------------------------------------------------------------------+
+<span class="token operator">|</span> <span class="token number">1</span>. IDENTIDADE GLOBAL <span class="token punctuation">(</span><span class="token variable">$HERMES_HOME</span>/SOUL.md<span class="token punctuation">)</span>                       <span class="token operator">|</span>
+<span class="token operator">|</span>    Tom executivo, idioma PT-BR, regras gerais de comunicação      <span class="token operator">|</span>
++-------------------------------------------------------------------+
+                                 <span class="token operator">|</span>
+                                 <span class="token function">v</span>
++-------------------------------------------------------------------+
+<span class="token operator">|</span> <span class="token number">2</span>. REGRAS DO PROJETO <span class="token punctuation">(</span>AGENTS.md / .hermes.md + subdiretórios<span class="token punctuation">)</span>     <span class="token operator">|</span>
+<span class="token operator">|</span>    Stack, portas, convenções, o que NUNCA alterar <span class="token punctuation">(</span>ex: migrações<span class="token punctuation">)</span> <span class="token operator">|</span>
++-------------------------------------------------------------------+
+                                 <span class="token operator">|</span>
+                                 <span class="token function">v</span>
++-------------------------------------------------------------------+
+<span class="token operator">|</span> <span class="token number">3</span>. CONTEXTO CIRÚRGICO SOB DEMANDA <span class="token punctuation">(</span>@file:linhas, @diff, @folder<span class="token punctuation">)</span>  <span class="token operator">|</span>
+<span class="token operator">|</span>    Injeta apenas o trecho exato da tarefa, sem estourar tokens    <span class="token operator">|</span>
++-------------------------------------------------------------------+
+</code></pre><p>Essa separação evita o erro clássico de transformar o prompt do sistema em um &quot;manual de 40 páginas&quot; que encarece cada turno de conversa. Regras globais ficam no <code>SOUL.md</code>, regras do projeto ficam no <code>AGENTS.md</code> (carregadas progressivamente por pasta) e os dados da tarefa entram na hora certa via <code>@</code>.[1][2]</p>
+<hr>
+<h2 id="conclusao" class="scroll-mt-24 group flex items-center justify-between">Conclusão <a href="#conclusao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Dominar <strong>Context Files</strong> e <strong>Context References</strong> marca a diferença entre usar um agente de IA de forma amadora — repetindo instruções e pagando caro por contexto inútil — e operar uma infraestrutura disciplinada, segura e previsível. Com hierarquia clara entre <code>SOUL.md</code> e <code>AGENTS.md</code>, descoberta progressiva que preserva o <em>Prompt Cache</em> e travas automáticas contra <em>prompt injection</em> e vazamento de credenciais, sua equipe ganha velocidade sem abrir mão da governança.[1][2]</p>
+<p>Quer implementar o Hermes Agent com arquitetura profissional de contexto, automações 24/7 e governança real na sua empresa? Conheça a comunidade e a formação <strong>Inteligência Agêntica</strong> em <a href="https://inteligenciaagentica.com.br">https://inteligenciaagentica.com.br</a>.</p>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files">https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files</a> — Context Files | Hermes Agent<br>[2] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/context-references">https://hermes-agent.nousresearch.com/docs/user-guide/features/context-references</a> — Context References | Hermes Agent<br>[3] <a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.3">https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.3</a> — Hermes Agent v0.23.3 Release</p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/context-files-context-references-hermes.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Mixture of Agents (MoA) no Hermes Agent: Como Criar um Conselho de Modelos de IA para Decisões Críticas]]></title>
