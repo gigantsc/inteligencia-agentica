@@ -19,6 +19,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Hermes Web Dashboard: A Central de Comando Visual para Gerenciar Agentes de IA Sem Depender do Terminal](https://inteligenciaagentica.com.br/blog/hermes-web-dashboard-central-comando-agentes-ia)
+- **Data de Publicação:** 2026-11-22
+- **Tags:** Hermes Agent, Web Dashboard, Gestão de Agentes, MCP, Segurança, Automação
+- **Resumo:** O Hermes Web Dashboard (hermes dashboard) reúne em uma interface web local ou remota (porta 9119) o controle de múltiplos perfis, chaves de API, servidores MCP, pareamento de canais como WhatsApp e Telegram, busca de sessões em FTS5 e autenticação obrigatória para acesso remoto seguro.
+- **URL:** https://inteligenciaagentica.com.br/blog/hermes-web-dashboard-central-comando-agentes-ia
+
 ### [Context Files e Context References no Hermes Agent: Regras por Projeto, Zero Desperdício e Segurança](https://inteligenciaagentica.com.br/blog/context-files-context-references-hermes-agent)
 - **Data de Publicação:** 2026-11-21
 - **Tags:** Hermes Agent, Context Engineering, AGENTS.md, Produtividade, Segurança, Agentes de IA

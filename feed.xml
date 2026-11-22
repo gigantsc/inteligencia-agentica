@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Sat, 21 Nov 2026 11:05:57 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 22 Nov 2026 11:08:34 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,129 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais-v2.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Hermes Web Dashboard: A Central de Comando Visual para Gerenciar Agentes de IA Sem Depender do Terminal]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/hermes-web-dashboard-central-comando-agentes-ia</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/hermes-web-dashboard-central-comando-agentes-ia</guid>
+            <pubDate>Sun, 22 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[O Hermes Web Dashboard (hermes dashboard) reúne em uma interface web local ou remota (porta 9119) o controle de múltiplos perfis, chaves de API, servidores MCP, pareamento de canais como WhatsApp e Telegram, busca de sessões em FTS5 e autenticação obrigatória para acesso remoto seguro.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Em resumo:</strong> O <strong>Hermes Web Dashboard</strong> (<code>hermes dashboard</code>) é o painel administrativo em navegador do Hermes Agent, servido por padrão em <code>http://127.0.0.1:9119</code> com FastAPI e Uvicorn.[1] A partir de uma única interface, gestores e equipes técnicas configuram chaves de API, testam servidores MCP, aprovam usuários no WhatsApp e Telegram, auditam históricos de conversas com busca full-text (FTS5) e alternam entre múltiplos perfis isolados sem editar arquivos YAML manualmente.[1]</p>
+</blockquote>
+<hr>
+<h2 id="por-que-um-painel-visual-mudou-o-jogo-para-quem-opera-agentes-247" class="scroll-mt-24 group flex items-center justify-between">Por que um painel visual mudou o jogo para quem opera agentes 24/7 <a href="#por-que-um-painel-visual-mudou-o-jogo-para-quem-opera-agentes-247" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Empresas que escalam automações com IA descobrem rápido um gargalo operacional: manter agentes rodando em servidores VPS exige ajustes constantes de chaves, permissões de canais, tarefas agendadas e conectores externos. Fazer cada verificação via SSH e edição manual de <code>config.yaml</code> cria dependência de especialistas e aumenta o risco de erro humano.[1]</p>
+<p>Ao mesmo tempo, a governança de provedores tornou-se crítica. Em comunicado publicado em 22 de novembro de 2026, a OpenRouter revelou incidentes de processamento de dados em provedores de inferência terceirizados, levando ao desligamento de três provedores e à remoção preventiva de 125 endpoints da lista de <em>Zero Data Retention</em> (ZDR).[4] Ter uma central visual onde o gestor enxerga rapidamente quais modelos, chaves e conectores estão ativos deixou de ser conveniência para virar requisito de operação.[1][4]</p>
+<pre><code>+-------------------------------------------------------------------+
+<span class="token operator">|</span>               HERMES WEB DASHBOARD <span class="token punctuation">(</span><span class="token number">127.0</span>.0.1:9119<span class="token punctuation">)</span>               <span class="token operator">|</span>
++---------------------------+---------------------------------------+
+<span class="token operator">|</span>  Seletor de Perfis        <span class="token operator">|</span>  Abas Administrativas                 <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token punctuation">(</span>?profile<span class="token operator">=</span>financeiro<span class="token punctuation">)</span>    <span class="token operator">|</span>  • Status <span class="token operator">&amp;</span> Alerta de Disco <span class="token punctuation">(</span><span class="token operator">&lt;</span><span class="token number">512</span> MB<span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">|</span>                           <span class="token operator">|</span>  • Chat <span class="token punctuation">(</span>resumo TUI / --resume<span class="token punctuation">)</span>       <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token punctuation">[</span>Banner Âmbar quando     <span class="token operator">|</span>  • Sessions <span class="token punctuation">(</span>FTS5 + <span class="token builtin class-name">export</span> JSON<span class="token punctuation">)</span>      <span class="token operator">|</span>
+<span class="token operator">|</span>   gerencia outro perfil<span class="token punctuation">]</span>  <span class="token operator">|</span>  • Profiles <span class="token punctuation">(</span>/profiles/new Builder<span class="token punctuation">)</span>   <span class="token operator">|</span>
+<span class="token operator">|</span>                           <span class="token operator">|</span>  • MCP <span class="token punctuation">(</span>Add, Enable/Disable, Test<span class="token punctuation">)</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>                           <span class="token operator">|</span>  • Channels <span class="token operator">&amp;</span> Pairing <span class="token punctuation">(</span><span class="token number">19</span>+ canais<span class="token punctuation">)</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>                           <span class="token operator">|</span>  • Webhooks <span class="token operator">&amp;</span> Cron Jobs <span class="token punctuation">(</span>PUT /cron<span class="token punctuation">)</span>   <span class="token operator">|</span>
++---------------------------+---------------------------------------+
+</code></pre><hr>
+<h2 id="como-iniciar-e-operar-multiplos-perfis-em-um-unico-servidor" class="scroll-mt-24 group flex items-center justify-between">Como iniciar e operar múltiplos perfis em um único servidor <a href="#como-iniciar-e-operar-multiplos-perfis-em-um-unico-servidor" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O comando básico para subir o painel localmente é direto e não envia dados para fora da máquina:[1]</p>
+<pre><code class="language-bash">hermes dashboard
+</code></pre><p>Por padrão, o servidor escuta em <code>127.0.0.1:9119</code> e abre o navegador automaticamente.[1] Para ambientes de servidor ou portas customizadas, o comando aceita flags específicas:[1]</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Padrão</th>
+<th>Função prática na operação</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--port</code></td>
+<td><code>9119</code></td>
+<td>Define uma porta alternativa (ex.: <code>--port 8080</code>) [1]</td>
+</tr>
+<tr>
+<td><code>--host</code></td>
+<td><code>127.0.0.1</code></td>
+<td>Endereço de escuta (<code>0.0.0.0</code> ou IP da VPN Tailscale) [1]</td>
+</tr>
+<tr>
+<td><code>--no-open</code></td>
+<td>Desligado</td>
+<td>Sobe o painel em servidores headless sem abrir navegador [1]</td>
+</tr>
+<tr>
+<td><code>--isolated</code></td>
+<td>Desligado</td>
+<td>Isola o servidor para um único perfil ao rodar <code>&lt;perfil&gt; dashboard</code> [1]</td>
+</tr>
+<tr>
+<td><code>--insecure</code></td>
+<td>Obsoleto (<em>no-op</em>)</td>
+<td>Não desativa mais a autenticação em binds não-locais [1]</td>
+</tr>
+</tbody></table>
+<p>Uma vantagem decisiva para empresas com vários departamentos é que o dashboard atua em <strong>nível de máquina</strong>: um único processo gerencia todos os perfis instalados.[1] Quando há mais de um perfil, um seletor na barra lateral sincroniza a URL (<code>?profile=worker</code>) para que configurações, chaves de API, <em>skills</em>, servidores MCP e a aba de chat operem exatamente sobre o departamento selecionado.[1] Sempre que um perfil secundário está ativo, um banner âmbar sinaliza o alvo de escrita para evitar alterações acidentais no perfil errado.[1]</p>
+<hr>
+<h2 id="o-que-voce-controla-pelo-navegador-sem-tocar-em-yaml" class="scroll-mt-24 group flex items-center justify-between">O que você controla pelo navegador sem tocar em YAML <a href="#o-que-voce-controla-pelo-navegador-sem-tocar-em-yaml" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>As abas nativas do <code>hermes dashboard</code> cobrem todo o ciclo de vida operacional do agente:[1]</p>
+<ul>
+<li><strong>Status e Pressão de Recursos:</strong> Exibe alertas automáticos de espaço em disco no volume de <code>~/.hermes</code> (nível elevado abaixo de 512 MB livres e crítico abaixo de 256 MB), evitando que logs ou bancos de sessão parem a operação silenciosamente.[1]</li>
+<li><strong>Sessions com Busca FTS5:</strong> Separa conversas humanas (<em>Chats</em>), execuções automáticas (<em>Automation</em> — cron, webhooks, API) ou todas juntas (<em>All</em>), permitindo busca textual completa com destaque de trechos, exportação em JSON (<code>GET /api/sessions/{id}/export</code>) e limpeza de sessões antigas (<code>POST /api/sessions/prune</code>).[1]</li>
+<li><strong>Chat Integrado com Retomada:</strong> Permite clicar em qualquer sessão na aba <em>Sessions</em> para saltar para <code>/chat?resume=&lt;id&gt;</code> com o histórico completo carregado.[1]</li>
+<li><strong>MCP Sem Linha de Comando:</strong> Cadastra servidores HTTP/SSE ou <code>stdio</code>, ativa ou desativa integrações sem apagá-las, oculta valores com formato de segredo na listagem e executa o botão <strong>Test</strong> (<code>POST /api/mcp/servers/{name}/test</code>) para listar ferramentas antes de colocar o conector em produção.[1]</li>
+<li><strong>Channels, Pairing e Webhooks:</strong> Centraliza o status de conexão de canais como Telegram, WhatsApp, Slack, Discord, Microsoft Teams, E-mail e SMS (mais de 19 plataformas nativas na documentação oficial), além de aprovar ou revogar usuários pareados sem precisar rodar <code>hermes pairing</code> no terminal.[1][5]</li>
+<li><strong>Profile Builder (<code>/profiles/new</code>):</strong> Cria novos perfis corporativos do zero ou clonando configurações, escolhendo modelo, MCPs e <em>skills</em> de forma guiada.[1]</li>
+</ul>
+<hr>
+<h2 id="seguranca-no-acesso-remoto-auth-gate-tailscale-e-oauth" class="scroll-mt-24 group flex items-center justify-between">Segurança no acesso remoto: Auth Gate, Tailscale e OAuth <a href="#seguranca-no-acesso-remoto-auth-gate-tailscale-e-oauth" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Como o <code>hermes dashboard</code> lê e grava o arquivo <code>.env</code> (chaves de API) e pode disparar comandos do agente, o Hermes Agent aplica uma trava rígida de segurança: <strong>qualquer tentativa de vincular o servidor fora de <code>127.0.0.1</code> / <code>localhost</code> ativa obrigatoriamente o <em>Auth Gate</em></strong>.[1] A antiga flag <code>--insecure</code> foi desativada e não remove mais a exigência de login.[1]</p>
+<table>
+<thead>
+<tr>
+<th>Provedor de Autenticação</th>
+<th>Como funciona</th>
+<th>Cenário recomendado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Nous Portal OAuth (<code>nous</code>)</strong></td>
+<td>Fluxo Authorization Code + PKCE (S256) registrado via <code>hermes dashboard register</code> (tokens de 15 min) [1]</td>
+<td>Servidores expostos na internet pública e conexão remota do <strong>Hermes Desktop</strong> [1]</td>
+</tr>
+<tr>
+<td><strong>Usuário e Senha (<code>basic</code>)</strong></td>
+<td>Login local com hash <code>scrypt</code> (<code>password_hash</code>), cookies HMAC e bloqueio de força bruta (10 tentativas/min por IP) [1]</td>
+<td>Redes internas confiáveis ou acesso exclusivo via <strong>VPN Tailscale</strong> (<code>--host &lt;ip-tailscale&gt;</code>) [1]</td>
+</tr>
+<tr>
+<td><strong>OIDC Corporativo (<code>self_hosted</code>)</strong></td>
+<td>Integração OpenID Connect com Okta, Microsoft Entra ou Google Workspace via HTTPS [1]</td>
+<td>Empresas com provedor de identidade corporativo já padronizado [1]</td>
+</tr>
+</tbody></table>
+<p>Para gestores que mantêm uma VPS na nuvem, a arquitetura mais simples e segura consiste em manter o dashboard atrás de uma rede privada <strong>Tailscale</strong> ou registrar o cliente OAuth com <code>hermes dashboard register</code> e conectar o aplicativo <strong>Hermes Desktop</strong> em <em>Settings → Gateways → Remote gateway</em>.[1]</p>
+<hr>
+<h2 id="extensibilidade-sem-fork-e-evolucao-continua-v0233" class="scroll-mt-24 group flex items-center justify-between">Extensibilidade sem fork e evolução contínua (v0.23.3) <a href="#extensibilidade-sem-fork-e-evolucao-continua-v0233" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para operações que exigem painéis sob medida, o dashboard suporta três camadas de extensão carregadas em tempo de execução sem alterar o código-fonte:[2]</p>
+<ol>
+<li><strong>Temas YAML:</strong> Arquivos em <code>~/.hermes/dashboard-themes/</code> ajustam paleta de cores, tipografia e modos de layout (<code>standard</code>, <code>cockpit</code> ou <code>tiled</code>).[2]</li>
+<li><strong>Plugins de Interface (UI):</strong> Bundles JavaScript com <code>manifest.json</code> adicionam novas abas ou injetam widgets em páginas existentes via <code>window.__HERMES_PLUGIN_SDK__</code>.[2]</li>
+<li><strong>Rotas Backend em FastAPI:</strong> Arquivos <code>plugin_api.py</code> expõem endpoints próprios sob <code>/api/plugins/</code> consumidos pela interface do plugin.[2]</li>
+</ol>
+<p>Essa base administrativa apoia as melhorias de infraestrutura entregues no release <code>v0.23.3</code> (19/11/2026) e nos builds canary subsequentes, que introduziram o controlador de ciclo de vida do <em>Prompt Cache</em> (mantendo o cache aquecido em execuções longas e compactando conversas ociosas antes do limite de 1 hora), poda proativa de resultados de ferramentas e uma camada de persistência desacoplada sobre SQLite.[3]</p>
+<hr>
+<h2 id="proximo-passo-pratico-na-sua-operacao" class="scroll-mt-24 group flex items-center justify-between">Próximo passo prático na sua operação <a href="#proximo-passo-pratico-na-sua-operacao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Se você já roda o Hermes Agent em máquina local ou VPS, execute <code>hermes dashboard</code> para auditar hoje mesmo seus perfis, testar seus servidores MCP e verificar o consumo de disco do ambiente.[1] Para acesso remoto da sua equipe com segurança corporativa, combine <code>hermes dashboard --host &lt;ip-tailscale&gt; --no-open</code> ou habilite o login via Nous Portal OAuth.[1]</p>
+<p>Quer dominar a arquitetura completa de agentes autônomos em produção, da infraestrutura na VPS à governança de custos e segurança? Conheça a comunidade e o ecossistema <strong><a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a></strong>.</p>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/web-dashboard">https://hermes-agent.nousresearch.com/docs/user-guide/features/web-dashboard</a><br>[2] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/extending-the-dashboard">https://hermes-agent.nousresearch.com/docs/user-guide/features/extending-the-dashboard</a><br>[3] <a href="https://github.com/NousResearch/hermes-agent/releases">https://github.com/NousResearch/hermes-agent/releases</a><br>[4] <a href="https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/">https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/</a><br>[5] <a href="https://hermes-agent.nousresearch.com/docs/llms.txt">https://hermes-agent.nousresearch.com/docs/llms.txt</a></p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/hermes-web-dashboard-central-comando-agentes-ia.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Context Files e Context References no Hermes Agent: Regras por Projeto, Zero Desperdício e Segurança]]></title>
