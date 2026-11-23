@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Sun, 22 Nov 2026 11:08:34 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 23 Nov 2026 11:09:54 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,149 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais-v2.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Plugin Catalog e Hermes Marketplace: Como Expandir Agentes de IA com Segurança e Zero Gambiarra]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/plugin-catalog-hermes-marketplace-extensibilidade-segura</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/plugin-catalog-hermes-marketplace-extensibilidade-segura</guid>
+            <pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[O Plugin Catalog do Hermes Agent (hermes plugins) permite instalar extensões, servidores MCP e hooks de segurança com revisão humana, travamento por commit SHA de 40 caracteres e lista de revogação automática, eliminando riscos de código não auditado em produção.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Em resumo:</strong> O <strong>Plugin Catalog</strong> do Hermes Agent (<code>hermes plugins install &lt;nome&gt;</code>) é um diretório curado e revisado por humanos que permite adicionar novas ferramentas, conectores MCP e hooks de governança aos seus agentes sem editar o código-fonte principal.[1][2] Cada entrada fixa um commit SHA exato de 40 caracteres, declara previamente todas as variáveis de ambiente e permissões necessárias, passa por scanner automatizado de segurança e conta com lista de bloqueio remoto (<code>removed.yaml</code>) caso algum pacote seja comprometido.[1]</p>
+</blockquote>
+<hr>
+<h2 id="o-problema-real-de-andquotturbinarandquot-agentes-em-producao" class="scroll-mt-24 group flex items-center justify-between">O problema real de &quot;turbinar&quot; agentes em produção <a href="#o-problema-real-de-andquotturbinarandquot-agentes-em-producao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando uma empresa começa a usar agentes autônomos no dia a dia, logo aparece a necessidade de ir além das funções padrão: integrar um scanner de vulnerabilidades, limpar arquivos temporários na VPS, conectar um banco de memória diferente ou adicionar regras de auditoria antes de gravar arquivos.[2][3][4]</p>
+<p>O caminho improvisado — clonar repositórios aleatórios da internet ou alterar o código interno do agente — costuma cobrar caro em operação:</p>
+<ol>
+<li><strong>Risco na cadeia de suprimentos (<em>supply chain</em>):</strong> instalar a partir de uma <em>branch</em> aberta significa que qualquer alteração futura do autor entra na sua máquina sem aviso.[1]</li>
+<li><strong>Conflito entre extensões:</strong> duas integrações que alteram funções internas do sistema (<em>monkeypatching</em>) quebram uma à outra e travam futuras atualizações.[1]</li>
+<li><strong>Poluição de contexto e disco:</strong> scripts e arquivos temporários acumulados em sessões contínuas consomem espaço e dificultam a auditoria.[3]</li>
+</ol>
+<p>O <strong>Plugin Catalog</strong> e o <strong>Hermes Marketplace</strong> (<code>https://hermes-agent.nousresearch.com/marketplace</code>) nasceram exatamente para resolver esse dilema: dar velocidade de instalação com um comando, mantendo governança de nível corporativo.[1]</p>
+<pre><code>+-----------------------------------------------------------------------+
+<span class="token operator">|</span>              CICLO DE CONFIANÇA DO HERMES PLUGIN CATALOG              <span class="token operator">|</span>
++-----------------------------------------------------------------------+
+<span class="token operator">|</span>  <span class="token number">1</span>. Submissão via PR       -<span class="token operator">></span> Revisão humana por mantenedores         <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span>. Pinning Imutável       -<span class="token operator">></span> Trava em commit SHA de <span class="token number">40</span> caracteres    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span>. CI Security Scan       -<span class="token operator">></span> <span class="token variable"><span class="token variable">`</span>hermes plugins validate<span class="token variable">`</span></span> + lint SDK    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span>. Regra No Core Override -<span class="token operator">></span> Proibido sobrescrever módulos <span class="token keyword">do</span> core   <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">5</span>. Instalação Explícita   -<span class="token operator">></span> Mostra capacidades antes de clonar      <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">6</span>. Instalado <span class="token operator">!=</span> Ativado   -<span class="token operator">></span> Exige <span class="token variable"><span class="token variable">`</span>hermes plugins <span class="token builtin class-name">enable</span> <span class="token operator">&lt;</span>nome<span class="token operator">></span><span class="token variable">`</span></span>    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">7</span>. Kill-Switch Remoto     -<span class="token operator">></span> <span class="token variable"><span class="token variable">`</span>removed.yaml<span class="token variable">`</span></span> bloqueia uso posterior   <span class="token operator">|</span>
++-----------------------------------------------------------------------+
+</code></pre><hr>
+<h2 id="como-funciona-o-modelo-de-confianca-do-plugin-catalog" class="scroll-mt-24 group flex items-center justify-between">Como funciona o modelo de confiança do Plugin Catalog <a href="#como-funciona-o-modelo-de-confianca-do-plugin-catalog" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Diferente de diretórios abertos onde qualquer pessoa publica pacotes sem filtro, cada item do catálogo oficial é um arquivo YAML versionado na pasta <code>plugin-catalog/</code> do repositório do Hermes Agent.[1] Na prática, cinco travas protegem a empresa:[1]</p>
+<table>
+<thead>
+<tr>
+<th>Camada de Proteção</th>
+<th>O que faz na prática</th>
+<th>Benefício operacional</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Pinning por SHA exato</strong></td>
+<td>Instala o commit exato de 40 caracteres revisado, nunca a ponta da branch (<code>main</code>).[1]</td>
+<td>Código novo do autor não entra em produção sem nova revisão.[1]</td>
+</tr>
+<tr>
+<td><strong>Declaração de capacidades</strong></td>
+<td>Lista ferramentas, hooks, middlewares e variáveis de ambiente (<code>requires_env</code>) antes do clone.[1][2]</td>
+<td>O gestor enxerga o raio de impacto antes de aprovar.[1]</td>
+</tr>
+<tr>
+<td><strong>No Core Override</strong></td>
+<td>A validação em CI recusa código Python que reescreva módulos ou classes internas do Hermes em runtime.[1]</td>
+<td>Atualizações do Hermes não quebram seus plugins.[1]</td>
+</tr>
+<tr>
+<td><strong>Instalado != Ativado</strong></td>
+<td><code>install</code> apenas baixa os arquivos; o plugin só carrega após <code>enable</code> explícito.[1]</td>
+<td>Zero execução surpresa ao testar novas extensões.[1]</td>
+</tr>
+<tr>
+<td><strong>Lista <code>removed.yaml</code></strong></td>
+<td>Plugins removidos por incidente param de atualizar e são bloqueados ao carregar.[1]</td>
+<td>Resposta rápida contra pacotes comprometidos.[1]</td>
+</tr>
+</tbody></table>
+<p>Além disso, o catálogo classifica os itens em três níveis de origem (<code>tier</code>): <code>official</code> (mantidos pela Nous Research), <code>verified</code> (verificados junto à empresa fabricante da integração) e <code>community</code> (mantidos pela comunidade após revisão de PR).[1] O catálogo local também se atualiza automaticamente a cada 6 horas a partir do índice publicado na documentação oficial, garantindo que eventuais remoções de segurança cheguem aos servidores mesmo sem atualizar toda a versão do Hermes.[1]</p>
+<hr>
+<h2 id="comandos-essenciais-para-gerenciar-plugins-no-dia-a-dia" class="scroll-mt-24 group flex items-center justify-between">Comandos essenciais para gerenciar plugins no dia a dia <a href="#comandos-essenciais-para-gerenciar-plugins-no-dia-a-dia" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Toda a descoberta, inspeção e manutenção acontece direto pela linha de comando (ou pela aba de Plugins no Desktop e no Web Dashboard):[1]</p>
+<pre><code class="language-bash"><span class="token comment"># Buscar no catálogo oficial (por nome, descrição ou ferramenta)</span>
+hermes plugins search snyk
+
+<span class="token comment"># Navegar por todo o catálogo ou ver detalhes de uma entrada</span>
+hermes plugins browse
+hermes plugins info snyk
+
+<span class="token comment"># Instalar a partir do SHA revisado e ativar no perfil atual</span>
+hermes plugins <span class="token function">install</span> snyk
+hermes plugins <span class="token builtin class-name">enable</span> snyk
+
+<span class="token comment"># Atualizar entradas respeitando os novos SHAs revisados ou remover</span>
+hermes plugins update
+hermes plugins disable snyk
+hermes plugins remove snyk
+</code></pre><p>Um detalhe importante de arquitetura para quem roda múltiplos projetos na mesma VPS: o <em>gateway</em> do Hermes descobre os plugins uma única vez para o processo e <strong>não carrega</strong> plugins locais escondidos dentro de pastas de projeto (<code>./.hermes/plugins/</code>).[2] Extensões devem ser instaladas no escopo do usuário (<code>~/.hermes/plugins/</code> ou via <code>hermes plugins install</code>) e ativadas por perfil, mantendo previsibilidade e controle centralizado.[2]</p>
+<hr>
+<h2 id="pacotes-portateis-mcp-skill-e-a-expansao-da-serie-v023x" class="scroll-mt-24 group flex items-center justify-between">Pacotes portáteis (MCP + Skill) e a expansão da série v0.23.x <a href="#pacotes-portateis-mcp-skill-e-a-expansao-da-serie-v023x" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Um dos avanços mais práticos do catálogo é suportar pacotes portáteis (<em>Agent Plugins v1</em>) que entregam, em uma única instalação, o conector técnico (servidor MCP <code>stdio</code>) e a instrução operacional (<em>skill</em>) de como o agente deve usá-lo:[1]</p>
+<ul>
+<li><strong>Exemplo <code>snyk</code>:</strong> fixa a versão da CLI da Snyk (<code>npx -y snyk@&lt;version&gt; mcp</code>) junto com a skill <code>snyk-security-scan</code>, dando ao agente capacidade imediata de auditar código, dependências, containers e infraestrutura como código (IaC).[1]</li>
+<li><strong>Exemplo <code>touchdesigner</code>:</strong> empacota o servidor MCP correspondente com a skill <code>touchdesigner-mcp</code> sob o identificador curto <code>td</code>.[1]</li>
+</ul>
+<p>Nos releases recentes da série <code>v0.23.2+canary</code> e na trilha atual <code>v0.23.3</code> (incluindo o build <code>canary.20261123T065600Z-v0.23.3</code>), o ritmo de adições ao catálogo acelerou com novas opções voltadas a segurança, memória e voz, como <code>hermes-safeguard</code>, <code>barrier-shield</code>, <code>relatedb-memory</code>, <code>hermes-voice-gateway</code>, <code>scansift</code> e <code>covsift</code>.[4][5]</p>
+<hr>
+<h2 id="dois-plugins-nativos-built-in-que-toda-operacao-deveria-ativar" class="scroll-mt-24 group flex items-center justify-between">Dois plugins nativos (<em>Built-in</em>) que toda operação deveria ativar <a href="#dois-plugins-nativos-built-in-que-toda-operacao-deveria-ativar" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Além do catálogo externo, o Hermes já traz plugins embutidos (<em>opt-in</em>, desligados por padrão) que resolvem dores imediatas de infraestrutura e segurança com um único comando:[3]</p>
+<h3 id="1-disk-cleanup-higiene-automatica-da-vps" class="scroll-mt-24 group flex items-center justify-between">1. <code>disk-cleanup</code> — Higiene automática da VPS <a href="#1-disk-cleanup-higiene-automatica-da-vps" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Rastreia arquivos efêmeros criados durante sessões (<code>test_*</code>, <code>tmp_*</code>, <code>*.test.*</code>) dentro de <code>HERMES_HOME</code> ou <code>/tmp/hermes-*</code> e executa limpeza segura ao encerrar a sessão (<code>on_session_end</code>), mantendo um log auditável em <code>cleanup.log</code> sem jamais tocar nas pastas de código ou projetos do usuário.[3]</p>
+<pre><code class="language-bash">hermes plugins <span class="token builtin class-name">enable</span> disk-cleanup
+<span class="token comment"># Dentro da sessão, use: /disk-cleanup status ou /disk-cleanup dry-run</span>
+</code></pre><h3 id="2-security-guidance-sentinela-de-25-regras-ao-escrever-arquivos" class="scroll-mt-24 group flex items-center justify-between">2. <code>security-guidance</code> — Sentinela de 25 regras ao escrever arquivos <a href="#2-security-guidance-sentinela-de-25-regras-ao-escrever-arquivos" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Inspirado nas regras do <code>claude-plugins-official</code> (licença Apache-2.0), monitora chamadas de <code>write_file</code>, <code>patch</code> e <code>skill_manage</code> em busca de padrões perigosos — como <code>eval(</code>, <code>pickle.load</code>, <code>subprocess(..., shell=True)</code>, <code>dangerouslySetInnerHTML</code>, verificação TLS desabilitada e injeção em workflows do GitHub Actions.[3] Por padrão, anexa um aviso para o agente corrigir o código; em ambientes rígidos, basta definir <code>SECURITY_GUIDANCE_BLOCK=1</code> para bloquear a escrita automaticamente.[3]</p>
+<pre><code class="language-bash">hermes plugins <span class="token builtin class-name">enable</span> security-guidance
+</code></pre><hr>
+<h2 id="quando-usar-plugin-do-catalogo-skill-ou-servidor-mcp" class="scroll-mt-24 group flex items-center justify-between">Quando usar Plugin do Catálogo, Skill ou Servidor MCP? <a href="#quando-usar-plugin-do-catalogo-skill-ou-servidor-mcp" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para evitar complexidade desnecessária na arquitetura da empresa, vale seguir uma regra simples de decisão:[1][2]</p>
+<table>
+<thead>
+<tr>
+<th>Necessidade do Negócio</th>
+<th>Melhor Mecanismo</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ensinar um processo de negócio ou passo a passo ao agente</td>
+<td><strong>Skill (<code>SKILL.md</code>)</strong></td>
+<td>Leve, editável em texto e carregada sob demanda.[2]</td>
+</tr>
+<tr>
+<td>Conectar a API/banco externo padrão (CRM, ERP, Postgres)</td>
+<td><strong>Servidor MCP</strong></td>
+<td>Protocolo padronizado de acesso a dados e ferramentas.[1]</td>
+</tr>
+<tr>
+<td>Interceptar ciclo de vida (hooks <code>post_tool_call</code>), adicionar comandos <code>/slash</code>, UI ou empacotar MCP + Skill com SHA fixo</td>
+<td><strong>Plugin (<code>hermes plugins</code>)</strong></td>
+<td>Roda com hooks determinísticos, validação de catálogo e zero alteração no core.[1][2]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="proximo-passo-pratico-para-sua-operacao" class="scroll-mt-24 group flex items-center justify-between">Próximo passo prático para sua operação <a href="#proximo-passo-pratico-para-sua-operacao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Antes de instalar qualquer integração externa por conta própria ou pedir para o agente improvisar scripts soltos, rode <code>hermes plugins browse</code> no seu ambiente, avalie os plugins nativos <code>disk-cleanup</code> e <code>security-guidance</code> e padronize novas extensões sempre pelo fluxo revisado do catálogo.[1][3]</p>
+<p>Se você quer estruturar agentes autônomos com governança real, segurança e foco em resultado operacional para sua empresa, conheça a comunidade e o ecossistema <strong>Inteligência Agêntica</strong> em <a href="https://inteligenciaagentica.com.br">inteligenciaagentica.com.br</a>.</p>
+<hr>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/plugin-catalog">https://hermes-agent.nousresearch.com/docs/user-guide/features/plugin-catalog</a> — Plugin Catalog | Hermes Agent<br>[2] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/plugins">https://hermes-agent.nousresearch.com/docs/user-guide/features/plugins</a> — Plugins | Hermes Agent<br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/built-in-plugins">https://hermes-agent.nousresearch.com/docs/user-guide/features/built-in-plugins</a> — Built-in Plugins | Hermes Agent<br>[4] <a href="https://github.com/NousResearch/hermes-agent/releases">https://github.com/NousResearch/hermes-agent/releases</a> — Releases · NousResearch/hermes-agent<br>[5] <a href="https://github.com/NousResearch/hermes-agent/releases/tag/canary.20261123T065600Z-v0.23.3">https://github.com/NousResearch/hermes-agent/releases/tag/canary.20261123T065600Z-v0.23.3</a> — Hermes Agent canary.20261123T065600Z-v0.23.3</p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/plugin-catalog-hermes-marketplace-extensibilidade-segura.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Hermes Web Dashboard: A Central de Comando Visual para Gerenciar Agentes de IA Sem Depender do Terminal]]></title>
