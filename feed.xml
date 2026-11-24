@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Mon, 23 Nov 2026 11:09:54 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 24 Nov 2026 11:06:11 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,174 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais-v2.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Subscription Proxy e Nous Tool Gateway: Como Unificar Modelos, Busca Web, Voz e Navegadores em Uma Única Assinatura]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/subscription-proxy-tool-gateway-uma-assinatura-hermes-agent</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/subscription-proxy-tool-gateway-uma-assinatura-hermes-agent</guid>
+            <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Aprenda a eliminar a proliferação de faturas e chaves de API usando o Nous Tool Gateway e o Subscription Proxy (hermes proxy) para centralizar mais de 300 modelos, busca web, geração de imagens, voz e navegador em nuvem em um único login OAuth.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Em resumo:</strong> Em vez de contratar cinco fornecedores separados e espalhar dezenas de chaves estáticas em arquivos <code>.env</code>, o <strong>Nous Tool Gateway</strong> e o <strong>Subscription Proxy</strong> (<code>hermes proxy</code>) permitem centralizar mais de 300 modelos de fronteira, busca web, geração de imagens, síntese de voz (TTS) e automação de navegador na nuvem sob uma única assinatura OAuth — além de expor um servidor local OpenAI-compatível (<code>http://127.0.0.1:8645/v1</code>) para outros aplicativos da empresa sem precisar distribuir chaves de API [2][3][5].</p>
+</blockquote>
+<hr>
+<h2 id="o-problema-silencioso-da-proliferacao-de-apis-nas-empresas" class="scroll-mt-24 group flex items-center justify-between">O Problema Silencioso da Proliferação de APIs nas Empresas <a href="#o-problema-silencioso-da-proliferacao-de-apis-nas-empresas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando um gestor ou equipe técnica decide colocar um agente de IA em produção para valer, a conta raramente para no modelo de linguagem. Para que o agente pesquise concorrentes, leia PDFs, gere relatórios em áudio no Telegram e preencha formulários web, a operação acaba acumulando um mosaico caro e frágil de fornecedores:</p>
+<ol>
+<li>Uma conta na OpenAI ou Anthropic para raciocínio;</li>
+<li>Uma assinatura de busca web (Tavily, Firecrawl ou similar);</li>
+<li>Uma conta na FAL.ai ou equivalente para geração de imagens;</li>
+<li>Uma chave separada de Text-to-Speech (TTS) para notas de voz;</li>
+<li>Um serviço de navegador headless na nuvem (como Browserbase);</li>
+<li>E, muitas vezes, um segundo lote de chaves para aplicativos internos como Open WebUI, OpenViking ou Karakeep [2][3][5].</li>
+</ol>
+<p>O resultado prático é previsível: <strong>cinco faturas diferentes</strong>, <strong>cinco painéis de cobrança</strong>, risco constante de uma automação parar por falta de saldo em um dos cartões e arquivos <code>.env</code> recheados de credenciais de longa duração espalhadas por servidores [3][5].</p>
+<p>É exatamente esse gargalo que o ecossistema <strong>Nous Portal</strong> — composto pelo <strong>Nous Tool Gateway</strong> e pelo <strong>Subscription Proxy</strong> (<code>hermes proxy</code>) — resolve nativamente dentro do Hermes Agent [2][3][5].</p>
+<hr>
+<h2 id="arquitetura-unificada-como-tudo-se-conecta" class="scroll-mt-24 group flex items-center justify-between">Arquitetura Unificada: Como Tudo se Conecta <a href="#arquitetura-unificada-como-tudo-se-conecta" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Em vez de cada ferramenta ou aplicativo externo guardar sua própria chave estática, o Hermes atua como <strong>corretor de autenticação OAuth</strong> (<code>~/.hermes/auth.json</code>), emitindo tokens JWT de curta duração por requisição e renovando-os em segundo plano antes que expirem [2][5].</p>
+<pre><code>+-----------------------------------------------------------------------+
+<span class="token operator">|</span>                    SUA EMPRESA / VPS DE PRODUÇÃO                      <span class="token operator">|</span>
+<span class="token operator">|</span>                                                                       <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token punctuation">[</span> Open WebUI / Karakeep / OpenViking / Scripts Internos <span class="token punctuation">]</span>            <span class="token operator">|</span>
+<span class="token operator">|</span>                         <span class="token operator">|</span>                                             <span class="token operator">|</span>
+<span class="token operator">|</span>                         <span class="token function">v</span>  <span class="token punctuation">(</span>qualquer Bearer<span class="token punctuation">;</span> sem chave estática<span class="token punctuation">)</span>      <span class="token operator">|</span>
+<span class="token operator">|</span>          +------------------------------+                             <span class="token operator">|</span>
+<span class="token operator">|</span>          <span class="token operator">|</span>  Subscription Proxy          <span class="token operator">|</span>  http://127.0.0.1:8645/v1   <span class="token operator">|</span>
+<span class="token operator">|</span>          <span class="token operator">|</span>  <span class="token punctuation">(</span>hermes proxy start<span class="token punctuation">)</span>        <span class="token operator">|</span>  <span class="token punctuation">(</span>OpenAI-compatible<span class="token punctuation">)</span>        <span class="token operator">|</span>
+<span class="token operator">|</span>          +--------------+---------------+                             <span class="token operator">|</span>
+<span class="token operator">|</span>                         <span class="token operator">|</span>                                             <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token punctuation">[</span> Hermes Agent <span class="token punctuation">]</span>       <span class="token operator">|</span>   OAuth Refresh Token <span class="token punctuation">(</span>~/.hermes/auth.json<span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token punctuation">(</span>CLI/Telegram/Cron<span class="token punctuation">)</span> ---+---<span class="token operator">></span> JWT de curta duração <span class="token punctuation">(</span>auto-refresh<span class="token punctuation">)</span>     <span class="token operator">|</span>
++-------------------------<span class="token operator">|</span>---------------------------------------------+
+                          <span class="token operator">|</span>
+                          <span class="token function">v</span>
++-----------------------------------------------------------------------+
+<span class="token operator">|</span>                    NOUS PORTAL <span class="token operator">&amp;</span> TOOL GATEWAY                         <span class="token operator">|</span>
+<span class="token operator">|</span>                                                                       <span class="token operator">|</span>
+<span class="token operator">|</span>  * <span class="token number">300</span>+ Modelos <span class="token punctuation">(</span>Claude, GPT, Gemini <span class="token number">4</span>, DeepSeek, Qwen, Grok, Hermes<span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  * Busca Web <span class="token operator">&amp;</span> Extração   * Imagens <span class="token punctuation">(</span>Krea <span class="token number">3</span>, FLUX <span class="token number">2</span>, GPT Image<span class="token punctuation">..</span>.<span class="token punctuation">)</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>  * Text-to-Speech <span class="token punctuation">(</span>TTS<span class="token punctuation">)</span>   * Cloud Browser <span class="token punctuation">(</span>Browser Use via CDP<span class="token punctuation">)</span>       <span class="token operator">|</span>
+<span class="token operator">|</span>  * Terminal Serverless <span class="token punctuation">(</span>Modal - add-on opcional<span class="token punctuation">)</span>                      <span class="token operator">|</span>
++-----------------------------------------------------------------------+
+</code></pre><hr>
+<h2 id="1-nous-tool-gateway-cinco-backends-em-uma-unica-assinatura" class="scroll-mt-24 group flex items-center justify-between">1. Nous Tool Gateway: Cinco Backends em Uma Única Assinatura <a href="#1-nous-tool-gateway-cinco-backends-em-uma-unica-assinatura" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O <strong>Nous Tool Gateway</strong> vem incluído nas assinaturas pagas do Nous Portal (e em contas elegíveis com cota gratuita inicial de ferramentas) [3]. Ele roteia as chamadas de ferramentas do Hermes através de infraestrutura gerenciada pela Nous, mantendo a mesma qualidade dos provedores diretos, porém com faturamento consolidado [3][5]:</p>
+<table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>O que Entrega via Gateway</th>
+<th>Substitui Conta Separada em</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Busca Web &amp; Extração</strong></td>
+<td>Pesquisa web agêntica e extração completa de páginas sem dor de cabeça com <em>rate limits</em> [3][5]</td>
+<td>Provedores de Search API dedicados</td>
+</tr>
+<tr>
+<td><strong>Geração de Imagens</strong></td>
+<td>Catálogo unificado com <strong>Krea 3</strong>, <strong>Krea 2</strong>, <strong>FLUX 2</strong>, <strong>GPT Image</strong>, <strong>Nano Banana Pro</strong>, <strong>Ideogram</strong>, <strong>Recraft</strong> e <strong>Qwen</strong> [3][5]</td>
+<td>Conta separada na FAL.ai / Krea</td>
+</tr>
+<tr>
+<td><strong>Text-to-Speech (TTS)</strong></td>
+<td>Vozes OpenAI TTS integradas à ferramenta <code>text_to_speech</code> para áudios no Telegram e pipelines [3][5]</td>
+<td>Chave separada de áudio OpenAI</td>
+</tr>
+<tr>
+<td><strong>Cloud Browser</strong></td>
+<td>Sessões headless de Chromium via Browser Use controladas pelo <code>browser_exec</code> sobre CDP [3][5]</td>
+<td>Conta separada no Browserbase</td>
+</tr>
+<tr>
+<td><strong>Cloud Terminal (Add-on)</strong></td>
+<td>Sandboxes serverless para execução remota via Modal (<code>hermes setup terminal</code>) [3][5]</td>
+<td>Infraestrutura avulsa de sandbox</td>
+</tr>
+</tbody></table>
+<h3 id="sem-lock-in-o-modo-mix-and-match" class="scroll-mt-24 group flex items-center justify-between">Sem Lock-in: O Modo <em>Mix-and-Match</em> <a href="#sem-lock-in-o-modo-mix-and-match" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Um detalhe fundamental para gestores que já têm contratos ou créditos em algum fornecedor específico é que <strong>o Tool Gateway não impõe aprisionamento</strong> [3]. Pelo comando interativo <code>hermes tools</code>, você escolhe ferramenta por ferramenta o que vai pela <strong>Nous Subscription</strong> e o que continua usando sua chave própria (por exemplo: usar sua conta existente do Browserbase para navegador, mas rotear busca web e imagens pelo Portal) [3][5]. Suas chaves antigas no <code>.env</code> permanecem intactas e voltam a valer no instante em que você trocar o provedor de volta [3].</p>
+<h3 id="ativacao-e-inspecao-rapida" class="scroll-mt-24 group flex items-center justify-between">Ativação e Inspeção Rápida <a href="#ativacao-e-inspecao-rapida" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<pre><code class="language-bash"><span class="token comment"># Instalação nova: OAuth + modelo + Tool Gateway em um comando</span>
+hermes setup <span class="token parameter variable">--portal</span>
+
+<span class="token comment"># Ou ativar por ferramenta em instalação existente</span>
+hermes tools
+
+<span class="token comment"># Verificar o roteamento ativo e o catálogo do gateway</span>
+hermes portal info
+hermes portal tools
+</code></pre><p>Além disso, o catálogo de modelos acessíveis pelo Portal continua crescendo em ritmo acelerado — incluindo os recém-incorporados <strong>Gemini 4 Hydrogen, Neon e Carbon</strong> lançados na janela do <strong>Hermes Agent v0.23.4</strong> (novembro de 2026), além de famílias como Anthropic Claude, OpenAI GPT-5.x, DeepSeek V4 Pro, Qwen e xAI Grok [4][5].</p>
+<hr>
+<h2 id="2-subscription-proxy-hermes-proxy-compartilhe-modelos-com-outros-apps-sem-expor-chaves" class="scroll-mt-24 group flex items-center justify-between">2. Subscription Proxy (<code>hermes proxy</code>): Compartilhe Modelos com Outros Apps Sem Expor Chaves <a href="#2-subscription-proxy-hermes-proxy-compartilhe-modelos-com-outros-apps-sem-expor-chaves" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Muitas empresas rodam ferramentas complementares ao lado do Hermes Agent: um <strong>Open WebUI</strong> para atendimento interno, um <strong>OpenViking</strong> como banco de contexto ou um <strong>Karakeep</strong> para resumir links e documentos [2]. Tradicionalmente, cada um desses softwares exige uma <code>OPENAI_API_KEY</code> estática gravada em arquivo de configuração.</p>
+<p>O <strong>Subscription Proxy</strong> resolve isso com um servidor HTTP minimalista que roda localmente (<code>http://127.0.0.1:8645/v1</code>) [2]:</p>
+<pre><code class="language-bash"><span class="token comment"># 1. Autenticar uma única vez no Portal (salva o refresh token em ~/.hermes/auth.json)</span>
+hermes portal
+
+<span class="token comment"># 2. Iniciar o proxy local</span>
+hermes proxy start
+<span class="token comment"># Listening on: http://127.0.0.1:8645/v1</span>
+</code></pre><p>Qualquer aplicativo compatível com a API da OpenAI passa a apontar para <code>http://127.0.0.1:8645/v1</code> usando qualquer string simbólica como chave (ex.: <code>sk-unused</code>) [2]. O proxy ignora o cabeçalho <code>Authorization</code> enviado pelo cliente, anexa a credencial real da sua assinatura (<code>nous</code> ou <code>xai</code>) e cuida da renovação automática antes do vencimento [2].</p>
+<h3 id="subscription-proxy-vs-api-server-do-hermes" class="scroll-mt-24 group flex items-center justify-between">Subscription Proxy vs. API Server do Hermes <a href="#subscription-proxy-vs-api-server-do-hermes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>É comum confundir <code>hermes proxy</code> com o <code>api-server</code> do Hermes. Embora ambos falem HTTP OpenAI-compatível, eles servem propósitos distintos [2]:</p>
+<table>
+<thead>
+<tr>
+<th>Critério</th>
+<th><code>hermes proxy</code> (Subscription Proxy)</th>
+<th>Hermes API Server</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>O que entrega</strong></td>
+<td>Inferência pura do modelo (<em>passthrough</em>) [2]</td>
+<td>O agente completo (ferramentas, memória e skills) [2]</td>
+</tr>
+<tr>
+<td><strong>Caso de uso</strong></td>
+<td>&quot;Quero usar minha assinatura do Portal/xAI em outro app&quot; [2]</td>
+<td>&quot;Quero usar o Hermes como backend agêntico&quot; [2]</td>
+</tr>
+<tr>
+<td><strong>Autenticação cliente</strong></td>
+<td>Qualquer bearer (o proxy injeta a credencial real) [2]</td>
+<td>Sua <code>API_SERVER_KEY</code> configurada [2]</td>
+</tr>
+<tr>
+<td><strong>Execução de ferramentas</strong></td>
+<td>Não — apenas repassa chamadas de modelo [2]</td>
+<td>Sim — o agente executa ferramentas localmente [2]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="3-seguranca-operacional-e-boas-praticas-em-producao" class="scroll-mt-24 group flex items-center justify-between">3. Segurança Operacional e Boas Práticas em Produção <a href="#3-seguranca-operacional-e-boas-praticas-em-producao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Centralizar credenciais exige disciplina de segurança. A arquitetura do Hermes implementa proteções importantes por padrão:</p>
+<ul>
+<li><strong>Token de curta duração e quarentena automática:</strong> Em vez de manter chaves estáticas de API no <code>.env</code>, o Hermes gera JWTs efêmeros a partir de <code>~/.hermes/auth.json</code> [5]. Se um refresh token for revogado no portal, ele entra em quarentena local para evitar tempestades de erros <code>401</code> e solicita reautenticação limpa (<code>hermes auth add nous</code>) [5].</li>
+<li><strong>Proteção contra requisições de navegador no Proxy:</strong> Por padrão, <code>hermes proxy start</code> escuta apenas em <code>127.0.0.1</code>, recusa cabeçalhos <code>Host</code> estranhos e bloqueia requisições de páginas web (<code>Origin</code> externo ou <code>Sec-Fetch-Site</code> cross-site/same-site) [2].</li>
+<li><strong>Cuidado ao expor na rede local (<code>--host 0.0.0.0</code>):</strong> Como o proxy aceita qualquer token bearer por design, jamais o exponha na internet aberta sem VPN, firewall ou proxy reverso com autenticação real [2].</li>
+<li><strong>Uso correto dos modelos Hermes 4:</strong> Modelos como <code>Hermes-4-70B</code> e <code>Hermes-4-405B</code> possuem ótimo custo-benefício no Portal para pesquisa, raciocínio e uso via <code>hermes proxy</code> em ferramentas externas; porém, para o loop rápido de <em>tool calling</em> dentro do próprio agente, a Nous Research recomenda selecionar modelos agênticos dedicados via <code>/model</code> (como Claude Sonnet 4.6, GPT-5.5 Pro, Gemini ou DeepSeek) [5].</li>
+<li><strong>Múltiplas contas por conector:</strong> Ao conectar aplicativos externos pelo Tool Gateway (como duas contas Gmail <code>work</code> e <code>home</code>), o Hermes exige nomes explícitos (<code>connector_alias</code>), evitando envios acidentais pela conta errada [3].</li>
+</ul>
+<hr>
+<h2 id="checklist-rapido-de-implantacao" class="scroll-mt-24 group flex items-center justify-between">Checklist Rápido de Implantação <a href="#checklist-rapido-de-implantacao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<ol>
+<li>Atualize seu ambiente para a versão mais recente (<code>hermes update</code>) para contar com o suporte aos novos modelos e correções da série <strong>v0.23.4</strong> [1][4].</li>
+<li>Execute <code>hermes setup --portal</code> (ou <code>hermes portal</code> em instalações existentes) para autenticar sua conta via OAuth [5].</li>
+<li>Rode <code>hermes tools</code> para definir quais capacidades (busca web, imagem, TTS, navegador) usarão a assinatura unificada e quais permanecerão com chaves próprias [3].</li>
+<li>Valide o estado da arquitetura com <code>hermes portal info</code> e <code>hermes proxy status</code> [2][5].</li>
+<li>Se utilizar Open WebUI, OpenViking ou Karakeep no mesmo servidor, suba <code>hermes proxy start</code> (via <code>tmux</code> ou <code>systemd</code>) e aponte os clientes para <code>http://127.0.0.1:8645/v1</code> [2].</li>
+</ol>
+<hr>
+<p>Quer dominar a construção, governança e otimização de custos de agentes de IA em produção real? Conheça a comunidade e o treinamento completo em <strong><a href="https://inteligenciaagentica.com.br">inteligenciaagentica.com.br</a></strong>.</p>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://github.com/NousResearch/hermes-agent/releases">https://github.com/NousResearch/hermes-agent/releases</a> — Releases · NousResearch/hermes-agent (v0.23.4)<br>[2] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/subscription-proxy">https://hermes-agent.nousresearch.com/docs/user-guide/features/subscription-proxy</a> — Subscription Proxy | Hermes Agent<br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/tool-gateway">https://hermes-agent.nousresearch.com/docs/user-guide/features/tool-gateway</a> — Nous Tool Gateway | Hermes Agent<br>[4] <a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.4">https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.4</a> — Release Hermes Agent v0.23.4<br>[5] <a href="https://hermes-agent.nousresearch.com/docs/integrations/nous-portal">https://hermes-agent.nousresearch.com/docs/integrations/nous-portal</a> — Nous Portal | Hermes Agent</p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/subscription-proxy-tool-gateway-uma-assinatura-hermes-agent.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Plugin Catalog e Hermes Marketplace: Como Expandir Agentes de IA com Segurança e Zero Gambiarra]]></title>

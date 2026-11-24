@@ -19,6 +19,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Subscription Proxy e Nous Tool Gateway: Como Unificar Modelos, Busca Web, Voz e Navegadores em Uma Única Assinatura](https://inteligenciaagentica.com.br/blog/subscription-proxy-tool-gateway-uma-assinatura-hermes-agent)
+- **Data de Publicação:** 2026-11-24
+- **Tags:** Hermes Agent, Subscription Proxy, Nous Tool Gateway, Agentes de IA, FinOps, Segurança, Negócios
+- **Resumo:** Aprenda a eliminar a proliferação de faturas e chaves de API usando o Nous Tool Gateway e o Subscription Proxy (hermes proxy) para centralizar mais de 300 modelos, busca web, geração de imagens, voz e navegador em nuvem em um único login OAuth.
+- **URL:** https://inteligenciaagentica.com.br/blog/subscription-proxy-tool-gateway-uma-assinatura-hermes-agent
+
 ### [Plugin Catalog e Hermes Marketplace: Como Expandir Agentes de IA com Segurança e Zero Gambiarra](https://inteligenciaagentica.com.br/blog/plugin-catalog-hermes-marketplace-extensibilidade-segura)
 - **Data de Publicação:** 2026-11-23
 - **Tags:** Hermes Agent, Plugin Catalog, Segurança, MCP, DevOps, Automação

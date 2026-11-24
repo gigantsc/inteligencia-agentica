@@ -156,6 +156,19 @@ TARGETS = {
         "title2": "Conselho de IAs no Hermes",
         "subtitle": "Múltiplas perspectivas, +6 pontos no HermesBench e cache intacto",
     },
+    "subscription-proxy": {
+        "file": "subscription-proxy-tool-gateway-uma-assinatura-hermes-agent.jpg",
+        "prompt": ESTILO_BASE + (
+            "A classical Greco-Roman white marble bust of Hermes with winged helmet at the center of a "
+            "dark obsidian temple, holding a luminous cyan-and-gold crystalline portal ring that unifies "
+            "five glowing holographic fiber-optic conduits (web search, acoustic voice wave, image prism, "
+            "cloud browser window, and local API gateway), symbolizing one unified subscription."
+        ),
+        "kicker": "INTELIGÊNCIA AGÊNTICA  •  CONSOLIDAÇÃO DE CUSTOS",
+        "title1": "Subscription Proxy & Gateway:",
+        "title2": "1 Assinatura, Todas as Ferramentas",
+        "subtitle": "Unifique LLMs, busca web, voz, imagens e navegador sem espalhar chaves",
+    },
 }
 
 
