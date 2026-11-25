@@ -4308,11 +4308,12 @@ summary {
       channelUrl: 'https://whatsapp.com/channel/0029Vb6EWVUJENyBISoLIj0Q',
       whatsappNumber: '5547984331647',
       enableListmonk: true,
+      listmonkEndpoint: 'https://email.inteligenciaagentica.com.br/subscription/form',
       listmonkListUuid: '7b9cdf5f-ee62-45cf-98ce-4b1753c8554c'
     };
     (function () {
       var boot = function () {
-        import('/static/js/avatar-widget-v3.js')
+        import('/static/js/avatar-widget-v4.js')
           .then(function (m) { m.initAvatarWidget(); })
           .catch(function (err) { console.warn('[avatar-widget] indisponível:', err); });
       };
