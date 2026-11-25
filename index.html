@@ -4302,6 +4302,24 @@ summary {
       });
     });
   </script>
+  <!-- Avatar Interativo (Hermes Assistant) — carregamento aditivo pós-load -->
+  <script>
+    window.iaAvatarConfig = {
+      channelUrl: 'https://chat.whatsapp.com/HcdMbPrvi0O3jmd62vmB5n',
+      whatsappNumber: '5547984331647',
+      enableListmonk: true,
+      listmonkListUuid: '7b9cdf5f-ee62-45cf-98ce-4b1753c8554c'
+    };
+    (function () {
+      var boot = function () {
+        import('/static/js/avatar-widget-v1.js')
+          .then(function (m) { m.initAvatarWidget(); })
+          .catch(function (err) { console.warn('[avatar-widget] indisponível:', err); });
+      };
+      if (document.readyState === 'complete') boot();
+      else window.addEventListener('load', boot, { once: true });
+    })();
+  </script>
   <!-- Mouse Swarm Reveal — enxame de cursores montando a Hero Section.
        Script clássico (roda durante a análise do HTML) com import dinâmico do módulo.
        Nenhum conteúdo é escondido por CSS: se algo falhar, a página segue normal. -->
