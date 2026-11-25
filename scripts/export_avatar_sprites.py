@@ -26,6 +26,8 @@ SPRITE_MAP = {
 for i in range(8):
     SPRITE_MAP[f"breathe-{i}.webp"] = f"breathe-{i}.png"
     SPRITE_MAP[f"talk-{i}.webp"] = f"talk-0-{i}.png"
+    SPRITE_MAP[f"walk-left-{i}.webp"] = f"walk-left-{i}.png"
+    SPRITE_MAP[f"walk-right-{i}.webp"] = f"walk-right-{i}.png"
 for i in range(6):
     SPRITE_MAP[f"approve-{i}.webp"] = f"approve-{i}.png"
 
