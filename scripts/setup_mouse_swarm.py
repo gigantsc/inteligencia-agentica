@@ -89,8 +89,9 @@ HEAD_CSS = """
     }
 """
 
-HEAD_LINK = """  <!-- Mouse Swarm Reveal: pré-carrega o módulo do enxame de cursores -->
+HEAD_LINK = """  <!-- Mouse Swarm Reveal: pré-carrega os módulos do enxame de cursores -->
   <link rel="modulepreload" href="/static/js/mouse-swarm-v3.js?v=20261125">
+  <link rel="modulepreload" href="/static/js/page-swarm-v1.js">
 """
 
 # ------------------------------------------------- controles (fora dos alvos)
@@ -137,8 +138,9 @@ INIT_SCRIPT = """  <!-- Mouse Swarm Reveal — enxame de cursores montando a Her
         try {
           const { createSwarmReveal } = await import('/static/js/mouse-swarm-v3.js?v=20261125');
           const narrow = window.matchMedia('(max-width: 767px)').matches;
+          const heroRoot = document.querySelector('main > section') || document;
           const reveal = createSwarmReveal({
-            root: document,
+            root: heroRoot,
             selector: '[data-swarm-item]',
             cursors: narrow ? 10 : 16,
             interval: narrow ? 220 : 240,
@@ -186,6 +188,12 @@ INIT_SCRIPT = """  <!-- Mouse Swarm Reveal — enxame de cursores montando a Her
           reveal.start();
           track({ swarm_action: 'start', swarm_items: reveal.getState().total });
           window.__mouseSwarm = reveal;  // handle de inspeção (progresso/estado)
+          try {
+            const { initScrollSwarm } = await import('/static/js/page-swarm-v1.js');
+            window.__pageSwarm = initScrollSwarm({ createSwarmReveal, narrow, track });
+          } catch (scrollErr) {
+            console.warn('[page-swarm] scroll indisponível:', scrollErr);
+          }
         } catch (error) {
           console.warn('[mouse-swarm] animação indisponível:', error);
           if (elControls) elControls.hidden = true;
@@ -285,10 +293,12 @@ def verify(html):
     css_at = html.find("#swarmControls {")
     assert css_at != -1 and css_at < html.find("</head>"), "CSS dos controles deve ficar no <head>"
     assert 'rel="modulepreload" href="/static/js/mouse-swarm-v3.js?v=20261125"' in html, "faltou o modulepreload do asset com URL nova"
+    assert 'rel="modulepreload" href="/static/js/page-swarm-v1.js"' in html, "faltou o modulepreload do page-swarm-v1.js"
     assert "forceMotion: true" in html, "a Hero não pode sofrer skip pelo prefers-reduced-motion"
     assert "swarm=1" in html, "faltou o opt-in ?swarm=1"
     assert '<script type="module">' not in html, "inicializador deve ser script clássico"
     assert "createSwarmReveal" in html and "mouse-swarm-v3.js?v=20261125" in html
+    assert "initScrollSwarm" in html and "page-swarm-v1.js" in html
     for leak in ("text-balance data-swarm-item", "mb-3 data-swarm-item", "text-[11px] data-swarm-item"):
         assert leak not in html, "atributos injetados dentro de class: %s" % leak
     for name in ("swarmControls", "swarmPause", "swarmSkip", "swarmReplay", "swarmProgress", "swarmStatus"):
@@ -323,7 +333,7 @@ def main():
         print("modulepreload injetado")
     elif HEAD_LINK not in html:
         html, n = re.subn(
-            r'  <!-- Mouse Swarm Reveal:[^>]*-->\s*<link rel="modulepreload" href="/static/js/mouse-swarm[^"]*">\s*',
+            r'  <!-- Mouse Swarm Reveal:[^>]*-->\s*(?:<link rel="modulepreload" href="/static/js/[^"]*">\s*)+',
             HEAD_LINK,
             html,
             count=1,

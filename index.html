@@ -2718,8 +2718,9 @@ summary {
       #swarmControls:not([hidden]) { position: fixed; right: 12px; bottom: 150px; left: auto; }
     }
   </style>
-  <!-- Mouse Swarm Reveal: pré-carrega o módulo do enxame de cursores -->
+  <!-- Mouse Swarm Reveal: pré-carrega os módulos do enxame de cursores -->
   <link rel="modulepreload" href="/static/js/mouse-swarm-v3.js?v=20261125">
+  <link rel="modulepreload" href="/static/js/page-swarm-v1.js">
 </head>
 <body class="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--orange)] selection:text-white antialiased overflow-x-clip">
   <!-- Google Tag Manager (noscript) -->
@@ -4332,8 +4333,9 @@ summary {
         try {
           const { createSwarmReveal } = await import('/static/js/mouse-swarm-v3.js?v=20261125');
           const narrow = window.matchMedia('(max-width: 767px)').matches;
+          const heroRoot = document.querySelector('main > section') || document;
           const reveal = createSwarmReveal({
-            root: document,
+            root: heroRoot,
             selector: '[data-swarm-item]',
             cursors: narrow ? 10 : 16,
             interval: narrow ? 220 : 240,
@@ -4381,6 +4383,12 @@ summary {
           reveal.start();
           track({ swarm_action: 'start', swarm_items: reveal.getState().total });
           window.__mouseSwarm = reveal;  // handle de inspeção (progresso/estado)
+          try {
+            const { initScrollSwarm } = await import('/static/js/page-swarm-v1.js');
+            window.__pageSwarm = initScrollSwarm({ createSwarmReveal, narrow, track });
+          } catch (scrollErr) {
+            console.warn('[page-swarm] scroll indisponível:', scrollErr);
+          }
         } catch (error) {
           console.warn('[mouse-swarm] animação indisponível:', error);
           if (elControls) elControls.hidden = true;
