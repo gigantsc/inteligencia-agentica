@@ -169,6 +169,19 @@ TARGETS = {
         "title2": "1 Assinatura, Todas as Ferramentas",
         "subtitle": "Unifique LLMs, busca web, voz, imagens e navegador sem espalhar chaves",
     },
+    "tool-search": {
+        "file": "tool-search-tiered-disclosure-mcp-hermes-agent.jpg",
+        "prompt": ESTILO_BASE + (
+            "A classical Greco-Roman white marble bust of Hermes with winged helmet at the center of a "
+            "dark obsidian archive, holding a glowing golden magnifying prism that illuminates three "
+            "floating crystalline MCP tool tablets out of hundreds of dim holographic tool cards arranged "
+            "in tiered orbital rings, connected by electric cyan (#00E5FF) search filaments."
+        ),
+        "kicker": "INTELIGÊNCIA AGÊNTICA  •  ESCALA & EFICIÊNCIA",
+        "title1": "Tool Search & Tiered Disclosure:",
+        "title2": "3.000 Ferramentas Sem Estourar Tokens",
+        "subtitle": "Carregamento sob demanda, BM25 e Connectors sem poluir o contexto",
+    },
 }
 
 

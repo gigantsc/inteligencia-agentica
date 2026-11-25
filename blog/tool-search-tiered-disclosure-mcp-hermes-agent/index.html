@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <!-- Google Consent Mode V2 Default -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'granted',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', false);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M5JDK6W4');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18FQCREKV5"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-18FQCREKV5');
+  </script>
+
+
+  <!-- Cookie Consent Banner & Mode V2 Controller -->
+  <link rel="stylesheet" href="/static/cookieconsent-v3.css">
+  <script>
+    window.cookieconsentConfig = {
+      gtmId: 'GTM-M5JDK6W4',
+      autoLoadGtm: false
+    };
+  </script>
+  <script defer src="/static/cookieconsent-v2.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tool Search e Tiered Disclosure: Como Conectar 3.000 Ferramentas MCP Sem Estourar o Contexto nem a Fatura | Inteligência Agêntica</title>
+  <meta name="description" content="Entenda como o Tool Search e o Tiered Disclosure do Hermes Agent substituem milhares de schemas JSON por três ferramentas-ponte (tool_search, tool_describe e tool_call), usando busca BM25 e degradação inteligente em 3 camadas para escalar servidores MCP e Connectors sem desperdiçar tokens.">
+  <link rel="canonical" href="https://inteligenciaagentica.com.br/blog/tool-search-tiered-disclosure-mcp-hermes-agent">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inteligenciaagentica.com.br/blog/tool-search-tiered-disclosure-mcp-hermes-agent">
+  <meta property="og:title" content="Tool Search e Tiered Disclosure: Como Conectar 3.000 Ferramentas MCP Sem Estourar o Contexto nem a Fatura">
+  <meta property="og:description" content="Entenda como o Tool Search e o Tiered Disclosure do Hermes Agent substituem milhares de schemas JSON por três ferramentas-ponte (tool_search, tool_describe e tool_call), usando busca BM25 e degradação inteligente em 3 camadas para escalar servidores MCP e Connectors sem desperdiçar tokens.">
+  <meta property="og:image" content="https://inteligenciaagentica.com.br/static/images/tool-search-tiered-disclosure-mcp-hermes-agent.jpg">
+  <meta property="og:site_name" content="Inteligência Agêntica">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://inteligenciaagentica.com.br/blog/tool-search-tiered-disclosure-mcp-hermes-agent">
+  <meta name="twitter:title" content="Tool Search e Tiered Disclosure: Como Conectar 3.000 Ferramentas MCP Sem Estourar o Contexto nem a Fatura">
+  <meta name="twitter:description" content="Entenda como o Tool Search e o Tiered Disclosure do Hermes Agent substituem milhares de schemas JSON por três ferramentas-ponte (tool_search, tool_describe e tool_call), usando busca BM25 e degradação inteligente em 3 camadas para escalar servidores MCP e Connectors sem desperdiçar tokens.">
+  <meta name="twitter:image" content="https://inteligenciaagentica.com.br/static/images/tool-search-tiered-disclosure-mcp-hermes-agent.jpg">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070A',
+            'obsidian-light': '#0E0E14',
+            'obsidian-card': '#111118',
+            magenta: '#C000FF',
+            'magenta-dim': '#8B00B8',
+            ciano: '#00E5FF',
+            'ciano-dim': '#009DB8',
+            ouro: '#DFBA6B',
+            'ouro-light': '#F0D48A',
+            'ouro-dark': '#B8952E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <!-- Prism Syntax Theme -->
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #07070A; color: #E0E0E6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    ::selection { background: rgba(192, 0, 255, 0.35); color: #fff; }
+    .glass { background: rgba(17, 17, 24, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); }
+    .glass-card { background: rgba(14, 14, 20, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+    .glass-card:hover { border-color: rgba(0, 229, 255, 0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); }
+    .gradient-text { background: linear-gradient(135deg, #C000FF 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text-gold { background: linear-gradient(135deg, #DFBA6B 0%, #F0D48A 40%, #DFBA6B 70%, #B8952E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gold { background: linear-gradient(135deg, #B8952E 0%, #DFBA6B 35%, #F0D48A 50%, #DFBA6B 65%, #B8952E 100%); color: #07070A; font-weight: 700; transition: all 0.2s ease; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(223, 186, 107, 0.35); }
+    .hero-glow { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.16; pointer-events: none; }
+    .top-bar { background: rgba(7, 7, 10, 0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Placa Estúdio ON AIR / AO VIVO */
+    .on-air-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.375rem;
+      background: #7f1d1d;
+      border: 1.5px solid #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 8px rgba(239, 68, 68, 0.3);
+      color: #fee2e2;
+      font-size: 0.6875rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: onAirPulse 1.8s infinite ease-in-out;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .on-air-badge:hover {
+      transform: scale(1.05);
+    }
+    .on-air-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444, 0 0 14px #ef4444;
+      animation: onAirDot 1.8s infinite ease-in-out;
+    }
+    @keyframes onAirPulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 0 6px rgba(239, 68, 68, 0.3);
+        border-color: #ef4444;
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(239, 68, 68, 0.85), inset 0 0 12px rgba(239, 68, 68, 0.6);
+        border-color: #f87171;
+      }
+    }
+    @keyframes onAirDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    
+    /* Article typography styling */
+    .prose-custom { font-size: 1.05rem; line-height: 1.8; color: #D1D5DB; }
+    .prose-custom p { margin-bottom: 1.5rem; }
+    .prose-custom h1 { font-size: 2.25rem; font-weight: 900; color: #fff; margin-top: 2.5rem; margin-bottom: 1.25rem; line-height: 1.2; }
+    .prose-custom h2 { font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; }
+    .prose-custom h3 { font-size: 1.25rem; font-weight: 700; color: #00E5FF; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose-custom ul, .prose-custom ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    .prose-custom ul { list-style-type: disc; }
+    .prose-custom ol { list-style-type: decimal; }
+    .prose-custom li { margin-bottom: 0.5rem; }
+    .prose-custom strong { color: #fff; font-weight: 700; }
+    .prose-custom a { color: #00E5FF; text-decoration: underline; text-underline-offset: 3px; }
+    .prose-custom a:hover { color: #F0D48A; }
+    .prose-custom blockquote { border-left: 4px solid #00E5FF; background: rgba(0, 229, 255, 0.05); padding: 1.25rem 1.5rem; margin: 1.75rem 0; border-radius: 0 0.75rem 0.75rem 0; color: #E5E7EB; }
+    .prose-custom blockquote p { margin-bottom: 0; }
+    .prose-custom code:not(pre code) { background: rgba(255, 255, 255, 0.08); color: #00E5FF; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+    .prose-custom pre { background: #0A0A0F !important; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.25rem; margin: 1.75rem 0; overflow-x: auto; }
+    .prose-custom pre code { color: #E0E0E6; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; }
+    .prose-custom table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.95rem; }
+    .prose-custom th { background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .prose-custom td { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .prose-custom tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    .prose-custom hr { border-color: rgba(255, 255, 255, 0.08); margin: 2.5rem 0; }
+  </style>
+
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Tool Search e Tiered Disclosure: Como Conectar 3.000 Ferramentas MCP Sem Estourar o Contexto nem a Fatura","description":"Entenda como o Tool Search e o Tiered Disclosure do Hermes Agent substituem milhares de schemas JSON por três ferramentas-ponte (tool_search, tool_describe e tool_call), usando busca BM25 e degradação inteligente em 3 camadas para escalar servidores MCP e Connectors sem desperdiçar tokens.","image":"https://inteligenciaagentica.com.br/static/images/tool-search-tiered-disclosure-mcp-hermes-agent.jpg","datePublished":"2026-11-25","dateModified":"2026-11-25","author":{"@type":"Person","name":"Jean Pierre Schramm","url":"https://linkedin.com/in/jeanpierreschramm"},"publisher":{"@type":"Organization","name":"Inteligência Agêntica","url":"https://inteligenciaagentica.com.br","logo":{"@type":"ImageObject","url":"https://inteligenciaagentica.com.br/static/logos.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://inteligenciaagentica.com.br/blog/tool-search-tiered-disclosure-mcp-hermes-agent"},"keywords":"tool search hermes agent, tiered disclosure mcp, reduzir tokens mcp, tool_search tool_describe tool_call, inteligencia agentica"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://inteligenciaagentica.com.br"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://inteligenciaagentica.com.br/blog"},{"@type":"ListItem","position":3,"name":"Tool Search e Tiered Disclosure: Como Conectar 3.000 Ferramentas MCP Sem Estourar o Contexto nem a Fatura","item":"https://inteligenciaagentica.com.br/blog/tool-search-tiered-disclosure-mcp-hermes-agent"}]}]</script>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5JDK6W4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- TOP NAVBAR -->
+  <nav class="top-bar fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
+      <a href="/" class="flex items-center group cursor-pointer" title="Voltar para a Página Inicial">
+        <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-11 sm:h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="/" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Início</a>
+
+        <!-- Dropdown Soluções -->
+        <div class="relative group">
+          <button type="button" class="text-sm font-semibold text-gray-300 group-hover:text-white transition-colors flex items-center gap-1.5 py-2 focus:outline-none cursor-pointer">
+            <span>Soluções</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-ciano group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+          
+          <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 absolute top-full left-0 w-80 pt-2 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="glass rounded-2xl p-3 border border-white/10 bg-obsidian-card/95 backdrop-blur-2xl shadow-2xl shadow-black/80 space-y-1">
+              <!-- Item 1: CineMaker -->
+              <a href="/cinemaker" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-magenta/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-magenta/15 border border-magenta/30 flex items-center justify-center text-magenta flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="video" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-magenta-300 transition-colors">CineMaker</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Máquina de criar vídeos longos com IA em 1 clique sem assinatura no Flow.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: MediaFlowMZ -->
+              <a href="/mediaflowmz" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ciano/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ciano/15 border border-ciano/30 flex items-center justify-center text-ciano flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="radio" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ciano transition-colors">MediaFlowMZ</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Lives & IA</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">Sua live no TikTok Shop e vídeos com IA rodando no automático.</p>
+                </div>
+              </a>
+
+              <!-- Item 2: Comunidade Inteligência Agêntica -->
+              <a href="/#oferta" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-ouro/25 transition-all group/item">
+                <div class="w-9 h-9 rounded-lg bg-ouro/15 border border-ouro/30 flex items-center justify-center text-ouro flex-shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform">
+                  <i data-lucide="crown" class="w-4 h-4"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white group-hover/item:text-ouro-light transition-colors">Comunidade Agêntica</span>
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-ciano/20 text-ciano border border-ciano/30">Ecossistema</span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 leading-snug mt-0.5">4 encontros semanais ao vivo, códigos prontos e bunker de agentes 24/7.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="on-air-badge" title="Encontros ao Vivo Toda Quinta">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <a href="/cases" class="text-sm font-semibold text-gray-300 hover:text-white transition-colors">Cases</a>
+        <a href="/blog" class="text-sm font-bold text-ciano border-b-2 border-ciano pb-0.5 transition-colors">Blog</a>
+        <a href="/#oferta" class="btn-gold px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide">
+          Acessar Comunidade
+        </a>
+      </div>
+
+      <!-- Mobile Actions (visible on mobile, hidden on md+) -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="/ao-vivo" class="on-air-badge text-[10px] py-1 px-2.5" title="Encontros ao Vivo">
+          <span class="on-air-dot"></span>
+          AO VIVO
+        </a>
+        <button id="mobileMenuBtn" type="button" class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl focus:outline-none transition-colors border border-white/10" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="w-6 h-6 block menu-open-icon"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden menu-close-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-obsidian-card/95 backdrop-blur-2xl px-5 py-6 space-y-4 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-2">
+        <a href="/" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="home" class="w-4 h-4 text-gray-400"></i>
+            <span>Início</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <!-- Bloco Soluções Mobile -->
+        <div class="rounded-xl bg-white/[0.02] border border-white/5 p-2">
+          <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-ciano"></i>
+            <span>Soluções & Produtos</span>
+          </div>
+          <div class="space-y-1 mt-1">
+            <a href="/cinemaker" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-magenta-300 hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="video" class="w-4 h-4 text-magenta"></i>
+                <span>CineMaker (Vídeos IA)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ouro/20 text-ouro border border-ouro/30">Novo</span>
+            </a>
+            <a href="/mediaflowmz" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="radio" class="w-4 h-4 text-ciano"></i>
+                <span>MediaFlowMZ (Lives TikTok)</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Auto</span>
+            </a>
+            <a href="/#oferta" class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:text-ouro transition-colors">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="crown" class="w-4 h-4 text-ouro"></i>
+                <span>Comunidade Inteligência Agêntica</span>
+              </span>
+              <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-ciano/20 text-ciano border border-ciano/30">Membros</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="/ao-vivo" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-red-400 hover:text-red-300 bg-red-950/30 border border-red-800/40 hover:bg-red-950/50 transition-colors">
+          <span class="flex items-center gap-3">
+            <span class="on-air-dot"></span>
+            <span>Encontros ao Vivo</span>
+          </span>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider bg-red-600/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded">Toda Quinta</span>
+        </a>
+
+        <a href="/cases" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-gray-200 hover:text-ciano hover:bg-white/5 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-gray-400"></i>
+            <span>Cases de Uso</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500"></i>
+        </a>
+
+        <a href="/blog" class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-ciano bg-white/5 border border-ciano/20 transition-colors">
+          <span class="flex items-center gap-3">
+            <i data-lucide="newspaper" class="w-4 h-4 text-ciano"></i>
+            <span>Blog & Artigos</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-ciano"></i>
+        </a>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <a href="/#oferta" class="mobile-nav-link w-full btn-gold py-3.5 px-5 rounded-xl font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-ouro/20">
+          <span>Acessar Comunidade</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN BODY -->
+  <main class="pt-20 flex-grow">
+    
+  <div class="relative py-10 overflow-hidden">
+    <div class="hero-glow bg-magenta/40 -top-40 right-0 w-[500px] h-[500px] absolute"></div>
+    <div class="hero-glow bg-ciano/30 top-1/2 -left-40 w-[500px] h-[500px] absolute"></div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Início</a>
+        <span>&rsaquo;</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span>&rsaquo;</span>
+        <span class="text-ciano truncate max-w-[200px] sm:max-w-none">Tool Search e Tiered Disclosure: Como Conectar 3.000 Ferramentas MCP Sem Estourar o Contexto nem a Fatura</span>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="mb-10 text-center sm:text-left">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <a href="/tags/agentes-de-ia" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Agentes de IA</a><a href="/tags/mcp" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#MCP</a><a href="/tags/tool-search" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Tool Search</a><a href="/tags/finops" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#FinOps</a><a href="/tags/hermes-agent" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Hermes Agent</a><a href="/tags/negocios" class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-ciano/10 text-ciano border border-ciano/20 hover:bg-ciano/20 transition-colors">#Negócios</a>
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+          Tool Search e Tiered Disclosure: Como Conectar 3.000 Ferramentas MCP Sem Estourar o Contexto nem a Fatura
+        </h1>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/10 text-xs text-gray-400">
+          <div class="flex items-center gap-3">
+            <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-10 h-10 rounded-full border border-white/10">
+            <div>
+              <p class="font-bold text-white text-sm">Jean Pierre Schramm</p>
+              <p class="text-[11px] text-gray-400">Fundador da JePierre & Especialista em Agentes de IA</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-ciano"></i> 2026-11-25</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-ouro"></i> 8 min de leitura</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      
+      <div class="mb-12 rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
+        <img src="https://inteligenciaagentica.com.br/static/images/tool-search-tiered-disclosure-mcp-hermes-agent.jpg" alt="Tool Search e Tiered Disclosure: Como Conectar 3.000 Ferramentas MCP Sem Estourar o Contexto nem a Fatura" class="w-full h-auto max-h-[460px] object-cover">
+      </div>
+      
+
+      <!-- Table of Contents (collapsible for clean UX, preserves jump-links for SEO) -->
+      
+
+      <!-- Main Article Content -->
+      <div class="prose-custom">
+        <blockquote>
+<p><strong>Em resumo:</strong> Conectar dezenas de servidores MCP e plugins a um agente corporativo costuma gerar um gargalo silencioso: os schemas JSON de todas as ferramentas são enviados em cada turno da conversa, consumindo dezenas de milhares de tokens antes mesmo do usuário fazer uma pergunta.[1] Com o <strong>Tool Search</strong> (<code>tool_search</code>, <code>tool_describe</code>, <code>tool_call</code>) e o <strong>Tiered Disclosure</strong> do Hermes Agent, o agente mantém apenas as ferramentas essenciais carregadas diretamente e descobre, descreve e invoca ferramentas MCP, plugins e Connectors remotos sob demanda — reduzindo drasticamente o custo de contexto mesmo em catálogos com milhares de endpoints.[1][3]</p>
+</blockquote>
+<hr>
+<h2 id="o-gargalo-oculto-das-empresas-que-escalam-agentes-com-mcp" class="scroll-mt-24 group flex items-center justify-between">O Gargalo Oculto das Empresas que Escalam Agentes com MCP <a href="#o-gargalo-oculto-das-empresas-que-escalam-agentes-com-mcp" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando uma empresa começa a integrar seu agente de IA ao mundo real via <strong>MCP (Model Context Protocol)</strong> — conectando GitHub, Slack, CRM, banco de dados, sistema de tickets e infraestrutura em nuvem — o primeiro protótipo funciona perfeitamente.[3]</p>
+<p>O problema aparece na escala. Cada ferramenta MCP exposta ao modelo carrega um schema JSON com nome, descrição e definição de parâmetros.[1] Em servidores corporativos amplos, esse peso explode rapidamente: segundo a documentação oficial do Hermes Agent, apenas a superfície plana da API do servidor MCP da Cloudflare reúne cerca de <strong>3.300 ferramentas</strong>, cujos nomes sozinhos já consomem aproximadamente <strong>32.000 tokens</strong>.[1]</p>
+<p>Enviar todos esses schemas em <strong>todo turno de conversa</strong> gera três impactos diretos na operação:</p>
+<ol>
+<li><strong>Custo inflado por mensagem:</strong> o prefixo de ferramentas é faturado repetidamente a cada interação.[1]</li>
+<li><strong>Degradação de precisão:</strong> modelos perdem foco quando precisam escolher entre centenas de definições concorrentes.[1]</li>
+<li><strong>Estouro de janela de contexto:</strong> sobra menos espaço útil para documentos, histórico de atendimento e código.[1]</li>
+</ol>
+<hr>
+<h2 id="como-funciona-o-tool-search-no-hermes-agent" class="scroll-mt-24 group flex items-center justify-between">Como Funciona o Tool Search no Hermes Agent <a href="#como-funciona-o-tool-search-no-hermes-agent" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O <strong>Tool Search</strong> é a camada opcional de divulgação progressiva (<em>progressive disclosure</em>) do Hermes Agent para resolver esse problema.[1] Ativado por padrão (<code>enabled: auto</code>), ele mantém o conjunto central de ferramentas de trabalho carregado diretamente — como <code>terminal</code>, <code>read_file</code>, <code>write_file</code>, <code>patch</code>, <code>search_files</code>, <code>memory</code>, <code>web_search</code>, <code>web_extract</code>, <code>execute_code</code> e <code>delegate_task</code> — e substitui ferramentas MCP, plugins não centrais e ferramentas frias listadas em <code>tools.tool_search.defer</code> por apenas <strong>três ferramentas-ponte</strong>:[1]</p>
+<ul>
+<li><strong><code>tool_search(queries, limit?)</code></strong>: pesquisa o catálogo de ferramentas adiadas (<em>deferred</em>) aceitando múltiplas consultas em paralelo.[1]</li>
+<li><strong><code>tool_describe(names)</code></strong>: carrega o schema completo de parâmetros apenas das ferramentas selecionadas.[1]</li>
+<li><strong><code>tool_call(calls)</code></strong>: invoca a ferramenta adiada após o carregamento do schema.[1]</li>
+</ul>
+<pre><code class="language-text">Fluxo de Descoberta e Execução (Tool Search)
+───────────────────────────────────────────────────────────────────
+[1] Usuário pede: &quot;Abra uma issue no GitHub e avise no Slack&quot;
+        │
+        ▼
+[2] Modelo chama: tool_search([&quot;create github issue&quot;, &quot;send slack&quot;])
+        │  └── Índice BM25 + Snowball stemming + regra do token raro
+        ▼
+[3] Modelo chama: tool_describe([&quot;mcp_github_create_issue&quot;, &quot;mcp_slack_post&quot;])
+        │  └── Carrega APENAS os 2 schemas JSON necessários no turno
+        ▼
+[4] Modelo chama: tool_call([{name: &quot;mcp_github_create_issue&quot;, ...}])
+        │  └── Hermes &quot;desembrulha&quot; a ponte e executa hooks, aprovações
+        │      e logs com o nome REAL da ferramenta subjacente
+        ▼
+[5] Resultado retornado ao usuário sem poluir o prompt com 500 schemas
+</code></pre><p>Um detalhe arquitetural importante para auditoria e segurança: ao executar <code>tool_call</code>, o Hermes <strong>desembrulha a ponte</strong> e despacha a ferramenta real.[1] Isso significa que <em>hooks</em> pré e pós-execução, <em>guardrails</em>, pedidos de aprovação humana e o feed de atividades no CLI ou Gateway registram o nome verdadeiro da ferramenta (ex.: <code>mcp_github_create_issue</code>), e não um genérico <code>tool_call</code>.[1]</p>
+<hr>
+<h2 id="tiered-disclosure-degradacao-inteligente-em-3-camadas" class="scroll-mt-24 group flex items-center justify-between">Tiered Disclosure: Degradação Inteligente em 3 Camadas <a href="#tiered-disclosure-degradacao-inteligente-em-3-camadas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para equilibrar economia de tokens e taxa de acerto do modelo, o Hermes não esconde tudo cegamente. Ele aplica um sistema de <strong>divulgação em camadas (<em>Tiered Disclosure</em>)</strong> recalculado dinamicamente a cada montagem da lista de ferramentas, respeitando o orçamento <code>min(threshold_pct% do contexto, listing_max_tokens)</code>:[1]</p>
+<table>
+<thead>
+<tr>
+<th>Camada (Tier)</th>
+<th>Condição de Ativação</th>
+<th>O que o Modelo Enxerga</th>
+<th>Impacto Operacional</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Tier 0</strong></td>
+<td>Nenhuma ferramenta adiada (<em>deferred</em>)</td>
+<td>Todas as ferramentas carregadas diretamente (<em>eager</em>), sem ponte.[1]</td>
+<td>Zero latência extra; ideal para conjuntos pequenos.[1]</td>
+</tr>
+<tr>
+<td><strong>Tier 1</strong></td>
+<td>A listagem do catálogo cabe no orçamento configurado</td>
+<td>Ponte + manifesto estilo <em>skills</em> (nome + descrição curta de até 60 caracteres por ferramenta, agrupados por servidor MCP).[1]</td>
+<td>O modelo já vê o nome exato na listagem e pode pular <code>tool_search</code>, indo direto para <code>tool_describe</code>.[1]</td>
+</tr>
+<tr>
+<td><strong>Tier 2</strong></td>
+<td>Mesmo apenas os nomes excedem o orçamento (ex.: Cloudflare com ~3.300 tools)</td>
+<td>Ponte + resumo de uma linha por servidor (nome do servidor + contagem de ferramentas).[1]</td>
+<td>Economia extrema de contexto; descoberta feita estritamente via <code>tool_search</code>.[1]</td>
+</tr>
+</tbody></table>
+<p>A degradação entre os tiers ocorre <strong>por servidor</strong>.[1] Se a empresa conecta um servidor gigante como Cloudflare junto com um servidor enxuto como Linear, apenas o servidor gigante colapsa para uma linha de resumo, enquanto o servidor menor preserva a listagem detalhada de suas ferramentas.[1]</p>
+<p>Por que manter essa listagem no Tier 1? Testes comparativos citados na documentação mostraram que, sem visibilidade mínima, modelos tendem a recorrer a ferramentas visíveis (como rodar <code>gh</code> no terminal) ou afirmar que uma capacidade não existe em vez de pesquisar.[1] Com o manifesto resumido, a taxa de sucesso iguala o carregamento completo (<em>eager</em>) custando muito menos tokens.[1]</p>
+<hr>
+<h2 id="motor-de-busca-bm25-stemming-e-regra-do-token-mais-raro" class="scroll-mt-24 group flex items-center justify-between">Motor de Busca BM25, Stemming e Regra do Token Mais Raro <a href="#motor-de-busca-bm25-stemming-e-regra-do-token-mais-raro" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Internamente, o <code>tool_search</code> não faz uma busca ingênua por substring. Ele executa um motor <strong>BM25</strong> sobre o nome da ferramenta, o servidor de origem, a descrição e os nomes dos parâmetros, aplicando <strong>Snowball stemming</strong> (assim, buscar <code>&quot;issues&quot;</code> encontra <code>create_issue</code>).[1]</p>
+<p>Dois mecanismos evitam resultados inúteis que fazem o agente entrar em loops de tentativas:</p>
+<ul>
+<li><strong>Regra do token mais raro (<em>rarest-token rule</em>):</strong> uma ferramenta só entra nos resultados se contiver o termo mais específico da consulta (ex.: <code>gmail</code>, <code>github</code> ou <code>incident</code>, e não verbos genéricos como <code>send</code> ou <code>create</code>).[1] Se o termo mais raro não existir no catálogo, o retorno traz o grupo vazio junto com a lista de servidores conectados (<code>available_sources</code>) para o agente corrigir a busca.[1]</li>
+<li><strong>Piso de relevância (<em>relevance floor</em>):</strong> em consultas com quatro ou mais termos respondíveis, a ferramenta precisa combinar pelo menos metade deles para ser exibida — evitando falsos positivos por coincidência de uma única palavra.[1]</li>
+</ul>
+<p>Além disso, o catálogo é <strong>sem estado entre turnos</strong> (<em>stateless</em>) e <strong>restrito aos toolsets da sessão</strong>: um subagente, worker do Kanban ou sessão de gateway com permissões limitadas nunca consegue usar a ponte para descobrir ou invocar ferramentas fora do seu escopo.[1]</p>
+<hr>
+<h2 id="connectors-remotos-e-multiplas-contas-corporativas" class="scroll-mt-24 group flex items-center justify-between">Connectors Remotos e Múltiplas Contas Corporativas <a href="#connectors-remotos-e-multiplas-contas-corporativas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A mesma ponte <code>tool_search</code> / <code>tool_describe</code> / <code>tool_call</code> também acessa <strong>Connectors</strong> — ferramentas hospedadas no <strong>Nous Tool Gateway</strong> (identificadas pelo prefixo <code>connectors__&lt;connector&gt;__&lt;tool&gt;</code>).[1][3]</p>
+<p>Na prática corporativa, isso traz duas vantagens imediatas:</p>
+<ol>
+<li><strong>Busca unificada:</strong> ferramentas locais (MCPs na sua VPS) e conectores remotos passam pelo mesmo ranqueamento BM25 em uma única chamada, com <em>timeout</em> de 30 segundos para chamadas ao gateway (degradando graciosamente para resultados locais se o gateway estiver indisponível).[1]</li>
+<li><strong>Múltiplas contas por aplicativo (<code>connector_alias</code>):</strong> quando a empresa vincula duas ou mais contas do mesmo serviço (por exemplo, <code>home</code> e <code>work</code>), as ferramentas passam a expor o parâmetro <code>connector_alias</code> para direcionar exatamente em qual conta a ação deve ser executada.[1]</li>
+</ol>
+<hr>
+<h2 id="configuracao-recomendada-e-trade-offs-reais" class="scroll-mt-24 group flex items-center justify-between">Configuração Recomendada e Trade-offs Reais <a href="#configuracao-recomendada-e-trade-offs-reais" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>No arquivo <code>~/.hermes/config.yaml</code>, o comportamento pode ser ajustado com precisão conforme o perfil de custo e latência da operação:[1]</p>
+<pre><code class="language-yaml"><span class="token key atrule">tools</span><span class="token punctuation">:</span>
+  <span class="token key atrule">tool_search</span><span class="token punctuation">:</span>
+    <span class="token key atrule">enabled</span><span class="token punctuation">:</span> auto            <span class="token comment"># auto (padrão), on ou off</span>
+    <span class="token key atrule">threshold_pct</span><span class="token punctuation">:</span> <span class="token number">5</span>         <span class="token comment"># orçamento da listagem (% da janela do modelo)</span>
+    <span class="token key atrule">search_default_limit</span><span class="token punctuation">:</span> <span class="token number">5</span>  <span class="token comment"># resultados padrão por query</span>
+    <span class="token key atrule">max_search_limit</span><span class="token punctuation">:</span> <span class="token number">25</span>     <span class="token comment"># limite máximo por query</span>
+    <span class="token key atrule">listing</span><span class="token punctuation">:</span> auto            <span class="token comment"># auto, on ou off para o manifesto embutido</span>
+    <span class="token key atrule">listing_max_tokens</span><span class="token punctuation">:</span> <span class="token number">4000</span> <span class="token comment"># teto absoluto de tokens para a listagem</span>
+    <span class="token key atrule">defer</span><span class="token punctuation">:</span>                   <span class="token comment"># substitui a lista padrão; [] mantém tudo eager</span>
+      <span class="token punctuation">-</span> computer_use
+      <span class="token punctuation">-</span> session_search
+      <span class="token punctuation">-</span> image_generate
+      <span class="token punctuation">-</span> todo_list
+      <span class="token punctuation">-</span> process_manage
+      <span class="token punctuation">-</span> cronjob_manage
+      <span class="token punctuation">-</span> text_to_speech
+      <span class="token punctuation">-</span> manage_connections
+      <span class="token punctuation">-</span> manage_catalog
+</code></pre><h3 id="quando-usar-e-quando-desativar-enabled-off" class="scroll-mt-24 group flex items-center justify-between">Quando usar e quando desativar (<code>enabled: off</code>) <a href="#quando-usar-e-quando-desativar-enabled-off" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Como toda arquitetura de divulgação progressiva, existem <em>trade-offs</em> reais que o gestor técnico precisa considerar:[1]</p>
+<table>
+<thead>
+<tr>
+<th>Cenário</th>
+<th>Recomendação</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Múltiplos MCPs / catálogos médios e grandes</strong></td>
+<td>Manter <code>enabled: auto</code></td>
+<td>Economiza milhares de tokens por turno e evita poluição da janela de contexto.[1]</td>
+</tr>
+<tr>
+<td><strong>Conjunto pequeno (ex.: 5 a 10 tools fixas)</strong></td>
+<td>Avaliar <code>enabled: off</code></td>
+<td>Evita o <em>round trip</em> extra (<code>tool_describe</code> → <code>tool_call</code>) em ferramentas frias e mantém tudo no prefixo de <em>prompt cache</em>.[1]</td>
+</tr>
+<tr>
+<td><strong>Modelos muito pequenos / locais</strong></td>
+<td>Testar acurácia antes de escalar</td>
+<td>Modelos menores formulam queries de busca piores; dados da Anthropic citados na doc mostram salto de 49% → 74% no Opus 4 com tool search, mas ainda com margem de falha de recuperação.[1]</td>
+</tr>
+<tr>
+<td><strong>Edições frequentes de toolset no meio da sessão</strong></td>
+<td>Evitar em produção</td>
+<td>Adicionar/remover ferramentas no meio da conversa altera o contador da ponte e invalida o <em>prompt cache</em>.[1]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="conclusao-escala-sem-desperdicio" class="scroll-mt-24 group flex items-center justify-between">Conclusão: Escala Sem Desperdício <a href="#conclusao-escala-sem-desperdicio" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O avanço recente do Hermes Agent — que acaba de receber a release estável <strong>v0.23.4</strong> com 229 PRs consolidados, suporte aos modelos Gemini 4 e melhorias contínuas de gateway e catálogo — reforça um princípio claro de engenharia em produção: <strong>agentes empresariais não quebram por falta de ferramentas, mas por excesso de contexto mal gerenciado</strong>.[1][2]</p>
+<p>Adotar o <strong>Tool Search</strong> com <strong>Tiered Disclosure</strong> permite conectar toda a pilha de sistemas da empresa via MCP e Connectors pagando apenas pelos schemas que o agente realmente utiliza em cada tarefa.[1][3]</p>
+<p>Se você quer estruturar agentes autônomos em produção com controle real de custos, governança de ferramentas e arquitetura validada para negócios, conheça a comunidade <strong><a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a></strong>.</p>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/tool-search">https://hermes-agent.nousresearch.com/docs/user-guide/features/tool-search</a> — Tool Search | Hermes Agent<br>[2] <a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.4">https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.4</a> — Release Hermes Agent v0.23.4 | GitHub<br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp">https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp</a> — MCP (Model Context Protocol) | Hermes Agent</p>
+
+      </div>
+
+      <!-- Social Share -->
+      <div class="mt-12 py-6 border-y border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Compartilhar este artigo:</span>
+        <div class="flex items-center gap-2">
+          <a href="https://api.whatsapp.com/send?text=Tool%20Search%20e%20Tiered%20Disclosure%3A%20Como%20Conectar%203.000%20Ferramentas%20MCP%20Sem%20Estourar%20o%20Contexto%20nem%20a%20Fatura%20-%20https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Ftool-search-tiered-disclosure-mcp-hermes-agent" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Ftool-search-tiered-disclosure-mcp-hermes-agent" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Tool%20Search%20e%20Tiered%20Disclosure%3A%20Como%20Conectar%203.000%20Ferramentas%20MCP%20Sem%20Estourar%20o%20Contexto%20nem%20a%20Fatura&url=https%3A%2F%2Finteligenciaagentica.com.br%2Fblog%2Ftool-search-tiered-disclosure-mcp-hermes-agent" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-white/5 text-gray-200 hover:bg-white/10 border border-white/10 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+            <i data-lucide="twitter" class="w-4 h-4"></i> X / Twitter
+          </a>
+        </div>
+      </div>
+
+      <!-- Author Bio Box -->
+      <div class="mt-10 glass rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5 border border-white/10">
+        <img src="https://inteligenciaagentica.com.br/static/images/jean-pierre-schramm.jpg" alt="Jean Pierre Schramm" class="w-16 h-16 rounded-full border-2 border-ouro">
+        <div class="text-center sm:text-left">
+          <h4 class="text-base font-bold text-white mb-1">Escrito por Jean Pierre Schramm</h4>
+          <p class="text-xs text-gray-400 leading-relaxed mb-3">
+            Especialista em automações autônomas, arquitetura de VPS com Docker Swarm e ecossistemas agênticos com Hermes OS.
+          </p>
+          <div class="flex items-center justify-center sm:justify-start gap-3 text-xs text-ciano">
+            <a href="https://github.com/gigantsc" target="_blank" class="hover:underline">GitHub</a> &bull;
+            <a href="https://linkedin.com/in/jeanpierreschramm" target="_blank" class="hover:underline">LinkedIn</a> &bull;
+            <a href="https://x.com/jepierresolucoes" target="_blank" class="hover:underline">X</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Article Community Banner -->
+      <div class="mt-12 p-8 rounded-2xl glass border border-ouro/30 bg-gradient-to-r from-magenta/10 via-ciano/5 to-ouro/10 text-center">
+        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-ouro bg-ouro/10 border border-ouro/20 mb-3">
+          Comunidade Inteligência Agêntica
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Aprenda a aplicar tudo isso na prática</h3>
+        <p class="text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6">
+          Tenha acesso a 4 mentorias ao vivo por mês, biblioteca completa de skills e templates prontos para rodar no seu servidor.
+        </p>
+        <a href="/#oferta" class="btn-gold px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide inline-flex items-center gap-2">
+          Garantir Vaga na Comunidade <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Related Posts -->
+      
+      <div class="mt-16">
+        <h3 class="text-lg font-bold text-white mb-6">Artigos Relacionados</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+            <a href="/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Hermes Agent</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Guia Definitivo do Hermes Agent: As 30 Respostas Essenciais para Dominar seus Funcionários Digitais</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.</p>
+            </a>
+          
+            <a href="/blog/subscription-proxy-tool-gateway-uma-assinatura-hermes-agent" class="glass-card rounded-xl p-5 border border-white/5 block group">
+              <span class="text-[10px] font-bold uppercase text-ciano mb-1 block">Hermes Agent</span>
+              <h4 class="text-sm font-bold text-white group-hover:text-ciano transition-colors leading-snug mb-2">Subscription Proxy e Nous Tool Gateway: Como Unificar Modelos, Busca Web, Voz e Navegadores em Uma Única Assinatura</h4>
+              <p class="text-xs text-gray-400 line-clamp-2">Aprenda a eliminar a proliferação de faturas e chaves de API usando o Nous Tool Gateway e o Subscription Proxy (hermes proxy) para centralizar mais de 300 modelos, busca web, geração de imagens, voz e navegador em nuvem em um único login OAuth.</p>
+            </a>
+          
+        </div>
+      </div>
+      
+
+    </article>
+  </div>
+  
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 bg-obsidian-light/50 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div class="md:col-span-2">
+          <a href="/" class="flex items-center mb-3 group cursor-pointer" title="Voltar para a Página Inicial">
+            <img src="/static/images/logo.png" alt="Inteligência Agêntica" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform">
+          </a>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            O ecossistema definitivo para empresários e profissionais que constroem, hospedam e lideram agentes autônomos de IA 24 horas por dia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegação</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-ciano transition-colors">Início</a></li>
+            <li><a href="/mediaflowmz" class="text-ciano font-semibold hover:text-white transition-colors">⚡ MediaFlowMZ (Lives TikTok)</a></li>
+            <li><a href="/cinemaker" class="text-magenta-300 hover:text-white transition-colors">🎬 CineMaker (Vídeos IA)</a></li>
+            <li><a href="/ao-vivo" class="text-red-400 hover:text-red-300 transition-colors font-semibold">🔴 Encontros ao Vivo</a></li>
+            <li><a href="/#cursos" class="hover:text-ciano transition-colors">Treinamentos</a></li>
+            <li><a href="/#ao-vivo" class="hover:text-ciano transition-colors">Mentorias ao Vivo</a></li>
+            <li><a href="/#oferta" class="hover:text-ciano transition-colors">Planos e Assinatura</a></li>
+            <li><a href="/cases" class="hover:text-ciano transition-colors">Cases de Uso</a></li>
+            <li><a href="/blog" class="hover:text-ciano transition-colors">Blog & Artigos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Recursos & IA</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="/sitemap.xml" class="hover:text-ciano transition-colors">Sitemap XML</a></li>
+            <li><a href="/robots.txt" class="hover:text-ciano transition-colors">Robots.txt (AI Friendly)</a></li>
+            <li><a href="/llms.txt" class="hover:text-ciano transition-colors">LLMs.txt (Índice IA)</a></li>
+            <li><a href="/feed.xml" class="hover:text-ciano transition-colors">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-gray-500">&copy; 2026 Inteligência Agêntica &bull; JePierre Soluções. Todos os direitos reservados.</p>
+        <div class="flex items-center gap-3 text-[11px] text-gray-500">
+          <button type="button" class="cookie-consent-banner-open hover:text-ciano transition-colors bg-transparent border-0 p-0 text-inherit cursor-pointer">Preferências de Cookies</button>
+          <span>&bull;</span>
+          <span class="text-[10px]">Ecossistema Hermes OS &bull; Powered by Nous Research</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Mobile Menu Controller
+    (() => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!mobileBtn || !mobileMenu) return;
+
+      const openIcon = mobileBtn.querySelector('.menu-open-icon');
+      const closeIcon = mobileBtn.querySelector('.menu-close-icon');
+
+      function toggleMenu(forceOpen) {
+        const isCurrentlyOpen = !mobileMenu.classList.contains('hidden');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isCurrentlyOpen;
+
+        if (shouldOpen) {
+          mobileMenu.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+          if (openIcon) openIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          if (openIcon) openIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+        }
+      }
+
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          toggleMenu(false);
+        }
+      });
+    })();
+
+    // DataLayer CTA Tracking
+    window.dataLayer = window.dataLayer || [];
+    document.querySelectorAll('a[href*="#oferta"], a[href="/#oferta"]').forEach(el => {
+      el.addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'cta_click',
+          event_category: 'CTA',
+          event_action: 'Click Offer Anchor',
+          event_label: el.textContent.trim().substring(0, 50) || 'CTA Oferta'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

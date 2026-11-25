@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Tue, 24 Nov 2026 11:06:11 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 25 Nov 2026 11:04:41 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,163 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais-v2.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Tool Search e Tiered Disclosure: Como Conectar 3.000 Ferramentas MCP Sem Estourar o Contexto nem a Fatura]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/tool-search-tiered-disclosure-mcp-hermes-agent</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/tool-search-tiered-disclosure-mcp-hermes-agent</guid>
+            <pubDate>Wed, 25 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Entenda como o Tool Search e o Tiered Disclosure do Hermes Agent substituem milhares de schemas JSON por três ferramentas-ponte (tool_search, tool_describe e tool_call), usando busca BM25 e degradação inteligente em 3 camadas para escalar servidores MCP e Connectors sem desperdiçar tokens.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Em resumo:</strong> Conectar dezenas de servidores MCP e plugins a um agente corporativo costuma gerar um gargalo silencioso: os schemas JSON de todas as ferramentas são enviados em cada turno da conversa, consumindo dezenas de milhares de tokens antes mesmo do usuário fazer uma pergunta.[1] Com o <strong>Tool Search</strong> (<code>tool_search</code>, <code>tool_describe</code>, <code>tool_call</code>) e o <strong>Tiered Disclosure</strong> do Hermes Agent, o agente mantém apenas as ferramentas essenciais carregadas diretamente e descobre, descreve e invoca ferramentas MCP, plugins e Connectors remotos sob demanda — reduzindo drasticamente o custo de contexto mesmo em catálogos com milhares de endpoints.[1][3]</p>
+</blockquote>
+<hr>
+<h2 id="o-gargalo-oculto-das-empresas-que-escalam-agentes-com-mcp" class="scroll-mt-24 group flex items-center justify-between">O Gargalo Oculto das Empresas que Escalam Agentes com MCP <a href="#o-gargalo-oculto-das-empresas-que-escalam-agentes-com-mcp" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando uma empresa começa a integrar seu agente de IA ao mundo real via <strong>MCP (Model Context Protocol)</strong> — conectando GitHub, Slack, CRM, banco de dados, sistema de tickets e infraestrutura em nuvem — o primeiro protótipo funciona perfeitamente.[3]</p>
+<p>O problema aparece na escala. Cada ferramenta MCP exposta ao modelo carrega um schema JSON com nome, descrição e definição de parâmetros.[1] Em servidores corporativos amplos, esse peso explode rapidamente: segundo a documentação oficial do Hermes Agent, apenas a superfície plana da API do servidor MCP da Cloudflare reúne cerca de <strong>3.300 ferramentas</strong>, cujos nomes sozinhos já consomem aproximadamente <strong>32.000 tokens</strong>.[1]</p>
+<p>Enviar todos esses schemas em <strong>todo turno de conversa</strong> gera três impactos diretos na operação:</p>
+<ol>
+<li><strong>Custo inflado por mensagem:</strong> o prefixo de ferramentas é faturado repetidamente a cada interação.[1]</li>
+<li><strong>Degradação de precisão:</strong> modelos perdem foco quando precisam escolher entre centenas de definições concorrentes.[1]</li>
+<li><strong>Estouro de janela de contexto:</strong> sobra menos espaço útil para documentos, histórico de atendimento e código.[1]</li>
+</ol>
+<hr>
+<h2 id="como-funciona-o-tool-search-no-hermes-agent" class="scroll-mt-24 group flex items-center justify-between">Como Funciona o Tool Search no Hermes Agent <a href="#como-funciona-o-tool-search-no-hermes-agent" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O <strong>Tool Search</strong> é a camada opcional de divulgação progressiva (<em>progressive disclosure</em>) do Hermes Agent para resolver esse problema.[1] Ativado por padrão (<code>enabled: auto</code>), ele mantém o conjunto central de ferramentas de trabalho carregado diretamente — como <code>terminal</code>, <code>read_file</code>, <code>write_file</code>, <code>patch</code>, <code>search_files</code>, <code>memory</code>, <code>web_search</code>, <code>web_extract</code>, <code>execute_code</code> e <code>delegate_task</code> — e substitui ferramentas MCP, plugins não centrais e ferramentas frias listadas em <code>tools.tool_search.defer</code> por apenas <strong>três ferramentas-ponte</strong>:[1]</p>
+<ul>
+<li><strong><code>tool_search(queries, limit?)</code></strong>: pesquisa o catálogo de ferramentas adiadas (<em>deferred</em>) aceitando múltiplas consultas em paralelo.[1]</li>
+<li><strong><code>tool_describe(names)</code></strong>: carrega o schema completo de parâmetros apenas das ferramentas selecionadas.[1]</li>
+<li><strong><code>tool_call(calls)</code></strong>: invoca a ferramenta adiada após o carregamento do schema.[1]</li>
+</ul>
+<pre><code class="language-text">Fluxo de Descoberta e Execução (Tool Search)
+───────────────────────────────────────────────────────────────────
+[1] Usuário pede: &quot;Abra uma issue no GitHub e avise no Slack&quot;
+        │
+        ▼
+[2] Modelo chama: tool_search([&quot;create github issue&quot;, &quot;send slack&quot;])
+        │  └── Índice BM25 + Snowball stemming + regra do token raro
+        ▼
+[3] Modelo chama: tool_describe([&quot;mcp_github_create_issue&quot;, &quot;mcp_slack_post&quot;])
+        │  └── Carrega APENAS os 2 schemas JSON necessários no turno
+        ▼
+[4] Modelo chama: tool_call([{name: &quot;mcp_github_create_issue&quot;, ...}])
+        │  └── Hermes &quot;desembrulha&quot; a ponte e executa hooks, aprovações
+        │      e logs com o nome REAL da ferramenta subjacente
+        ▼
+[5] Resultado retornado ao usuário sem poluir o prompt com 500 schemas
+</code></pre><p>Um detalhe arquitetural importante para auditoria e segurança: ao executar <code>tool_call</code>, o Hermes <strong>desembrulha a ponte</strong> e despacha a ferramenta real.[1] Isso significa que <em>hooks</em> pré e pós-execução, <em>guardrails</em>, pedidos de aprovação humana e o feed de atividades no CLI ou Gateway registram o nome verdadeiro da ferramenta (ex.: <code>mcp_github_create_issue</code>), e não um genérico <code>tool_call</code>.[1]</p>
+<hr>
+<h2 id="tiered-disclosure-degradacao-inteligente-em-3-camadas" class="scroll-mt-24 group flex items-center justify-between">Tiered Disclosure: Degradação Inteligente em 3 Camadas <a href="#tiered-disclosure-degradacao-inteligente-em-3-camadas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para equilibrar economia de tokens e taxa de acerto do modelo, o Hermes não esconde tudo cegamente. Ele aplica um sistema de <strong>divulgação em camadas (<em>Tiered Disclosure</em>)</strong> recalculado dinamicamente a cada montagem da lista de ferramentas, respeitando o orçamento <code>min(threshold_pct% do contexto, listing_max_tokens)</code>:[1]</p>
+<table>
+<thead>
+<tr>
+<th>Camada (Tier)</th>
+<th>Condição de Ativação</th>
+<th>O que o Modelo Enxerga</th>
+<th>Impacto Operacional</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Tier 0</strong></td>
+<td>Nenhuma ferramenta adiada (<em>deferred</em>)</td>
+<td>Todas as ferramentas carregadas diretamente (<em>eager</em>), sem ponte.[1]</td>
+<td>Zero latência extra; ideal para conjuntos pequenos.[1]</td>
+</tr>
+<tr>
+<td><strong>Tier 1</strong></td>
+<td>A listagem do catálogo cabe no orçamento configurado</td>
+<td>Ponte + manifesto estilo <em>skills</em> (nome + descrição curta de até 60 caracteres por ferramenta, agrupados por servidor MCP).[1]</td>
+<td>O modelo já vê o nome exato na listagem e pode pular <code>tool_search</code>, indo direto para <code>tool_describe</code>.[1]</td>
+</tr>
+<tr>
+<td><strong>Tier 2</strong></td>
+<td>Mesmo apenas os nomes excedem o orçamento (ex.: Cloudflare com ~3.300 tools)</td>
+<td>Ponte + resumo de uma linha por servidor (nome do servidor + contagem de ferramentas).[1]</td>
+<td>Economia extrema de contexto; descoberta feita estritamente via <code>tool_search</code>.[1]</td>
+</tr>
+</tbody></table>
+<p>A degradação entre os tiers ocorre <strong>por servidor</strong>.[1] Se a empresa conecta um servidor gigante como Cloudflare junto com um servidor enxuto como Linear, apenas o servidor gigante colapsa para uma linha de resumo, enquanto o servidor menor preserva a listagem detalhada de suas ferramentas.[1]</p>
+<p>Por que manter essa listagem no Tier 1? Testes comparativos citados na documentação mostraram que, sem visibilidade mínima, modelos tendem a recorrer a ferramentas visíveis (como rodar <code>gh</code> no terminal) ou afirmar que uma capacidade não existe em vez de pesquisar.[1] Com o manifesto resumido, a taxa de sucesso iguala o carregamento completo (<em>eager</em>) custando muito menos tokens.[1]</p>
+<hr>
+<h2 id="motor-de-busca-bm25-stemming-e-regra-do-token-mais-raro" class="scroll-mt-24 group flex items-center justify-between">Motor de Busca BM25, Stemming e Regra do Token Mais Raro <a href="#motor-de-busca-bm25-stemming-e-regra-do-token-mais-raro" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Internamente, o <code>tool_search</code> não faz uma busca ingênua por substring. Ele executa um motor <strong>BM25</strong> sobre o nome da ferramenta, o servidor de origem, a descrição e os nomes dos parâmetros, aplicando <strong>Snowball stemming</strong> (assim, buscar <code>&quot;issues&quot;</code> encontra <code>create_issue</code>).[1]</p>
+<p>Dois mecanismos evitam resultados inúteis que fazem o agente entrar em loops de tentativas:</p>
+<ul>
+<li><strong>Regra do token mais raro (<em>rarest-token rule</em>):</strong> uma ferramenta só entra nos resultados se contiver o termo mais específico da consulta (ex.: <code>gmail</code>, <code>github</code> ou <code>incident</code>, e não verbos genéricos como <code>send</code> ou <code>create</code>).[1] Se o termo mais raro não existir no catálogo, o retorno traz o grupo vazio junto com a lista de servidores conectados (<code>available_sources</code>) para o agente corrigir a busca.[1]</li>
+<li><strong>Piso de relevância (<em>relevance floor</em>):</strong> em consultas com quatro ou mais termos respondíveis, a ferramenta precisa combinar pelo menos metade deles para ser exibida — evitando falsos positivos por coincidência de uma única palavra.[1]</li>
+</ul>
+<p>Além disso, o catálogo é <strong>sem estado entre turnos</strong> (<em>stateless</em>) e <strong>restrito aos toolsets da sessão</strong>: um subagente, worker do Kanban ou sessão de gateway com permissões limitadas nunca consegue usar a ponte para descobrir ou invocar ferramentas fora do seu escopo.[1]</p>
+<hr>
+<h2 id="connectors-remotos-e-multiplas-contas-corporativas" class="scroll-mt-24 group flex items-center justify-between">Connectors Remotos e Múltiplas Contas Corporativas <a href="#connectors-remotos-e-multiplas-contas-corporativas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A mesma ponte <code>tool_search</code> / <code>tool_describe</code> / <code>tool_call</code> também acessa <strong>Connectors</strong> — ferramentas hospedadas no <strong>Nous Tool Gateway</strong> (identificadas pelo prefixo <code>connectors__&lt;connector&gt;__&lt;tool&gt;</code>).[1][3]</p>
+<p>Na prática corporativa, isso traz duas vantagens imediatas:</p>
+<ol>
+<li><strong>Busca unificada:</strong> ferramentas locais (MCPs na sua VPS) e conectores remotos passam pelo mesmo ranqueamento BM25 em uma única chamada, com <em>timeout</em> de 30 segundos para chamadas ao gateway (degradando graciosamente para resultados locais se o gateway estiver indisponível).[1]</li>
+<li><strong>Múltiplas contas por aplicativo (<code>connector_alias</code>):</strong> quando a empresa vincula duas ou mais contas do mesmo serviço (por exemplo, <code>home</code> e <code>work</code>), as ferramentas passam a expor o parâmetro <code>connector_alias</code> para direcionar exatamente em qual conta a ação deve ser executada.[1]</li>
+</ol>
+<hr>
+<h2 id="configuracao-recomendada-e-trade-offs-reais" class="scroll-mt-24 group flex items-center justify-between">Configuração Recomendada e Trade-offs Reais <a href="#configuracao-recomendada-e-trade-offs-reais" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>No arquivo <code>~/.hermes/config.yaml</code>, o comportamento pode ser ajustado com precisão conforme o perfil de custo e latência da operação:[1]</p>
+<pre><code class="language-yaml"><span class="token key atrule">tools</span><span class="token punctuation">:</span>
+  <span class="token key atrule">tool_search</span><span class="token punctuation">:</span>
+    <span class="token key atrule">enabled</span><span class="token punctuation">:</span> auto            <span class="token comment"># auto (padrão), on ou off</span>
+    <span class="token key atrule">threshold_pct</span><span class="token punctuation">:</span> <span class="token number">5</span>         <span class="token comment"># orçamento da listagem (% da janela do modelo)</span>
+    <span class="token key atrule">search_default_limit</span><span class="token punctuation">:</span> <span class="token number">5</span>  <span class="token comment"># resultados padrão por query</span>
+    <span class="token key atrule">max_search_limit</span><span class="token punctuation">:</span> <span class="token number">25</span>     <span class="token comment"># limite máximo por query</span>
+    <span class="token key atrule">listing</span><span class="token punctuation">:</span> auto            <span class="token comment"># auto, on ou off para o manifesto embutido</span>
+    <span class="token key atrule">listing_max_tokens</span><span class="token punctuation">:</span> <span class="token number">4000</span> <span class="token comment"># teto absoluto de tokens para a listagem</span>
+    <span class="token key atrule">defer</span><span class="token punctuation">:</span>                   <span class="token comment"># substitui a lista padrão; [] mantém tudo eager</span>
+      <span class="token punctuation">-</span> computer_use
+      <span class="token punctuation">-</span> session_search
+      <span class="token punctuation">-</span> image_generate
+      <span class="token punctuation">-</span> todo_list
+      <span class="token punctuation">-</span> process_manage
+      <span class="token punctuation">-</span> cronjob_manage
+      <span class="token punctuation">-</span> text_to_speech
+      <span class="token punctuation">-</span> manage_connections
+      <span class="token punctuation">-</span> manage_catalog
+</code></pre><h3 id="quando-usar-e-quando-desativar-enabled-off" class="scroll-mt-24 group flex items-center justify-between">Quando usar e quando desativar (<code>enabled: off</code>) <a href="#quando-usar-e-quando-desativar-enabled-off" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Como toda arquitetura de divulgação progressiva, existem <em>trade-offs</em> reais que o gestor técnico precisa considerar:[1]</p>
+<table>
+<thead>
+<tr>
+<th>Cenário</th>
+<th>Recomendação</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Múltiplos MCPs / catálogos médios e grandes</strong></td>
+<td>Manter <code>enabled: auto</code></td>
+<td>Economiza milhares de tokens por turno e evita poluição da janela de contexto.[1]</td>
+</tr>
+<tr>
+<td><strong>Conjunto pequeno (ex.: 5 a 10 tools fixas)</strong></td>
+<td>Avaliar <code>enabled: off</code></td>
+<td>Evita o <em>round trip</em> extra (<code>tool_describe</code> → <code>tool_call</code>) em ferramentas frias e mantém tudo no prefixo de <em>prompt cache</em>.[1]</td>
+</tr>
+<tr>
+<td><strong>Modelos muito pequenos / locais</strong></td>
+<td>Testar acurácia antes de escalar</td>
+<td>Modelos menores formulam queries de busca piores; dados da Anthropic citados na doc mostram salto de 49% → 74% no Opus 4 com tool search, mas ainda com margem de falha de recuperação.[1]</td>
+</tr>
+<tr>
+<td><strong>Edições frequentes de toolset no meio da sessão</strong></td>
+<td>Evitar em produção</td>
+<td>Adicionar/remover ferramentas no meio da conversa altera o contador da ponte e invalida o <em>prompt cache</em>.[1]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="conclusao-escala-sem-desperdicio" class="scroll-mt-24 group flex items-center justify-between">Conclusão: Escala Sem Desperdício <a href="#conclusao-escala-sem-desperdicio" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O avanço recente do Hermes Agent — que acaba de receber a release estável <strong>v0.23.4</strong> com 229 PRs consolidados, suporte aos modelos Gemini 4 e melhorias contínuas de gateway e catálogo — reforça um princípio claro de engenharia em produção: <strong>agentes empresariais não quebram por falta de ferramentas, mas por excesso de contexto mal gerenciado</strong>.[1][2]</p>
+<p>Adotar o <strong>Tool Search</strong> com <strong>Tiered Disclosure</strong> permite conectar toda a pilha de sistemas da empresa via MCP e Connectors pagando apenas pelos schemas que o agente realmente utiliza em cada tarefa.[1][3]</p>
+<p>Se você quer estruturar agentes autônomos em produção com controle real de custos, governança de ferramentas e arquitetura validada para negócios, conheça a comunidade <strong><a href="https://inteligenciaagentica.com.br">Inteligência Agêntica</a></strong>.</p>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/tool-search">https://hermes-agent.nousresearch.com/docs/user-guide/features/tool-search</a> — Tool Search | Hermes Agent<br>[2] <a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.4">https://github.com/NousResearch/hermes-agent/releases/tag/v0.23.4</a> — Release Hermes Agent v0.23.4 | GitHub<br>[3] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp">https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp</a> — MCP (Model Context Protocol) | Hermes Agent</p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/tool-search-tiered-disclosure-mcp-hermes-agent.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Subscription Proxy e Nous Tool Gateway: Como Unificar Modelos, Busca Web, Voz e Navegadores em Uma Única Assinatura]]></title>
