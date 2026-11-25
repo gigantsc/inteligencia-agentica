@@ -90,7 +90,7 @@ HEAD_CSS = """
 """
 
 HEAD_LINK = """  <!-- Mouse Swarm Reveal: pré-carrega o módulo do enxame de cursores -->
-  <link rel="modulepreload" href="/static/js/mouse-swarm-v3.js">
+  <link rel="modulepreload" href="/static/js/mouse-swarm-v3.js?v=20261125">
 """
 
 # ------------------------------------------------- controles (fora dos alvos)
@@ -135,7 +135,7 @@ INIT_SCRIPT = """  <!-- Mouse Swarm Reveal — enxame de cursores montando a Her
 
       (async () => {
         try {
-          const { createSwarmReveal } = await import('/static/js/mouse-swarm-v3.js');
+          const { createSwarmReveal } = await import('/static/js/mouse-swarm-v3.js?v=20261125');
           const narrow = window.matchMedia('(max-width: 767px)').matches;
           const reveal = createSwarmReveal({
             root: document,
@@ -284,11 +284,11 @@ def verify(html):
     assert parser.controls_hidden is True, "os controles devem nascer ocultos"
     css_at = html.find("#swarmControls {")
     assert css_at != -1 and css_at < html.find("</head>"), "CSS dos controles deve ficar no <head>"
-    assert 'rel="modulepreload" href="/static/js/mouse-swarm-v3.js"' in html, "faltou o modulepreload do asset com URL nova"
+    assert 'rel="modulepreload" href="/static/js/mouse-swarm-v3.js?v=20261125"' in html, "faltou o modulepreload do asset com URL nova"
     assert "forceMotion: true" in html, "a Hero não pode sofrer skip pelo prefers-reduced-motion"
     assert "swarm=1" in html, "faltou o opt-in ?swarm=1"
     assert '<script type="module">' not in html, "inicializador deve ser script clássico"
-    assert "createSwarmReveal" in html and "mouse-swarm-v3.js" in html
+    assert "createSwarmReveal" in html and "mouse-swarm-v3.js?v=20261125" in html
     for leak in ("text-balance data-swarm-item", "mb-3 data-swarm-item", "text-[11px] data-swarm-item"):
         assert leak not in html, "atributos injetados dentro de class: %s" % leak
     for name in ("swarmControls", "swarmPause", "swarmSkip", "swarmReplay", "swarmProgress", "swarmStatus"):

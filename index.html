@@ -2719,7 +2719,7 @@ summary {
     }
   </style>
   <!-- Mouse Swarm Reveal: pré-carrega o módulo do enxame de cursores -->
-  <link rel="modulepreload" href="/static/js/mouse-swarm-v3.js">
+  <link rel="modulepreload" href="/static/js/mouse-swarm-v3.js?v=20261125">
 </head>
 <body class="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--orange)] selection:text-white antialiased overflow-x-clip">
   <!-- Google Tag Manager (noscript) -->
@@ -4330,7 +4330,7 @@ summary {
 
       (async () => {
         try {
-          const { createSwarmReveal } = await import('/static/js/mouse-swarm-v3.js');
+          const { createSwarmReveal } = await import('/static/js/mouse-swarm-v3.js?v=20261125');
           const narrow = window.matchMedia('(max-width: 767px)').matches;
           const reveal = createSwarmReveal({
             root: document,
