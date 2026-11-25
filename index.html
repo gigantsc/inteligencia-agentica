@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
+  <script>if(location.protocol==='http:'&&(location.hostname==='inteligenciaagentica.com.br'||location.hostname==='www.inteligenciaagentica.com.br')){location.replace('https://inteligenciaagentica.com.br'+location.pathname+location.search+location.hash);}</script>
   <!-- Google Consent Mode V2 Default -->
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -17,6 +18,7 @@
     });
     gtag('set', 'ads_data_redaction', false);
     gtag('set', 'url_passthrough', true);
+    window.__consentDefaultInitialized = true;
   </script>
 
   <!-- Google Tag Manager -->
@@ -27,22 +29,15 @@
   })(window,document,'script','dataLayer','GTM-M5JDK6W4');</script>
   <!-- End Google Tag Manager -->
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18FQCREKV5"></script>
-  <script>
-    gtag('js', new Date());
-    gtag('config', 'G-18FQCREKV5');
-  </script>
-
   <!-- Cookie Consent Banner & Mode V2 Controller -->
-  <link rel="stylesheet" href="/static/cookieconsent.css?v=20261014">
+  <link rel="stylesheet" href="/static/cookieconsent-v3.css">
   <script>
     window.cookieconsentConfig = {
       gtmId: 'GTM-M5JDK6W4',
       autoLoadGtm: false
     };
   </script>
-  <script defer src="/static/cookieconsent.js?v=20261014"></script>
+  <script defer src="/static/cookieconsent-v3.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inteligência Agêntica — Agentes de IA Autônomos Trabalhando 24h para sua Empresa</title>
@@ -2724,7 +2719,7 @@ summary {
     }
   </style>
   <!-- Mouse Swarm Reveal: pré-carrega o módulo do enxame de cursores -->
-  <link rel="modulepreload" href="/static/js/mouse-swarm.js">
+  <link rel="modulepreload" href="/static/js/mouse-swarm-v3.js">
 </head>
 <body class="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--orange)] selection:text-white antialiased overflow-x-clip">
   <!-- Google Tag Manager (noscript) -->
@@ -4320,13 +4315,10 @@ summary {
       const btnPause = document.getElementById('swarmPause');
       const btnSkip = document.getElementById('swarmSkip');
       const btnReplay = document.getElementById('swarmReplay');
-      // Demonstração/depuração: ?swarm=1 (ou #swarm) força a montagem mesmo com
-      // "movimento reduzido" ativo no sistema/navegador do visitante.
+      // Demonstração/depuração: ?swarm=1 (ou #swarm) mantém os controles após a montagem.
+      // A preferência de movimento reduzido NÃO desativa a animação: o visitante
+      // solicitou explicitamente uma Hero montada por cursores ao abrir a página.
       const force = location.search.indexOf('swarm=1') !== -1 || location.hash === '#swarm';
-      const reduced = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-
-      // Visitante pediu menos movimento: página normal, sem animação e sem controles.
-      if (!force && reduced()) return;
 
       const setPhase = (phase) => {
         if (!elControls) return;
@@ -4338,14 +4330,7 @@ summary {
 
       (async () => {
         try {
-          if (force && reduced()) {
-            // Opt-in explícito do visitante: neutraliza apenas prefers-reduced-motion para o módulo.
-            const original = window.matchMedia.bind(window);
-            window.matchMedia = (query) => /prefers-reduced-motion/.test(String(query))
-              ? { matches: false, media: String(query), addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} }
-              : original(query);
-          }
-          const { createSwarmReveal } = await import('/static/js/mouse-swarm.js');
+          const { createSwarmReveal } = await import('/static/js/mouse-swarm-v3.js');
           const narrow = window.matchMedia('(max-width: 767px)').matches;
           const reveal = createSwarmReveal({
             root: document,
@@ -4360,6 +4345,7 @@ summary {
             selection: true,
             typeText: false,
             autoScroll: false,
+            forceMotion: true,
             onStep: ({ current, total }) => {
               if (elProgress) elProgress.textContent = 'Montando a página com agentes… ' + current + '/' + total;
             },

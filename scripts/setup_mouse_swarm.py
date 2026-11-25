@@ -90,7 +90,7 @@ HEAD_CSS = """
 """
 
 HEAD_LINK = """  <!-- Mouse Swarm Reveal: pré-carrega o módulo do enxame de cursores -->
-  <link rel="modulepreload" href="/static/js/mouse-swarm-v2.js">
+  <link rel="modulepreload" href="/static/js/mouse-swarm-v3.js">
 """
 
 # ------------------------------------------------- controles (fora dos alvos)
@@ -135,7 +135,7 @@ INIT_SCRIPT = """  <!-- Mouse Swarm Reveal — enxame de cursores montando a Her
 
       (async () => {
         try {
-          const { createSwarmReveal } = await import('/static/js/mouse-swarm-v2.js');
+          const { createSwarmReveal } = await import('/static/js/mouse-swarm-v3.js');
           const narrow = window.matchMedia('(max-width: 767px)').matches;
           const reveal = createSwarmReveal({
             root: document,
@@ -284,11 +284,11 @@ def verify(html):
     assert parser.controls_hidden is True, "os controles devem nascer ocultos"
     css_at = html.find("#swarmControls {")
     assert css_at != -1 and css_at < html.find("</head>"), "CSS dos controles deve ficar no <head>"
-    assert 'rel="modulepreload" href="/static/js/mouse-swarm-v2.js"' in html, "faltou o modulepreload do asset com URL nova"
+    assert 'rel="modulepreload" href="/static/js/mouse-swarm-v3.js"' in html, "faltou o modulepreload do asset com URL nova"
     assert "forceMotion: true" in html, "a Hero não pode sofrer skip pelo prefers-reduced-motion"
     assert "swarm=1" in html, "faltou o opt-in ?swarm=1"
     assert '<script type="module">' not in html, "inicializador deve ser script clássico"
-    assert "createSwarmReveal" in html and "mouse-swarm-v2.js" in html
+    assert "createSwarmReveal" in html and "mouse-swarm-v3.js" in html
     for leak in ("text-balance data-swarm-item", "mb-3 data-swarm-item", "text-[11px] data-swarm-item"):
         assert leak not in html, "atributos injetados dentro de class: %s" % leak
     for name in ("swarmControls", "swarmPause", "swarmSkip", "swarmReplay", "swarmProgress", "swarmStatus"):
@@ -321,11 +321,31 @@ def main():
     if "modulepreload" not in html:
         html = replace_once(html, "</head>", HEAD_LINK + "</head>", "modulepreload")
         print("modulepreload injetado")
+    elif HEAD_LINK not in html:
+        html, n = re.subn(
+            r'  <!-- Mouse Swarm Reveal:[^>]*-->\s*<link rel="modulepreload" href="/static/js/mouse-swarm[^"]*">\s*',
+            HEAD_LINK,
+            html,
+            count=1,
+        )
+        if n != 1:
+            raise SystemExit("ERRO: falha ao atualizar modulepreload existente")
+        print("modulepreload atualizado")
 
     # 4) inicializador
     if "createSwarmReveal" not in html:
         html = replace_once(html, "</body>", INIT_SCRIPT + "</body>", "script init")
         print("inicializador injetado")
+    elif INIT_SCRIPT not in html:
+        html, n = re.subn(
+            r'  <!-- Mouse Swarm Reveal — enxame de cursores[\s\S]*?</script>\s*(?=</body>)',
+            INIT_SCRIPT,
+            html,
+            count=1,
+        )
+        if n != 1:
+            raise SystemExit("ERRO: falha ao atualizar inicializador existente")
+        print("inicializador atualizado")
 
     verify(html)
 
