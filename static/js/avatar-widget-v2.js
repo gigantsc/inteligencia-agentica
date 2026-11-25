@@ -10,7 +10,7 @@ const ROOT_ID = 'iaAvatarRoot';
 
 const DEFAULT_CONFIG = {
   basePath: '/static/images/avatar/',
-  channelUrl: 'https://chat.whatsapp.com/HcdMbPrvi0O3jmd62vmB5n',
+  channelUrl: 'https://whatsapp.com/channel/0029Vb6EWVUJENyBISoLIj0Q',
   channelLabel: 'Participar do Canal',
   whatsappNumber: '5547984331647',
   enableListmonk: true,
