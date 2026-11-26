@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Wed, 25 Nov 2026 11:04:41 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 26 Nov 2026 11:06:34 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,195 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais-v2.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Event Hooks no Hermes Agent: Os 4 Sistemas de Governança, Bloqueio e Auditoria em Tempo Real]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/event-hooks-hermes-agent-governanca-auditoria-bloqueio-tempo-real</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/event-hooks-hermes-agent-governanca-auditoria-bloqueio-tempo-real</guid>
+            <pubDate>Thu, 26 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Entenda como os 4 sistemas de Event Hooks do Hermes Agent (Gateway, Plugin, Shell e Outbound Webhooks) permitem auditar ações, bloquear comandos perigosos com fail-closed e integrar agentes de IA à governança corporativa em tempo real.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Em resumo:</strong> Os <strong>Event Hooks</strong> do Hermes Agent formam uma arquitetura de quatro camadas — <strong>Gateway Hooks</strong>, <strong>Plugin Hooks</strong>, <strong>Shell Hooks</strong> e <strong>Outbound Webhooks</strong> — que interceptam o ciclo de vida do agente em tempo real.[1] Com eles, empresas podem bloquear chamadas de ferramentas perigosas antes da execução (<code>pre_tool_call</code> com <code>fail_closed: true</code> ou código de saída <code>2</code>), injetar contexto dinâmico antes da inferência (<code>pre_llm_call</code>), executar checklists automáticos na inicialização (<code>BOOT.md</code>) e enviar eventos assinados por HMAC-SHA256 para sistemas externos sem travar a conversa.[1]</p>
+</blockquote>
+<hr>
+<h2 id="o-fim-da-andquotcaixa-pretaandquot-por-que-empresarios-travam-na-hora-de-colocar-agentes-em-producao" class="scroll-mt-24 group flex items-center justify-between">O fim da &quot;caixa-preta&quot;: por que empresários travam na hora de colocar agentes em produção <a href="#o-fim-da-andquotcaixa-pretaandquot-por-que-empresarios-travam-na-hora-de-colocar-agentes-em-producao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para quem gerencia operações reais — seja uma equipe comercial, um setor financeiro ou uma infraestrutura de servidores — o maior receio ao adotar um agente autônomo de IA não é a inteligência do modelo, mas a <strong>previsibilidade</strong>.</p>
+<p>Sem pontos de interceptação determinísticos, o gestor fica refém de torcer para que o <em>prompt</em> seja obedecido. Basta uma instrução ambígua ou uma injeção de texto externa para que um agente tente apagar arquivos críticos, vazar dados de clientes ou rodar um loop infinito de ferramentas.</p>
+<p>O Hermes Agent resolve esse impasse com <strong>quatro sistemas de Event Hooks</strong> que operam fora da boa vontade do modelo de linguagem: são regras de código, scripts de shell e notificações HTTP executadas diretamente pelo runtime nos pontos exatos do ciclo de vida.[1] Além disso, erros em callbacks de hooks são isolados e registrados em log, evitando que uma falha de observabilidade derrube o agente principal.[1]</p>
+<pre><code>+-----------------------------------------------------------------------------+
+<span class="token operator">|</span>                CICLO DE VIDA DO HERMES AGENT <span class="token operator">&amp;</span> EVENT HOOKS                  <span class="token operator">|</span>
++-----------------------------------------------------------------------------+
+  <span class="token punctuation">[</span> Mensagem / Gateway <span class="token punctuation">]</span>
+           <span class="token operator">|</span>
+           <span class="token function">v</span>
+  <span class="token number">1</span>. pre_llm_call <span class="token punctuation">(</span>Shell / Plugin<span class="token punctuation">)</span> ----<span class="token operator">></span> Pode injetar contexto ou BLOQUEAR turno
+           <span class="token operator">|</span>
+           <span class="token function">v</span>
+  <span class="token punctuation">[</span> Decisão <span class="token keyword">do</span> Modelo <span class="token punctuation">(</span>LLM<span class="token punctuation">)</span> <span class="token punctuation">]</span>
+           <span class="token operator">|</span>
+           <span class="token function">v</span>
+  <span class="token number">2</span>. pre_tool_call <span class="token punctuation">(</span>Shell / Plugin<span class="token punctuation">)</span> ---<span class="token operator">></span> Pode modificar args, pedir aprovação
+           <span class="token operator">|</span>                             ou BLOQUEAR <span class="token punctuation">(</span>exit <span class="token number">2</span> / fail_closed<span class="token punctuation">)</span>
+           <span class="token function">v</span>
+  <span class="token punctuation">[</span> Execução da Ferramenta <span class="token punctuation">]</span>
+           <span class="token operator">|</span>
+           <span class="token function">v</span>
+  <span class="token number">3</span>. post_tool_call <span class="token punctuation">(</span>Shell / Plugin<span class="token punctuation">)</span> --<span class="token operator">></span> Auto-formata arquivos, registra logs
+           <span class="token operator">|</span>
+           +---<span class="token operator">></span> <span class="token number">4</span>. Gateway Hooks <span class="token punctuation">(</span>HOOK.yaml<span class="token punctuation">)</span> <span class="token operator">&amp;</span> Outbound Webhooks <span class="token punctuation">(</span>HMAC-SHA256<span class="token punctuation">)</span>
+                    Notificam Slack/Telegram/CI em segundo plano <span class="token punctuation">(</span>fire-and-forget<span class="token punctuation">)</span>
++-----------------------------------------------------------------------------+
+</code></pre><hr>
+<h2 id="os-4-sistemas-de-event-hooks-frente-a-frente" class="scroll-mt-24 group flex items-center justify-between">Os 4 sistemas de Event Hooks frente a frente <a href="#os-4-sistemas-de-event-hooks-frente-a-frente" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Cada camada de hook no Hermes Agent atende a um nível distinto de controle, linguagem e isolamento.[1]</p>
+<table>
+<thead>
+<tr>
+<th>Dimensão</th>
+<th>Gateway Hooks</th>
+<th>Plugin Hooks</th>
+<th>Shell Hooks</th>
+<th>Outbound Webhooks</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Onde é declarado</strong></td>
+<td><code>HOOK.yaml</code> + <code>handler.py</code> em <code>~/.hermes/hooks/</code>[1]</td>
+<td><code>ctx.register_hook()</code> no <code>plugin.yaml</code>[1]</td>
+<td>Bloco <code>hooks:</code> no <code>config.yaml</code> do perfil[1]</td>
+<td>Lista <code>hooks.outbound:</code> no <code>config.yaml</code>[1]</td>
+</tr>
+<tr>
+<td><strong>Onde executa</strong></td>
+<td>Apenas no Gateway (Telegram, WhatsApp, Slack, Teams, Discord)[1]</td>
+<td>CLI + Gateway[1]</td>
+<td>CLI + Gateway + Desktop/TUI/Dashboard[1]</td>
+<td>CLI + Gateway[1]</td>
+</tr>
+<tr>
+<td><strong>Linguagem</strong></td>
+<td>Python (<code>def</code> ou <code>async def</code>)[1]</td>
+<td>Python[1]</td>
+<td>Qualquer linguagem (Bash, Python, binário Go, etc.)[1]</td>
+<td>HTTP POST JSON para URL externa[1]</td>
+</tr>
+<tr>
+<td><strong>Pode bloquear ferramenta?</strong></td>
+<td>Não[1]</td>
+<td>Sim (<code>pre_tool_call</code>)[1]</td>
+<td>Sim (<code>pre_tool_call</code>)[1]</td>
+<td>Não (apenas notificação <em>fire-and-forget</em>)[1]</td>
+</tr>
+<tr>
+<td><strong>Pode injetar contexto no LLM?</strong></td>
+<td>Não[1]</td>
+<td>Sim (<code>pre_llm_call</code>)[1]</td>
+<td>Sim (<code>pre_llm_call</code>)[1]</td>
+<td>Não[1]</td>
+</tr>
+<tr>
+<td><strong>Isolamento</strong></td>
+<td><em>In-process</em> no processo do Gateway[1]</td>
+<td><em>In-process</em>[1]</td>
+<td>Subprocesso isolado por execução[1]</td>
+<td>Fila assíncrona em thread separada[1]</td>
+</tr>
+<tr>
+<td><strong>Modelo de consentimento</strong></td>
+<td>Implícito por diretório (<em>trusted-by-placement</em>)[1]</td>
+<td>Explícito (<code>plugins.enabled</code>)[1]</td>
+<td>Prompt de primeiro uso por par <code>(evento, comando)</code>[1]</td>
+<td>Sem prompt de consentimento (desativado em <code>HERMES_SAFE_MODE=1</code>)[1]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="1-shell-hooks-travas-corporativas-sem-precisar-escrever-plugins-em-python" class="scroll-mt-24 group flex items-center justify-between">1. Shell Hooks: travas corporativas sem precisar escrever plugins em Python <a href="#1-shell-hooks-travas-corporativas-sem-precisar-escrever-plugins-em-python" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Os <strong>Shell Hooks</strong> são a via mais rápida para equipes de operações criarem guardrails rígidos. Declarados no <code>config.yaml</code> do perfil, eles disparam qualquer script executável (Bash, Python, binário compilado) como subprocesso, enviando um payload JSON via <code>stdin</code> e lendo a decisão via <code>stdout</code>.[1]</p>
+<p>Dois mecanismos tornam os Shell Hooks especialmente poderosos para ambientes corporativos:</p>
+<ol>
+<li><strong>Bloqueio instantâneo com Exit Code 2:</strong> compatível com o padrão de Claude Code e Cursor, qualquer script em <code>pre_tool_call</code> que retorne código de saída <code>2</code> bloqueia imediatamente a ferramenta, mesmo sem emitir JSON estruturado — usando o JSON de bloqueio, os primeiros 400 caracteres de <code>stderr</code> ou uma mensagem padrão.[1]</li>
+<li><strong>Modo <code>fail_closed: true</code> (Falha Segura):</strong> por padrão, hooks operam em <em>fail-open</em> (se o script travar ou der timeout, o agente prossegue para não parar a operação).[1] Para verificações de segurança — como um scanner de segredos ou bloqueio de comandos destrutivos — ativar <code>fail_closed: true</code> inverte essa lógica: se o script não for encontrado, der timeout ou retornar saída inválida, o Hermes bloqueia a ferramenta automaticamente.[1]</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Cenário de Falha</th>
+<th>Comportamento Padrão (<code>fail_open</code>)</th>
+<th>Com <code>fail_closed: true</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Comando não encontrado / sem permissão</td>
+<td>Loga aviso e prossegue[1]</td>
+<td><strong>Bloqueia a chamada</strong>[1]</td>
+</tr>
+<tr>
+<td>Timeout excedido</td>
+<td>Loga aviso e prossegue[1]</td>
+<td><strong>Bloqueia a chamada</strong>[1]</td>
+</tr>
+<tr>
+<td>Saída não-JSON (ex.: <em>stack trace</em>)</td>
+<td>Loga aviso e prossegue[1]</td>
+<td><strong>Bloqueia a chamada</strong>[1]</td>
+</tr>
+<tr>
+<td>JSON vazio válido (<code>{}</code>)</td>
+<td>Prossegue[1]</td>
+<td>Prossegue[1]</td>
+</tr>
+</tbody></table>
+<p>Além de bloquear (<code>action: &quot;block&quot;</code>), um Shell Hook em <code>pre_tool_call</code> também pode <strong>reescrever argumentos</strong> (<code>action: &quot;modify&quot;</code>) antes da execução ou <strong>escalar para aprovação humana</strong> (<code>action: &quot;approve&quot;</code>).[1] No evento <code>pre_llm_call</code>, pode injetar contexto atualizado (como <code>git status</code> ou regras do dia) ou bloquear o turno antes mesmo de gastar tokens com a API do modelo.[1]</p>
+<pre><code class="language-yaml"><span class="token comment"># Exemplo prático no ~/.hermes/config.yaml</span>
+<span class="token key atrule">hooks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">pre_tool_call</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">matcher</span><span class="token punctuation">:</span> <span class="token string">"terminal|write_file|patch"</span>
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token string">"~/.hermes/agent-hooks/secret-scan.sh"</span>
+      <span class="token key atrule">timeout</span><span class="token punctuation">:</span> <span class="token number">10</span>
+      <span class="token key atrule">fail_closed</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre><hr>
+<h2 id="2-gateway-hooks-andamp-o-padrao-bootmd-vigilancia-automatica-na-nuvem" class="scroll-mt-24 group flex items-center justify-between">2. Gateway Hooks &amp; o padrão <code>BOOT.md</code>: vigilância automática na nuvem <a href="#2-gateway-hooks-andamp-o-padrao-bootmd-vigilancia-automatica-na-nuvem" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Quando o Hermes roda 24/7 em uma VPS atendendo equipes no Telegram, WhatsApp, Discord, Slack ou Microsoft Teams, os <strong>Gateway Hooks</strong> (<code>~/.hermes/hooks/&lt;nome&gt;/HOOK.yaml</code> + <code>handler.py</code>) monitoram eventos de conversa sem bloquear o fluxo principal.[1]</p>
+<p>Entre os eventos disponíveis estão <code>gateway:startup</code>, <code>session:start</code>, <code>session:end</code>, <code>session:reset</code>, <code>session:compress</code>, <code>agent:start</code>, <code>agent:step</code> (a cada iteração de ferramenta), <code>agent:end</code>, <code>reaction:added</code>/<code>reaction:removed</code> (no Slack) e o curinga <code>command:*</code> para auditar todos os comandos de barra.[1]</p>
+<p>Um caso de uso consagrado para gestores é o padrão <strong><code>BOOT.md</code></strong>: um hook conectado ao <code>gateway:startup</code> lê um checklist em linguagem natural em <code>~/.hermes/BOOT.md</code> toda vez que o gateway sobe, verifica se algum <em>cron job</em> noturno falhou ou se há erros nos logs de deploy e envia um resumo ao canal de operações — respondendo apenas <code>[SILENT]</code> quando está tudo saudável para evitar ruído.[1]</p>
+<hr>
+<h2 id="3-plugin-hooks-interceptacao-profunda-e-secoes-cache-safe" class="scroll-mt-24 group flex items-center justify-between">3. Plugin Hooks: interceptação profunda e seções cache-safe <a href="#3-plugin-hooks-interceptacao-profunda-e-secoes-cache-safe" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para extensões distribuídas em equipe ou publicadas no catálogo, os <strong>Plugin Hooks</strong> registram callbacks via <code>ctx.register_hook()</code> e cobrem todo o espectro do runtime: <code>pre_tool_call</code>, <code>post_tool_call</code>, <code>pre_llm_call</code>, <code>post_llm_call</code>, <code>pre_verify</code>, <code>subagent_start</code>, <code>subagent_stop</code>, eventos de aprovação humana (<code>pre_approval_request</code>, <code>post_approval_response</code>), transcrição de áudio (<code>pre_transcription</code>) e ciclo de vida do Kanban multi-agente (<code>kanban_task_claimed</code>, <code>kanban_task_completed</code>, <code>kanban_task_blocked</code>).[1]</p>
+<p>Para evitar que injeções repetitivas destruam o <em>prompt caching</em> dos provedores de LLM, o Hermes oferece ainda <code>ctx.register_system_prompt_section(..., position=&quot;after_memory&quot;)</code>, garantindo regras corporativas fixas e ordenadas sem invalidar o cache a cada turno.[1] Callbacks com limite de tempo (<code>plugins.hook_callback_timeout</code>, padrão de 30 segundos) são encerrados se travarem: em <code>pre_tool_call</code>, o timeout falha de forma fechada (<em>fail-closed</em>) e bloqueia a ferramenta; nos demais observadores, falha aberto (<em>fail-open</em>) para preservar a disponibilidade.[1]</p>
+<hr>
+<h2 id="4-outbound-webhooks-telemetria-assinada-sem-latencia-no-agente" class="scroll-mt-24 group flex items-center justify-between">4. Outbound Webhooks: telemetria assinada sem latência no agente <a href="#4-outbound-webhooks-telemetria-assinada-sem-latencia-no-agente" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Enquanto webhooks de entrada acordam o agente quando algo muda fora dele, os <strong>Outbound Webhooks</strong> (<code>hooks.outbound:</code> no <code>config.yaml</code>) notificam sistemas externos — como pipelines de CI/CD, painéis de BI, SIEMs de segurança ou outra instância do Hermes — sempre que ocorre um evento interno.[1]</p>
+<p>Sua arquitetura foi desenhada para produção:</p>
+<ul>
+<li><strong>Zero impacto na latência:</strong> os eventos são serializados e enfileirados instantaneamente em uma thread separada (<em>fire-and-forget</em>), garantindo que um servidor externo lento ou fora do ar nunca trave o agente.[1]</li>
+<li><strong>Autenticação HMAC-SHA256:</strong> usando <code>secret_env</code> (apontando para uma variável no <code>~/.hermes/.env</code>), cada requisição inclui o cabeçalho <code>X-Hermes-Signature-256</code>, além de <code>delivery_id</code> e <code>timestamp</code> dentro do corpo assinado para proteção contra ataques de repetição (<em>replay attacks</em>).[1]</li>
+<li><strong>Multi-perfil nativo:</strong> o campo <code>profile</code> identifica qual perfil departamental disparou o evento, permitindo que um único gateway multiplexado alimente painéis distintos.[1]</li>
+</ul>
+<pre><code class="language-yaml"><span class="token comment"># Exemplo de Outbound Webhook assinado no ~/.hermes/config.yaml</span>
+<span class="token key atrule">hooks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">outbound</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> auditoria<span class="token punctuation">-</span>corporativa
+      <span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//siem.suaempresa.com.br/hermes<span class="token punctuation">-</span>events
+      <span class="token key atrule">events</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>pre_tool_call<span class="token punctuation">,</span> on_session_end<span class="token punctuation">,</span> subagent_stop<span class="token punctuation">]</span>
+      <span class="token key atrule">matcher</span><span class="token punctuation">:</span> <span class="token string">"terminal|delegate_task"</span>
+      <span class="token key atrule">secret_env</span><span class="token punctuation">:</span> HERMES_OUTBOUND_WEBHOOK_SECRET
+      <span class="token key atrule">timeout</span><span class="token punctuation">:</span> <span class="token number">10</span>
+</code></pre><hr>
+<h2 id="como-auditar-e-testar-suas-travas-antes-de-ir-para-producao" class="scroll-mt-24 group flex items-center justify-between">Como auditar e testar suas travas antes de ir para produção <a href="#como-auditar-e-testar-suas-travas-antes-de-ir-para-producao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O Hermes oferece comandos nativos na CLI para inspecionar e validar hooks configurados sem precisar esperar um incidente real:[1]</p>
+<ul>
+<li><code>hermes hooks list</code> — lista todos os Shell Hooks e Outbound Webhooks configurados no perfil ativo, indicando inclusive alvos sem assinatura (<code>UNSIGNED</code>).[1]</li>
+<li><code>hermes hooks test &lt;evento&gt;</code> — testa o comportamento do hook localmente e exibe exatamente o payload normalizado (<code>parsed</code>) que o dispatcher receberia.[1]</li>
+</ul>
+<hr>
+<h2 id="conclusao" class="scroll-mt-24 group flex items-center justify-between">Conclusão <a href="#conclusao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Colocar agentes de IA para operar rotinas reais de negócio exige a mesma disciplina de engenharia aplicada a servidores e sistemas financeiros: <strong>observabilidade, travas determinísticas e separação entre quem executa e quem audita</strong>. Os quatro sistemas de <strong>Event Hooks</strong> do Hermes Agent entregam exatamente essa camada de controle, permitindo que você saia dos experimentos isolados e opere agentes confiáveis 24/7.[1]</p>
+<p>Para aprofundar sua arquitetura de agentes autônomos em produção com foco em resultados reais de negócio, conheça a comunidade <strong>Inteligência Agêntica</strong> em <a href="https://inteligenciaagentica.com.br">https://inteligenciaagentica.com.br</a>.</p>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/hooks">https://hermes-agent.nousresearch.com/docs/user-guide/features/hooks</a> — Event Hooks | Hermes Agent - Nous Research</p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/event-hooks-hermes-agent-governanca-auditoria-bloqueio-tempo-real.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Tool Search e Tiered Disclosure: Como Conectar 3.000 Ferramentas MCP Sem Estourar o Contexto nem a Fatura]]></title>
