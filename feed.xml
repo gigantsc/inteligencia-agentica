@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Thu, 26 Nov 2026 11:06:34 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 27 Nov 2026 11:06:04 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,156 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais-v2.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Import from Other Agents: Migre Claude Code, Cursor, Codex e OpenClaw para o Hermes em 1 Comando]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/import-from-other-agents-migracao-claude-code-cursor-codex-openclaw-hermes</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/import-from-other-agents-migracao-claude-code-cursor-codex-openclaw-hermes</guid>
+            <pubDate>Fri, 27 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Aprenda a migrar regras, memórias, servidores MCP, skills e rotinas do Claude Code, Cursor, OpenAI Codex CLI, OpenClaw, Grok Bot e OpenBot para o Hermes Agent sem recomeçar do zero e sem expor credenciais.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Em resumo:</strong> O maior freio para empresas adotarem uma arquitetura agêntica 24/7 é o medo de perder meses de regras, <em>skills</em>, memórias e servidores MCP configurados em outras ferramentas. Com o plugin oficial <strong><code>agent-importers</code></strong> (<code>hermes import-agent</code> / <code>hermes migrate</code>), o Hermes Agent importa em um único comando ambientes inteiros do <strong>Claude Code</strong>, <strong>OpenAI Codex CLI</strong>, <strong>Cursor</strong>, <strong>OpenClaw</strong>, <strong>Grok Bot</strong> e <strong>OpenBot</strong> — com prévia obrigatória (<code>--dry-run</code>), bloqueio automático de credenciais sensíveis e sincronização contínua por hash (<code>--sync</code>).[1][2]</p>
+</blockquote>
+<hr>
+<h2 id="o-custo-oculto-do-vendor-lock-in-em-ferramentas-de-ia" class="scroll-mt-24 group flex items-center justify-between">O Custo Oculto do <em>Vendor Lock-in</em> em Ferramentas de IA <a href="#o-custo-oculto-do-vendor-lock-in-em-ferramentas-de-ia" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Empresários e líderes de tecnologia que começaram a usar IA no dia a dia enfrentam um problema silencioso: o conhecimento operacional da empresa fica espalhado em múltiplos silos.</p>
+<p>A equipe de desenvolvimento mantém instruções em <code>CLAUDE.md</code> no <strong>Claude Code</strong> ou regras <code>.mdc</code> no <strong>Cursor</strong>.[1] O time de engenharia testa fluxos no <strong>OpenAI Codex CLI</strong> (<code>AGENTS.md</code> e <code>config.toml</code>), enquanto operações ou automações pessoais rodam rotinas no <strong>OpenClaw</strong>, <strong>Grok Bot</strong> ou <strong>OpenBot</strong>.[1][2]</p>
+<p>Quando a empresa decide consolidar tudo em um agente autônomo rodando 24/7 em servidor próprio ou VPS com acesso a Telegram, WhatsApp, Slack e cron jobs, surge a objeção clássica: <em>&quot;Vamos ter que reescrever tudo do zero?&quot;</em></p>
+<p>A resposta no <strong>Hermes Agent</strong> é não.[1] O comando <code>hermes import-agent</code> (alimentado pelo plugin oficial <code>agent-importers</code> do catálogo mantido pela Nous Research) lê esses diretórios locais, exibe um plano item por item antes de gravar qualquer arquivo e traduz cada componente para a estrutura nativa do Hermes.[1]</p>
+<hr>
+<h2 id="arquitetura-da-migracao-como-funciona-o-agent-importers" class="scroll-mt-24 group flex items-center justify-between">Arquitetura da Migração: Como Funciona o <code>agent-importers</code> <a href="#arquitetura-da-migracao-como-funciona-o-agent-importers" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>O processo segue três princípios de segurança operacional: <strong>descoberta automática</strong>, <strong>auditoria prévia</strong> e <strong>isolamento de segredos</strong>.[1][2]</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────┐
+│                    FONTES DETECTADAS AUTOMATICAMENTE                    │
+│  ~/.claude <span class="token punctuation">(</span>Claude Code<span class="token punctuation">)</span>  │  ~/.codex <span class="token punctuation">(</span>Codex CLI<span class="token punctuation">)</span>  │  ~/.cursor <span class="token punctuation">(</span>Cursor<span class="token punctuation">)</span>│
+│  ~/.openclaw <span class="token punctuation">(</span>OpenClaw<span class="token punctuation">)</span>   │  grok-bot-export.json  │  openbot.db        │
+└───────────────────────────────┬─────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                  PLUGIN OFICIAL: agent-importers                        │
+│  <span class="token number">1</span>. Varredura + Plano detalhado <span class="token punctuation">(</span>--dry-run não toca no disco<span class="token punctuation">)</span>           │
+│  <span class="token number">2</span>. Snapshot de segurança em ~/.hermes/backups/pre-migration-*.zip      │
+│  <span class="token number">3</span>. Expurgo automático de chaves <span class="token punctuation">(</span>*_TOKEN, *_API_KEY, Authorization<span class="token punctuation">)</span>    │
+└───────────────────────────────┬─────────────────────────────────────────┘
+                                │
+          ┌─────────────────────┼─────────────────────┐
+          ▼                     ▼                     ▼
+┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│ MEMÓRIA <span class="token operator">&amp;</span> ALMA   │  │ REGRAS <span class="token operator">&amp;</span> MCP     │  │ SKILLS <span class="token operator">&amp;</span> CRON    │
+│ MEMORY.md        │  │ config.yaml      │  │ skills/*-imports │
+│ <span class="token environment constant">USER</span>.md          │  │ command_allowlist│  │ Cron <span class="token function">jobs</span>        │
+│ SOUL.md          │  │ mcp_servers      │  │ <span class="token punctuation">(</span>pausados<span class="token punctuation">)</span>       │
+└──────────────────┘  └──────────────────┘  └──────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│             SINCRONIZAÇÃO CONTÍNUA <span class="token punctuation">(</span>~/.hermes/import-sync.json<span class="token punctuation">)</span>         │
+│       hermes import-agent <span class="token parameter variable">--sync</span>  <span class="token punctuation">(</span>atualiza apenas o que mudou<span class="token punctuation">)</span>         │
+└─────────────────────────────────────────────────────────────────────────┘
+</code></pre><p>Em uma instalação nova, o próprio assistente <code>hermes setup</code> verifica automaticamente a existência dessas pastas no computador e pergunta se você deseja importar os dados encontrados antes mesmo de configurar provedores manualmente.[1] Em ambientes já configurados, basta rodar <code>hermes migrate</code> ou instalar o plugin manualmente:[1]</p>
+<pre><code class="language-bash"><span class="token comment"># Instalar o plugin oficial no perfil atual</span>
+hermes plugins <span class="token function">install</span> agent-importers
+
+<span class="token comment"># Detectar automaticamente agentes instalados e exibir plano</span>
+hermes import-agent
+
+<span class="token comment"># Apenas simular sem alterar nenhum arquivo no disco</span>
+hermes import-agent claude-code --dry-run
+</code></pre><hr>
+<h2 id="o-que-e-importado-de-cada-plataforma" class="scroll-mt-24 group flex items-center justify-between">O Que é Importado de Cada Plataforma <a href="#o-que-e-importado-de-cada-plataforma" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Cada ferramenta armazena contexto, permissões e integrações em formatos diferentes. A tabela abaixo resume o mapeamento exato executado pelo Hermes Agent:[1][2]</p>
+<table>
+<thead>
+<tr>
+<th>Origem</th>
+<th>Instruções &amp; Memória</th>
+<th>Permissões &amp; MCP</th>
+<th>Skills &amp; Rotinas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Claude Code</strong> (<code>~/.claude</code>)</td>
+<td><code>CLAUDE.md</code> → <code>~/.hermes/memories/MEMORY.md</code>[1]</td>
+<td><code>settings.json</code> (<code>Bash(...)</code>) → <code>command_allowlist</code> / <code>approvals.deny</code>; <code>mcpServers</code> → <code>mcp_servers</code>[1]</td>
+<td><code>skills/&lt;nome&gt;/</code> → <code>skills/claude-code-imports/&lt;nome&gt;/</code>[1]</td>
+</tr>
+<tr>
+<td><strong>Codex CLI</strong> (<code>~/.codex</code>)</td>
+<td><code>AGENTS.md</code> e <code>memories/*.md</code> → <code>MEMORY.md</code>[1]</td>
+<td><code>config.toml</code> (<code>[mcp_servers.*]</code>) → <code>mcp_servers</code>[1]</td>
+<td><code>skills/&lt;nome&gt;/</code> → <code>skills/codex-imports/&lt;nome&gt;/</code>[1]</td>
+</tr>
+<tr>
+<td><strong>Cursor</strong> (<code>~/.cursor</code>)</td>
+<td><code>AGENTS.md</code> e <code>rules/*.md</code> / <code>.mdc</code> (remove frontmatter de roteamento) → <code>MEMORY.md</code>[1]</td>
+<td><code>mcp.json</code> (<code>mcpServers</code>) → <code>mcp_servers</code>[1]</td>
+<td><code>skills/**/&lt;nome&gt;/</code> → <code>skills/cursor-imports/&lt;nome&gt;/</code>[1]</td>
+</tr>
+<tr>
+<td><strong>OpenClaw</strong> (<code>~/.openclaw</code>)</td>
+<td><code>SOUL.md</code>, <code>USER.md</code>, <code>MEMORY.md</code> e <code>memory/*.md</code> (com merge e deduplicação)[2]</td>
+<td><code>mcp.servers.*</code> → <code>mcp_servers</code>; provedores, <code>max_turns</code>, <code>reasoning_effort</code>, TTS e Docker sandbox[2]</td>
+<td>4 diretórios de skills → <code>skills/openclaw-imports/</code>[2]</td>
+</tr>
+<tr>
+<td><strong>Grok Bot</strong> (<code>grok-bot-export.json</code>)</td>
+<td>Papel do bot → <code>SOUL.md</code>; fatos e memória → <code>MEMORY.md</code> / <code>USER.md</code>[1]</td>
+<td>URLs remotas de MCP → <code>mcp_servers</code>[1]</td>
+<td>Rotinas agendadas → Cron jobs <strong>pausados</strong>; rotinas de evento documentadas em Markdown[1]</td>
+</tr>
+<tr>
+<td><strong>OpenBot</strong> (<code>openbot.db</code>)</td>
+<td>Descrição → <code>SOUL.md</code>; memórias → <code>MEMORY.md</code> (leitura somente-leitura do banco)[1]</td>
+<td>Servidores MCP → <code>config.yaml</code> (sem variáveis secretas)[1]</td>
+<td><code>~/OpenBot/Agents</code> → <code>skills/openbot-imports/</code>; rotinas → Cron jobs <strong>pausados</strong>[1]</td>
+</tr>
+</tbody></table>
+<h3 id="detalhes-importantes-na-conversao" class="scroll-mt-24 group flex items-center justify-between">Detalhes Importantes na Conversão <a href="#detalhes-importantes-na-conversao" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<ol>
+<li><strong>Regras de Segurança do Claude Code:</strong> Regras de terminal no formato <code>Bash(npm run test:*)</code> são convertidas automaticamente para globs equivalentes (<code>npm run test*</code>) no <code>command_allowlist</code> do Hermes.[1] Regras exclusivas de ferramentas proprietárias do Claude (<code>Read(...)</code>, <code>WebFetch</code>) são sinalizadas no relatório como não mapeadas, evitando falsas permissões.[1]</li>
+<li><strong>Prevenção de Execução Duplicada (Grok Bot e OpenBot):</strong> Ao importar rotinas agendadas do Grok Bot ou OpenBot, o Hermes cria os cron jobs no estado <strong>pausado</strong>.[1] Assim, o fluxo antigo e o novo não disparam ações duplicadas em paralelo. Quando estiver pronto para virar a chave, basta executar <code>hermes cron resume &lt;id&gt;</code> ou usar <code>--activate-routines</code> na importação.[1]</li>
+<li><strong>Backup e Limpeza no OpenClaw:</strong> Antes de aplicar mudanças na migração do OpenClaw (ou legados <code>~/.clawdbot</code> / <code>~/.moltbot</code>), o Hermes gera um arquivo de restauração em <code>~/.hermes/backups/pre-migration-*.zip</code>.[2] Após validar que tudo está operando, o comando <code>hermes claw cleanup</code> renomeia os diretórios antigos para <code>.pre-migration/</code>, evitando conflitos de estado.[2]</li>
+</ol>
+<hr>
+<h2 id="seguranca-o-que-nunca-e-importado-silenciosamente" class="scroll-mt-24 group flex items-center justify-between">Segurança: O Que Nunca é Importado Silenciosamente <a href="#seguranca-o-que-nunca-e-importado-silenciosamente" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Em operações corporativas, migrar configurações não pode significar copiar arquivos de credenciais sem critério. O <code>agent-importers</code> aplica regras rígidas de proteção:[1]</p>
+<ul>
+<li><strong>Arquivos de credenciais são ignorados:</strong> <code>~/.claude/.credentials.json</code>, <code>~/.codex/auth.json</code> e <code>~/.cursor/cli-config.json</code> nunca são lidos.[1]</li>
+<li><strong>Expurgo de segredos em servidores MCP:</strong> Variáveis de ambiente e cabeçalhos com nomes sensíveis (<code>*_TOKEN</code>, <code>*_API_KEY</code>, <code>Authorization</code>) são removidos durante a importação e listados no relatório final para que o administrador os adicione conscientemente em <code>~/.hermes/.env</code>.[1]</li>
+<li><strong>Exceção explícita no OpenClaw:</strong> Chaves de API e tokens de bots (Telegram, Discord, Slack) só são migrados quando o operador informa explicitamente a flag <code>--migrate-secrets</code>.[2] Mesmo <code>--preset full</code> não copia segredos de forma silenciosa.[2]</li>
+<li><strong>Bloqueio de exportações inseguras no Grok Bot:</strong> Se o JSON exportado contiver chaves com formato de credencial, o importador recusa o arquivo e aplica redação automática em textos com padrão de token.[1]</li>
+</ul>
+<p>Para ambientes que desejam simplificar múltiplas chaves antigas após a migração, o Hermes também permite consolidar provedores via <code>hermes setup --portal</code>, centralizando acesso a modelos e ferramentas em uma única autenticação.[2]</p>
+<hr>
+<h2 id="sincronizacao-continua-sync-use-a-ide-e-opere-no-hermes" class="scroll-mt-24 group flex items-center justify-between">Sincronização Contínua (<code>--sync</code>): Use a IDE e Opere no Hermes <a href="#sincronizacao-continua-sync-use-a-ide-e-opere-no-hermes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Um dos recursos mais subestimados do <code>agent-importers</code> é que ele não serve apenas para uma migração única de saída.[1]</p>
+<p>Toda importação bem-sucedida de <strong>Claude Code</strong>, <strong>Codex CLI</strong> ou <strong>Cursor</strong> registra a origem e o resumo criptográfico (<em>digest</em>) de cada arquivo lido no manifesto <code>~/.hermes/import-sync.json</code>.[1]</p>
+<p>Isso permite que sua equipe continue editando regras no Cursor ou adicionando skills no Claude Code durante a semana, enquanto o Hermes puxa apenas o que foi modificado:[1]</p>
+<pre><code class="language-bash"><span class="token comment"># Visualizar o que mudou desde a última importação</span>
+hermes import-agent <span class="token parameter variable">--sync</span> --dry-run
+
+<span class="token comment"># Sincronizar apenas arquivos cujo digest mudou</span>
+hermes import-agent <span class="token parameter variable">--sync</span>
+</code></pre><p>Como a verificação compara <em>digests</em> locais sem acionar modelos de linguagem, a operação é praticamente gratuita e determinística — podendo inclusive rodar como um cron job diário para manter o agente da empresa sempre alinhado às regras mais recentes dos repositórios.[1]</p>
+<p>Além disso, o manifesto é isolado por perfil.[1] Ao clonar um ambiente departamental com <code>hermes profile create financeiro --clone --sync-imports</code>, o novo perfil herda o vínculo de sincronização e pode ser atualizado de forma independente via <code>hermes -p financeiro import-agent --sync</code>.[1]</p>
+<hr>
+<h2 id="checklist-pratico-de-migracao-para-empresas" class="scroll-mt-24 group flex items-center justify-between">Checklist Prático de Migração para Empresas <a href="#checklist-pratico-de-migracao-para-empresas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para realizar a transição sem interromper a operação atual, siga esta sequência validada:</p>
+<ol>
+<li><strong>Simule primeiro:</strong> Execute <code>hermes import-agent &lt;agente&gt; --dry-run</code> (ou <code>hermes import-agent</code> para detecção automática) e revise o plano de itens.[1]</li>
+<li><strong>Separe por perfil se houver múltiplos bots:</strong> Para Grok Bot ou OpenBot com vários assistentes especializados, direcione cada um para seu próprio perfil com <code>hermes -p &lt;perfil&gt; import-agent ...</code>.[1]</li>
+<li><strong>Revise segredos e permissões:</strong> Verifique a lista de variáveis de MCP removidas no relatório final e cadastre as chaves necessárias em <code>~/.hermes/.env</code>.[1]</li>
+<li><strong>Valide conectividade e canais:</strong> Execute <code>hermes status</code> para confirmar provedores e, no caso de WhatsApp (que usa pareamento por QR Code via Baileys), execute <code>hermes whatsapp</code>.[2]</li>
+<li><strong>Ative rotinas somente após desativar a origem:</strong> Desligue o agendamento na ferramenta anterior e libere os cron jobs importados com <code>hermes cron resume &lt;id&gt;</code>.[1]</li>
+</ol>
+<p>Consolidar a inteligência operacional da empresa em uma infraestrutura única reduz retrabalho, elimina o risco de perder prompts críticos quando um colaborador troca de editor e dá à gestão controle real sobre custos, permissões e auditoria.</p>
+<p>Se você quer estruturar agentes corporativos 24/7 com governança, segurança e foco em resultado operacional real, conheça a comunidade e o programa completo em <strong><a href="https://inteligenciaagentica.com.br">inteligenciaagentica.com.br</a></strong>.</p>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/import-from-other-agents">https://hermes-agent.nousresearch.com/docs/user-guide/import-from-other-agents</a> — Import from Other Agents | Hermes Agent<br>[2] <a href="https://hermes-agent.nousresearch.com/docs/guides/migrate-from-openclaw">https://hermes-agent.nousresearch.com/docs/guides/migrate-from-openclaw</a> — Migrate from OpenClaw | Hermes Agent</p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/import-from-other-agents-migracao-claude-code-cursor-codex-openclaw-hermes.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Event Hooks no Hermes Agent: Os 4 Sistemas de Governança, Bloqueio e Auditoria em Tempo Real]]></title>

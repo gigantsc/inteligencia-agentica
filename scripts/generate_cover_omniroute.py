@@ -182,6 +182,19 @@ TARGETS = {
         "title2": "3.000 Ferramentas Sem Estourar Tokens",
         "subtitle": "Carregamento sob demanda, BM25 e Connectors sem poluir o contexto",
     },
+    "import-agents": {
+        "file": "import-from-other-agents-migracao-claude-code-cursor-codex-openclaw-hermes.jpg",
+        "prompt": ESTILO_BASE + (
+            "A majestic classical Greco-Roman white marble bust of Hermes with winged helmet at the center "
+            "of a dark obsidian sanctuary, receiving six glowing electric cyan (#00E5FF) and luminous gold (#DFBA6B) "
+            "fiber-optic data bridges converging from six floating crystalline stone tablets into a unified "
+            "holographic memory and protocol core, symbolizing seamless multi-agent migration."
+        ),
+        "kicker": "INTELIGÊNCIA AGÊNTICA  •  MIGRAÇÃO SEM ATRITO",
+        "title1": "Import from Other Agents:",
+        "title2": "Migre Tudo em 1 Comando",
+        "subtitle": "Claude Code, Cursor, Codex, OpenClaw, Grok Bot e OpenBot no Hermes",
+    },
 }
 
 
