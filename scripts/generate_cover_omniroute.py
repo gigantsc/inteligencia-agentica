@@ -195,6 +195,19 @@ TARGETS = {
         "title2": "Migre Tudo em 1 Comando",
         "subtitle": "Claude Code, Cursor, Codex, OpenClaw, Grok Bot e OpenBot no Hermes",
     },
+    "automation-blueprints": {
+        "file": "automation-blueprints-fluxos-prontos-hermes-agent.jpg",
+        "prompt": ESTILO_BASE + (
+            "A majestic classical Greco-Roman white marble bust of Hermes with winged helmet at the center "
+            "of a dark obsidian architectural studio, surrounded by floating luminous electric cyan (#00E5FF) "
+            "holographic architectural blueprints and golden (#DFBA6B) precision clockwork gears and webhook "
+            "conduits projecting into clean operational channels, symbolizing ready-to-run automation templates."
+        ),
+        "kicker": "INTELIGÊNCIA AGÊNTICA  •  AUTOMAÇÃO PRONTA",
+        "title1": "Automation Blueprints:",
+        "title2": "Fluxos Prontos Sem Código",
+        "subtitle": "Agende rotinas, webhooks Stripe e watchdogs com /blueprint",
+    },
 }
 
 

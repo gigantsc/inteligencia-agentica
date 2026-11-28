@@ -4,7 +4,7 @@
         <title>Inteligência Agêntica — O Ecossistema Hermes OS</title>
         <link>https://inteligenciaagentica.com.br/</link>
         <description>Comunidade, treinamentos e artigos práticos sobre Agentes Autônomos de IA, VPS, DevOps, automação e GEO.</description>
-        <lastBuildDate>Fri, 27 Nov 2026 11:06:04 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 28 Nov 2026 11:05:01 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -217,6 +217,207 @@
 ]]></content:encoded>
             <author>Jean Pierre Schramm</author>
             <enclosure url="https://inteligenciaagentica.com.br/static/images/guia-completo-faq-hermes-agent-funcionarios-digitais-v2.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Automation Blueprints no Hermes Agent: Fluxos Prontos 24/7 Sem Sintaxe Cron]]></title>
+            <link>https://inteligenciaagentica.com.br/blog/automation-blueprints-fluxos-prontos-hermes-agent</link>
+            <guid isPermaLink="false">https://inteligenciaagentica.com.br/blog/automation-blueprints-fluxos-prontos-hermes-agent</guid>
+            <pubDate>Sat, 28 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Os Automation Blueprints do Hermes Agent transformam rotinas agendadas, webhooks de pagamento e alertas de infraestrutura em fluxos prontos que operam 24/7 sem exigir sintaxe cron ou programação do zero.]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p><strong>Em resumo:</strong> Os <strong>Automation Blueprints</strong> do Hermes Agent são modelos prontos de automação que permitem ativar rotinas recorrentes, alertas de infraestrutura e respostas a eventos de API (como falhas de pagamento no Stripe ou incidentes no GitHub) preenchendo apenas alguns campos no painel web, no aplicativo Desktop ou via comando <code>/blueprint</code> no chat — sem escrever expressões cron nem depender de um único provedor de IA.[1][2]</p>
+</blockquote>
+<p>Empresários e gestores que implementam agentes de IA raramente travam na conversa inicial com o modelo. O gargalo aparece na segunda etapa: transformar tarefas repetitivas da operação — vigiar se o site caiu, monitorar cobranças recusadas, resumir notícias do setor às 8h da manhã ou revisar entregas da equipe técnica — em rotinas confiáveis que rodam sozinhas na nuvem.</p>
+<p>É exatamente esse abismo técnico que o sistema de <strong>Automation Blueprints</strong> do Hermes Agent elimina.[1][2] Em vez de obrigar o gestor a decorar expressões como <code>0 9 * * 1-5</code> ou configurar servidores intermediários, o Hermes entrega receitas validadas que funcionam com <strong>qualquer modelo de linguagem</strong> e entregam resultados direto no Telegram, Slack, Discord, SMS, e-mail ou arquivos locais.[1][2]</p>
+<hr>
+<h2 id="o-que-sao-automation-blueprints-e-como-ativa-los-em-qualquer-interface" class="scroll-mt-24 group flex items-center justify-between">O que são Automation Blueprints e como ativá-los em qualquer interface <a href="#o-que-sao-automation-blueprints-e-como-ativa-los-em-qualquer-interface" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Um <em>blueprint</em> no Hermes Agent é uma automação parametrizada que encapsula o gatilho, as instruções do agente, as habilidades (<em>skills</em>) necessárias e o canal de entrega.[1][2] O recurso foi desenhado para funcionar em <strong>todas as superfícies</strong> do ecossistema, sem prender o operador ao terminal:[2]</p>
+<ul>
+<li><strong>Web Dashboard e Hermes Desktop:</strong> basta abrir a página <strong>Cron</strong>, alternar para a aba <strong>Blueprints</strong>, preencher os campos do formulário (como horário e canal de destino) e clicar em <em>Schedule it</em>.[2] No aplicativo Desktop, o botão <strong>Send to App</strong> também carrega o comando já montado no compositor.[2]</li>
+<li><strong>CLI, TUI e Mensageiros (Telegram, Slack, Discord):</strong> digite <code>/blueprint &lt;nome&gt;</code> (por exemplo, <code>/blueprint morning-brief</code>).[2] O Hermes faz as perguntas necessárias uma por vez e só cria a tarefa após confirmação explícita — nenhum blueprint agenda rotinas silenciosamente sem autorização.[2]</li>
+<li><strong>Modo direto para operadores avançados:</strong> é possível pular o questionário passando os valores na mesma linha, como <code>/blueprint morning-brief time=08:00</code>.[2] A correspondência de nomes é tolerante a prefixos e pequenas variações de digitação.[2]</li>
+</ul>
+<p>Depois de criado, o job passa a ser gerenciado normalmente pelo comando <code>/cron</code>, podendo ser pausado, editado ou auditado a qualquer momento.[2]</p>
+<pre><code>+-----------------------------------------------------------------------+
+<span class="token operator">|</span>                    INTERFACE DO GESTOR <span class="token punctuation">(</span>QUALQUER CANAL<span class="token punctuation">)</span>               <span class="token operator">|</span>
+<span class="token operator">|</span>  Dashboard / Desktop <span class="token punctuation">(</span>Aba Blueprints<span class="token punctuation">)</span>  OU  Chat/CLI <span class="token punctuation">(</span>/blueprint <span class="token punctuation">..</span>.<span class="token punctuation">)</span>  <span class="token operator">|</span>
++-----------------------------------+-----------------------------------+
+                                    <span class="token operator">|</span>
+                          Confirmação explícita
+                                    <span class="token function">v</span>
++-----------------------------------------------------------------------+
+<span class="token operator">|</span>                   MOTOR DE GATILHOS DO HERMES AGENT                   <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> Schedule <span class="token punctuation">(</span>Cron<span class="token punctuation">)</span>   <span class="token operator">|</span>   <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> GitHub Event   <span class="token operator">|</span>   <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> API Webhook     <span class="token operator">|</span>
++-----------------------------------+-----------------------------------+
+                                    <span class="token operator">|</span>
+                  Execução com qualquer modelo + Skills
+                                    <span class="token function">v</span>
++-----------------------------------------------------------------------+
+<span class="token operator">|</span>                  FILTRO DE RUÍDO <span class="token operator">&amp;</span> ENTREGA MULTI-CANAL                <span class="token operator">|</span>
+<span class="token operator">|</span>  Sem novidades -<span class="token operator">></span> <span class="token punctuation">[</span>SILENT<span class="token punctuation">]</span> <span class="token punctuation">(</span>zero spam<span class="token punctuation">)</span>                                <span class="token operator">|</span>
+<span class="token operator">|</span>  Ação exigida  -<span class="token operator">></span> Telegram <span class="token operator">|</span> Slack <span class="token operator">|</span> Discord <span class="token operator">|</span> E-mail <span class="token operator">|</span> SMS <span class="token operator">|</span> Arquivo <span class="token operator">|</span>
++-----------------------------------------------------------------------+
+</code></pre><hr>
+<h2 id="os-3-tipos-de-gatilhos-dos-blueprints-na-pratica" class="scroll-mt-24 group flex items-center justify-between">Os 3 tipos de gatilhos dos Blueprints na prática <a href="#os-3-tipos-de-gatilhos-dos-blueprints-na-pratica" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Todos os <em>Automation Blueprints</em> oficiais apoiam-se em três mecanismos nativos do Hermes: o agendador cron (<code>cronjob_manage</code>) para tarefas baseadas em tempo e a plataforma de webhooks (<code>hermes webhook subscribe</code> ou rotas no <code>config.yaml</code>) para eventos em tempo real.[1]</p>
+<table>
+<thead>
+<tr>
+<th>Tipo de Gatilho</th>
+<th>Como Funciona</th>
+<th>Ferramenta / Comando</th>
+<th>Exemplos Empresariais Reais</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Schedule (Agendado)</strong></td>
+<td>Roda em cadência fixa (a cada 30 min, diário, dias úteis ou semanal)</td>
+<td><code>cronjob_manage</code> ou <code>/cron</code></td>
+<td>Monitor de disponibilidade do site, resumo executivo matinal, auditoria semanal de segurança [1]</td>
+</tr>
+<tr>
+<td><strong>GitHub Event</strong></td>
+<td>Dispara imediatamente quando um PR abre, um código é mesclado ou o CI falha</td>
+<td><code>hermes webhook subscribe</code></td>
+<td>Revisão automática de Pull Requests, diagnóstico de falhas de build, triagem de <em>issues</em> [1]</td>
+</tr>
+<tr>
+<td><strong>API Call (Webhook)</strong></td>
+<td>Sistema externo envia um <code>POST</code> JSON assinado para o endpoint do Hermes (porta padrão <code>8644</code>)</td>
+<td><code>hermes webhook subscribe</code> ou <code>config.yaml</code></td>
+<td>Falhas e disputas de pagamento no Stripe, triagem de alertas Datadog/Grafana, verificação pós-deploy [1]</td>
+</tr>
+</tbody></table>
+<h3 id="o-padrao-silent-inteligencia-sem-fadiga-de-alertas" class="scroll-mt-24 group flex items-center justify-between">O padrão <code>[SILENT]</code>: inteligência sem fadiga de alertas <a href="#o-padrao-silent-inteligencia-sem-fadiga-de-alertas" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Um dos maiores problemas de automações corporativas é inundar o celular do gestor com mensagens inúteis do tipo <em>&quot;tudo funcionando normalmente&quot;</em>. Os blueprints do Hermes resolvem isso com o padrão <strong><code>[SILENT]</code></strong>: sempre que a resposta do cron job contém <code>[SILENT]</code>, a entrega da notificação é suprimida automaticamente.[1]</p>
+<p>Na prática, um monitor de infraestrutura ou triagem noturna verifica dezenas de métricas e só envia uma mensagem no Telegram ou Slack quando encontra uma queda real, um erro HTTP <code>&gt;= 500</code> ou uma anomalia que exige decisão humana.[1]</p>
+<hr>
+<h2 id="receitas-prontas-para-operacoes-de-negocios-e-tecnologia" class="scroll-mt-24 group flex items-center justify-between">Receitas prontas para operações de negócios e tecnologia <a href="#receitas-prontas-para-operacoes-de-negocios-e-tecnologia" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>A documentação oficial reúne blueprints prontos para copiar, adaptar e colocar em produção em minutos.[1] Abaixo estão os fluxos de maior impacto imediato para empresas:</p>
+<table>
+<thead>
+<tr>
+<th>Blueprint</th>
+<th>Gatilho</th>
+<th>O que faz na operação</th>
+<th>Entrega Recomendada</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Stripe Payment Monitoring</strong></td>
+<td>Webhook API (<code>payment_intent.payment_failed</code>, <code>charge.dispute.created</code>)</td>
+<td>Identifica o motivo da recusa no Stripe, diferencia erro transitório (tentar novamente) de permanente (contatar cliente) e sinaliza disputas/chargebacks como urgentes</td>
+<td>Slack / Telegram (<code>ops</code>) [1]</td>
+</tr>
+<tr>
+<td><strong>Uptime Monitor (Híbrido)</strong></td>
+<td>Schedule (<code>every 30m</code>) + script Python</td>
+<td>Testa API, site e docs via HTTP sem gastar tokens quando tudo está no ar; só aciona o LLM e notifica se detectar <code>OUTAGE DETECTED</code></td>
+<td>Telegram (<code>[SILENT]</code> se ok) [1]</td>
+</tr>
+<tr>
+<td><strong>Daily Revenue &amp; Market Briefing</strong></td>
+<td>Schedule (<code>0 8 * * *</code>)</td>
+<td>Consolida indicadores financeiros, cotações e principais notícias de IA/tecnologia das últimas 12 horas em 3 a 4 tópicos objetivos</td>
+<td>Telegram matinal [1]</td>
+</tr>
+<tr>
+<td><strong>Alert Triage</strong></td>
+<td>Webhook API (Datadog, PagerDuty, Grafana)</td>
+<td>Cruza o alerta recebido com deploys recentes e erros conhecidos na web, entregando causa raiz provável, primeiros passos e prioridade (P1–P4)</td>
+<td>Canal de plantão Slack [1]</td>
+</tr>
+<tr>
+<td><strong>Deploy Verification</strong></td>
+<td>Webhook API (CI/CD)</td>
+<td>Executa <em>smoke tests</em> automáticos logo após cada deploy, valida <code>/health</code> e versão ativa, reportando status (<code>healthy</code>, <code>degraded</code> ou <code>failed</code>)</td>
+<td>Telegram [1]</td>
+</tr>
+<tr>
+<td><strong>Competitive Repository Scout</strong></td>
+<td>Schedule (<code>0 8 * * *</code>)</td>
+<td>Monitora repositórios estratégicos no GitHub diariamente, filtrando mudanças arquiteturais e correções de segurança relevantes (ignorando ruído de dependências)</td>
+<td>Telegram [1]</td>
+</tr>
+</tbody></table>
+<h3 id="exemplo-real-webhook-de-pagamentos-stripe-em-1-comando" class="scroll-mt-24 group flex items-center justify-between">Exemplo real: Webhook de pagamentos Stripe em 1 comando <a href="#exemplo-real-webhook-de-pagamentos-stripe-em-1-comando" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h3>
+<p>Para conectar eventos financeiros do Stripe ao canal operacional da equipe sem construir um microserviço separado, o gestor registra o blueprint diretamente via CLI:[1]</p>
+<pre><code class="language-bash">hermes webhook subscribe stripe-payments <span class="token punctuation">\</span>
+  <span class="token parameter variable">--events</span> <span class="token string">"payment_intent.succeeded,payment_intent.payment_failed,charge.dispute.created"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--prompt</span> <span class="token string">"Stripe event received:
+Event type: {type}
+Amount: {data.object.amount} cents ({data.object.currency})
+Customer: {data.object.customer}
+Status: {data.object.status}
+
+For payment_intent.payment_failed:
+- Identify the failure reason from {data.object.last_payment_error}
+- Suggest whether this is a transient issue (retry) or permanent (contact customer)
+
+For charge.dispute.created:
+- Flag as urgent and summarize the dispute details"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--deliver</span> slack
+</code></pre><p>O mesmo modelo funciona com assinaturas HMAC-SHA256 (<code>X-Webhook-Signature-V2</code> e <code>X-Webhook-Timestamp</code>) para validar webhooks de pipelines próprios ou ferramentas internas de monitoramento.[1]</p>
+<hr>
+<h2 id="como-criar-seus-proprios-blueprints-corporativos-via-skillmd-ou-plugins" class="scroll-mt-24 group flex items-center justify-between">Como criar seus próprios Blueprints corporativos (via <code>SKILL.md</code> ou Plugins) <a href="#como-criar-seus-proprios-blueprints-corporativos-via-skillmd-ou-plugins" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>Para empresas que padronizam processos internos — como fechamento semanal de vendas, auditoria de contratos ou <em>standup</em> de equipe — o Hermes permite transformar qualquer <strong>Skill</strong> em um blueprint reutilizável.[2][4] Basta adicionar o bloco <code>blueprint</code> dentro da chave <code>hermes:</code> no cabeçalho YAML do arquivo <code>SKILL.md</code>:[2][4]</p>
+<pre><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">name</span><span class="token punctuation">:</span> fechamento<span class="token punctuation">-</span>semanal<span class="token punctuation">-</span>ops
+<span class="token key atrule">description</span><span class="token punctuation">:</span> Consolida métricas operacionais e pendências toda sexta<span class="token punctuation">-</span>feira.
+<span class="token key atrule">version</span><span class="token punctuation">:</span> 1.0.0
+<span class="token key atrule">hermes</span><span class="token punctuation">:</span>
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>Operações<span class="token punctuation">,</span> Relatórios<span class="token punctuation">]</span>
+  <span class="token key atrule">blueprint</span><span class="token punctuation">:</span>
+    <span class="token key atrule">schedule</span><span class="token punctuation">:</span> <span class="token string">"0 17 * * 5"</span>
+    <span class="token key atrule">deliver</span><span class="token punctuation">:</span> telegram
+    <span class="token key atrule">prompt</span><span class="token punctuation">:</span> <span class="token string">"Compile os chamados abertos, entregas concluídas e gargalos da semana."</span>
+    <span class="token key atrule">no_agent</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+<span class="token punctuation">---</span>
+</code></pre><p>Além disso, plugins instalados por perfil também podem registrar blueprints próprios via <code>ctx.register_automation_blueprint()</code>.[2] Para garantir governança, os blueprints de plugins recebem automaticamente um prefixo com o nome do plugin (ex.: <code>/blueprint teamtools:standup</code>), impedindo que qualquer extensão de terceiros sobrescreva um blueprint nativo do sistema.[2] E há uma proteção operacional importante: mesmo que você desative o plugin depois, os cron jobs que já foram agendados a partir dele continuam rodando normalmente.[2]</p>
+<hr>
+<h2 id="automacao-tradicional-vs-automation-blueprints-no-hermes" class="scroll-mt-24 group flex items-center justify-between">Automação Tradicional vs. Automation Blueprints no Hermes <a href="#automacao-tradicional-vs-automation-blueprints-no-hermes" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Critério</th>
+<th>Cron Manual / Scripts Isolados</th>
+<th>Automation Blueprints (Hermes Agent)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Curva de configuração</strong></td>
+<td>Exige sintaxe cron, scripts de entrega e tratamento de erros</td>
+<td>Formulário visual no Dashboard/Desktop ou perguntas guiadas via <code>/blueprint</code> [2]</td>
+</tr>
+<tr>
+<td><strong>Inteligência na triagem</strong></td>
+<td>Nula — dispara alertas brutos ou exige regras rígidas <code>if/else</code></td>
+<td>Interpreta logs, falhas de pagamento e diffs antes de notificar [1]</td>
+</tr>
+<tr>
+<td><strong>Controle de ruído</strong></td>
+<td>Alto risco de spam de notificações</td>
+<td>Suporte nativo ao padrão <code>[SILENT]</code> e modo script-first de custo zero [1]</td>
+</tr>
+<tr>
+<td><strong>Portabilidade de modelo</strong></td>
+<td>Muitas vezes acoplado a uma API específica</td>
+<td>Funciona com qualquer provedor ou modelo configurado no Hermes [1]</td>
+</tr>
+<tr>
+<td><strong>Governança por perfil</strong></td>
+<td>Difícil de isolar por departamento</td>
+<td>Plugins carregam por perfil sem sobrescrever blueprints nativos [2]</td>
+</tr>
+</tbody></table>
+<p>Com a expansão contínua do catálogo de plugins — reforçada nas atualizações recentes até a linha <code>v0.23.4</code> — o padrão de blueprints consolida o Hermes como uma plataforma prática para gestores que querem menos código improvisado e mais processos auditáveis rodando 24 horas por dia.[2][3]</p>
+<hr>
+<p>Se você quer dominar a arquitetura prática de agentes autônomos aplicados a operações reais de negócios, conheça a comunidade <strong>Inteligência Agêntica</strong> em <a href="https://inteligenciaagentica.com.br">inteligenciaagentica.com.br</a>.</p>
+<h2 id="sources" class="scroll-mt-24 group flex items-center justify-between">Sources <a href="#sources" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-cyan-400 text-sm ml-2 transition-opacity">#</a></h2>
+<p>[1] <a href="https://hermes-agent.nousresearch.com/docs/guides/automation-blueprints">https://hermes-agent.nousresearch.com/docs/guides/automation-blueprints</a> — Automation Blueprints | Hermes Agent<br>[2] <a href="https://hermes-agent.nousresearch.com/docs/reference/automation-blueprints-catalog">https://hermes-agent.nousresearch.com/docs/reference/automation-blueprints-catalog</a> — Automation Blueprints Catalog | Hermes Agent<br>[3] <a href="https://github.com/NousResearch/hermes-agent/releases">https://github.com/NousResearch/hermes-agent/releases</a> — Releases · NousResearch/hermes-agent<br>[4] <a href="https://hermes-agent.nousresearch.com/docs/developer-guide/creating-skills">https://hermes-agent.nousresearch.com/docs/developer-guide/creating-skills</a> — Creating Skills | Hermes Agent</p>
+]]></content:encoded>
+            <author>Jean Pierre Schramm</author>
+            <enclosure url="https://inteligenciaagentica.com.br/static/images/automation-blueprints-fluxos-prontos-hermes-agent.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
             <title><![CDATA[Import from Other Agents: Migre Claude Code, Cursor, Codex e OpenClaw para o Hermes em 1 Comando]]></title>

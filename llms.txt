@@ -19,6 +19,12 @@
 - **Resumo:** O manual definitivo que todo empresário, profissional autônomo e operador de IA precisa ler. Reunimos as 30 dúvidas mais comuns sobre o Hermes Agent — desde a diferença entre perfis e bots, os 4 arquivos do cérebro do robô, controle de custos, até automações 24/7 no servidor e comando por voz.
 - **URL:** https://inteligenciaagentica.com.br/blog/guia-definitivo-hermes-agent-faq-30-respostas-essenciais
 
+### [Automation Blueprints no Hermes Agent: Fluxos Prontos 24/7 Sem Sintaxe Cron](https://inteligenciaagentica.com.br/blog/automation-blueprints-fluxos-prontos-hermes-agent)
+- **Data de Publicação:** 2026-11-28
+- **Tags:** Agentes de IA, Automação, Hermes Agent, Cron Jobs, Webhooks, Negócios
+- **Resumo:** Os Automation Blueprints do Hermes Agent transformam rotinas agendadas, webhooks de pagamento e alertas de infraestrutura em fluxos prontos que operam 24/7 sem exigir sintaxe cron ou programação do zero.
+- **URL:** https://inteligenciaagentica.com.br/blog/automation-blueprints-fluxos-prontos-hermes-agent
+
 ### [Import from Other Agents: Migre Claude Code, Cursor, Codex e OpenClaw para o Hermes em 1 Comando](https://inteligenciaagentica.com.br/blog/import-from-other-agents-migracao-claude-code-cursor-codex-openclaw-hermes)
 - **Data de Publicação:** 2026-11-27
 - **Tags:** Hermes Agent, Migração, Claude Code, Cursor, OpenClaw, MCP, Automação
